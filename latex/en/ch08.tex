@@ -67,11 +67,26 @@ Agents and RAG both presuppose clean knowledge units. The next section defines t
 \label{sec:ch8-dt-to-language}
 
 \subsection{Integrated Defect Profiles (IDPs)}
-We represent each maintainable defect observation as an Integrated Defect Profile (IDP), a provenance-aware tuple linking imagery evidence, semantic attributes, spatial pose, and asset association. Conceptually,
+\label{sec:ch8-idp-detail}
+We represent each maintainable defect observation as an Integrated Defect Profile (IDP), a provenance-aware tuple linking imagery evidence, semantic attributes, spatial pose, and asset association. Following the IAP-RAG formulation used in our industrial study, each atomic IDP instance is
 \begin{equation}
-\mathrm{IDP}=\langle I,E,S,A\rangle,
+P_i = \langle \mathcal{I},\ \mathcal{E},\ \mathcal{S},\ \mathcal{A} \rangle,
 \end{equation}
-where $I$ denotes imagery and sensor cues, $E$ evidence and detector metadata, $S$ semantic labels/severity, and $A$ the linked maintainable asset. IDPs are the atomic knowledge objects written by the perception stack and read by retrieval and agents.
+where $\mathcal{I}$ is an identity header, $\mathcal{E}$ multi-modal evidence, $\mathcal{S}$ spatio-semantic localisation, and $\mathcal{A}$ analysis attributes (type, severity, material context).
+
+\paragraph{Identity and naming.}
+The header uses a GUID-based convention $\mathcal{I}=\texttt{IDP\_\{g\}\_\{n\}}$, where $g$ is the host BIM component GUID and $n$ a per-component sequence number. This makes every observation portfolio-unique and immediately traceable to a maintainable host---a prerequisite for citation checks later.
+
+\paragraph{Modality-aware evidence.}
+Evidence $\mathcal{E}$ keeps RGB and infrared (IR) references separate rather than prematurely fusing them. IR often signals subsurface anomalies (e.g., delamination, moisture), while RGB documents surface symptoms (cracks, spalling, discoloration). Preserving modality provenance lets the LLM---and the conflict policy in Section~\ref{sec:ch8-multimodal}---weight complementary physics instead of averaging incompatible claims.
+
+\paragraph{Spatio-semantic localisation.}
+Localisation $\mathcal{S}$ combines global coordinates $\mathbf{P}_g$ (e.g., WGS84) with normalised surface coordinates on the host component. If $\mathbf{V}_o$ is the component origin and $\hat{\mathbf{u}},\hat{\mathbf{v}}$ unit axes of length $L$ and height $H$,
+\begin{equation}
+ r_x = \frac{(\mathbf{P}_g - \mathbf{V}_o) \cdot \hat{\mathbf{u}}}{L}, \quad
+ r_y = \frac{(\mathbf{P}_g - \mathbf{V}_o) \cdot \hat{\mathbf{v}}}{H}.
+\end{equation}
+Because LLMs handle ``top-centre of the southeast panel'' better than raw metres, the twin also stores a natural-language location descriptor. Field crews still receive metric local coordinates for navigation.
 
 \begin{figure}[t]
 \centering
@@ -102,7 +117,16 @@ Raw image folders and detector JSON dumps are brittle for language systems: file
 \end{algorithm}
 
 \subsection{Integrated Asset Profiles (IAPs)}
-Maintenance questions are usually asset-centric (``what is the status of panel P-12?'') rather than chunk-centric. IDPs are therefore aggregated into Integrated Asset Profiles (IAPs) with symptom, geometry, and topology views. IAPs are the preferred retrieval unit for FM dialogue. In our locked corpus, 604 IDPs collapse into 44 maintainable assets---a compression that matches how facility teams think, and that empirically improves multi-hop retrieval over chunk baselines (Section~\ref{sec:ch8-dss}).
+\label{sec:ch8-iap-detail}
+Maintenance questions are usually asset-centric (``what is the status of panel P-12?'') rather than chunk-centric. Chunk RAG often severs the link between a symptom and its host, inviting hallucinations that mix locations. IAPs reverse that failure mode: each IAP aggregates all Atomic IDPs on one BIM host and becomes the \emph{primary retrieval unit}.
+
+An IAP identifier is derived from the BIM GUID (direct $O(1)$ lookup). Internally it has three layers:
+\begin{enumerate}[leftmargin=*]
+\item \textbf{Symptoms registry:} modality-tagged inventories (e.g., IR delamination $\times 2$, RGB crack $\times 3$) plus a composite risk/severity summary;
+\item \textbf{Geometry:} length, height, area---needed to normalise severity (a 200\,mm crack is not the same on a parapet and a shear wall);
+\item \textbf{Topology:} above/below/lateral neighbours, floor level, and façade orientation---the substrate for VDPP expansion.
+\end{enumerate}
+In the locked corpus, 604 IDPs collapse into 44 maintainable assets---compression that matches FM cognition and improves multi-hop retrieval over chunk baselines (Section~\ref{sec:ch8-dss}).
 
 \begin{table}[t]
 \centering
@@ -122,11 +146,24 @@ Benchmark questions & 200 \\
 \end{tabular}
 \end{table}
 
-\subsection{Indexing and Vertical Defect Propagation Paths}
-A multi-layer index supports different query granularities (observation, asset, neighbourhood, building, corpus). Vertical Defect Propagation Paths (VDPPs) exploit BIM adjacency so that retrieval can expand $k$-hop neighbourhoods when diagnosing multi-storey leakage or crack patterns. This is complementary to generic GraphRAG: the graph is not an arbitrary document graph but an engineering topology tied to Asset-IDs.
+\subsection{Five-level hierarchical index}
+\label{sec:ch8-index}
+To serve queries from portfolio dashboards down to a single image, knowledge is organised as
+\begin{equation}
+\mathcal{H}:\ \mathrm{L1(Site)} \supset \mathrm{L2(Topology\ cluster)} \supset \mathrm{L3(IAP)} \supset \mathrm{L4(Atomic\ IDP)} \supset \mathrm{L5(Raw\ metadata)}.
+\end{equation}
+L1 supports site-wide risk lists; L2 groups structurally related neighbourhoods (e.g., a north elevation); L3 returns a full asset passport; L4 drills into one observation; L5 preserves raw imagery paths and timestamps for audit. Provenance never stops at the summary layer.
+
+\subsection{Vertical Defect Propagation Paths (VDPPs)}
+\label{sec:ch8-vdpp}
+VDPPs encode the diagnostic premise that related defects should be read together. Lexical similarity alone may omit upstairs moisture when the query mentions a mid-storey delamination. For a seed asset $A_j$,
+\begin{equation}
+\mathcal{N}_k(A_j)=\{n:d_{\mathrm{topo}}(A_j,n)\le k\}.
+\end{equation}
+In reported runs, retrieval takes $k_{\mathrm{seed}}{=}3$ dense-cosine IAP seeds (BGE-M3), then expands related neighbours with a small fixed policy (above-storey and horizontal adjacencies, de-duplicated). Neither hop integer is fitted on the 200-question benchmark. This is complementary to generic GraphRAG: the graph is BIM adjacency tied to Asset-IDs, not a document co-occurrence graph.
 
 \paragraph{Teaching note.}
-When explaining VDPPs to students, it helps to contrast three graphs: (i)~a document similarity graph; (ii)~an entity co-occurrence graph mined from text; (iii)~a BIM adjacency graph. Only (iii) encodes physical propagation hypotheses that inspectors already use on site. Language models can narrate (iii), but they should not invent missing edges.
+Contrast three graphs: (i)~document similarity; (ii)~text entity co-occurrence; (iii)~BIM adjacency. Only (iii) encodes physical propagation hypotheses inspectors already use. LLMs may narrate (iii); they must not invent missing edges.
 
 \paragraph{Bridge.}
 Structured units enable multi-modal fusion and topology-aware retrieval, developed next.
@@ -144,11 +181,39 @@ Façade inspection is multi-modal by nature: RGB and infrared imagery, geometric
 \label{fig:ch8-rag}
 \end{figure}
 
-\subsection{Intent-aware retrieval}
-Inspector questions cluster into spatial lookup, multi-hop propagation, and aggregation/priority types. Intent parsing selects retrieval depth and whether VDPP expansion is required. Empirically, multi-hop Exact Hit benefits strongly from topology-aware expansion on our warehouse benchmark (Section~\ref{sec:ch8-dss}).
+\subsection{Three-phase retrieval execution}
+\label{sec:ch8-rag-exec}
+Topology-aware RAG runs in three phases.
+
+\paragraph{Phase 1 --- Intent parsing.}
+Natural-language queries become structured directives. A deterministic keyword/trigger extractor assigns intents such as localised lookup, asset-health summary, root-cause/propagation analysis, or floor-level audit. Intent controls which IAP fields and neighbourhood scope are emphasised.
+
+\paragraph{Phase 2 --- VDPP expansion.}
+Seed IAPs are retrieved by dense cosine search; neighbours enter via $\mathcal{N}_k$. A severe host finding is more useful when upstairs moisture and lateral cracking on the same elevation share one context package.
+
+\paragraph{Phase 3 --- Context assembly.}
+The package $\mathcal{K}$ for the LLM is
+\begin{equation}
+\mathcal{K}
+=
+\mathrm{IAP}(A_j)
+\cup
+\bigcup_{n\in\widetilde{\mathcal{N}}(A_j)}\omega_n\cdot\mathrm{IAP}(n)
+\cup
+\mathcal{E}_{\mathrm{relevant}},
+\end{equation}
+where $\widetilde{\mathcal{N}}$ is the related-neighbour set and $\mathcal{E}_{\mathrm{relevant}}$ is an optional expert-knowledge block (disabled in the locked primary runs). Hard constraints require cited Asset-/Defect-IDs to be subsets of retrieved IDs; otherwise the system must lower confidence and request human verification.
+
+An optional ranking mode mixes semantic, topological, physical-slot, and evidence-coverage signals,
+\begin{equation}
+R(a_i,q)=\lambda_s S_{\mathrm{sem}}+\lambda_t S_{\mathrm{topo}}+\lambda_p S_{\mathrm{phys}}+\lambda_e S_{\mathrm{evid}},
+\end{equation}
+with pilot weights $(\lambda_s,\lambda_t,\lambda_p,\lambda_e)=(0.45,0.25,0.20,0.10)$. Primary tables use dense cosine + VDPP expansion; $R(\lambda)$ is a same-contract sensitivity check.
 
 \subsection{Conflict handling and expert grounding}
-When imagery confidence and textual records disagree, provenance fields in the IDP take precedence and uncertainty is surfaced rather than silently averaged. Expert manuals and code snippets enter through a restricted evidence channel so that compliance statements remain attributable.
+RGB/IR fusion follows a host-level policy: concordant modalities raise confidence; RGB-only evidence must not escalate to subsurface claims; IR-only evidence retains uncertainty; conflicting GUID/location/timestamp metadata blocks definitive diagnosis. Outputs expose \texttt{confidence\_level}, \texttt{evidence\_ids}, and \texttt{recommended\_human\_verification}.
+
+Expert manuals and codes (repair guides, safety notes, practice notes) are designed as a curated, edition-versioned corpus separate from web scrape. In reported primary runs the expert index is off; the chapter still presents it as the normative grounding path for compliance-oriented answers under engineer review.
 
 \subsection{Static RAG versus agentic RAG}
 Agentic RAG systems rewrite queries, call multiple tools, and iterate~\cite{singh2024agenticragsurvey}. They can improve coverage on complex tasks, but they also expand the attack surface for untraceable intermediate steps. For inspection, we recommend \emph{bounded agency}: allow multi-step retrieval and tool calls, but require every final claim to cite twin entities (Asset-ID / Defect-ID) present in the retrieved set.
@@ -198,6 +263,22 @@ A manager asks: ``Which assets above panel A-07 need gondola access if seepage p
 \subsection{Related agent systems and what we reuse}
 IFC-Agent's schema-guided tool composition~\cite{gao2026ifcagent} informs how we expose ``expand VDPP'', ``get IAP'', and ``render defect image'' as tools rather than hoping the LLM invents SQL. Luo et al.'s human-in-the-loop twin commit~\cite{luo2025llmdtrobot} informs our approval gate. BIM2RDT's safety-first posture~\cite{akhavian2025bim2rdt} informs geofencing requirements when action tools include robots. Energy agent libraries~\cite{zhang2025llmagentschema} suggest packaging façade tools as versioned schemas so that prompts do not hard-code brittle APIs.
 
+\subsection{Tool catalogue for façade programmes}
+A minimal tool surface that already exceeds single-shot RAG includes:
+\begin{itemize}[leftmargin=*]
+\item \texttt{get\_iap(asset\_id)} / \texttt{search\_iaps(query,$k$)};
+\item \texttt{expand\_vdpp(asset\_id,$k$)};
+\item \texttt{list\_idps(asset\_id, modality?)};
+\item \texttt{open\_evidence(defect\_id)} (returns image URIs for UI);
+\item \texttt{draft\_report(schema\_id, context\_pkg)};
+\item \texttt{propose\_uav\_revisit(polygon, priority)} (proposal only);
+\item \texttt{propose\_twin\_patch(ifc\_ref, field, value)} (requires approval).
+\end{itemize}
+Exposing these as typed tools---in the spirit of IFC-Agent's schema-guided composition~\cite{gao2026ifcagent} and Toolformer-style APIs~\cite{schick2023toolformer}---keeps the LLM from inventing SQL against the twin database.
+
+\subsection{Evaluation gap for agents}
+Static Exact Hit metrics (Section~\ref{sec:ch8-dss}) measure evidence grounding. They do not measure whether an agent chose a safe tool sequence. Future chapter revisions should add task success under constraints (no geofence violation; no unapproved twin write; citation validity after multi-step traces). Until then, agents in this monograph remain advisory orchestrators.
+
 \subsection{What agents must not do}
 Agents must not invent Asset-IDs, silently overwrite twin fields, or dispatch robots without geofence and safety checks~\cite{akhavian2025bim2rdt}. In regulated buildings, the twin commit step remains human-confirmed, matching Luo et al.'s approval loop~\cite{luo2025llmdtrobot}.
 
@@ -209,7 +290,24 @@ Whether RAG-only or agentic, deliverables must be report artefacts that FM syste
 \label{sec:ch8-reports}
 
 \subsection{Output schema}
-Generated diagnoses follow a fixed schema: defect classification, propagation hypothesis, repair suggestion, compliance notes, and cost/priority cues. Schema constraints convert free-form generation into machine-checkable records and simplify evaluation.
+Generated diagnoses follow a fixed schema. Design fields include defect classification, root-cause hypotheses, risk description, propagation assessment, maintenance prioritisation, repair recommendation, compliance checking, and cost estimation. Locked experiments emphasise Asset-ID grounding and multi-hop retrieval; normative fields remain decision-support outputs under engineer review.
+
+\begin{table}[t]
+\centering
+\caption{Report / answer schema fields used as generation constraints.}
+\label{tab:ch8-schema}
+\begin{tabular}{llp{6.2cm}}
+\toprule
+Field group & Example keys & Role \\
+\midrule
+Identity & asset\_ids, defect\_ids & Must $\subseteq$ retrieved set \\
+Diagnosis & type, severity, root\_cause & Grounded in IDP/IAP symptoms \\
+Propagation & vdpp\_path, hop\_depth & From topology expansion \\
+Action & repair, priority, cost\_band & Decision support, not autopilot \\
+Trust & confidence\_level, human\_check & Escalation flags \\
+\bottomrule
+\end{tabular}
+\end{table}
 
 \begin{figure}[t]
 \centering
@@ -263,7 +361,37 @@ Unless noted, numbers follow the locked IAP-RAG evaluation: 11 warehouses, $1{,}
 \end{figure}
 
 \subsection{Key results}
-On the locked protocol, the full IAP-RAG configuration attains retrieval Exact Hit $0.609$, multi-hop Exact Hit $0.926$, and Cited$\in$Retr.\ $0.878$, outperforming strong chunk- and graph-based baselines in the IDP-only setting. Ablations show that removing topology-aware expansion or asset-centric units degrades multi-hop diagnosis disproportionately---exactly the questions FM teams care about for propagation risk.
+On the locked protocol, the full IAP-RAG configuration (denoted $D_1$ in the paper) attains retrieval Exact Hit $0.609$, multi-hop Exact Hit $0.926$, answer-ID Exact $0.50$, and Cited$\in$Retr.\ $0.878$. Ablations show that removing topology-aware expansion or asset-centric units degrades multi-hop diagnosis disproportionately---exactly the questions FM teams care about for propagation risk. Under an IDP-only peer protocol, topology-aware retrieval also outperforms strong external systems such as chunk RAG and GraphRAG-style baselines on the same gold questions.
+
+\begin{table}[t]
+\centering
+\caption{Locked headline metrics for the full IAP-RAG configuration ($D_1$).}
+\label{tab:ch8-metrics}
+\begin{tabular}{lc}
+\toprule
+Metric & Value \\
+\midrule
+Retrieval Exact Hit & 0.609 \\
+Multi-hop Exact Hit & 0.926 \\
+Answer-ID Exact & 0.50 \\
+Cited$\in$Retr. & 0.878 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=0.8\textwidth]{deterministic_ksweep_coverage.pdf}
+\caption{$k$-sweep coverage behaviour for neighbourhood expansion policies.}
+\label{fig:ch8-ksweep}
+\end{figure}
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=0.78\textwidth]{hallucination_rate.pdf}
+\caption{Hallucination-oriented comparison retained as a foundational baseline alongside deterministic Asset-ID checks.}
+\label{fig:ch8-halluc}
+\end{figure}
 
 \subsection{Towards predictive maintenance}
 Priority scoring and operational planning (e.g., gondola staging) convert diagnosis into schedules. Schema-transfer studies suggest the same IDP/IAP discipline can migrate toward renovation sequencing and construction monitoring, aligning with broader DT agent trends~\cite{singh2025multiagentvbm,akhavian2025bim2rdt}. Predictive claims must remain calibrated: agents may propose revisit plans, but deterioration forecasting still requires temporal models beyond a single inspection epoch.
