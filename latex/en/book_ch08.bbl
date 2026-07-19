@@ -1,4 +1,4 @@
-\begin{thebibliography}{19}
+\begin{thebibliography}{27}
 \providecommand{\natexlab}[1]{#1}
 \providecommand{\url}[1]{{#1}}
 \providecommand{\urlprefix}{URL }
@@ -50,11 +50,24 @@ Guo P, Xue H, Ma J, Cheng JCP (2025) Advancing {BIM} information retrieval with
   alignment system. Automation in Construction 178:106374,
   \doi{10.1016/j.autcon.2025.106374}
 
+\bibitem[{Han et~al.(2025)Han, Zhang, Huang, Xu, Chen, and Chen}]{han2025}
+Han M, Zhang J, Huang Y, Xu J, Chen X, Chen BM (2025) Enhancing worker
+  monitoring and management on large-scale construction sites with {UAVs} and
+  digital twin modeling. Automation in Construction 174:106108,
+  \doi{10.1016/j.autcon.2025.106108}
+
 \bibitem[{He et~al.(2025)He, Liu, He, Wang, and Hsiang}]{he2025graphrag}
 He C, Liu M, He W, Wang Z, Hsiang SM (2025) Addressing the information silo of
   construction planning constraints -- a graph retrieval augmented generation
   approach. Engineering, Construction and Architectural Management
   \doi{10.1108/ECAM-08-2024-1066}, ahead-of-print
+
+\bibitem[{Huang et~al.(2026)}]{huang2026iaprag}
+Huang Y, et~al. (2026) Asset-centric and propagation-aware retrieval-augmented
+  generation for building defect diagnosis and asset maintenance decision
+  support. Automation in Construction Manuscript under review
+  (AUTCON-D-26-00509); cite as a case study of asset-centric RAG, not as the
+  sole source of this chapter
 
 \bibitem[{Jeong et~al.(2024)Jeong, Baek, Cho, Hwang, and
   Park}]{jeong2024adaptive}
@@ -114,15 +127,58 @@ Xiao T, et~al. (2025) Ten questions concerning large language models ({LLMs})
   and Environment / energy LLM reviews; verify final bibliographic details
   before submission
 
+\bibitem[{Yang et~al.(2025)Yang, Zhao, Zhang, Wen, Li, Lei, Chen, and
+  Chen}]{yang2025detreconreg}
+Yang G, Zhao B, Zhang J, Wen J, Li Q, Lei L, Chen X, Chen BM (2025)
+  Det-recon-reg: An intelligent framework toward automated {UAV}-based
+  large-scale infrastructure inspection. IEEE Transactions on Instrumentation
+  and Measurement 74:1--16, \doi{10.1109/TIM.2025.3571118}
+
 \bibitem[{Yao et~al.(2023)Yao, Zhao, Yu, Du, Shafran, Narasimhan, and
   Cao}]{yao2023react}
 Yao S, Zhao J, Yu D, Du N, Shafran I, Narasimhan K, Cao Y (2023) {ReAct}:
   Synergizing reasoning and acting in language models. In: International
   Conference on Learning Representations ({ICLR})
 
-\bibitem[{Zhang et~al.(2025)Zhang, Fu, Li, and Chen}]{zhang2025llmagentschema}
-Zhang L, Fu X, Li Y, Chen J (2025) Large language model-based agent schema and
-  library for automated building energy analysis and modeling. Automation in
-  Construction 176:106244, \doi{10.1016/j.autcon.2025.106244}
+\bibitem[{Zhang et~al.(2022)Zhang, Zou, and Dimyadi}]{zhang2022}
+Zhang C, Zou Y, Dimyadi J (2022) Integrating {UAV} and {BIM} for automated
+  visual building inspection: a systematic review and conceptual framework. IOP
+  Conference Series: Earth and Environmental Science 1101(6):062030,
+  \doi{10.1088/1755-1315/1101/6/062030}
+
+\bibitem[{Zhang et~al.(2025{\natexlab{a}})Zhang, Zhao, Yang, Zhou, Huang, Gao,
+  Chen, and Chen}]{zhang2025}
+Zhang J, Zhao B, Yang G, Zhou X, Huang Y, Gao C, Chen X, Chen BM
+  (2025{\natexlab{a}}) {AI}-empowered digital twin modeling for high-precision
+  building defect management integrating {UAV} and {GeoBIM}. Building
+  Simulation 18(10):2531--2558, \doi{10.1007/s12273-025-1332-9}
+
+\bibitem[{Zhang et~al.(2025{\natexlab{b}})Zhang, Fu, Li, and
+  Chen}]{zhang2025llmagentschema}
+Zhang L, Fu X, Li Y, Chen J (2025{\natexlab{b}}) Large language model-based
+  agent schema and library for automated building energy analysis and modeling.
+  Automation in Construction 176:106244, \doi{10.1016/j.autcon.2025.106244}
+
+\bibitem[{Zhao et~al.(2024)Zhao, Zhou, Yang, Wen, Zhang, Dou, Li, Chen, and
+  Chen}]{zhao2024facade}
+Zhao B, Zhou X, Yang G, Wen J, Zhang J, Dou J, Li G, Chen X, Chen BM (2024)
+  High-resolution infrastructure defect detection dataset sourced by unmanned
+  systems and validated with deep learning. Automation in Construction
+  163:105405, \doi{10.1016/j.autcon.2024.105405}
+
+\bibitem[{Zhao et~al.(2025)Zhao, Duan, Yang, Tang, Song, Wen, Liu, Li, Lei,
+  Zhang, Chen, Mueller, and Chen}]{zhao2025icra}
+Zhao B, Duan Q, Yang G, Tang J, Song Z, Wen J, Liu X, Li Q, Lei L, Zhang J,
+  Chen X, Mueller MW, Chen BM (2025) Lightweight yet high-performance defect
+  detector for {UAV}-based large-scale infrastructure real-time inspection. In:
+  2025 IEEE International Conference on Robotics and Automation ({ICRA}), pp
+  13675--13682, \doi{10.1109/ICRA55743.2025.11128112}
+
+\bibitem[{Zhao et~al.(2026)Zhao, Zhang, Huang, Chen, and
+  Chen}]{zhao2026physical}
+Zhao B, Zhang J, Huang Y, Chen X, Chen BM (2026) From instance segmentation to
+  physical quantification: High-resolution {UAV}-based dataset for fa{\c{c}}ade
+  defect assessment. Automation in Construction 188:106980,
+  \doi{10.1016/j.autcon.2026.106980}
 
 \end{thebibliography}

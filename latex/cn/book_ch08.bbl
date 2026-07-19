@@ -1,4 +1,4 @@
-\begin{thebibliography}{19}
+\begin{thebibliography}{27}
 \providecommand{\natexlab}[1]{#1}
 \providecommand{\url}[1]{\texttt{#1}}
 \expandafter\ifx\csname urlstyle\endcsname\relax
@@ -58,6 +58,13 @@ Peizhuo Guo, Huiyuan Xue, Jun Ma, and Jack C.~P. Cheng.
 \newblock \emph{Automation in Construction}, 178:\penalty0 106374, 2025.
 \newblock \doi{10.1016/j.autcon.2025.106374}.
 
+\bibitem[Han et~al.(2025)Han, Zhang, Huang, Xu, Chen, and Chen]{han2025}
+Mingqiao Han, Jihan Zhang, Yijun Huang, Jiwen Xu, Xi~Chen, and Ben~M. Chen.
+\newblock Enhancing worker monitoring and management on large-scale
+  construction sites with {UAVs} and digital twin modeling.
+\newblock \emph{Automation in Construction}, 174:\penalty0 106108, 2025.
+\newblock \doi{10.1016/j.autcon.2025.106108}.
+
 \bibitem[He et~al.(2025)He, Liu, He, Wang, and Hsiang]{he2025graphrag}
 Chuanni He, Min Liu, Wei He, Zijian Wang, and Simon~M. Hsiang.
 \newblock Addressing the information silo of construction planning constraints
@@ -65,6 +72,14 @@ Chuanni He, Min Liu, Wei He, Zijian Wang, and Simon~M. Hsiang.
 \newblock \emph{Engineering, Construction and Architectural Management}, 2025.
 \newblock \doi{10.1108/ECAM-08-2024-1066}.
 \newblock ahead-of-print.
+
+\bibitem[Huang et~al.(2026)]{huang2026iaprag}
+Yijun Huang et~al.
+\newblock Asset-centric and propagation-aware retrieval-augmented generation
+  for building defect diagnosis and asset maintenance decision support.
+\newblock \emph{Automation in Construction}, 2026.
+\newblock Manuscript under review (AUTCON-D-26-00509); cite as a case study of
+  asset-centric RAG, not as the sole source of this chapter.
 
 \bibitem[Jeong et~al.(2024)Jeong, Baek, Cho, Hwang, and
   Park]{jeong2024adaptive}
@@ -141,6 +156,16 @@ Tianzhen Xiao et~al.
 \newblock See also related Building and Environment / energy LLM reviews;
   verify final bibliographic details before submission.
 
+\bibitem[Yang et~al.(2025)Yang, Zhao, Zhang, Wen, Li, Lei, Chen, and
+  Chen]{yang2025detreconreg}
+Guidong Yang, Benyun Zhao, Jihan Zhang, Junjie Wen, Qingxiang Li, Lei Lei,
+  Xi~Chen, and Ben~M. Chen.
+\newblock Det-recon-reg: An intelligent framework toward automated {UAV}-based
+  large-scale infrastructure inspection.
+\newblock \emph{IEEE Transactions on Instrumentation and Measurement},
+  74:\penalty0 1--16, 2025.
+\newblock \doi{10.1109/TIM.2025.3571118}.
+
 \bibitem[Yao et~al.(2023)Yao, Zhao, Yu, Du, Shafran, Narasimhan, and
   Cao]{yao2023react}
 Shunyu Yao, Jeffrey Zhao, Dian Yu, Nan Du, Izhak Shafran, Karthik Narasimhan,
@@ -149,11 +174,58 @@ Shunyu Yao, Jeffrey Zhao, Dian Yu, Nan Du, Izhak Shafran, Karthik Narasimhan,
 \newblock In \emph{International Conference on Learning Representations
   ({ICLR})}, 2023.
 
-\bibitem[Zhang et~al.(2025)Zhang, Fu, Li, and Chen]{zhang2025llmagentschema}
+\bibitem[Zhang et~al.(2022)Zhang, Zou, and Dimyadi]{zhang2022}
+C.~Zhang, Y.~Zou, and J.~Dimyadi.
+\newblock Integrating {UAV} and {BIM} for automated visual building inspection:
+  a systematic review and conceptual framework.
+\newblock \emph{IOP Conference Series: Earth and Environmental Science},
+  1101\penalty0 (6):\penalty0 062030, 2022.
+\newblock \doi{10.1088/1755-1315/1101/6/062030}.
+
+\bibitem[Zhang et~al.(2025{\natexlab{a}})Zhang, Zhao, Yang, Zhou, Huang, Gao,
+  Chen, and Chen]{zhang2025}
+Jihan Zhang, Benyun Zhao, Guidong Yang, Xunkuai Zhou, Yijun Huang, Chuanxiang
+  Gao, Xi~Chen, and Ben~M. Chen.
+\newblock {AI}-empowered digital twin modeling for high-precision building
+  defect management integrating {UAV} and {GeoBIM}.
+\newblock \emph{Building Simulation}, 18\penalty0 (10):\penalty0 2531--2558,
+  2025{\natexlab{a}}.
+\newblock \doi{10.1007/s12273-025-1332-9}.
+
+\bibitem[Zhang et~al.(2025{\natexlab{b}})Zhang, Fu, Li, and
+  Chen]{zhang2025llmagentschema}
 Liang Zhang, Xiaoqin Fu, Yanfei Li, and Jianli Chen.
 \newblock Large language model-based agent schema and library for automated
   building energy analysis and modeling.
-\newblock \emph{Automation in Construction}, 176:\penalty0 106244, 2025.
+\newblock \emph{Automation in Construction}, 176:\penalty0 106244,
+  2025{\natexlab{b}}.
 \newblock \doi{10.1016/j.autcon.2025.106244}.
+
+\bibitem[Zhao et~al.(2024)Zhao, Zhou, Yang, Wen, Zhang, Dou, Li, Chen, and
+  Chen]{zhao2024facade}
+Benyun Zhao, Xunkuai Zhou, Guidong Yang, Junjie Wen, Jihan Zhang, Jiahao Dou,
+  Guangcheng Li, Xi~Chen, and Ben~M. Chen.
+\newblock High-resolution infrastructure defect detection dataset sourced by
+  unmanned systems and validated with deep learning.
+\newblock \emph{Automation in Construction}, 163:\penalty0 105405, 2024.
+\newblock \doi{10.1016/j.autcon.2024.105405}.
+
+\bibitem[Zhao et~al.(2025)Zhao, Duan, Yang, Tang, Song, Wen, Liu, Li, Lei,
+  Zhang, Chen, Mueller, and Chen]{zhao2025icra}
+Benyun Zhao, Qingcheng Duan, Guidong Yang, Junwei Tang, Zihan Song, Junjie Wen,
+  Xinyi Liu, Qingxiang Li, Lei Lei, Jihan Zhang, Xi~Chen, Mark~W. Mueller, and
+  Ben~M. Chen.
+\newblock Lightweight yet high-performance defect detector for {UAV}-based
+  large-scale infrastructure real-time inspection.
+\newblock In \emph{2025 IEEE International Conference on Robotics and
+  Automation ({ICRA})}, pages 13675--13682, 2025.
+\newblock \doi{10.1109/ICRA55743.2025.11128112}.
+
+\bibitem[Zhao et~al.(2026)Zhao, Zhang, Huang, Chen, and Chen]{zhao2026physical}
+Benyun Zhao, Jihan Zhang, Yijun Huang, Xi~Chen, and Ben~M. Chen.
+\newblock From instance segmentation to physical quantification:
+  High-resolution {UAV}-based dataset for fa{\c{c}}ade defect assessment.
+\newblock \emph{Automation in Construction}, 188:\penalty0 106980, 2026.
+\newblock \doi{10.1016/j.autcon.2026.106980}.
 
 \end{thebibliography}

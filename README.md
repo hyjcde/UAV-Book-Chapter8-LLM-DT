@@ -5,6 +5,10 @@ Springer monograph chapter (Lead: **Yijun Huang**) for
 
 **Target length:** ~50 pages · **Bilingual:** EN + CN synced
 
+## Writing policy
+
+See [`WRITING_POLICY.md`](WRITING_POLICY.md): this chapter is a **book synthesis**, not a reprint of the IAP-RAG manuscript. Cite group/community work first; treat `huang2026iaprag` as one case study.
+
 ## Quick start
 
 ```bash
