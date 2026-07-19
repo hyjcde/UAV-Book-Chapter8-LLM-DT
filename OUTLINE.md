@@ -9,6 +9,10 @@
 
 ---
 
+> **2026-07-20 update:** Target length **~50 pages**. Added section **8.5 Agentic Workflows** (EN/CN synced). Proposal's old 8.5/8.6 map to **8.6 Reports / 8.7 DSS** in the working draft; confirm numbering with editors before camera-ready.
+> Bilingual LaTeX: `latex/en/` + `latex/cn/`, build with `scripts/build.sh`. Literature: `literature/AGENT_LIT_NOTES.md`.
+
+
 ## 0. Chapter one-liner
 
 把 Digital Twin 从「可视化的 3D 资产库」升级为「可检索、可引用、可决策」的语言推理底座：用 IDP/IAP 结构化缺陷知识，用拓扑感知 RAG（VDPP）接地 LLM，自动生成巡检报告与运维建议。

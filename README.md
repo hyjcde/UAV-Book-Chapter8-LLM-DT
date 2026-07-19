@@ -1,30 +1,56 @@
 # Chapter 8 — Digital Twin with LLMs in Inspection Analysis
 
-Contribution chapter for the Springer Nature monograph  
-**AI-Driven UAV Building Inspection** (Unmanned Systems Research Group, CUHK).
+Springer monograph chapter (Lead: **Yijun Huang**) for  
+*AI-Driven UAV Building Inspection*.
 
-This repository tracks **Chapter 8 only** (Lead: Yijun Huang).
+**Target length:** ~50 pages · **Bilingual:** EN + CN synced
 
-## Start here
+## Quick start
 
-1. Read the living outline: [`OUTLINE.md`](OUTLINE.md)
-2. Draft LaTeX (SNmono book project):  
-   `../manuscript_official/book/ch08_llm_digital_twin.tex`
-3. Overleaf: https://www.overleaf.com/project/6a5c99bcb69823c5f4cd30ee  
-   Main file: `book/book.tex`
+```bash
+# check EN/CN section labels
+python3 scripts/sync_check.py
+
+# compile BOTH languages (parallel)
+./scripts/build.sh
+```
+
+Outputs:
+- `latex/en/book_ch08.pdf`
+- `latex/cn/book_ch08.pdf`
+
+## Layout
+
+| Path | Role |
+|------|------|
+| `OUTLINE.md` | Living writing outline (~50 pp) |
+| `literature/AGENT_LIT_NOTES.md` | Agent / DT+LLM literature beyond RAG |
+| `latex/SECTION_MAP.yaml` | EN↔CN section contract |
+| `latex/en/ch08.tex` | English chapter body |
+| `latex/cn/ch08_cn.tex` | Chinese chapter body |
+| `latex/shared/references.bib` | Shared bibliography |
+| `latex/shared/figures/ch08/` | Figures from DefectGPT |
+
+## Sync rule
+
+1. Edit structure in **both** `ch08.tex` and `ch08_cn.tex` (same `\label{sec:...}`).
+2. Run `python3 scripts/sync_check.py` before commit.
+3. Run `./scripts/build.sh` so EN and CN both compile.
+
+English is the Springer submission language; Chinese is the parallel working draft.
+
+## Overleaf (full book)
+
+Project: https://www.overleaf.com/project/6a5c99bcb69823c5f4cd30ee  
+Chapter file mirrored at:  
+`AI-Driven-UAV-Building-Inspection/manuscript_official/book/ch08_llm_digital_twin.tex`
+
+```bash
+cd ../AI-Driven-UAV-Building-Inspection/manuscript_official
+olcli push --project 6a5c99bcb69823c5f4cd30ee .
+```
 
 ## Source material
 
-Primary: DefectGPT / IAP-RAG paper & data under `../DefectGPT` (sibling project), especially:
-
-- `paper/AIC-Rebuttal/manuscript_revised/main.tex`
-- `paper/AIC-Rebuttal/figures/`
-- `data/Asset_Health_Passport/`
-
-## Sync Overleaf
-
-```bash
-cd ../manuscript_official
-olcli sync
-olcli pdf
-```
+- DefectGPT / IAP-RAG paper (`../DefectGPT/paper/AIC-Rebuttal/`)
+- Agent additions: Luo2025 robot+DT, Gao2026 IFC-Agent, BIM2RDT, Zhang2025 agent schema, …

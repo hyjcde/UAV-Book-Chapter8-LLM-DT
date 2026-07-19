@@ -1,12 +1,17 @@
 # Writing status — Chapter 8
 
-| Section | Draft | Figures placed | Notes |
-|---------|-------|----------------|-------|
-| 8.1 Digital Twins | skeleton | partial | expand from OUTLINE |
-| 8.2 LLM Foundations | not started | — | |
-| 8.3 DT → Language Reasoning | skeleton | partial | core method |
-| 8.4 Multi-Modal Fusion | skeleton | partial | |
-| 8.5 Report Generation | skeleton | partial | need Box 8.1 |
-| 8.6 Decision Support | skeleton | partial | lock numbers |
+Target: **~50 pages** (EN monograph). Current compile: see `scripts/build.sh` output.
 
-Last update: 2026-07-20
+| Section | EN | CN | Notes |
+|---------|----|----|-------|
+| 8.1 Digital Twins | draft | draft | + agentic DT lit |
+| 8.2 LLM Foundations | draft | draft | RAG→Agent bridge |
+| 8.3 DT → Language | draft+ | draft+ | IDP alg + Table 8.1 |
+| 8.4 Multimodal RAG | draft | draft | bounded agency |
+| 8.5 **Agents (new)** | draft+ | draft+ | paradigms table + scenario |
+| 8.6 Reports | draft | draft | |
+| 8.7 DSS | draft | draft | locked metrics |
+
+Bilingual sync: `SECTION_MAP.yaml` + `scripts/sync_check.py` + `scripts/build.sh`.
+
+Next: expand each section with paper §3–4 detail toward 50 pp; verify placeholder bib keys before submission.

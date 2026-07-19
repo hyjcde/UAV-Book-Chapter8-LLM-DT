@@ -1,0 +1,286 @@
+%%%%%%%%%%%%%%%%%%%%% ch08_cn.tex（中文） %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\chapter{巡检分析中的数字孪生与大语言模型}
+\label{ch:llm-dt}
+
+\noindent\textit{摘要：}本章将建筑数字孪生与大语言模型衔接起来，用于立面缺陷诊断与运维决策。缺陷观测被组织为可追溯的综合缺陷档案（IDP）与综合资产档案（IAP），并通过拓扑感知的检索增强生成（RAG）进行接地推理。在 DefectGPT/IAP-RAG 论文以 RAG 为主线的基础上，本章进一步引入智能体（Agent）工具调用与多智能体流程，连接报告生成、现场 Asset-ID 审计以及机器人/任务闭环。目标篇幅约 50 页（专著体量）。
+
+\vspace{0.8em}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{面向建筑巡检的数字孪生}
+\label{sec:ch8-dt}
+
+建筑巡检越来越依赖数字孪生（Digital Twin, DT）：把影像、几何与语义组织在物理资产周围的动态数字对应物~\cite{shi2025cognitivedt}。运维场景里，孪生常被用来浏览三维模型、定位构件、归档巡检照片——这很必要，但还不够。管理人员真正关心的是需要\textbf{证据推理}的问题：哪些幕墙板块处于跨层渗水路径上？下一季度吊篮作业应优先哪些资产？某条维修建议是否与规范条款一致？
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=0.92\textwidth]{dt_modeling_pipeline.pdf}
+\caption{面向无人机立面巡检的数字孪生建模流程：感知、几何配准与语义集成，为语言分析提供输入。}
+\label{fig:ch8-dt-pipeline}
+\end{figure}
+
+\subsection{从几何孪生到决策就绪孪生}
+几何孪生回答「在哪里」；决策就绪孪生还必须回答「哪里坏了、可能如何传播、该做什么、依据是什么」。后文将展开三要素：
+\begin{enumerate}[leftmargin=*]
+\item 带出处（provenance）的结构化缺陷知识；
+\item 对齐可维护资产、而非任意文本块的索引；
+\item 以引用约束接地的语言接口（RAG 与 Agent）。
+\end{enumerate}
+
+\subsection{与上游章节的接口}
+本书前几章提供孪生的物理与感知层：三维重建与配准（第4章）、检测分割（第6章）、GIS/GeoBIM 与资产标识（第7章）。第8章在此之上增加\textbf{认知层}~\cite{shi2025cognitivedt}：可语言访问的知识与决策支持。
+
+新近工作进一步表明孪生不应停留在静态库。Luo 等将 LLM、孪生与机器人衔接，使运维自然语言请求可触发巡检任务并在人工确认后更新孪生~\cite{luo2025llmdtrobot}；BIM2RDT 强调面向机器人的安全优先智能体更新~\cite{akhavian2025bim2rdt}；多智能体系统也被用于跨设计—运维的虚拟建筑模型构建~\cite{singh2025multiagentvbm}。它们共同提示：孪生既是知识库，也是行动载体。
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=0.9\textwidth]{framework_overview_overall.pdf}
+\caption{巡检智能总体框架。第8章聚焦检测与孪生建模之上的语言、检索、智能体与决策层。}
+\label{fig:ch8-framework}
+\end{figure}
+
+\paragraph{过渡.}
+若要让孪生「会说话」，需先明确 LLM 在土木工程中的能力边界。
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{面向土木工程应用的大语言模型基础}
+\label{sec:ch8-llm-foundations}
+
+大语言模型为规范、巡检记录、BIM 属性与维修日志提供了统一接口。面向建筑应用的综述既看到合规检查、能耗分析与运维支持的机遇，也强调偏见、隐私与不可核验建议等风险~\cite{xiao2025tenquestions}。对立面巡检而言，三类失效尤为关键：（1）虚构资产编号；（2）缺乏规范依据的维修建议；（3）流畅却遗漏矛盾证据的摘要。
+
+\subsection{接地机制}
+检索增强生成（RAG）~\cite{lewis2020}把参数化生成接到外部记忆。HyDE~\cite{gao2023hyde}、Self-RAG~\cite{asai2024selfrag}、Adaptive-RAG~\cite{jeong2024adaptive}、GraphRAG~\cite{edge2024graphrag}等变体分别改进查询构造、反思或图结构语料；施工计划领域也出现用图 RAG 打破信息孤岛的工作~\cite{he2025graphrag}。它们解决的是\textbf{证据可达}，并不自动决定下一步调用哪个工具、何时申请补飞，或如何在人工批准后更新 IFC 字段。
+
+\subsection{从 RAG 到 Agent}
+智能体范式交织推理与行动~\cite{yao2023react}，学习工具使用~\cite{schick2023toolformer}，并组织多智能体流程~\cite{wang2024surveyagents,li2024surveymultiagent}。在 AEC 中，已有面向 IFC 查询与修改~\cite{gao2026ifcagent}、建筑能耗建模 agent schema~\cite{zhang2025llmagentschema}、以及 BIM 检索中查询—DSL 对齐~\cite{guo2025bimllmquery}的工作。对立面巡检，可作如下分工：
+\begin{itemize}[leftmargin=*]
+\item \textbf{RAG}：最大化诊断问答的证据精度与引用忠实度；
+\item \textbf{Agent}：编排多步流程（检索→拓扑核验→起草报告→建单→派发机器人/无人机）；
+\item \textbf{Schema 与 Asset-ID}：二者共同的审计骨架。
+\end{itemize}
+
+\paragraph{过渡.}
+RAG 与 Agent 都依赖干净的知识单元；下一节在孪生内定义这些单元。
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{从数字孪生到语言推理}
+\label{sec:ch8-dt-to-language}
+
+\subsection{综合缺陷档案（IDP）}
+将每条可维护缺陷观测表示为综合缺陷档案（Integrated Defect Profile, IDP），即联结影像证据、语义属性、空间位姿与资产关联的可追溯元组。概念上
+\begin{equation}
+\mathrm{IDP}=\langle I,E,S,A\rangle,
+\end{equation}
+其中 $I$ 为影像/传感，$E$ 为证据与检测器元数据，$S$ 为语义标签/严重度，$A$ 为关联资产。IDP 是感知栈写出、检索与智能体读取的原子知识对象。
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=0.88\textwidth]{idp_construction_pipeline.jpg}
+\caption{从多模态巡检证据构建综合缺陷档案（IDP）。}
+\label{fig:ch8-idp}
+\end{figure}
+
+\paragraph{为何不直接堆原始文件？}
+仅保存图片文件夹与检测 JSON 对语言系统很脆弱：文件名漂移、检测器版本变化、多视角重复会迅速失控。IDP 纪律迫使每条与断言相关的观测携带稳定标识、时间戳、检测器签名与资产链接，从而支持 Cited$\in$Retr 一类引用检查。
+
+\begin{algorithm}[t]
+\caption{由配准检测构造 IDP 的流程概要}
+\label{alg:ch8-idp}
+\begin{algorithmic}[1]
+\Require 配准后的检测集 $\mathcal{D}$，BIM/资产映射 $\mathcal{M}$，影像库 $\mathcal{I}$
+\Ensure IDP 语料 $\mathcal{P}$
+\State $\mathcal{P}\leftarrow\emptyset$
+\For{每个检测 $d\in\mathcal{D}$}
+  \State 解析资产 $a\leftarrow\mathrm{Associate}(d,\mathcal{M})$；若失败则 \textbf{continue}
+  \State 汇总影像引用 $I\leftarrow\mathrm{CollectViews}(d,\mathcal{I})$
+  \State 汇总证据 $E\leftarrow\{\mathrm{detector}, \mathrm{score}, \mathrm{time}, \mathrm{pose}\}$
+  \State 汇总语义 $S\leftarrow\{\mathrm{type}, \mathrm{severity}, \mathrm{attributes}\}$
+  \State $\mathcal{P}\leftarrow\mathcal{P}\cup\{\langle I,E,S,a\rangle\}$
+\EndFor
+\State \Return $\mathcal{P}$
+\end{algorithmic}
+\end{algorithm}
+
+\subsection{综合资产档案（IAP）}
+运维问题通常以资产为中心（「P-12 板块状态如何？」）而非以文本块为中心。因此 IDP 聚合为综合资产档案（IAP），包含症状、几何与拓扑视图，并作为优选检索单元。在锁定语料中，604 条 IDP 归并为 44 个可维护资产——这种压缩符合运维思维方式，并在多跳检索上优于 chunk 基线（第\ref{sec:ch8-dss}节）。
+
+\begin{table}[t]
+\centering
+\caption{本章锁定的数据规模（IAP-RAG 评测）。}
+\label{tab:ch8-data}
+\begin{tabular}{lc}
+\toprule
+项目 & 数值 \\
+\midrule
+仓库/建筑 & 11 \\
+无人机观测（量级） & $1{,}500+$ \\
+综合缺陷档案（IDP） & 604 \\
+可维护资产（IAP） & 44 \\
+基准问题 & 200 \\
+\quad 空间 / 多跳 / 聚合 & 70 / 70 / 60 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{索引与竖向缺陷传播路径（VDPP）}
+多层索引支持观测/资产/邻域/整楼/语料等粒度。竖向缺陷传播路径（VDPP）利用 BIM 邻接，在跨层渗水或裂缝诊断时进行 $k$ 跳扩展。它与通用 GraphRAG 互补：图不是任意文档图，而是绑定 Asset-ID 的工程拓扑。
+
+\paragraph{教学提示.}
+向学生解释 VDPP 时，可对比三类图：（i）文档相似图；（ii）文本共现实体图；（iii）BIM 邻接图。只有（iii）编码巡检员现场使用的物理传播假说。语言模型可以叙述（iii），但不应虚构缺失边。
+
+\paragraph{过渡.}
+结构化单元使多模态融合与拓扑感知检索成为可能。
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{多模态融合与拓扑感知检索增强生成}
+\label{sec:ch8-multimodal}
+
+立面巡检天然多模态：可见光/红外、几何残差、手册文本与历史工单。本章的融合是\textbf{管线融合}，而非单一端到端视觉—语言模型调用：检测与配准写入 IDP；稠密检索作用于文本化 IAP；LLM 在引用约束下组织答案。
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=0.92\textwidth]{rag_workflow_topology.pdf}
+\caption{拓扑感知 RAG 流程：意图解析、IAP 检索、VDPP 扩展与接地生成。}
+\label{fig:ch8-rag}
+\end{figure}
+
+\subsection{意图感知检索}
+问题可粗分为空间查询、多跳传播与聚合/优先级三类。意图解析决定检索深度及是否启用 VDPP。在仓库基准上，多跳 Exact Hit 明显受益于拓扑扩展（见第\ref{sec:ch8-dss}节）。
+
+\subsection{冲突处理与专家接地}
+当影像置信度与文本记录冲突时，以 IDP 出处字段为准并显式呈现不确定性。规范/手册片段经受限证据通道进入答案，使合规表述可归因。
+
+\subsection{静态 RAG 与 Agentic RAG}
+Agentic RAG 可改写查询、调用多工具并迭代~\cite{singh2024agenticragsurvey}，提升复杂任务覆盖，但也扩大不可追溯中间步骤的风险。巡检场景建议\textbf{有界智能体}：允许多步检索与工具调用，但最终断言必须引用检索集合中出现的孪生实体（Asset-ID / Defect-ID）。
+
+\paragraph{过渡.}
+有界智能体在下一节的工作流中具体化。
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{面向孪生接地巡检的智能体工作流}
+\label{sec:ch8-agents}
+
+本节是相对 DefectGPT/IAP-RAG 论文的主要拓展：RAG 回答「找证据」的问题；Agent 执行会改变系统状态的流程——建单、指挥机器人、在批准后写回 IFC——并置于人工监督之下。
+
+\subsection{AEC 中的参考架构}
+Luo 等将 LLM 置于用户、孪生与机器人中间件之间：若孪生数据过时，则生成结构化机器人任务并记录人工批准更新~\cite{luo2025llmdtrobot}。IFC-Agent 以模式引导的多智能体工具组合支持原生 IFC 推理与编辑~\cite{gao2026ifcagent}。BIM2RDT 强调施工现场孪生的安全优先更新~\cite{akhavian2025bim2rdt}。能耗导向的 agent schema 则展示领域库的组件化~\cite{zhang2025llmagentschema}。可复用模式是：\textbf{感知 $\rightarrow$ 按孪生模式接地 $\rightarrow$ 工具行动 $\rightarrow$ 人工核验 $\rightarrow$ 提交孪生}。
+
+\subsection{立面巡检智能体栈}
+面向无人机立面项目，建议四类协作角色（逻辑智能体，不必对应四个模型实例）：
+\begin{enumerate}[leftmargin=*]
+\item \textbf{检索智能体：} IAP/VDPP RAG 与引用打包；
+\item \textbf{拓扑智能体：} 邻域扩展与 BIM 邻接冲突检查；
+\item \textbf{报告智能体：} 填充约束输出 schema（第\ref{sec:ch8-reports}节）；
+\item \textbf{行动智能体：} 可选工具——GIS 工单、机器人/无人机任务、IFC 属性更新——一律置于批准门之后。
+\end{enumerate}
+ReAct 轨迹~\cite{yao2023react}使中间工具调用可检查；IFC-Agent 的双记忆（过程上下文 + 实体缓存）~\cite{gao2026ifcagent}可映射到 Asset-ID 缓存。
+
+\begin{table}[t]
+\centering
+\caption{与立面巡检相关的孪生—语言范式对比。}
+\label{tab:ch8-paradigms}
+\begin{tabular}{p{2.0cm}p{3.0cm}p{3.2cm}p{3.2cm}}
+\toprule
+方面 & Chunk RAG & 拓扑 RAG（IAP/VDPP） & Agentic 孪生闭环 \\
+\midrule
+检索单元 & 文本块 & 资产档案+邻域 & 同左，外加工具 \\
+状态改变 & 无 & 无 & 工单/机器人/IFC \\
+审计重点 & 引用 & Asset-ID+引用 & 引用+批准 \\
+主要风险 & 漏多跳 & 拓扑错误 & 不安全动作 \\
+最适合 & FAQ/手册 & 诊断/传播 & 闭环运维 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\paragraph{微型场景.}
+管理者问：「若渗水向上传播两层，A-07 之上哪些资产需要吊篮？」检索器返回 A-07 的 IAP；拓扑智能体扩展 $k{=}2$ 的 VDPP；报告智能体起草带 Defect-ID 的优先级列表；行动智能体仅\textbf{提议}无人机补查多边形，批准前不派发。这比完全自主现场机器人更窄，但已超越单次 RAG。
+
+\subsection{相关系统与可复用点}
+IFC-Agent 的模式引导工具组合~\cite{gao2026ifcagent}启发我们将「扩展 VDPP」「取 IAP」「渲染缺陷图」暴露为工具，而非指望 LLM 发明 SQL。Luo 等的人工确认提交~\cite{luo2025llmdtrobot}对应批准门。BIM2RDT 的安全优先立场~\cite{akhavian2025bim2rdt}约束含机器人的行动工具。能耗 agent 库~\cite{zhang2025llmagentschema}提示把立面工具做成可版本化 schema，避免提示词写死脆弱 API。
+
+\subsection{智能体禁止事项}
+不得虚构 Asset-ID、静默覆盖孪生字段，或在无地理围栏/安全检查时派发机器人~\cite{akhavian2025bim2rdt}。受监管建筑中，孪生提交步骤保持人工确认，与 Luo 等的批准环一致~\cite{luo2025llmdtrobot}。
+
+\paragraph{过渡.}
+无论仅 RAG 还是 Agent，交付物必须是运维系统可存储的报告对象。
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{巡检报告生成与管理}
+\label{sec:ch8-reports}
+
+\subsection{输出 schema}
+诊断输出遵循固定字段：缺陷分类、传播假设、维修建议、合规说明、成本/优先级。Schema 约束把自由生成变为可机检记录，并简化评测。
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=0.85\textwidth]{platform_demo.pdf}
+\caption{用于自然语言查询与报告起草的数字孪生巡检平台界面。}
+\label{fig:ch8-platform}
+\end{figure}
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=0.9\textwidth]{multi_platform_field_interfaces.pdf}
+\caption{用于现场资产核验的多端界面。}
+\label{fig:ch8-field-ui}
+\end{figure}
+
+\subsection{现场 Asset-ID 审计}
+语言答案只有引用与现场一致的标识才具可操作性。注册审计跟踪观测在检索前是否正确关联（图~\ref{fig:ch8-asset-id}）。
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=0.88\textwidth]{field_asset_id_stages.pdf}
+\caption{现场 Asset-ID 注册与核验阶段。}
+\label{fig:ch8-asset-id}
+\end{figure}
+
+\subsection{案例框：端到端演示}
+以跨层渗水的多跳问题为例：检索器沿 VDPP 返回 IAP；报告智能体填充传播与维修字段；引用列出可在孪生界面打开影像的 Defect-ID。若证据不足，系统拒答或请求定向补查，而非猜测。
+
+\paragraph{过渡.}
+下文在锁定基准上量化检索与决策质量，并讨论预测性维护。
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{决策支持与预测性维护}
+\label{sec:ch8-dss}
+
+\subsection{基准设置}
+除特别说明外，数字锁定为 IAP-RAG 评测：11 座仓库、$1{,}500+$ 无人机观测、604 条 IDP、44 个可维护资产、200 题（空间/多跳/聚合 = 70/70/60）。主指标包括检索 Exact Hit、多跳 Exact Hit、答案 ID Exact，以及引用有效性（Cited$\in$Retr.）。
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=0.82\textwidth]{deterministic_ablation_exact_hit.pdf}
+\caption{资产中心与拓扑感知检索的确定性消融（Exact Hit）。}
+\label{fig:ch8-ablation}
+\end{figure}
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=0.82\textwidth]{deterministic_external_exact_hit.pdf}
+\caption{在 IDP-only 协议下与外部 RAG 基线对比。}
+\label{fig:ch8-external}
+\end{figure}
+
+\subsection{关键结果}
+完整 IAP-RAG 配置达到检索 Exact Hit $0.609$、多跳 Exact Hit $0.926$、Cited$\in$Retr.\ $0.878$，在 IDP-only 设定下优于较强的 chunk/图基线。消融表明，去掉拓扑扩展或资产中心单元会显著伤害多跳诊断——而这正是运维团队关心传播风险时的问题类型。
+
+\subsection{走向预测性维护}
+优先级评分与运维规划（如吊篮分期）把诊断转为计划。模式迁移研究表明同一 IDP/IAP 纪律可拓展到翻新分期与施工监测，与更广的 DT-Agent 趋势一致~\cite{singh2025multiagentvbm,akhavian2025bim2rdt}。预测性表述需保持校准：智能体可提议补查计划，但劣化预报仍需要超出单次巡检的时间模型。
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=0.85\textwidth]{framework_generalizability_concept.pdf}
+\caption{孪生接地语言工作流的跨域迁移概念。}
+\label{fig:ch8-transfer}
+\end{figure}
+
+\subsection{局限与展望}
+质量依赖拓扑完整度与 Asset-ID 卫生。完全 VLM 原生的孪生、蜂群持续更新，以及针对\textbf{智能体}巡检任务（安全约束下的工具成功率）的标准基准，仍是未来工作；静态 Exact Hit 不能完全刻画后者。
+
+\paragraph{本章要点.}
+\begin{enumerate}[leftmargin=*]
+\item 决策就绪的孪生需要可追溯、可按资产寻址的缺陷知识，而不仅是三维网格。
+\item RAG 负责接地答案；Agent 负责工具与孪生更新编排；二者都需要引用与批准约束。
+\item 报告 schema 与现场 Asset-ID 审计，与模型选择同样关键。
+\end{enumerate}

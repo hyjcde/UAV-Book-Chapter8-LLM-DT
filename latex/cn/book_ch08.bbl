@@ -1,0 +1,159 @@
+\begin{thebibliography}{19}
+\providecommand{\natexlab}[1]{#1}
+\providecommand{\url}[1]{\texttt{#1}}
+\expandafter\ifx\csname urlstyle\endcsname\relax
+  \providecommand{\doi}[1]{doi: #1}\else
+  \providecommand{\doi}{doi: \begingroup \urlstyle{rm}\Url}\fi
+
+\bibitem[Akhavian et~al.(2025)Akhavian, Amani, Mootz, Ashe, and
+  Beheshti]{akhavian2025bim2rdt}
+Reza Akhavian, Mani Amani, Johannes Mootz, Robert Ashe, and Behrad Beheshti.
+\newblock {Building Information Models to Robot-Ready Site Digital Twins
+  (BIM2RDT)}: An agentic {AI} safety-first framework.
+\newblock \emph{arXiv preprint arXiv:2509.20705}, 2025.
+
+\bibitem[Anonymous(2025)]{singh2025multiagentvbm}
+Anonymous.
+\newblock From design to operation: Multi-agent {AI} for virtual in-situ
+  modeling of digital twins in {BIM}.
+\newblock In \emph{Automation in Construction}, 2025.
+\newblock DOI placeholder: verify S0926580525005175 metadata before
+  camera-ready.
+
+\bibitem[Asai et~al.(2024)Asai, Wu, Wang, Sil, and Hajishirzi]{asai2024selfrag}
+Akari Asai, Zeqiu Wu, Yizhong Wang, Avirup Sil, and Hannaneh Hajishirzi.
+\newblock {Self-RAG}: Learning to retrieve, generate, and critique through
+  self-reflection.
+\newblock In \emph{The Twelfth International Conference on Learning
+  Representations ({ICLR})}, 2024.
+\newblock URL \url{https://openreview.net/forum?id=hSyW5go0v8}.
+
+\bibitem[Edge et~al.(2024)Edge, Trinh, Cheng, Bradley, Chao, Mody, Truitt, and
+  Larson]{edge2024graphrag}
+Darren Edge, Ha~Trinh, Newman Cheng, Joshua Bradley, Alex Chao, Apurva Mody,
+  Steven Truitt, and Jonathan Larson.
+\newblock From local to global: A graph {RAG} approach to query-focused
+  summarization.
+\newblock \emph{arXiv preprint}, 2024.
+
+\bibitem[Gao et~al.(2023)Gao, Ma, Lin, and Callan]{gao2023hyde}
+Luyu Gao, Xueguang Ma, Jimmy Lin, and Jamie Callan.
+\newblock Precise zero-shot dense retrieval without relevance labels.
+\newblock In \emph{Proceedings of the 61st Annual Meeting of the Association
+  for Computational Linguistics (Volume 1: Long Papers)}, pages 1762--1777,
+  Toronto, Canada, 2023. Association for Computational Linguistics.
+\newblock \doi{10.18653/v1/2023.acl-long.99}.
+
+\bibitem[Gao et~al.(2026)Gao, Hu, Chai, Weng, and Li]{gao2026ifcagent}
+Yan Gao, Fuji Hu, Chengzhang Chai, Yiwei Weng, and Haijiang Li.
+\newblock Multi-agent framework for schema-guided reasoning and tool-augmented
+  interaction with {IFC} models.
+\newblock \emph{Automation in Construction}, 2026.
+\newblock \doi{10.1016/j.autcon.2026.106888}.
+
+\bibitem[Guo et~al.(2025)Guo, Xue, Ma, and Cheng]{guo2025bimllmquery}
+Peizhuo Guo, Huiyuan Xue, Jun Ma, and Jack C.~P. Cheng.
+\newblock Advancing {BIM} information retrieval with an {LLM}-based query
+  domain-specific language and library code function alignment system.
+\newblock \emph{Automation in Construction}, 178:\penalty0 106374, 2025.
+\newblock \doi{10.1016/j.autcon.2025.106374}.
+
+\bibitem[He et~al.(2025)He, Liu, He, Wang, and Hsiang]{he2025graphrag}
+Chuanni He, Min Liu, Wei He, Zijian Wang, and Simon~M. Hsiang.
+\newblock Addressing the information silo of construction planning constraints
+  -- a graph retrieval augmented generation approach.
+\newblock \emph{Engineering, Construction and Architectural Management}, 2025.
+\newblock \doi{10.1108/ECAM-08-2024-1066}.
+\newblock ahead-of-print.
+
+\bibitem[Jeong et~al.(2024)Jeong, Baek, Cho, Hwang, and
+  Park]{jeong2024adaptive}
+Soyeong Jeong, Jinheon Baek, Sukmin Cho, Sung~Ju Hwang, and Jong~C. Park.
+\newblock {Adaptive-RAG}: Learning to adapt retrieval-augmented large language
+  models through question complexity.
+\newblock In \emph{Proceedings of the 2024 Conference of the North American
+  Chapter of the Association for Computational Linguistics ({NAACL})}, pages
+  7036--7050, 2024.
+\newblock \doi{10.18653/v1/2024.naacl-long.389}.
+
+\bibitem[Lewis et~al.(2020)Lewis, Perez, Piktus, Petroni, Karpukhin, Goyal,
+  K{\"u}ttler, Lewis, Yih, Rockt{\"a}schel, et~al.]{lewis2020}
+Patrick Lewis, Ethan Perez, Aleksandra Piktus, Fabio Petroni, Vladimir
+  Karpukhin, Naman Goyal, Heinrich K{\"u}ttler, Mike Lewis, Wen-tau Yih, Tim
+  Rockt{\"a}schel, et~al.
+\newblock Retrieval-augmented generation for knowledge-intensive {NLP} tasks.
+\newblock In \emph{Advances in Neural Information Processing Systems},
+  volume~33, pages 9459--9474, 2020.
+\newblock URL
+  \url{https://proceedings.neurips.cc/paper/2020/hash/6b493230205f780e1bc26945df7481e5-Abstract.html}.
+
+\bibitem[Li et~al.(2024)Li, Wang, Zeng, Wu, and Yang]{li2024surveymultiagent}
+Xinyi Li, S.~Wang, Siqi Zeng, Yu~Wu, and Yi~Yang.
+\newblock A survey on {LLM}-based multi-agent systems: workflow,
+  infrastructure, and challenges.
+\newblock \emph{Vicinagearth}, 1\penalty0 (1), 2024.
+\newblock \doi{10.1007/s44336-024-00009-2}.
+
+\bibitem[Luo et~al.(2025)Luo, Prieto, P{\"a}rn, Garc{\'i}a~de Soto, and
+  Brilakis]{luo2025llmdtrobot}
+Peihang Luo, Samuel~A. Prieto, Erika P{\"a}rn, Borja Garc{\'i}a~de Soto, and
+  Ioannis Brilakis.
+\newblock {LLM}-driven human-robot interaction with digital twins for facility
+  management.
+\newblock In \emph{Proceedings of the Creative Construction Conference
+  ({CCC})}, 2025.
+\newblock \doi{10.22260/ccc2025/0061}.
+
+\bibitem[Schick et~al.(2023)Schick, Dwivedi-Yu, Dess{\`i}, Raileanu, Lomeli,
+  Hambro, Zettlemoyer, Cancedda, and Scialom]{schick2023toolformer}
+Timo Schick, Jane Dwivedi-Yu, Roberto Dess{\`i}, Roberta Raileanu, Maria
+  Lomeli, Eric Hambro, Luke Zettlemoyer, Nicola Cancedda, and Thomas Scialom.
+\newblock Toolformer: Language models can teach themselves to use tools.
+\newblock \emph{Advances in Neural Information Processing Systems}, 36, 2023.
+
+\bibitem[Shi et~al.(2025)Shi, Li, Meyer, and Bauernhansl]{shi2025cognitivedt}
+Dachuan Shi, Jianzhang Li, Olga Meyer, and Thomas Bauernhansl.
+\newblock Enhancing retrieval-augmented generation for interoperable industrial
+  knowledge representation and inference toward cognitive digital twins.
+\newblock \emph{Computers in Industry}, 169:\penalty0 104330, 2025.
+\newblock \doi{10.1016/j.compind.2025.104330}.
+
+\bibitem[Singh et~al.(2025)]{singh2024agenticragsurvey}
+Aditi Singh et~al.
+\newblock Agentic retrieval-augmented generation: A survey on agentic {RAG}.
+\newblock \emph{arXiv preprint}, 2025.
+\newblock Verify canonical citation; use for agentic-RAG taxonomy discussion.
+
+\bibitem[Wang et~al.(2024)Wang, Ma, Feng, Zhang, Yang, Zhang, Chen, Tang, Chen,
+  Lin, et~al.]{wang2024surveyagents}
+Lei Wang, Chen Ma, Xueyang Feng, Zeyu Zhang, Hao Yang, Jingsen Zhang, Zhiyuan
+  Chen, Jiakai Tang, Xu~Chen, Yankai Lin, et~al.
+\newblock A survey on large language model based autonomous agents.
+\newblock \emph{Frontiers of Computer Science}, 18\penalty0 (6):\penalty0
+  186345, 2024.
+\newblock \doi{10.1007/s11704-024-40231-1}.
+
+\bibitem[Xiao et~al.(2025)]{xiao2025tenquestions}
+Tianzhen Xiao et~al.
+\newblock Ten questions concerning large language models ({LLMs}) for building
+  applications.
+\newblock \emph{Building and Environment}, 2025.
+\newblock See also related Building and Environment / energy LLM reviews;
+  verify final bibliographic details before submission.
+
+\bibitem[Yao et~al.(2023)Yao, Zhao, Yu, Du, Shafran, Narasimhan, and
+  Cao]{yao2023react}
+Shunyu Yao, Jeffrey Zhao, Dian Yu, Nan Du, Izhak Shafran, Karthik Narasimhan,
+  and Yuan Cao.
+\newblock {ReAct}: Synergizing reasoning and acting in language models.
+\newblock In \emph{International Conference on Learning Representations
+  ({ICLR})}, 2023.
+
+\bibitem[Zhang et~al.(2025)Zhang, Fu, Li, and Chen]{zhang2025llmagentschema}
+Liang Zhang, Xiaoqin Fu, Yanfei Li, and Jianli Chen.
+\newblock Large language model-based agent schema and library for automated
+  building energy analysis and modeling.
+\newblock \emph{Automation in Construction}, 176:\penalty0 106244, 2025.
+\newblock \doi{10.1016/j.autcon.2025.106244}.
+
+\end{thebibliography}

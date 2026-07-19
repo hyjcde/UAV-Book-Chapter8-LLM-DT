@@ -1,0 +1,286 @@
+%%%%%%%%%%%%%%%%%%%%% ch08.tex (EN) %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\chapter{Digital Twin with LLMs in Inspection Analysis}
+\label{ch:llm-dt}
+
+\abstract*{This chapter connects building digital twins with large language models for façade inspection analysis. We structure defect evidence as Integrated Defect and Asset Profiles, retrieve it with topology-aware RAG, extend the stack with agentic tool-use and multi-agent workflows, and show how grounded generation supports report drafting and maintenance decision support.}
+
+\abstract{This chapter connects building digital twins with large language models for façade inspection analysis. Beyond visualisation, twins become decision-ready when defect observations are provenance-aware, asset-addressable, and retrievable under citation constraints. We present Integrated Defect Profiles (IDPs) and Integrated Asset Profiles (IAPs), Vertical Defect Propagation Paths (VDPPs) for topology-aware retrieval, multi-modal fusion, and---extending recent work that stops at RAG---agentic workflows that plan tools, query IFC/BIM services, and close loops with field robots and human approval. Report schemas, Asset-ID audits, and benchmarked decision support complete the pipeline. Target length for this chapter is approximately fifty pages in monograph format.}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Digital Twins for Building Inspection}
+\label{sec:ch8-dt}
+
+Building inspection increasingly depends on digital twins (DTs): living digital counterparts that organise imagery, geometry, and semantics around physical assets~\cite{shi2025cognitivedt}. In facility management (FM), twins are often used to browse 3D models, locate equipment, and store inspection photos. That is necessary but not sufficient. Inspectors and asset managers ask questions that require \emph{reasoning over evidence}: which cladding panels participate in a multi-storey moisture path; which assets should be prioritised for gondola access next quarter; whether a repair recommendation is consistent with the governing code clause.
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=0.92\textwidth]{dt_modeling_pipeline.pdf}
+\caption{Digital-twin modelling pipeline for UAV façade inspection: sensing, geometric registration, and semantic integration that feed language-based analysis.}
+\label{fig:ch8-dt-pipeline}
+\end{figure}
+
+\subsection{From geometric twins to decision-ready twins}
+A geometric twin answers ``where is it?''. A decision-ready twin must also answer ``what is wrong, how might it propagate, what should we do, and which evidence supports that claim?''. Closing this gap requires three ingredients that later sections develop:
+\begin{enumerate}[leftmargin=*]
+\item \textbf{Structured defect knowledge} with provenance (who measured what, when, and with which detector);
+\item \textbf{Asset-centric indices} aligned with maintainable units rather than arbitrary text chunks;
+\item \textbf{Grounded language interfaces}---RAG and agents---that cite twin entities instead of inventing them.
+\end{enumerate}
+
+\subsection{Interfaces to upstream chapters}
+This monograph's earlier chapters supply the twin's physical and perceptual layers. Reconstruction and registration (Chapter~4) provide geometry and BIM/GeoBIM anchors. Detection and segmentation models (Chapter~6) produce candidate defect observations. GIS integration (Chapter~7) supplies city-scale asset identifiers and spatiotemporal dashboards. Chapter~8 consumes those products and adds a \emph{cognitive} layer~\cite{shi2025cognitivedt}: language-accessible knowledge and decision support.
+
+Recent agentic frameworks further argue that twins should not remain static databases. Luo et al.\ connect LLMs, twins, and robots so that natural-language FM requests can trigger inspection missions and human-approved twin updates~\cite{luo2025llmdtrobot}. BIM2RDT transforms design BIM into robot-ready site twins with safety-first agentic control~\cite{akhavian2025bim2rdt}. Multi-agent systems have also been proposed to construct and calibrate virtual building models across design-to-operation~\cite{singh2025multiagentvbm}. These works motivate treating the twin as both a knowledge base \emph{and} an action substrate.
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=0.9\textwidth]{framework_overview_overall.pdf}
+\caption{Overall inspection-intelligence framework. Chapter~8 focuses on the language, retrieval, agent, and decision layers above detection and twin modelling.}
+\label{fig:ch8-framework}
+\end{figure}
+
+\paragraph{Bridge.}
+If twins are to speak, we need a clear account of what LLMs can and cannot safely do in civil engineering.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Foundations of LLMs for Civil Engineering Applications}
+\label{sec:ch8-llm-foundations}
+
+Large language models (LLMs) provide flexible interfaces to heterogeneous project knowledge: specifications, inspection notes, BIM property sets, and maintenance logs. Surveys of building applications emphasise opportunities in compliance checking, energy analysis, and operations support, while warning about bias, privacy, and unverifiable advice~\cite{xiao2025tenquestions}. For façade inspection, three failure modes dominate: (i)~hallucinated asset identifiers; (ii)~repair advice without code grounding; (iii)~fluent summaries that omit contradictory evidence.
+
+\subsection{Grounding mechanisms}
+Retrieval-augmented generation (RAG)~\cite{lewis2020} attaches parametric generation to external memory. Variants such as HyDE~\cite{gao2023hyde}, Self-RAG~\cite{asai2024selfrag}, Adaptive-RAG~\cite{jeong2024adaptive}, and GraphRAG~\cite{edge2024graphrag} improve query formulation, reflection, or graph-structured corpora. In construction planning, graph RAG has been used to reduce information silos~\cite{he2025graphrag}. These methods address \emph{evidence access}. They do not, by themselves, decide which tool to call next, when to request a new UAV flight, or how to update an IFC attribute after human approval.
+
+\subsection{From RAG to agents}
+Agent paradigms interleave reasoning and acting~\cite{yao2023react}, teach models to use tools~\cite{schick2023toolformer}, and organise multi-agent workflows~\cite{wang2024surveyagents,li2024surveymultiagent}. In AEC, agents have been used for IFC querying and modification~\cite{gao2026ifcagent}, building-energy modelling schemas~\cite{zhang2025llmagentschema}, and BIM information retrieval via DSL alignment~\cite{guo2025bimllmquery}. The practical lesson for inspection is a division of labour:
+\begin{itemize}[leftmargin=*]
+\item \textbf{RAG} maximises evidence precision and citation fidelity for diagnosis questions;
+\item \textbf{Agents} orchestrate multi-step procedures (retrieve $\rightarrow$ check topology $\rightarrow$ draft report $\rightarrow$ open work order $\rightarrow$ dispatch robot);
+\item \textbf{Schemas and Asset-IDs} remain the audit backbone for both.
+\end{itemize}
+
+\paragraph{Bridge.}
+Agents and RAG both presuppose clean knowledge units. The next section defines those units inside the twin.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{From Digital Twins to Language Reasoning}
+\label{sec:ch8-dt-to-language}
+
+\subsection{Integrated Defect Profiles (IDPs)}
+We represent each maintainable defect observation as an Integrated Defect Profile (IDP), a provenance-aware tuple linking imagery evidence, semantic attributes, spatial pose, and asset association. Conceptually,
+\begin{equation}
+\mathrm{IDP}=\langle I,E,S,A\rangle,
+\end{equation}
+where $I$ denotes imagery and sensor cues, $E$ evidence and detector metadata, $S$ semantic labels/severity, and $A$ the linked maintainable asset. IDPs are the atomic knowledge objects written by the perception stack and read by retrieval and agents.
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=0.88\textwidth]{idp_construction_pipeline.jpg}
+\caption{Construction of Integrated Defect Profiles from multi-modal inspection evidence.}
+\label{fig:ch8-idp}
+\end{figure}
+
+\paragraph{Why not store raw files only?}
+Raw image folders and detector JSON dumps are brittle for language systems: filenames drift, detector versions change, and cross-view duplicates explode. The IDP discipline forces every claim-relevant observation to carry a stable identifier, a timestamp, a detector signature, and an asset link. That discipline is what later allows citation checks such as Cited$\in$Retr.
+
+\begin{algorithm}[t]
+\caption{Sketch of IDP construction from registered detections}
+\label{alg:ch8-idp}
+\begin{algorithmic}[1]
+\Require Registered detection set $\mathcal{D}$, BIM/asset map $\mathcal{M}$, imagery store $\mathcal{I}$
+\Ensure IDP corpus $\mathcal{P}$
+\State $\mathcal{P}\leftarrow\emptyset$
+\For{each detection $d\in\mathcal{D}$}
+  \State Resolve asset $a\leftarrow\mathrm{Associate}(d,\mathcal{M})$; \textbf{continue} if unresolved
+  \State Pack imagery refs $I\leftarrow\mathrm{CollectViews}(d,\mathcal{I})$
+  \State Pack evidence $E\leftarrow\{\mathrm{detector}, \mathrm{score}, \mathrm{time}, \mathrm{pose}\}$
+  \State Pack semantics $S\leftarrow\{\mathrm{type}, \mathrm{severity}, \mathrm{attributes}\}$
+  \State $\mathcal{P}\leftarrow\mathcal{P}\cup\{\langle I,E,S,a\rangle\}$
+\EndFor
+\State \Return $\mathcal{P}$
+\end{algorithmic}
+\end{algorithm}
+
+\subsection{Integrated Asset Profiles (IAPs)}
+Maintenance questions are usually asset-centric (``what is the status of panel P-12?'') rather than chunk-centric. IDPs are therefore aggregated into Integrated Asset Profiles (IAPs) with symptom, geometry, and topology views. IAPs are the preferred retrieval unit for FM dialogue. In our locked corpus, 604 IDPs collapse into 44 maintainable assets---a compression that matches how facility teams think, and that empirically improves multi-hop retrieval over chunk baselines (Section~\ref{sec:ch8-dss}).
+
+\begin{table}[t]
+\centering
+\caption{Locked dataset scale used throughout this chapter (IAP-RAG evaluation).}
+\label{tab:ch8-data}
+\begin{tabular}{lc}
+\toprule
+Item & Value \\
+\midrule
+Warehouses / buildings & 11 \\
+UAV observations (order) & $1{,}500+$ \\
+Integrated Defect Profiles (IDPs) & 604 \\
+Maintainable assets (IAPs) & 44 \\
+Benchmark questions & 200 \\
+\quad Spatial / multi-hop / aggregation & 70 / 70 / 60 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{Indexing and Vertical Defect Propagation Paths}
+A multi-layer index supports different query granularities (observation, asset, neighbourhood, building, corpus). Vertical Defect Propagation Paths (VDPPs) exploit BIM adjacency so that retrieval can expand $k$-hop neighbourhoods when diagnosing multi-storey leakage or crack patterns. This is complementary to generic GraphRAG: the graph is not an arbitrary document graph but an engineering topology tied to Asset-IDs.
+
+\paragraph{Teaching note.}
+When explaining VDPPs to students, it helps to contrast three graphs: (i)~a document similarity graph; (ii)~an entity co-occurrence graph mined from text; (iii)~a BIM adjacency graph. Only (iii) encodes physical propagation hypotheses that inspectors already use on site. Language models can narrate (iii), but they should not invent missing edges.
+
+\paragraph{Bridge.}
+Structured units enable multi-modal fusion and topology-aware retrieval, developed next.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Multi-Modal Fusion and Topology-Aware RAG}
+\label{sec:ch8-multimodal}
+
+Façade inspection is multi-modal by nature: RGB and infrared imagery, geometric registration residuals, textual manuals, and historical work orders. Fusion in this chapter is \emph{pipeline fusion} rather than a single end-to-end vision--language call. Detectors and registration modules write IDPs; dense retrieval operates over textualised IAP views; the LLM composes answers under citation constraints.
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=0.92\textwidth]{rag_workflow_topology.pdf}
+\caption{Topology-aware RAG workflow: intent parsing, IAP retrieval, VDPP expansion, and grounded generation.}
+\label{fig:ch8-rag}
+\end{figure}
+
+\subsection{Intent-aware retrieval}
+Inspector questions cluster into spatial lookup, multi-hop propagation, and aggregation/priority types. Intent parsing selects retrieval depth and whether VDPP expansion is required. Empirically, multi-hop Exact Hit benefits strongly from topology-aware expansion on our warehouse benchmark (Section~\ref{sec:ch8-dss}).
+
+\subsection{Conflict handling and expert grounding}
+When imagery confidence and textual records disagree, provenance fields in the IDP take precedence and uncertainty is surfaced rather than silently averaged. Expert manuals and code snippets enter through a restricted evidence channel so that compliance statements remain attributable.
+
+\subsection{Static RAG versus agentic RAG}
+Agentic RAG systems rewrite queries, call multiple tools, and iterate~\cite{singh2024agenticragsurvey}. They can improve coverage on complex tasks, but they also expand the attack surface for untraceable intermediate steps. For inspection, we recommend \emph{bounded agency}: allow multi-step retrieval and tool calls, but require every final claim to cite twin entities (Asset-ID / Defect-ID) present in the retrieved set.
+
+\paragraph{Bridge.}
+Bounded agency becomes concrete in the workflows of the next section.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Agentic Workflows for Twin-Grounded Inspection}
+\label{sec:ch8-agents}
+
+This section is the main extension beyond the DefectGPT/IAP-RAG paper. RAG answers evidence-seeking questions; agents execute procedures that change system state---opening tickets, commanding robots, patching IFC properties---under human oversight.
+
+\subsection{Reference architectures in AEC}
+Luo et al.\ place an LLM as a broker among user, twin, and robot middleware: if twin data are stale, the system emits structured robot tasks and logs human-approved updates~\cite{luo2025llmdtrobot}. IFC-Agent uses schema-guided multi-agent tool composition for native IFC reasoning and edits~\cite{gao2026ifcagent}. BIM2RDT emphasises safety-first agentic updates of site twins from robot sensing~\cite{akhavian2025bim2rdt}. Energy-oriented agent schemas show how domain libraries can be modularised~\cite{zhang2025llmagentschema}. Together they suggest a reusable pattern: \textbf{perceive $\rightarrow$ ground in twin schema $\rightarrow$ act with tools $\rightarrow$ verify with humans $\rightarrow$ commit to twin}.
+
+\subsection{A façade-inspection agent stack}
+For UAV façade programmes we propose four cooperating roles (logical agents, not necessarily four model instances):
+\begin{enumerate}[leftmargin=*]
+\item \textbf{Retriever agent:} IAP/VDPP RAG with citation packing;
+\item \textbf{Topology agent:} neighbourhood expansion and conflict checks on BIM adjacency;
+\item \textbf{Report agent:} fills a constrained output schema (Section~\ref{sec:ch8-reports});
+\item \textbf{Action agent:} optional tools---GIS ticket API, robot/UAV tasking, IFC property update---always behind approval gates.
+\end{enumerate}
+ReAct-style traces~\cite{yao2023react} make intermediate tool calls inspectable. Dual-memory ideas (procedural context + entity cache) from IFC-Agent~\cite{gao2026ifcagent} map naturally onto our Asset-ID caches.
+
+\begin{table}[t]
+\centering
+\caption{Comparison of twin-language paradigms relevant to façade inspection.}
+\label{tab:ch8-paradigms}
+\begin{tabular}{p{2.2cm}p{3.2cm}p{3.2cm}p{3.2cm}}
+\toprule
+Aspect & Chunk RAG & Topology RAG (IAP/VDPP) & Agentic twin loop \\
+\midrule
+Unit of retrieval & text chunk & asset profile + neighbours & same, plus tools \\
+State change & none & none & tickets / robots / IFC \\
+Audit focus & citations & Asset-ID + citations & citations + approvals \\
+Main risk & missed hops & topology errors & unsafe actions \\
+Best for & FAQ / manuals & diagnosis / propagation & closed-loop FM \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\paragraph{Worked micro-scenario.}
+A manager asks: ``Which assets above panel A-07 need gondola access if seepage propagates two storeys?'' The retriever returns A-07's IAP; the topology agent expands a VDPP of hop $k{=}2$; the report agent drafts a priority list with Defect-IDs; the action agent \emph{proposes} a revisit polygon for UAV tasking but does not dispatch until approval. This is deliberately narrower than fully autonomous site robots, yet already beyond single-shot RAG.
+
+\subsection{Related agent systems and what we reuse}
+IFC-Agent's schema-guided tool composition~\cite{gao2026ifcagent} informs how we expose ``expand VDPP'', ``get IAP'', and ``render defect image'' as tools rather than hoping the LLM invents SQL. Luo et al.'s human-in-the-loop twin commit~\cite{luo2025llmdtrobot} informs our approval gate. BIM2RDT's safety-first posture~\cite{akhavian2025bim2rdt} informs geofencing requirements when action tools include robots. Energy agent libraries~\cite{zhang2025llmagentschema} suggest packaging façade tools as versioned schemas so that prompts do not hard-code brittle APIs.
+
+\subsection{What agents must not do}
+Agents must not invent Asset-IDs, silently overwrite twin fields, or dispatch robots without geofence and safety checks~\cite{akhavian2025bim2rdt}. In regulated buildings, the twin commit step remains human-confirmed, matching Luo et al.'s approval loop~\cite{luo2025llmdtrobot}.
+
+\paragraph{Bridge.}
+Whether RAG-only or agentic, deliverables must be report artefacts that FM systems can store.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Inspection Report Generation and Management}
+\label{sec:ch8-reports}
+
+\subsection{Output schema}
+Generated diagnoses follow a fixed schema: defect classification, propagation hypothesis, repair suggestion, compliance notes, and cost/priority cues. Schema constraints convert free-form generation into machine-checkable records and simplify evaluation.
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=0.85\textwidth]{platform_demo.pdf}
+\caption{Digital-twin inspection platform used for natural-language querying and report drafting.}
+\label{fig:ch8-platform}
+\end{figure}
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=0.9\textwidth]{multi_platform_field_interfaces.pdf}
+\caption{Multi-platform field interfaces for on-site asset verification.}
+\label{fig:ch8-field-ui}
+\end{figure}
+
+\subsection{Field Asset-ID audits}
+Language answers are only operational if they cite the same identifiers used on site. Registration audits track whether observations are correctly linked before retrieval (Fig.~\ref{fig:ch8-asset-id}).
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=0.88\textwidth]{field_asset_id_stages.pdf}
+\caption{Field Asset-ID registration and verification stages.}
+\label{fig:ch8-asset-id}
+\end{figure}
+
+\subsection{Box: end-to-end walkthrough}
+Consider a multi-hop query about water ingress affecting a vertical stack of panels. The retriever returns IAPs along a VDPP; the report agent fills propagation and repair fields; citations list Defect-IDs whose imagery can be opened in the twin UI. If evidence is insufficient, the system abstains or requests a targeted revisit rather than guessing.
+
+\paragraph{Bridge.}
+We next quantify retrieval and decision quality on a locked benchmark, then discuss predictive maintenance use cases.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Decision Support and Predictive Maintenance}
+\label{sec:ch8-dss}
+
+\subsection{Benchmark setting}
+Unless noted, numbers follow the locked IAP-RAG evaluation: 11 warehouses, $1{,}500+$ UAV observations, 604 IDPs, 44 maintainable assets, and 200 questions (70 spatial / 70 multi-hop / 60 aggregation). Primary metrics include retrieval Exact Hit, multi-hop Exact Hit, answer-ID Exact, and citation validity (Cited$\in$Retr.).
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=0.82\textwidth]{deterministic_ablation_exact_hit.pdf}
+\caption{Deterministic ablation on Exact Hit metrics for asset-centric and topology-aware retrieval.}
+\label{fig:ch8-ablation}
+\end{figure}
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=0.82\textwidth]{deterministic_external_exact_hit.pdf}
+\caption{Comparison against external RAG baselines under an IDP-only protocol.}
+\label{fig:ch8-external}
+\end{figure}
+
+\subsection{Key results}
+On the locked protocol, the full IAP-RAG configuration attains retrieval Exact Hit $0.609$, multi-hop Exact Hit $0.926$, and Cited$\in$Retr.\ $0.878$, outperforming strong chunk- and graph-based baselines in the IDP-only setting. Ablations show that removing topology-aware expansion or asset-centric units degrades multi-hop diagnosis disproportionately---exactly the questions FM teams care about for propagation risk.
+
+\subsection{Towards predictive maintenance}
+Priority scoring and operational planning (e.g., gondola staging) convert diagnosis into schedules. Schema-transfer studies suggest the same IDP/IAP discipline can migrate toward renovation sequencing and construction monitoring, aligning with broader DT agent trends~\cite{singh2025multiagentvbm,akhavian2025bim2rdt}. Predictive claims must remain calibrated: agents may propose revisit plans, but deterioration forecasting still requires temporal models beyond a single inspection epoch.
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=0.85\textwidth]{framework_generalizability_concept.pdf}
+\caption{Concept of cross-domain transfer for twin-grounded language workflows.}
+\label{fig:ch8-transfer}
+\end{figure}
+
+\subsection{Limitations and outlook}
+Quality depends on topology completeness and Asset-ID hygiene. Fully VLM-native twins and swarm-continuous updates remain future work, as do standardised benchmarks for \emph{agentic} inspection tasks (tool success under safety constraints), which static Exact Hit metrics do not fully capture.
+
+\paragraph{Chapter takeaways.}
+\begin{enumerate}[leftmargin=*]
+\item Decision-ready twins need provenance-aware, asset-addressable defect knowledge---not only 3D meshes.
+\item RAG grounds answers; agents orchestrate tools and twin updates; both require citation and approval constraints.
+\item Report schemas and field Asset-ID audits are as critical as model choice for deployable inspection assistants.
+\end{enumerate}
