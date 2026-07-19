@@ -11,6 +11,7 @@
 
 > **2026-07-20 update:** Target length **~50 pages**. Added section **8.5 Agentic Workflows** (EN/CN synced). Proposal's old 8.5/8.6 map to **8.6 Reports / 8.7 DSS** in the working draft; confirm numbering with editors before camera-ready.
 > Bilingual LaTeX: `latex/en/` + `latex/cn/`, build with `scripts/build.sh`. Literature: `literature/AGENT_LIT_NOTES.md`.
+> Book shell: PDF title is the **full monograph** *AI-Driven UAV Building Inspection* (no personal author line). TOC lists Chapters 1–9 from the Book Proposal; Ch.1–7/9 are title-only stubs; only Ch.8 is drafted. VLMs are in-scope with LLMs (proposal Phase 4).
 
 
 ## 0. Chapter one-liner

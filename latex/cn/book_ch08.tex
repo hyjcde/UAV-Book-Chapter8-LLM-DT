@@ -1,4 +1,6 @@
-%%%%%%%%%%%%%%%%%%%% book_ch08.tex (CN standalone Chapter 8) %%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%% book_ch08.tex (CN book shell; 第8章正文) %%%%%%%%%%%%%%%%%%%%
+% 与英文 Springer SNmono 样本同构：全书书名为 proposal 总标题；
+% 第1--7、9章仅列章节名；第8章为已起草正文。中文用 ctexbook 承载中文字体。
 \documentclass[UTF8,a4paper,openany]{ctexbook}
 
 \usepackage{graphicx}
@@ -17,15 +19,41 @@
 
 \graphicspath{{figures/}{figures/ch08/}}
 
+\newcommand{\StubChapter}[1]{%
+  \chapter{#1}%
+  \vspace{1.5em}%
+  \noindent\textit{本章正文将在全书定稿中提供。}%
+  \clearpage
+}
+
 \begin{document}
-\title{AI驱动的无人机建筑巡检\\[0.5em]
-\large 第8章\quad 巡检分析中的数字孪生与大语言模型（工作草稿）}
-\author{黄一钧}
-\maketitle
+
+% 全书书名页（对齐 SNmono：书名 + Springer Nature；不写个人作者）
+\thispagestyle{empty}
+\vspace*{2em}
+{\Huge AI驱动的无人机建筑巡检\par}
+\vfill
+{\Large Springer Nature\par}
+\clearpage
+
 \tableofcontents
 
+% ----- 第1--7章：仅列 proposal 章节名 -----
+\StubChapter{无人机建筑巡检导论}
+\StubChapter{面向数据采集的无人机任务规划}
+\StubChapter{复杂环境下的无人机运动规划}
+\StubChapter{建筑三维重建}
+\StubChapter{数据集构建与基准}
+\StubChapter{面向建筑巡检的人工智能模型}
+\StubChapter{面向建筑监测的GIS集成}
+
+% ----- 第8章：已起草正文 -----
 \include{ch08_cn}
+
+% ----- 第9章：仅列章节名 -----
+\StubChapter{结论与展望}
 
 \bibliographystyle{plainnat}
 \bibliography{references}
+
 \end{document}

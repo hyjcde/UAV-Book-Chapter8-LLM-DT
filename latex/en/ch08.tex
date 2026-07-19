@@ -2,9 +2,9 @@
 \chapter{Digital Twin with LLMs in Inspection Analysis}
 \label{ch:llm-dt}
 
-\abstract*{This chapter closes the monograph's pipeline: after planning, reconstruction, detection, and GIS anchoring, how can digital twins support language-level diagnosis and maintenance decisions? We survey UAV--DT--BIM lines of work (including contributions from this research group and the wider community), introduce a teaching framework that separates structured twin knowledge, retrieval grounding, and agentic tooling, and use asset-centric RAG only as one illustrative case---rewritten for textbook use rather than as a paper reprint.}
+\abstract*{This chapter closes the monograph's pipeline: after planning, reconstruction, detection, and GIS anchoring, how can digital twins support language-level diagnosis and maintenance decisions? Consistent with the book's next-generation decision-support theme, we treat large language models (LLMs) and vision--language models (VLMs) as complementary interfaces to twin evidence---not as interchangeable black boxes. We survey UAV--DT--BIM lines of work, introduce a teaching framework that separates structured twin knowledge, retrieval grounding, and agentic tooling, and use asset-centric RAG as one illustrative case rewritten for textbook use.}
 
-\abstract{Chapters~2--7 explain how to fly, reconstruct, detect, and map. Chapter~8 asks what happens next: how inspectors and facility managers query a twin in natural language, obtain traceable answers, and trigger follow-up actions. The chapter is written as a \emph{synthesis for the book}, not as a restatement of any single journal manuscript. We first map prior work on digital twins, defect perception, LLM/BIM assistants, RAG, and agents; then we organise a decision-layer framework that previous chapters can feed; finally we discuss reports, decision support, and open issues. An asset-centric, topology-aware RAG study associated with this group~\cite{huang2026iaprag} appears as a \emph{case study}, with wording and emphasis adapted to monograph teaching.}
+\abstract{Chapters~2--7 explain how to fly, reconstruct, detect, and map. Chapter~8 asks what happens next: how inspectors and facility managers query a twin in natural language, fuse visual and textual evidence, obtain traceable answers, and trigger follow-up actions. The book proposal places both LLMs and VLMs in this decision layer; we keep that scope. The chapter is a \emph{synthesis for the book}, not a restatement of any single journal manuscript. We map prior work on digital twins, defect perception, LLM/VLM assistants, RAG, and agents; organise a decision-layer framework that previous chapters can feed; and discuss reports, decision support, and open issues. An asset-centric, topology-aware RAG study associated with this group~\cite{huang2026iaprag} appears as a \emph{case study}, with wording adapted to monograph teaching.}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Digital Twins for Building Inspection}
@@ -118,7 +118,7 @@ We now look at how queries assemble evidence under multi-modal and topological c
 \label{sec:ch8-multimodal}
 
 \subsection{Pipeline fusion versus end-to-end VLMs}
-Façade programmes are multi-modal, but ``fusion'' need not mean one giant vision--language model. A book-consistent pattern is: detectors write modality-tagged observations; retrieval selects asset passports; the LLM composes answers under citation rules. End-to-end VLMs remain promising (Chapter~9 outlook) but currently struggle with auditable Asset-IDs on portfolio-scale twins.
+Façade programmes are multi-modal, and vision--language models (VLMs) are a genuine part of the decision layer envisaged for this book---not a side remark. ``Fusion'', however, need not collapse into one opaque end-to-end VLM for every query. A book-consistent pattern that remains auditable today is: detectors (or a VLM perception head) write modality-tagged observations; retrieval selects asset passports; an LLM or VLM then composes answers under citation rules. End-to-end VLM-native twins that jointly read imagery and twin topology remain an active research direction (Chapter~9); the pedagogical point is to use VLMs where they add visual grounding, while keeping Asset-IDs and provenance outside the model's free text.
 
 \begin{figure}[t]
 \centering
@@ -300,7 +300,7 @@ Priority scoring and operational planning convert diagnosis into schedules. Tran
 \end{figure}
 
 \subsection{Open issues}
-Topology completeness and Asset-ID hygiene dominate error modes. Standard agent benchmarks for inspection (safe tool traces) are still missing. Fully VLM-native twins and swarm-continuous updates belong to Chapter~9's forward look, building on planning chapters for multi-UAV operations.
+Topology completeness and Asset-ID hygiene dominate error modes. Standard agent benchmarks for inspection (safe tool traces) are still missing. Stronger VLM grounding on twin entities, fully VLM-native twins, and swarm-continuous updates belong to Chapter~9's forward look, building on planning chapters for multi-UAV operations.
 
 \paragraph{Chapter takeaways.}
 \begin{enumerate}[leftmargin=*]

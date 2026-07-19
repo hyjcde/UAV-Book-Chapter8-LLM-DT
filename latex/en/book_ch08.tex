@@ -1,4 +1,7 @@
-%%%%%%%%%%%%%%%%%%%% book_ch08.tex (EN standalone Chapter 8) %%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%% book_ch08.tex (EN book shell; Ch.8 filled) %%%%%%%%%%%%%%%%%%%%
+% Springer Nature monograph class. This PDF is a working sample of the full book
+% titled "AI-Driven UAV Building Inspection": Chapters 1--7 and 9 are title-only
+% placeholders from the Book Proposal TOC; Chapter 8 carries the drafted text.
 \documentclass[graybox,envcountchap,sectrefs]{SNmono}
 
 \usepackage{type1cm}
@@ -23,16 +26,73 @@
 \graphicspath{{figures/}{figures/ch08/}}
 \makeindex
 
+% Title-only stub used for chapters not drafted in this sample PDF.
+\newcommand{\StubChapter}[1]{%
+  \chapter{#1}%
+  \vspace{1.5em}%
+  \noindent\textit{Chapter manuscript to be supplied in the complete volume.}%
+  \clearpage
+}
+
+% Cleaner title page when no personal \author is set (SNmono default reserves author space).
+\makeatletter
+\def\@maketitle{\newpage
+ \null
+ \vskip 2em
+\begingroup
+  \def\and{\unskip, }
+  \parindent=\z@
+  \pretolerance=10000
+  \rightskip=\z@ \@plus 3cm
+  \ifx\@author\@empty\else
+    {\LARGE \@author \par}%
+    \vskip 2cm
+  \fi
+  {\Huge \@title \par}%
+  \vskip 1cm
+  \if!\@subtitle!\else
+   {\LARGE\ignorespaces\@subtitle \par}
+   \vskip 1cm
+  \fi
+  \ifx\@date\@empty\else
+    {\large \@date}\par
+    \vskip 1.5em
+  \fi
+ \vfill
+ {\Large Springer Nature\par}
+\endgroup}
+\makeatother
+
 \begin{document}
-\author{Yijun Huang}
+
+% Book-level title page (no personal author line; follows SNmono front matter).
 \title{AI-Driven UAV Building Inspection}
-\subtitle{Chapter~8 --- Digital Twin with LLMs in Inspection Analysis (working draft)}
+\author{}
+\date{}
 \maketitle
+
 \frontmatter
 \tableofcontents
+
 \mainmatter
+
+% ----- Chapters 1--7: proposal titles only -----
+\StubChapter{Introduction to UAV-Based Building Inspection}
+\StubChapter{UAV Task Planning for Data Collection}
+\StubChapter{UAV Motion Planning in Complex Environments}
+\StubChapter{3D Reconstruction of Buildings}
+\StubChapter{Dataset Construction and Benchmarks}
+\StubChapter{AI Models for Building Inspection}
+\StubChapter{GIS Integration for Building Monitoring}
+
+% ----- Chapter 8: drafted content -----
 \include{ch08}
+
+% ----- Chapter 9: proposal title only -----
+\StubChapter{Conclusion and Future Prospects}
+
 \backmatter
 \bibliographystyle{spbasic}
 \bibliography{references}
+
 \end{document}
