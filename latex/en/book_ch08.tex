@@ -1,7 +1,7 @@
-%%%%%%%%%%%%%%%%%%%% book_ch08.tex (EN book shell; Ch.8 filled) %%%%%%%%%%%%%%%%%%%%
-% Springer Nature monograph class. This PDF is a working sample of the full book
-% titled "AI-Driven UAV Building Inspection": Chapters 1--7 and 9 are title-only
-% placeholders from the Book Proposal TOC; Chapter 8 carries the drafted text.
+%%%%%%%%%%%%%%%%%%%% book_ch08.tex (EN book shell; only Ch.8 drafted) %%%%%%%%%%%%%%%%%%%%
+% Springer Nature monograph class. Book title from the proposal.
+% Other chapters are by collaborators: list their titles for orientation only;
+% do NOT draft their bodies. Only Chapter 8 is included with text.
 \documentclass[graybox,envcountchap,sectrefs]{SNmono}
 
 \usepackage{type1cm}
@@ -26,15 +26,7 @@
 \graphicspath{{figures/}{figures/ch08/}}
 \makeindex
 
-% Title-only stub used for chapters not drafted in this sample PDF.
-\newcommand{\StubChapter}[1]{%
-  \chapter{#1}%
-  \vspace{1.5em}%
-  \noindent\textit{Chapter manuscript to be supplied in the complete volume.}%
-  \clearpage
-}
-
-% Cleaner title page when no personal \author is set (SNmono default reserves author space).
+% Cleaner title page when no personal \author is set.
 \makeatletter
 \def\@maketitle{\newpage
  \null
@@ -65,31 +57,47 @@
 
 \begin{document}
 
-% Book-level title page (no personal author line; follows SNmono front matter).
 \title{AI-Driven UAV Building Inspection}
 \author{}
 \date{}
 \maketitle
 
 \frontmatter
-\tableofcontents
+
+% Book map: proposal chapter titles only (no bodies for collaborator chapters).
+\chapter*{Contents}
+\markboth{Contents}{Contents}
+
+\noindent
+\begin{tabular}{@{}r@{\hspace{0.75em}}p{0.88\textwidth}@{}}
+1 & Introduction to UAV-Based Building Inspection \\
+2 & UAV Task Planning for Data Collection \\
+3 & UAV Motion Planning in Complex Environments \\
+4 & 3D Reconstruction of Buildings \\
+5 & Dataset Construction and Benchmarks \\
+6 & AI Models for Building Inspection \\
+7 & GIS Integration for Building Monitoring \\
+8 & Digital Twin with LLMs in Inspection Analysis \\
+9 & Conclusion and Future Prospects \\
+\end{tabular}
+
+\vspace{1.25em}
+\noindent\textit{This working PDF drafts only Chapter~8; Chapters~1--7 and~9 are written by other authors.}
+
+\vspace{1.5em}
+\noindent\textbf{Chapter~8 detailed contents}
+\vspace{0.5em}
+
+% Section-level entries written by Chapter 8 only (no second Contents heading).
+\makeatletter
+\@starttoc{toc}
+\makeatother
 
 \mainmatter
 
-% ----- Chapters 1--7: proposal titles only -----
-\StubChapter{Introduction to UAV-Based Building Inspection}
-\StubChapter{UAV Task Planning for Data Collection}
-\StubChapter{UAV Motion Planning in Complex Environments}
-\StubChapter{3D Reconstruction of Buildings}
-\StubChapter{Dataset Construction and Benchmarks}
-\StubChapter{AI Models for Building Inspection}
-\StubChapter{GIS Integration for Building Monitoring}
-
-% ----- Chapter 8: drafted content -----
+% Only Chapter 8 is authored in this repository
+\setcounter{chapter}{7}
 \include{ch08}
-
-% ----- Chapter 9: proposal title only -----
-\StubChapter{Conclusion and Future Prospects}
 
 \backmatter
 \bibliographystyle{spbasic}

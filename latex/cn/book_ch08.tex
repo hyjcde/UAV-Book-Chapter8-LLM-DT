@@ -1,6 +1,5 @@
-%%%%%%%%%%%%%%%%%%%% book_ch08.tex (CN book shell; 第8章正文) %%%%%%%%%%%%%%%%%%%%
-% 与英文 Springer SNmono 样本同构：全书书名为 proposal 总标题；
-% 第1--7、9章仅列章节名；第8章为已起草正文。中文用 ctexbook 承载中文字体。
+%%%%%%%%%%%%%%%%%%%% book_ch08.tex (CN book shell; 仅第8章正文) %%%%%%%%%%%%%%%%%%%%
+% 全书书名取自 proposal。其他章由合作作者撰写：此处只列章名，不写正文。
 \documentclass[UTF8,a4paper,openany]{ctexbook}
 
 \usepackage{graphicx}
@@ -19,16 +18,8 @@
 
 \graphicspath{{figures/}{figures/ch08/}}
 
-\newcommand{\StubChapter}[1]{%
-  \chapter{#1}%
-  \vspace{1.5em}%
-  \noindent\textit{本章正文将在全书定稿中提供。}%
-  \clearpage
-}
-
 \begin{document}
 
-% 全书书名页（对齐 SNmono：书名 + Springer Nature；不写个人作者）
 \thispagestyle{empty}
 \vspace*{2em}
 {\Huge AI驱动的无人机建筑巡检\par}
@@ -36,22 +27,37 @@
 {\Large Springer Nature\par}
 \clearpage
 
-\tableofcontents
+\chapter*{目录}
+\markboth{目录}{目录}
 
-% ----- 第1--7章：仅列 proposal 章节名 -----
-\StubChapter{无人机建筑巡检导论}
-\StubChapter{面向数据采集的无人机任务规划}
-\StubChapter{复杂环境下的无人机运动规划}
-\StubChapter{建筑三维重建}
-\StubChapter{数据集构建与基准}
-\StubChapter{面向建筑巡检的人工智能模型}
-\StubChapter{面向建筑监测的GIS集成}
+\noindent
+\begin{tabular}{@{}r@{\hspace{0.75em}}p{0.88\textwidth}@{}}
+1 & 无人机建筑巡检导论 \\
+2 & 面向数据采集的无人机任务规划 \\
+3 & 复杂环境下的无人机运动规划 \\
+4 & 建筑三维重建 \\
+5 & 数据集构建与基准 \\
+6 & 面向建筑巡检的人工智能模型 \\
+7 & 面向建筑监测的GIS集成 \\
+8 & 巡检分析中的数字孪生与大语言模型 \\
+9 & 结论与展望 \\
+\end{tabular}
 
-% ----- 第8章：已起草正文 -----
+\vspace{1.25em}
+\noindent\textit{本工作PDF仅起草第8章；第1--7章与第9章由其他作者撰写。}
+
+\vspace{1.5em}
+\noindent\textbf{第8章细目}
+\vspace{0.5em}
+
+% 仅展开第8章自动写入的细目（不再次打印「目录」标题）
+\makeatletter
+\@starttoc{toc}
+\makeatother
+
+% 本仓库只写第8章
+\setcounter{chapter}{7}
 \include{ch08_cn}
-
-% ----- 第9章：仅列章节名 -----
-\StubChapter{结论与展望}
 
 \bibliographystyle{plainnat}
 \bibliography{references}
