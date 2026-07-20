@@ -30,7 +30,10 @@ Outputs:
 | `OUTLINE.md` | Living writing outline (~50 pp) |
 | `literature/AGENT_LIT_NOTES.md` | Agent / DT+LLM literature beyond RAG |
 | `latex/SECTION_MAP.yaml` | EN↔CN section contract |
-| `latex/en/ch08.tex` | English chapter body |
+| `latex/en/book_ch08.tex` | EN root: SNmono shell (mirrors Overleaf `book.tex`) |
+| `latex/en/ch08.tex` | English Chapter 8 body (expanded) |
+| `latex/en/{dedication,preface,acknow,acronym,glossary}.tex` | Front/back matter from SNmono / Overleaf |
+| `latex/en/ch0{1-7,9}_*.tex` + `part0*.tex` | Title stubs for numbering/TOC only |
 | `latex/cn/ch08_cn.tex` | Chinese chapter body |
 | `latex/shared/references.bib` | Shared bibliography |
 | `latex/shared/figures/ch08/` | Figures from DefectGPT |

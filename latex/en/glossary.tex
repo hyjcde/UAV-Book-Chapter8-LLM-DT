@@ -1,0 +1,29 @@
+%%%%%%%%%%%%%%%%%%%%%% glossary.tex %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Working glossary for the monograph shell; terms stressed in Chapter~8.
+%%%%%%%%%%%%%%%%%%%%%%%% Springer Nature %%%%%%%%%%%%%%%%%%%%%%%%%
+
+\Extrachap{Glossary}
+
+\runinhead{Asset-ID}
+Stable identifier of a maintainable host in the twin and facility register. Language answers and CMMS tickets must name the same code.
+
+\runinhead{Asset passport}
+Compact, asset-centred retrieval unit that aggregates recent observations, geometry or severity summaries, and explicit neighbour lists for one Asset-ID.
+
+\runinhead{Bounded agent}
+Tool-using LLM procedure that may read twin memory and draft actions, but must pass human and geofence gates before writes or revisits.
+
+\runinhead{Cite-or-abstain}
+Generation contract requiring every named Asset-ID or observation ID in an answer to appear in the retrieved evidence package; otherwise the system abstains.
+
+\runinhead{Decision-ready twin}
+Semantic twin that additionally exposes observation cards, topology for propagation reading, and interfaces that retrieval and tools can call.
+
+\runinhead{Model harness}
+Code-owned control layer around a replaceable LLM: intake, evidence assembly, typed tools, validators, traces, and write gates.
+
+\runinhead{Observation record}
+One defect sighting with modality tag, time stamp, detector signature, openable imagery pointer, and host Asset-ID attachment.
+
+\runinhead{Retrieval-augmented generation (RAG)}
+Query-time loading of editioned manuals or observation cards so answers are grounded outside parametric model weights.

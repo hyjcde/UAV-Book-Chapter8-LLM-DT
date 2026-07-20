@@ -1,7 +1,9 @@
-%%%%%%%%%%%%%%%%%%%% book_ch08.tex (EN book shell; only Ch.8 drafted) %%%%%%%%%%%%%%%%%%%%
-% Springer Nature monograph class. Book title from the proposal.
-% Other chapters are by collaborators: list their titles for orientation only;
-% do NOT draft their bodies. Only Chapter 8 is included with text.
+%%%%%%%%%%%%%%%%%%%% book_ch08.tex %%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Local Chapter-8 working build of the Springer Nature monograph shell.
+% Root layout mirrors Overleaf / manuscript_official/book/book.tex (SNmono).
+% Chapters 1--7 and 9 are title stubs only; Chapter 8 is fully drafted here.
+%%%%%%%%%%%%%%%% Springer Nature %%%%%%%%%%%%%%%%%%%%%%%%%%
+
 \documentclass[graybox,envcountchap,sectrefs]{SNmono}
 
 \usepackage{type1cm}
@@ -11,6 +13,8 @@
 \usepackage[bottom]{footmisc}
 \usepackage{newtxtext}
 \usepackage[varvw]{newtxmath}
+
+% Extra packages used by chapter drafts
 \usepackage{booktabs}
 \usepackage{multirow}
 \usepackage{tabularx}
@@ -22,83 +26,61 @@
 \usepackage{algpseudocode}
 \usepackage{xcolor}
 \usepackage[numbers,sort&compress]{natbib}
+
+% Chapter 8 teaching figures (TikZ)
 \input{../shared/ch08_tikz_macros}
 
 \graphicspath{{figures/}{figures/ch08/}}
-\makeindex
 
-% Cleaner title page when no personal \author is set.
-\makeatletter
-\def\@maketitle{\newpage
- \null
- \vskip 2em
-\begingroup
-  \def\and{\unskip, }
-  \parindent=\z@
-  \pretolerance=10000
-  \rightskip=\z@ \@plus 3cm
-  \ifx\@author\@empty\else
-    {\LARGE \@author \par}%
-    \vskip 2cm
-  \fi
-  {\Huge \@title \par}%
-  \vskip 1cm
-  \if!\@subtitle!\else
-   {\LARGE\ignorespaces\@subtitle \par}
-   \vskip 1cm
-  \fi
-  \ifx\@date\@empty\else
-    {\large \@date}\par
-    \vskip 1.5em
-  \fi
- \vfill
- {\Large Springer Nature\par}
-\endgroup}
-\makeatother
+\makeindex
 
 \begin{document}
 
-\title{AI-Driven UAV Building Inspection}
+% Personal author names deferred; institutional placeholder matches Overleaf shell.
 \author{}
-\date{}
+\title{AI-Driven UAV Building Inspection}
+\subtitle{-- From Flight Planning to LLM-Based Decision Support --}
 \maketitle
 
-\frontmatter
+\frontmatter%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-% Book map: proposal chapter titles only (no bodies for collaborator chapters).
-\chapter*{Contents}
-\markboth{Contents}{Contents}
+\include{dedication}
+%\include{foreword}
+\include{preface}
+\include{acknow}
+%\include{ethics}
 
-\noindent
-\begin{tabular}{@{}r@{\hspace{0.75em}}p{0.88\textwidth}@{}}
-1 & Introduction to UAV-Based Building Inspection \\
-2 & UAV Task Planning for Data Collection \\
-3 & UAV Motion Planning in Complex Environments \\
-4 & 3D Reconstruction of Buildings \\
-5 & Dataset Construction and Benchmarks \\
-6 & AI Models for Building Inspection \\
-7 & GIS Integration for Building Monitoring \\
-8 & Digital Twin with LLMs in Inspection Analysis \\
-9 & Conclusion and Future Prospects \\
-\end{tabular}
+\tableofcontents
 
-\vspace{1.5em}
-\noindent\textbf{Chapter~8 detailed contents}
-\vspace{0.5em}
+\include{acronym}
 
-% Section-level entries written by Chapter 8 only (no second Contents heading).
-\makeatletter
-\@starttoc{toc}
-\makeatother
+\mainmatter%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Four thematic parts matching the book proposal / Overleaf shell.
+% Stub chapters keep numbering and TOC correct; only Ch.~8 is expanded.
 
-\mainmatter
+\include{part01_acquisition}
+\include{ch01_introduction}
+\include{ch02_task_planning}
+\include{ch03_motion_planning}
 
-% Only Chapter 8 is authored in this repository
-\setcounter{chapter}{7}
+\include{part02_representation}
+\include{ch04_3d_reconstruction}
+\include{ch07_gis}
+
+\include{part03_defect_ai}
+\include{ch05_datasets}
+\include{ch06_ai_models}
+
+\include{part04_decision_support}
 \include{ch08}
+\include{ch09_conclusion}
 
-\backmatter
+%\include{appendix}
+
+\backmatter%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\include{glossary}
 \bibliographystyle{spbasic}
 \bibliography{references}
+\printindex
 
 \end{document}
