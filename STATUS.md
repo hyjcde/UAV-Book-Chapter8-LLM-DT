@@ -11,5 +11,5 @@
 | 8.3 | draft+ | obs/passport/assembly; bold fragments merged |
 | 8.4–8.6 | draft+ | further merge of leftover bold chips if needed |
 
-**Build:** EN **42** / CN **34** (2026-07-21; +harness).  
+**Build:** EN **42** / CN **33** (2026-07-21; +harness).  
 **Toward ~50pp:** thicken 8.4–8.5 continuous examples; optional harness schematic.
