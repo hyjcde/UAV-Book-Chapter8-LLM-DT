@@ -14,7 +14,10 @@
 \usepackage[numbers,sort&compress]{natbib}
 \usepackage{hyperref}
 \usepackage{geometry}
-\geometry{margin=2.5cm}
+% Match Springer SNmono text block (~117mm) so bilingual page counts are comparable;
+% keep A4 paper for Chinese production, but avoid the overly wide 2.5cm-margin layout.
+\geometry{a4paper,textwidth=117mm,textheight=222mm,centering}
+\input{../shared/ch08_tikz_macros}
 
 \graphicspath{{figures/}{figures/ch08/}}
 

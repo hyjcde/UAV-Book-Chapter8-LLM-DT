@@ -1,4 +1,4 @@
-\begin{thebibliography}{61}
+\begin{thebibliography}{68}
 \providecommand{\natexlab}[1]{#1}
 \providecommand{\url}[1]{{#1}}
 \providecommand{\urlprefix}{URL }
@@ -83,6 +83,12 @@ He C, He W, Liu M, Leng S, Wei S (2025) Enriched construction regulation
   inquiry responses: A hybrid search approach for large language models.
   Journal of Management in Engineering 41(3), \doi{10.1061/JMENEA.MEENG-6444}
 
+\bibitem[{Hellin et~al.(2025)Hellin, Nousias, and Borrmann}]{hellin2025bimmas}
+Hellin S, Nousias S, Borrmann A (2025) Natural language information retrieval
+  from {BIM} models: An {LLM}-based multi-agent system approach. In:
+  Proceedings of the 2025 European Conference on Computing in Construction,
+  vol~6, \doi{10.35490/ec3.2025.265}
+
 \bibitem[{Iversen and Huang(2026)}]{iversen2026}
 Iversen O, Huang L (2026) Leveraging large language models for {BIM}-based
   automated compliance checking. Automation in Construction 182:106707,
@@ -121,6 +127,11 @@ Khattab O, Zaharia M (2020) {ColBERT}: Efficient and effective passage search
   International ACM SIGIR Conference on Research and Development in Information
   Retrieval, pp 39--48, \doi{10.1145/3397271.3401075}
 
+\bibitem[{Koh et~al.(2026)Koh, Xue, Ma, and Cheng}]{koh2026bimllmretr}
+Koh PT, Xue H, Ma J, Cheng JCP (2026) Cost-effective and minimal-intervention
+  {BIM} information retrieval via condensed multi-{LLM} agent code generation.
+  Automation in Construction 181:106585, \doi{10.1016/j.autcon.2025.106585}
+
 \bibitem[{Kruiper et~al.(2024)Kruiper, Kumar, Watson, Sadeghineko, Gray, and
   Konstas}]{kruiper2024platformnlp}
 Kruiper R, Kumar B, Watson R, Sadeghineko F, Gray A, Konstas I (2024) A
@@ -138,6 +149,11 @@ Lee J, Ahn S, Kim D, Kim D (2024) Performance comparison of retrieval-augmented
   generation and fine-tuned large language models for construction safety
   management knowledge retrieval. Automation in Construction 168:105846,
   \doi{10.1016/j.autcon.2024.105846}
+
+\bibitem[{Lee et~al.(2025)Lee, Li, and Yoon}]{lee2025multiagentvbm}
+Lee J, Li J, Yoon S (2025) From design to operation: Multi-agent {AI} for
+  virtual in-situ modeling of digital twins in {BIM}. Automation in
+  Construction 179:106477, \doi{10.1016/j.autcon.2025.106477}
 
 \bibitem[{Lewis et~al.(2020)Lewis, Perez, Piktus, Petroni, Karpukhin, Goyal,
   K{\"u}ttler, Lewis, Yih, Rockt{\"a}schel et~al.}]{lewis2020}
@@ -192,6 +208,11 @@ Liu B, Chen H (2025) {BIMCoder}: A comprehensive large language model fusion
   framework for natural language-based {BIM} information retrieval. Applied
   Sciences 15(14):7647, \doi{10.3390/app15147647}
 
+\bibitem[{Lu et~al.(2026)Lu, Luo, Sheil, and Brilakis}]{lu2026highwaymas}
+Lu L, Luo P, Sheil B, Brilakis I (2026) {LLM}-driven multi-agent framework for
+  enhancing human--digital twin interaction in built infrastructure management.
+  Automation in Construction 187:106896, \doi{10.1016/j.autcon.2026.106896}
+
 \bibitem[{Lu et~al.(2020)Lu, Xie, Heaton, Parlikad, and Schooling}]{lu2020}
 Lu Q, Xie X, Heaton J, Parlikad AK, Schooling J (2020) Digital twin-enabled
   anomaly detection for built asset monitoring in operation and maintenance.
@@ -203,6 +224,13 @@ Luo P, Prieto SA, P{\"a}rn E, Garc{\'i}a~de Soto B, Brilakis I (2025)
   {LLM}-driven human-robot interaction with digital twins for facility
   management. In: Proceedings of the Creative Construction Conference ({CCC}),
   \doi{10.22260/ccc2025/0061}
+
+\bibitem[{Ma et~al.(2026)Ma, Labib, Amor, Chong, Fan, Forth, Fu, Fuchs
+  et~al.}]{ma2026tenquestions}
+Ma N, Labib R, Amor R, Chong A, Fan C, Forth K, Fu X, Fuchs S, et~al. (2026)
+  Ten questions concerning large language models ({LLMs}) for building
+  applications. Building and Environment 291:114260,
+  \doi{10.1016/j.buildenv.2026.114260}
 
 \bibitem[{Nuyts et~al.(2024)Nuyts, Bonduel, and
   Verstraeten}]{nuyts2024comparativeacc}
@@ -227,9 +255,9 @@ Pan S, Luo L, Wang Y, Chen C, Wang J, Wu X (2024) Unifying large language
   models and knowledge graphs: A roadmap. IEEE Transactions on Knowledge and
   Data Engineering 36(7):3580--3599, \doi{10.1109/TKDE.2024.3352100}
 
-\bibitem[{Pan et~al.(2026)Pan, Wang, Lu, Lamsal, P{\"a}rn, Zlatanova
-  et~al.}]{pan2026graphdtgpt}
-Pan Y, Wang M, Lu L, Lamsal R, P{\"a}rn E, Zlatanova S, et~al. (2026)
+\bibitem[{Pan et~al.(2026)Pan, Wang, Lu, Lamsal, P{\"a}rn, Zlatanova, and
+  Brilakis}]{pan2026graphdtgpt}
+Pan Y, Wang M, Lu L, Lamsal R, P{\"a}rn E, Zlatanova S, Brilakis I (2026)
   {LLM}-enabled multi-agent framework for natural language interaction with
   graph-based digital twins. Automation in Construction 183:106791,
   \doi{10.1016/j.autcon.2026.106791}
@@ -246,6 +274,12 @@ Park JS, O'Brien JC, Cai CJ, Morris MR, Liang P, Bernstein MS (2023) Generative
 Peng B, Zhu Y, Liu Y, Bo X, Shi H, Hong C, Zhang Y, Tang S (2024) Graph
   retrieval-augmented generation: A survey. ACM Transactions on Information
   Systems \doi{10.1145/3777378}
+
+\bibitem[{Quan et~al.(2026)Quan, Kensek, Raghavachary, and
+  Wang}]{quan2026bimfacrag}
+Quan X, Kensek KM, Raghavachary S, Wang H (2026) Toward {AI} in {AECO}:
+  Integrating {BIM} facility data with an {LLM}-{RAG} framework. E3S Web of
+  Conferences 716:02046, \doi{10.1051/e3sconf/202671602046}
 
 \bibitem[{Rawat et~al.(2025)Rawat, Witt, and Lill}]{rawat2025llmmas}
 Rawat A, Witt E, Lill I (2025) A conceptual framework for {LLM}-based
@@ -342,6 +376,13 @@ Yang G, Zhao B, Zhang J, Wen J, Li Q, Lei L, Chen X, Chen BM (2025)
 Yao S, Zhao J, Yu D, Du N, Shafran I, Narasimhan K, Cao Y (2023) {ReAct}:
   Synergizing reasoning and acting in language models. In: International
   Conference on Learning Representations ({ICLR})
+
+\bibitem[{Youwai et~al.(2026)Youwai, Phim, Murcia, and
+  Onas}]{youwai2026foundationmas}
+Youwai S, Phim D, Murcia VG, Onas RC (2026) Large language model-based
+  multi-agent systems for automated foundation design: router-driven task
+  classification and expert selection framework. AI in Civil Engineering 5:5,
+  \doi{10.1007/s43503-026-00088-8}
 
 \bibitem[{Zhang et~al.(2022)Zhang, Zou, and Dimyadi}]{zhang2022}
 Zhang C, Zou Y, Dimyadi J (2022) Integrating {UAV} and {BIM} for automated

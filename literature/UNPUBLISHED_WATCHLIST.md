@@ -13,8 +13,6 @@ _Last tick: 2026-07-20T22:26:09+08:00_
 | `yan2024crag` | preprint | Corrective Retrieval Augmented Generation |
 | `he2025graphrag` | ahead-of-print | Addressing the information silo of construction planning constraints -- a graph retrieval augmented generation approach |
 | `akhavian2025bim2rdt` | preprint | Building Information Models to Robot-Ready Site Digital Twins (BIM2RDT) |
-| `ma2026tenquestions` | unverified | Ten questions concerning Large Language Models (LLMs |
-| `lee2025multiagentvbm` | unverified | From design to operation: Multi-agent AI |
 | `singh2024agenticragsurvey` | preprint, unverified | Agentic Retrieval-Augmented Generation: A Survey on Agentic RAG |
 | `huang2026iaprag` | under-review | Asset-centric and propagation-aware retrieval-augmented generation for building defect diagnosis and asset maintenance d |
 | `achiam2023gpt4` | preprint | GPT-4 |

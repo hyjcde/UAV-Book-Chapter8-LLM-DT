@@ -23,11 +23,11 @@ Paper-derived plots may appear later only as **optional appendix illustrations**
 | F2 | Twin inputs for language | L0 | Asset-ID + provenance + topology as interfaces | Need clean schematic (current `dt_modeling_pipeline` is OK if caption stays “input interface”) |
 | F3 | LLM capability & failure ladder | L1 | Pretrain → instruct → CoT → hallucination/ID errors | **MISSING** — draw new |
 | F4 | VLM vs detector vs LLM roles | L2 | Who writes observations / who retrieves / who narrates | **MISSING** — draw new |
-| F5 | Memory ladder (4 boxes) | L5 | Parametric / context / RAG index / twin store | **MISSING** — draw new (highest priority) |
-| F6 | Grounding stack | L3–L4 | Prompt/schema → RAG → tools/agents → structured IDs | **MISSING** — draw new |
+| F5 | Memory ladder (4 boxes) | L5 | Parametric / context / RAG index / twin store | **Done** — TikZ `fig:ch8-memory-ladder` |
+| F6 | Grounding stack / harness | L3–L4 | Intake → evidence → tools → validators → TRACE | **Done** — TikZ `fig:ch8-harness-fig` (+ table) |
 | F7 | Query assembly (topology RAG) | L3 | Intent → passport → neighbours → cite-or-abstain | Partial: `rag_workflow_topology` — **redraw** to remove paper-specific module names |
 | F8 | Observation → asset passport | L0/L3 | Generic records, not IDP acronym dump | Partial: `idp_construction_pipeline` — **replace** with textbook naming |
-| F9 | Agent role stack + approval gate | L4 | Retriever / topology / report / action + human gate | **MISSING** — draw new |
+| F9 | Agent role stack + approval gate | L4 | Retriever / topology / report / action + human gate | **Done** — TikZ `fig:ch8-agent-gate` |
 | F10 | Report schema → FM artefact | L7 | Constrained fields + evidence links | Table exists; optional one schematic |
 | F11 | Evaluation criteria (not bake-off) | L7 | Grounding / topology / corpus / safety checklist | **MISSING** — replace ablation bars |
 | F12 | Frontier outlook | L6 | Agentic RAG / cognitive twin / VLM-native (dashed) | Partial: `framework_generalizability_concept` — keep only if generic |

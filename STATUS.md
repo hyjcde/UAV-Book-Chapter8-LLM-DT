@@ -1,15 +1,19 @@
 # Writing status — Chapter 8
 
 **Book Proposal TOC:** 8.1–8.6.  
-**Stance:** ready-to-use LLM (prompt / RAG / tools / memory / bounded agents). **No site training/fine-tuning agenda.**  
-**Prose style:** continuous paragraphs; fewer bold fragment headings.
+**Stance:** ready-to-use LLM + harness; **no site training agenda.** Prefer **2024–2026** published cites.  
+**Prose:** continuous paragraphs (EN/CN both updated).  
+**Build (2026-07-21):** EN ≈ **50** pp · CN ≈ **51** pp (`bash scripts/build.sh`).
 
 | Section | Status | Notes |
 |---------|--------|-------|
-| 8.1 | draft+ | twin contract; checklist+procurement merged |
-| 8.2 | **rewritten** | L1/L2/L3 + **model harness** (5 parts, HELM cite) |
-| 8.3 | draft+ | obs/passport/assembly; bold fragments merged |
-| 8.4–8.6 | draft+ | further merge of leftover bold chips if needed |
+| 8.1 | draft+ | twin contract |
+| 8.2 | draft+ | L1/L2/L3 + harness + TikZ memory/harness figs + 2025–26 AEC MAS |
+| 8.3 | draft+ | obs/passport/assembly + 2024–25 RAG / BIM-retrieval reading |
+| 8.4 | draft+ | multimodal + bounded agents + TikZ gate fig |
+| 8.5 | draft+ | reports ↔ CMMS as harness contracts |
+| 8.6 | draft+ | DSS criteria + pilot-week table + comparative 2024–26 reading |
 
-**Build:** EN **42** / CN **33** (2026-07-21; +harness).  
-**Toward ~50pp:** thicken 8.4–8.5 continuous examples; optional harness schematic.
+**Lit rule:** `cited_risky=0`; preprints stay on watchlist.  
+**New published cites (2026-07-21):** `hellin2025bimmas`, `koh2026bimllmretr`, `quan2026bimfacrag` (+ earlier `ma2026tenquestions`, `lee2025multiagentvbm`, `lu2026highwaymas`, `youwai2026foundationmas`).  
+**CN layout:** A4 with Springer-like `textwidth=117mm` so bilingual page counts are comparable.

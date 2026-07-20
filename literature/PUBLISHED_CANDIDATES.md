@@ -33,4 +33,17 @@
 
 - `pan2026graphdtgpt`, `chen2024bimllmontology`, `li2024kgllmcheck`, `yang2024promptcode`, `liu2025bimcoder`, `buga2025llmfmsql`, `arslan2024ragenergy`, `nuyts2024comparativeacc`, `kruiper2024platformnlp`
 - Also activated existing `iversen2026`, `li2025b`, `li2025c` in practice-map prose.
-- EN/CN cite count ~59; `cited_risky=0`.
+
+## Added / activated (2026-07-21)
+
+- Verified DOI + cited: `ma2026tenquestions` (Build. Environ. 2026), `lee2025multiagentvbm` (AUTCON 2025), `lu2026highwaymas` (AUTCON 2026), `youwai2026foundationmas` (AI Civ. Eng. 2026)
+- Already in bib, expanded in prose: `pan2026graphdtgpt`, `rawat2025llmmas`, `gao2026ifcagent`, `he2025regulationhybrid`, …
+- Removed `ma2026` / `lee2025` from unpublished watchlist after CrossRef verify.
+
+## Added / activated (2026-07-21 late)
+
+- `hellin2025bimmas` — EC3 2025 DOI 10.35490/ec3.2025.265 (BIM NL multi-agent IR)
+- `koh2026bimllmretr` — AUTCON 2026 106585 (condensed multi-LLM BIM retrieval)
+- `quan2026bimfacrag` — E3S Web Conf. 2026 716:02046 (BIM facility data + LLM-RAG)
+- TikZ teaching figs: memory ladder, harness, agent gate (`fig:ch8-memory-ladder`, `fig:ch8-harness-fig`, `fig:ch8-agent-gate`)
+
