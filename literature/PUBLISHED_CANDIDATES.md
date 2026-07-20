@@ -18,6 +18,9 @@
 | 11 | AUTCON 2026 106896 | L4 Agent / human–DT | Lu et al. LLM multi-agent for human–digital twin interaction (HighwayMAS). DOI: 10.1016/j.autcon.2026.106896 | **Add next** (F9 agent+approval) |
 | 12 | AUTCON 2026 107003 | L4 Agent / Scan-to-BIM | Pan et al. LLM multi-agent Scan-to-BIM/Graph. DOI: 10.1016/j.autcon.2026.107003 | Optional bridge to Ch.4 |
 | 13 | AUTCON 2026 106888 | L4 Agent / memory | Gao et al. IFC-Agent dual-memory (likely same family as `gao2026ifcagent`) | Verify bib key / DOI match |
+| 14 | Build. Environ. 2026 114260 | L1 LLM buildings | Ma et al. Ten questions concerning LLMs for building applications. DOI: 10.1016/j.buildenv.2026.114260 | **Replace** old unverified `xiao2025tenquestions` |
+| 15 | AUTCON 2025 106477 | L4 Agent / DT | Lee et al. Multi-agent AI for virtual in-situ modeling of DTs in BIM. DOI: 10.1016/j.autcon.2025.106477 | **Replace** placeholder `singh2025multiagentvbm` |
+| 16 | Energy Build. 2024 114827 | L3 RAG | Arslan et al. Multi-source RAG-LLM for energy transitions. DOI: 10.1016/j.enbuild.2024.114827 | Optional energy-RAG parallel |
 
 ## Explicitly NOT candidates (watchlist)
 
