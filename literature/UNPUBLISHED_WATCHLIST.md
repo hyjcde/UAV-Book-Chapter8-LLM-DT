@@ -2,7 +2,7 @@
 
 > Auto-refreshed by `scripts/lit_pipeline_tick.py`. **Do not** put these into `references.bib` cites until venue-confirmed.
 
-_Last tick: 2026-07-20T11:39:45+08:00_
+_Last tick: 2026-07-20T11:42:32+08:00_
 
 | Key | Flags | Title (short) |
 |-----|-------|---------------|

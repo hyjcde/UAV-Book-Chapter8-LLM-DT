@@ -10,6 +10,7 @@ Every tick (default **10 minutes** in the agent session loop):
 4. **Count** and write a tick report under `ticks/`.
 5. **Coverage audit** (professional reader): does Ch.8 truly teach DT→LLM→RAG→Agent→Memory→frontier, layer by layer?
 6. **Propose** chapter edits only from `PUBLISHED_CANDIDATES.md`.
+7. **Figure plan audit** against `FIGURE_PLAN.md`: textbook schematics first; never treat one paper’s result plots as the chapter spine.
 
 ## Hard rules
 
@@ -17,6 +18,7 @@ Every tick (default **10 minutes** in the agent session loop):
 - Preprints may be *read* for ideas; they are **not** bibliography entries until venue-confirmed.
 - Do not invent DOIs or page numbers.
 - Only edit `latex/en/ch08.tex` + `latex/cn/ch08_cn.tex` (+ shared bib) for Chapter 8.
+- **Figures:** plan and draw teaching schematics (F3–F6, F9, F11…). Do not “support the chapter” by pasting one experiment’s ablation/SOTA figures.
 
 ## Layer checklist (professional reader)
 

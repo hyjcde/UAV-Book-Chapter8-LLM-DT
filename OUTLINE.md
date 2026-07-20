@@ -13,6 +13,7 @@
 > Bilingual LaTeX: `latex/en/` + `latex/cn/`, build with `scripts/build.sh`. Literature: `literature/AGENT_LIT_NOTES.md`.
 > Book shell: PDF title is the **full monograph** *AI-Driven UAV Building Inspection* (no personal author line). TOC lists Chapters 1–9 names from the Book Proposal for orientation only; **do not draft Ch.1–7/9** (other authors). Only Ch.8 is edited here. VLMs are in-scope with LLMs (proposal Phase 4).
 > Ch.8 logic spine: need for language → LLM/VLM foundations → grounding (prompt/RAG/tools/structure) → AEC uses → twin knowledge packaging → multimodal query → agents → reports → DSS. Not a single-paper rewrite; IAP-RAG is one worked example.
+> Figures: see `literature/FIGURE_PLAN.md` — textbook schematics first (memory/grounding/agent ladders); do **not** lead with one paper’s ablation/SOTA plots.
 
 
 ## 0. Chapter one-liner

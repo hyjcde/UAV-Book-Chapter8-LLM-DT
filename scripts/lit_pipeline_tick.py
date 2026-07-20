@@ -25,6 +25,7 @@ TICKS = LIT / "ticks"
 WATCH = LIT / "UNPUBLISHED_WATCHLIST.md"
 CAND = LIT / "PUBLISHED_CANDIDATES.md"
 AUDIT = LIT / "COVERAGE_AUDIT.md"
+FIGPLAN = LIT / "FIGURE_PLAN.md"
 
 
 def classify_body(body: str) -> list[str]:
@@ -186,12 +187,65 @@ def main() -> int:
         "## Next edit priorities (from gaps)",
         "",
     ]
+    # Figure plan gaps (textbook schematics, not paper plots)
+    fig_missing = []
+    fig_demote = []
+    if FIGPLAN.exists():
+        for line in FIGPLAN.read_text(encoding="utf-8").splitlines():
+            if "| F" in line and "**MISSING**" in line:
+                fig_missing.append(line.split("|")[1].strip() if "|" in line else line)
+            if line.strip().startswith("- `") and any(
+                x in line
+                for x in (
+                    "deterministic_",
+                    "hallucination_rate",
+                    "score_by_type",
+                    "DefectGPT_",
+                )
+            ):
+                fig_demote.append(line.strip("- ").split("`")[1] if "`" in line else line)
+    used_graphics = sorted(
+        set(re.findall(r"includegraphics(?:\[[^\]]*\])?\{([^}]+)\}", en_text + cn_text))
+    )
+    paperish_used = [
+        g
+        for g in used_graphics
+        if any(
+            p in g
+            for p in (
+                "deterministic_",
+                "hallucination_rate",
+                "score_by_type",
+                "DefectGPT_",
+                "platform_demo",
+                "idp_construction",
+            )
+        )
+    ]
+
+    audit += [
+        "",
+        "## Figure plan (textbook-first)",
+        "",
+        f"- FIGURE_PLAN present: **{FIGPLAN.exists()}**",
+        f"- Graphics used in EN/CN: **{len(used_graphics)}** → {', '.join(used_graphics) if used_graphics else 'none'}",
+        f"- Paper-residue graphics still included: **{len(paperish_used)}** → {', '.join(paperish_used) if paperish_used else 'none'}",
+        f"- Declared MISSING schematics in plan: **{len(fig_missing)}**",
+        "",
+    ]
+    for m in fig_missing[:12]:
+        audit.append(f"- missing row: {m}")
+
     if not cov_en["memory"] or not cov_cn["memory"]:
         audit.append("1. Add a **Memory** subsection (parametric / context / RAG-as-memory / twin as long-term store). Cite only published works.")
     if cited_risky:
         audit.append("2. Remove or replace cited-risky keys; keep unpublished ideas in UNPUBLISHED_WATCHLIST only.")
+    if fig_missing or paperish_used:
+        audit.append(
+            "3. **Figures:** draw MISSING teaching schematics (see FIGURE_PLAN.md); demote paper result plots from the main narrative."
+        )
     if not cov_en["frontier"]:
-        audit.append("3. Strengthen frontier ladder wording (agentic RAG, cognitive twins) with published surveys.")
+        audit.append("4. Strengthen frontier ladder wording (agentic RAG, cognitive twins) with published surveys.")
     AUDIT.write_text("\n".join(audit) + "\n", encoding="utf-8")
 
     if not CAND.exists():
@@ -212,6 +266,9 @@ def main() -> int:
         "coverage_en": cov_en,
         "coverage_cn": cov_cn,
         "flag_counts": {k: len(v) for k, v in sorted(by_flag.items())},
+        "figures_used": len(used_graphics),
+        "figures_paperish_used": len(paperish_used),
+        "figures_missing_declared": len(fig_missing),
     }
     if yaml:
         STATE.write_text(yaml.safe_dump(state, sort_keys=False, allow_unicode=True), encoding="utf-8")
@@ -228,8 +285,11 @@ def main() -> int:
         f"- cited_risky: {len(cited_risky)}",
         f"- coverage_en: {cov_en}",
         f"- coverage_cn: {cov_cn}",
+        f"- figures_used: {len(used_graphics)}",
+        f"- figures_paperish_used: {len(paperish_used)}",
+        f"- figures_missing_declared: {len(fig_missing)}",
         "",
-        "See also: UNPUBLISHED_WATCHLIST.md, PUBLISHED_CANDIDATES.md, COVERAGE_AUDIT.md",
+        "See also: FIGURE_PLAN.md, UNPUBLISHED_WATCHLIST.md, PUBLISHED_CANDIDATES.md, COVERAGE_AUDIT.md",
         "",
     ]
     (TICKS / f"tick_{stamp}.md").write_text("\n".join(report), encoding="utf-8")
@@ -238,6 +298,9 @@ def main() -> int:
     print(f"bib={len(entries)} en_cites={len(en_cites)} cn_cites={len(cn_cites)} cited_risky={len(cited_risky)}")
     print("coverage_en", cov_en)
     print("coverage_cn", cov_cn)
+    print(
+        f"figures used={len(used_graphics)} paperish={len(paperish_used)} missing_plan={len(fig_missing)}"
+    )
     if cited_risky:
         print("RISKY_CITED:", ", ".join(e["key"] for e in cited_risky))
     return 0
