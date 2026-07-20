@@ -15,6 +15,9 @@
 | 8 | Appl. Sci. 2025, 15(14), 7647 | L3 RAG / NL2BIM | BIMCoder fusion framework. DOI: 10.3390/app15147647 | **Add next** |
 | 9 | Automation in Construction 183 (2026) 106791 | L0+L4 Graph-DT agents | Pan et al. LLM multi-agent on graph digital twins. DOI: 10.1016/j.autcon.2026.106791 | **Add next** (strong DT+agent published) |
 | 10 | E3S Web Conf. 2026 | L3 FM RAG | Quan et al. BIM facility data + LLM-RAG. DOI: 10.1051/e3sconf/202671602046 | Consider (conference) |
+| 11 | AUTCON 2026 106896 | L4 Agent / human–DT | Lu et al. LLM multi-agent for human–digital twin interaction (HighwayMAS). DOI: 10.1016/j.autcon.2026.106896 | **Add next** (F9 agent+approval) |
+| 12 | AUTCON 2026 107003 | L4 Agent / Scan-to-BIM | Pan et al. LLM multi-agent Scan-to-BIM/Graph. DOI: 10.1016/j.autcon.2026.107003 | Optional bridge to Ch.4 |
+| 13 | AUTCON 2026 106888 | L4 Agent / memory | Gao et al. IFC-Agent dual-memory (likely same family as `gao2026ifcagent`) | Verify bib key / DOI match |
 
 ## Explicitly NOT candidates (watchlist)
 

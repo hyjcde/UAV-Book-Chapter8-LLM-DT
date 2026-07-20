@@ -1,6 +1,6 @@
 # Professional-reader coverage audit (Ch.8)
 
-_Last tick: 2026-07-20T11:52:43+08:00_
+_Last tick: 2026-07-20T12:04:16+08:00_
 
 ## Layer checklist
 

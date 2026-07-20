@@ -1,10 +1,8 @@
 # Unpublished / non-citable watchlist
 
 > Auto-refreshed by `scripts/lit_pipeline_tick.py`. **Do not** put these into `references.bib` cites until venue-confirmed.
->
-> Manual add (2026-07-20 tick): SSRN “Long-Term Construction Memory System…” (doi:10.2139/ssrn.6947979) — **preprint only**; useful for F5 ideas, not a reference.
 
-_Last tick: 2026-07-20T11:52:43+08:00_
+_Last tick: 2026-07-20T12:04:16+08:00_
 
 | Key | Flags | Title (short) |
 |-----|-------|---------------|
