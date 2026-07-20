@@ -11,6 +11,10 @@
 | 4 | Knowledge and Information Systems 2023 | L0 Twin | Corrêa et al. Data management in digital twins: SLR. DOI: 10.1007/s10115-023-01870-1 | Optional data/memory of twins |
 | 5 | AUTCON / AEI (already in bib) | L3–L4 | lee2024ragsafety, jeon2025hybridrag, zheng2023bimassistant, luo2025llmdtrobot, gao2026ifcagent | Keep; prefer over preprints |
 | 6 | NeurIPS / ACM (foundations) | L1–L5 | vaswani2017, brown2020, lewis2020, wei2022cot, pan2024b | Keep as ladder |
+| 7 | EC3 2025 | L4 Agent / BIM-IR | Hellin et al. NL IR from BIM via LLM multi-agent. DOI: 10.35490/ec3.2025.265 | **Add next** (agentic BIM retrieval) |
+| 8 | Appl. Sci. 2025, 15(14), 7647 | L3 RAG / NL2BIM | BIMCoder fusion framework. DOI: 10.3390/app15147647 | **Add next** |
+| 9 | Automation in Construction 183 (2026) 106791 | L0+L4 Graph-DT agents | Pan et al. LLM multi-agent on graph digital twins. DOI: 10.1016/j.autcon.2026.106791 | **Add next** (strong DT+agent published) |
+| 10 | E3S Web Conf. 2026 | L3 FM RAG | Quan et al. BIM facility data + LLM-RAG. DOI: 10.1051/e3sconf/202671602046 | Consider (conference) |
 
 ## Explicitly NOT candidates (watchlist)
 
