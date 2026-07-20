@@ -1,48 +1,48 @@
-This is BibTeX, Version 0.99d (TeX Live 2023)
+This is BibTeX, Version 0.99d (TeX Live 2023/Debian)
 Capacity: max_strings=200000, hash_size=200000, hash_prime=170003
 The top-level auxiliary file: book_ch08.aux
 A level-1 auxiliary file: ch08.aux
 The style file: spbasic.bst
 Database file #1: references.bib
 Reallocated wiz_functions (elt_size=4) to 6000 items from 3000.
-You've used 27 entries,
+You've used 44 entries,
             3269 wiz_defined-function locations,
-            826 strings with 12460 characters,
-and the built_in function-call counts, 36859 in all, are:
-= -- 3238
-> -- 1447
-< -- 9
-+ -- 500
-- -- 468
-* -- 3387
-:= -- 5043
-add.period$ -- 27
-call.type$ -- 27
-change.case$ -- 307
-chr.to.int$ -- 26
-cite$ -- 27
-duplicate$ -- 3132
-empty$ -- 3191
-format.name$ -- 550
-if$ -- 7731
-int.to.chr$ -- 2
+            935 strings with 16797 characters,
+and the built_in function-call counts, 64600 in all, are:
+= -- 5659
+> -- 2576
+< -- 16
++ -- 888
+- -- 834
+* -- 6007
+:= -- 8751
+add.period$ -- 44
+call.type$ -- 44
+change.case$ -- 523
+chr.to.int$ -- 42
+cite$ -- 44
+duplicate$ -- 5447
+empty$ -- 5584
+format.name$ -- 972
+if$ -- 13564
+int.to.chr$ -- 3
 int.to.str$ -- 1
-missing$ -- 353
-newline$ -- 91
-num.names$ -- 108
-pop$ -- 832
+missing$ -- 615
+newline$ -- 142
+num.names$ -- 176
+pop$ -- 1424
 preamble$ -- 1
-purify$ -- 259
+purify$ -- 447
 quote$ -- 0
-skip$ -- 589
+skip$ -- 1011
 stack$ -- 0
-substring$ -- 3884
-swap$ -- 778
-text.length$ -- 5
+substring$ -- 6947
+swap$ -- 1407
+text.length$ -- 13
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 243
+type$ -- 396
 warning$ -- 0
-while$ -- 280
+while$ -- 492
 width$ -- 0
-write$ -- 323
+write$ -- 530

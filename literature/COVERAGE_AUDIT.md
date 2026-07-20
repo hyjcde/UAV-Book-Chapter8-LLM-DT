@@ -1,6 +1,6 @@
 # Professional-reader coverage audit (Ch.8)
 
-_Last tick: 2026-07-20T12:13:01+08:00_
+_Last tick: 2026-07-20T08:33:16+00:00_
 
 ## Layer checklist
 
@@ -17,14 +17,15 @@ _Last tick: 2026-07-20T12:13:01+08:00_
 
 ## Cited-but-risky (must clear or move to prose-without-cite)
 
-- `he2025graphrag` — ahead-of-print — Addressing the information silo of construction planning constraints -- a graph retrieval augmented generation approach
+- `ma2026tenquestions` — unverified — Ten questions concerning Large Language Models (LLMs
+- `lee2025multiagentvbm` — unverified — From design to operation: Multi-agent AI
 
 ## Counts
 
 - Bib entries: **120**
-- EN unique cites: **43**
-- CN unique cites: **43**
-- Cited risky: **1**
+- EN unique cites: **44**
+- CN unique cites: **44**
+- Cited risky: **2**
 - Flagged preprint/under-review/unverified/ahead: **13**
 
 ## Next edit priorities (from gaps)
@@ -33,15 +34,9 @@ _Last tick: 2026-07-20T12:13:01+08:00_
 ## Figure plan (textbook-first)
 
 - FIGURE_PLAN present: **True**
-- Graphics used in EN/CN: **11** → deterministic_ablation_exact_hit.pdf, deterministic_external_exact_hit.pdf, dt_modeling_pipeline.pdf, field_asset_id_stages.pdf, framework_generalizability_concept.pdf, framework_overview_overall.pdf, hallucination_rate.pdf, idp_construction_pipeline.jpg, multi_platform_field_interfaces.pdf, platform_demo.pdf, rag_workflow_topology.pdf
-- Paper-residue graphics still included: **5** → deterministic_ablation_exact_hit.pdf, deterministic_external_exact_hit.pdf, hallucination_rate.pdf, idp_construction_pipeline.jpg, platform_demo.pdf
-- Declared MISSING schematics in plan: **6**
+- Graphics used in EN/CN: **13** → deterministic_ablation_exact_hit.pdf, deterministic_external_exact_hit.pdf, deterministic_ksweep_coverage.pdf, dt_modeling_pipeline.pdf, field_asset_id_stages.pdf, framework_generalizability_concept.pdf, framework_overview_overall.pdf, hallucination_rate.pdf, idp_construction_pipeline.jpg, multi_platform_field_interfaces.pdf, platform_architecture.pdf, platform_demo.pdf, rag_workflow_topology.pdf
+- Paper-residue graphics still included: **6** → deterministic_ablation_exact_hit.pdf, deterministic_external_exact_hit.pdf, deterministic_ksweep_coverage.pdf, hallucination_rate.pdf, idp_construction_pipeline.jpg, platform_demo.pdf
+- Declared MISSING schematics in plan: **0**
 
-- missing row: F3
-- missing row: F4
-- missing row: F5
-- missing row: F6
-- missing row: F9
-- missing row: F11
 2. Remove or replace cited-risky keys; keep unpublished ideas in UNPUBLISHED_WATCHLIST only.
 3. **Figures:** draw MISSING teaching schematics (see FIGURE_PLAN.md); demote paper result plots from the main narrative.

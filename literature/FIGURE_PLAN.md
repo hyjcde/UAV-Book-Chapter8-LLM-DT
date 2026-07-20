@@ -21,15 +21,15 @@ Paper-derived plots may appear later only as **optional appendix illustrations**
 |----|---------------|-------|-----------------|--------|
 | F1 | Book pipeline → decision layer | L0 | Where Ch.8 sits after planning/recon/detect/GIS | **Reuse ok** if redrawn as book schematic (`framework_overview_overall`) — caption must stay book-level |
 | F2 | Twin inputs for language | L0 | Asset-ID + provenance + topology as interfaces | Need clean schematic (current `dt_modeling_pipeline` is OK if caption stays “input interface”) |
-| F3 | LLM capability & failure ladder | L1 | Pretrain → instruct → CoT → hallucination/ID errors | **MISSING** — draw new |
-| F4 | VLM vs detector vs LLM roles | L2 | Who writes observations / who retrieves / who narrates | **MISSING** — draw new |
-| F5 | Memory ladder (4 boxes) | L5 | Parametric / context / RAG index / twin store | **MISSING** — draw new (highest priority) |
-| F6 | Grounding stack | L3–L4 | Prompt/schema → RAG → tools/agents → structured IDs | **MISSING** — draw new |
+| F3 | LLM capability & failure ladder | L1 | Pretrain → instruct → CoT → hallucination/ID errors | **DONE** — TikZ in EN/CN (`fig:ch8-llm-ladder`) |
+| F4 | VLM vs detector vs LLM roles | L2 | Who writes observations / who retrieves / who narrates | **DONE** — TikZ (`fig:ch8-vlm-roles`) |
+| F5 | Memory ladder (4 boxes) | L5 | Parametric / context / RAG index / twin store | **DONE** — TikZ (`fig:ch8-memory-ladder`) |
+| F6 | Grounding stack | L3–L4 | Prompt/schema → RAG → tools/agents → structured IDs | **DONE** — TikZ (`fig:ch8-grounding-stack`) |
 | F7 | Query assembly (topology RAG) | L3 | Intent → passport → neighbours → cite-or-abstain | Partial: `rag_workflow_topology` — **redraw** to remove paper-specific module names |
 | F8 | Observation → asset passport | L0/L3 | Generic records, not IDP acronym dump | Partial: `idp_construction_pipeline` — **replace** with textbook naming |
-| F9 | Agent role stack + approval gate | L4 | Retriever / topology / report / action + human gate | **MISSING** — draw new |
+| F9 | Agent role stack + approval gate | L4 | Retriever / topology / report / action + human gate | **DONE** — TikZ (`fig:ch8-agent-stack`) |
 | F10 | Report schema → FM artefact | L7 | Constrained fields + evidence links | Table exists; optional one schematic |
-| F11 | Evaluation criteria (not bake-off) | L7 | Grounding / topology / corpus / safety checklist | **MISSING** — replace ablation bars |
+| F11 | Evaluation criteria (not bake-off) | L7 | Grounding / topology / corpus / safety checklist | **DONE** — TikZ (`fig:ch8-eval-criteria`); ablation bars demoted to illustrative |
 | F12 | Frontier outlook | L6 | Agentic RAG / cognitive twin / VLM-native (dashed) | Partial: `framework_generalizability_concept` — keep only if generic |
 
 ---

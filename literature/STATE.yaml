@@ -1,8 +1,8 @@
-last_tick: '2026-07-20T12:13:01+08:00'
+last_tick: '2026-07-20T08:33:16+00:00'
 bib_entries: 120
-en_cites: 43
-cn_cites: 43
-cited_risky: 1
+en_cites: 44
+cn_cites: 44
+cited_risky: 2
 coverage_en:
   twin: true
   llm: true
@@ -28,6 +28,6 @@ flag_counts:
   published-or-clean: 98
   under-review: 1
   unverified: 3
-figures_used: 11
-figures_paperish_used: 5
-figures_missing_declared: 6
+figures_used: 13
+figures_paperish_used: 6
+figures_missing_declared: 0
