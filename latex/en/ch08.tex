@@ -2,9 +2,9 @@
 \chapter{Digital Twin with LLMs in Inspection Analysis}
 \label{ch:llm-dt}
 
-\abstract*{This chapter closes the monograph's pipeline: after planning, reconstruction, detection, and GIS anchoring, how can digital twins support language-level diagnosis and maintenance decisions? Consistent with the book's next-generation decision-support theme, we treat large language models (LLMs) and vision--language models (VLMs) as complementary interfaces to twin evidence---not as interchangeable black boxes. We survey UAV--DT--BIM lines of work, introduce a teaching framework that separates structured twin knowledge, retrieval grounding, and agentic tooling, and use asset-centric RAG as one illustrative case rewritten for textbook use.}
+\abstract*{This chapter develops the decision layer of the UAV inspection pipeline: after planning, reconstruction, detection, and GIS anchoring, how can digital twins support language-level diagnosis and maintenance decisions? We introduce foundations of large language models (LLMs) and vision--language models (VLMs), survey grounding strategies (prompting, retrieval, tools, and structured outputs), and organise a book-level framework that separates observation records, asset-centric knowledge, retrieval assembly, agentic tooling, and report delivery. Community work across BIM assistants, construction RAG, and twin--robot agents is synthesised alongside group contributions; an asset-centric RAG study appears only as one worked example.}
 
-\abstract{Chapters~2--7 explain how to fly, reconstruct, detect, and map. Chapter~8 asks what happens next: how inspectors and facility managers query a twin in natural language, fuse visual and textual evidence, obtain traceable answers, and trigger follow-up actions. The book proposal places both LLMs and VLMs in this decision layer; we keep that scope. The chapter is a \emph{synthesis for the book}, not a restatement of any single journal manuscript. We map prior work on digital twins, defect perception, LLM/VLM assistants, RAG, and agents; organise a decision-layer framework that previous chapters can feed; and discuss reports, decision support, and open issues. An asset-centric, topology-aware RAG study associated with this group~\cite{huang2026iaprag} appears as a \emph{case study}, with wording adapted to monograph teaching.}
+\abstract{Chapters~2--7 explain how to fly, reconstruct, detect, and map. Chapter~8 asks what happens next: how inspectors and facility managers query a twin in natural language, fuse visual and textual evidence, obtain traceable answers, and trigger follow-up actions. The chapter follows a deliberate teaching sequence---\emph{why language}, \emph{what LLMs/VLMs can and cannot do}, \emph{how to ground them on twin evidence}, \emph{how to organise twin knowledge for retrieval}, \emph{how multimodal queries and agents operate}, and \emph{how reports and decision metrics close the loop}. Both LLMs and VLMs are in scope for this decision layer. The narrative is a monograph synthesis, not a restatement of any single manuscript.}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Digital Twins for Building Inspection}
@@ -21,7 +21,9 @@ The monograph is organised as one pipeline. Task and motion planning (Chapters~2
 \end{figure}
 
 \subsection{What a twin must provide for language use}
-A geometric twin answers location. A decision-ready twin must also expose (i)~stable asset identifiers, (ii)~provenance for each observation (sensor, time, detector), and (iii)~relations that support propagation reasoning. Without those, LLMs can only chat over loose files.
+A geometric twin answers location. A decision-ready twin must also expose (i)~stable asset identifiers, (ii)~provenance for each observation (sensor, time, detector), and (iii)~relations that support propagation reasoning. Without those, language models can only chat over loose files---fluent, but not auditable for facility management (FM).
+
+Digital-twin surveys in construction emphasise that twins are not merely 3D viewers: they are evolving information systems linking as-built geometry, semantics, and operations~\cite{boje2020,opoku2021,lu2020}. UAV--BIM inspection reviews sketched early automation agendas~\cite{zhang2022}. Within this research group, Zhang et al.\ demonstrated AI-empowered twin modelling that couples UAV sensing with GeoBIM for high-precision defect management~\cite{zhang2025}; Det-Recon-Reg packages detection, reconstruction, and registration for large-scale inspection~\cite{yang2025detreconreg}. Related twin uses extend beyond façades, including worker monitoring on large sites~\cite{han2025}. These works supply the geometric and identifier premise for the language layer developed below.
 
 \begin{figure}[t]
 \centering
@@ -31,42 +33,67 @@ A geometric twin answers location. A decision-ready twin must also expose (i)~st
 \end{figure}
 
 \paragraph{Bridge.}
-Before proposing a teaching framework, we review how different communities have approached twins, perception, and language.
+Before organising twin knowledge for retrieval, we need a clear account of what modern language and vision--language models actually provide---and where they fail without grounding.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Foundations of LLMs for Civil Engineering Applications}
 \label{sec:ch8-llm-foundations}
 
-\subsection{Related work map (group + community)}
-We organise prior art along the same pipeline the book uses.
+\subsection{From language models to large language models}
+Contemporary LLMs rest on the Transformer architecture~\cite{vaswani2017attention}: self-attention lets a model weigh long-range dependencies in text, which is essential for reading specifications, maintenance logs, and multi-sentence inspection questions. Scaling pretraining on large corpora produced few-shot learners that can perform new tasks from natural-language instructions with little or no task-specific fine-tuning~\cite{brown2020}. Instruction tuning and preference optimisation further align models to follow user intent rather than merely continue text~\cite{ouyang2022instructgpt}. Chain-of-thought prompting can elicit intermediate reasoning steps that improve multi-hop answers on many benchmarks~\cite{wei2022cot}---useful for inspection dialogues that combine symptoms, locations, and regulations---but does \emph{not} by itself guarantee factual correctness about a particular façade.
 
-\paragraph{Twins, GeoBIM, and registration.}
-UAV--BIM inspection reviews sketched early automation agendas~\cite{zhang2022}. Within this research group, Zhang et al.\ demonstrated AI-empowered digital-twin modelling that couples UAV sensing with GeoBIM for high-precision defect management~\cite{zhang2025}---work that directly supports Chapters~4 and~7 and supplies the geometric premise for language grounding. Det-Recon-Reg further packages detection, reconstruction, and registration for large-scale UAV inspection~\cite{yang2025detreconreg}. Related twin uses extend beyond façades: Han et al.\ combine UAVs and digital twins for worker monitoring on large sites~\cite{han2025}.
+For textbook purposes, treat an LLM as a powerful conditional text generator whose knowledge is (i)~frozen at training cut-off for parametric memory and (ii)~easily overwritten by the prompt context. That dual nature is why grounding strategies matter more than brand names when the answer must cite a real Asset-ID.
 
-\paragraph{Perception and datasets.}
-High-resolution defect datasets and detectors from unmanned platforms~\cite{zhao2024facade,zhao2025icra} and physical quantification from instance segmentation~\cite{zhao2026physical} make Chapters~5--6 concrete. For Chapter~8 they matter because language systems inherit whatever bias and granularity the perception stack encodes.
+\subsection{Vision--language models as visual interfaces}
+Inspection data are not text-only. Contrastive vision--language pretraining (e.g., CLIP) aligns images and captions in a shared embedding space~\cite{radford2021clip}. Instruction-tuned multimodal models such as LLaVA and GPT-4-class systems accept images together with text prompts~\cite{liu2023llava,achiam2023gpt4}. In this book, VLMs are a genuine part of the decision layer: they can describe visual evidence, compare RGB/IR cues in language, and support report drafting. They are complementary to---not a replacement for---Chapter~6 detectors when audit trails require typed defect labels, confidences, and stable host IDs.
 
-\paragraph{LLMs for buildings and BIM interaction.}
-Surveys of LLMs in building applications discuss opportunities and risks (privacy, unverifiable advice)~\cite{xiao2025tenquestions}. Practical BIM interaction includes query--DSL alignment for information retrieval~\cite{guo2025bimllmquery} and agent schemas for energy modelling~\cite{zhang2025llmagentschema}. These systems show that language helps \emph{navigate} building data, but navigation is not yet topology-aware defect diagnosis.
+A practical division of labour used throughout this chapter is:
+\begin{itemize}[leftmargin=*]
+\item \textbf{Perception stack} (Chapters~5--6, optionally with a VLM head) writes modality-tagged observations;
+\item \textbf{Twin / GIS stack} (Chapters~4 and~7) attaches observations to Asset-IDs and topology;
+\item \textbf{LLM/VLM stack} (this chapter) retrieves, explains, and proposes actions under citation rules.
+\end{itemize}
 
-\paragraph{RAG families.}
-Classic RAG attaches generation to external memory~\cite{lewis2020}. HyDE, Self-RAG, Adaptive-RAG, and GraphRAG explore query rewriting, reflection, and graph corpora~\cite{gao2023hyde,asai2024selfrag,jeong2024adaptive,edge2024graphrag}. In construction planning, graph RAG has been used to reduce information silos~\cite{he2025graphrag}. Cognitive-twin discussions in industry likewise emphasise retrieval over interoperable knowledge~\cite{shi2025cognitivedt}. The textbook takeaway: RAG improves evidence access; it does not by itself define asset units or safe actions.
+\subsection{Failure modes: hallucination, wrong IDs, and unauditable advice}
+Surveys of hallucination show that fluent NLG systems readily invent entities, numbers, and citations when evidence is missing or weakly retrieved~\cite{ji2023}. In façade O\&M the high-cost failures are concrete: invented Asset-IDs; repair advice without attributable clauses; and summaries that silently drop contradictory RGB/IR cues. Explainability surveys likewise stress that post-hoc verbal justifications are not the same as evidence grounding~\cite{zhao2024}. Construction-oriented reviews of GPT-class tools echo the same warning: opportunity is high, but domain reliability requires external knowledge and process controls~\cite{saka2024gptconstruction,xiao2025tenquestions}.
 
-\paragraph{Agents and closed loops.}
-ReAct and Toolformer established reason--act and tool-learning patterns~\cite{yao2023react,schick2023toolformer}; surveys catalogue single- and multi-agent stacks~\cite{wang2024surveyagents,li2024surveymultiagent}. In AEC, Luo et al.\ broker natural-language FM requests among users, twins, and robots~\cite{luo2025llmdtrobot}; IFC-Agent performs schema-guided multi-agent tool use on native IFC~\cite{gao2026ifcagent}; BIM2RDT pursues agentic, safety-first robot-ready twins~\cite{akhavian2025bim2rdt}. These works motivate Section~\ref{sec:ch8-agents}.
+\subsection{Grounding strategies: prompting, retrieval, tools, and structure}
+Four complementary grounding strategies appear across NLP and AEC deployments:
 
-\subsection{Failure modes that matter for façade O\&M}
-For inspection dialogue, three failures dominate regardless of model brand: invented asset IDs; repair advice without attributable clauses; fluent summaries that drop contradictory RGB/IR cues. The rest of the chapter is organised to mitigate those failures through structure, retrieval constraints, and approval gates---not through longer prompts alone.
+\begin{enumerate}[leftmargin=*]
+\item \textbf{Prompting and schemas.} Constrained output formats (JSON/report templates) reduce free-form drift; chain-of-thought helps multi-step questions~\cite{wei2022cot} but must still be checked against evidence.
+\item \textbf{Retrieval-augmented generation (RAG).} Classic RAG attaches generation to external memory so answers can cite retrieved passages~\cite{lewis2020,shuster2021}. Surveys map retrieve--generate--augment pipelines and their failure modes~\cite{gao2023ragsurvey}. Variants rewrite queries (HyDE), reflect on usefulness (Self-RAG), adapt retrieval depth (Adaptive-RAG), or retrieve over graphs (GraphRAG)~\cite{gao2023hyde,asai2024selfrag,jeong2024adaptive,edge2024graphrag,peng2024}.
+\item \textbf{Tools and agents.} Models can call APIs, databases, or robots in reason--act loops~\cite{yao2023react,schick2023toolformer,mialon2023}; surveys catalogue single- and multi-agent stacks~\cite{wang2024surveyagents,li2024surveymultiagent}.
+\item \textbf{Structured knowledge.} Unifying LLMs with knowledge graphs and typed entities improves navigability and constraint checking~\cite{pan2024b}. For buildings, this means Asset-IDs, IFC/BIM objects, and observation records---not anonymous text chunks alone.
+\end{enumerate}
+
+\subsection{How AEC is already using LLMs and RAG}
+A growing AEC literature shows where these strategies help---and where inspection still differs:
+
+\paragraph{BIM navigation and virtual assistants.}
+Prompted assistants can search BIM information and return object-linked answers~\cite{zheng2023bimassistant}. Query--DSL alignment systems connect natural language to executable BIM retrieval libraries~\cite{guo2025bimllmquery}. These systems excel at \emph{navigating} design/as-built models; they do not by themselves diagnose defect propagation across façade assets.
+
+\paragraph{Codes, safety, and compliance corpora.}
+RAG improves answers about building codes and safety manuals relative to parametric GPT alone~\cite{joffe2025buildingcodes,lee2024ragsafety}. Hybrid and GraphRAG designs have been explored for sensitive defect-management dialogue~\cite{jeon2025hybridrag}. Construction planning has used graph RAG to reduce information silos~\cite{he2025graphrag}. The lesson for Chapter~8: edition-versioned expert corpora are valuable, but they must be kept separate from web scrape and from twin observation stores.
+
+\paragraph{Energy, FM, and robot-facing agents.}
+Agent schemas for energy modelling~\cite{zhang2025llmagentschema}, LLM brokers among users, twins, and robots~\cite{luo2025llmdtrobot}, schema-guided multi-agent tool use on IFC~\cite{gao2026ifcagent}, and safety-first robot-ready twins~\cite{akhavian2025bim2rdt} show the trajectory from answering to acting. Cognitive-twin discussions emphasise retrieval over interoperable knowledge~\cite{shi2025cognitivedt}.
+
+\paragraph{Perception context for language.}
+High-resolution façade datasets and detectors~\cite{zhao2024facade,zhao2025icra} and physical quantification from instance segmentation~\cite{zhao2026physical} matter here because language systems inherit the granularity and bias of the perception stack.
+
+\subsection{Teaching takeaway for this chapter}
+For façade inspection dialogue, three design choices dominate brand choice: (i)~retrieve over \emph{maintainable assets} and their neighbours, not only document chunks; (ii)~force citation of Asset-IDs / observation IDs that appear in the retrieved set; (iii)~place irreversible actions (twin writes, UAV/robot dispatch) behind approval gates. The next sections turn those choices into a teaching framework.
 
 \paragraph{Bridge.}
-We next translate the survey into a teaching framework that previous chapters can feed.
+We now specify how twin products from Chapters~4--7 should be packaged so that grounding strategies have something reliable to retrieve.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{From Digital Twins to Language Reasoning}
 \label{sec:ch8-dt-to-language}
 
 \subsection{A teaching framework (book-level)}
-Rather than importing a paper's module list verbatim, we describe three layers students should keep separate:
+Rather than importing any one paper's module list, we keep three layers separate:
 
 \begin{enumerate}[leftmargin=*]
 \item \textbf{Observation records} --- one defect sighting with sensor provenance;
@@ -74,22 +101,22 @@ Rather than importing a paper's module list verbatim, we describe three layers s
 \item \textbf{Query assembly} --- how a natural-language question selects passports and neighbours before generation.
 \end{enumerate}
 
-Different research groups implement these layers with different schemas. The important pedagogical point is the \emph{separation}: perception writes observations; FM thinks in assets; language models must not be asked to invent either.
+Different research groups implement these layers with different schemas. The pedagogical point is the \emph{separation}: perception writes observations; FM thinks in assets; language models must not be asked to invent either. This stance is consistent with structured-knowledge + LLM roadmaps~\cite{pan2024b} and with BIM-IR systems that refuse to treat the model as a database~\cite{guo2025bimllmquery,zheng2023bimassistant}.
 
 \subsection{Observation records in practice}
-Across UAV inspection programmes, useful observation records typically store: host asset ID, time, modality (RGB/IR/\ldots), detector signature, pose or surface coordinates, and paths to imagery. Group GeoBIM-DT pipelines show how registration attaches detections to BIM hosts before any LLM is involved~\cite{zhang2025,yang2025detreconreg}. Chapter~6 supplies the detector; Chapter~4--7 supply the host ID.
+Across UAV inspection programmes, useful observation records typically store: host asset ID, time, modality (RGB/IR/\ldots), detector signature, pose or surface coordinates, and paths to imagery. GeoBIM-DT pipelines show how registration attaches detections to BIM hosts before any LLM is involved~\cite{zhang2025,yang2025detreconreg}. Chapter~6 supplies the detector; Chapters~4--7 supply the host ID.
 
-For teaching, one may write a generic observation as a tuple of identity, evidence, localisation, and analysis fields---without committing the chapter prose to any one paper's notation. Natural-language location phrases (``top centre of the southeast panel'') help LLMs, while metric coordinates remain for field navigation.
+For teaching, one may write a generic observation as a tuple of identity, evidence, localisation, and analysis fields---without committing the chapter prose to any one project's notation. Natural-language location phrases (``top centre of the southeast panel'') help LLMs, while metric coordinates remain for field navigation.
 
 \begin{figure}[t]
 \centering
 \includegraphics[width=0.85\textwidth]{idp_construction_pipeline.jpg}
-\caption{Example pipeline that turns registered detections into structured observation records (illustrative figure from the group's inspection stack). In this book it is read as ``how Chapters~4--6 feed Chapter~8'', not as a paper methods reprint.}
+\caption{Example pipeline that turns registered detections into structured observation records (illustrative figure from a UAV inspection stack). Read as ``how Chapters~4--6 feed Chapter~8''.}
 \label{fig:ch8-idp}
 \end{figure}
 
 \subsection{Asset passports and topology}
-Facility questions are usually asset-centric. Passports therefore aggregate observations per maintainable host and attach (i)~symptom summaries, (ii)~host geometry for severity normalisation, and (iii)~neighbour links (above/below/lateral). Neighbour links are what enable propagation-style reading---e.g., mid-storey delamination considered together with upstairs moisture---without pretending a document-similarity graph is a structural graph.
+Facility questions are usually asset-centric. Passports therefore aggregate observations per maintainable host and attach (i)~symptom summaries, (ii)~host geometry for severity normalisation, and (iii)~neighbour links (above/below/lateral). Neighbour links enable propagation-style reading---e.g., mid-storey delamination considered together with upstairs moisture---without pretending a document-similarity graph is a structural graph. Graph-oriented RAG~\cite{edge2024graphrag,peng2024,he2025graphrag} is related in spirit; the inspection-specific requirement is that graph edges come from BIM/GIS adjacency and registration, not only from text co-occurrence.
 
 \begin{table}[t]
 \centering
@@ -107,28 +134,28 @@ This chapter & retrieval + agents + reports & traceable answers and actions \\
 \end{tabular}
 \end{table}
 
-\subsection{Case study pointer: asset-centric RAG}
-One concrete implementation of observation records + asset passports + neighbour expansion is the asset-centric, propagation-aware RAG line associated with this group~\cite{huang2026iaprag}. In monograph voice we treat it as a \emph{worked example}: it shows that organising knowledge by maintainable assets and expanding along BIM adjacency can improve multi-hop diagnosis relative to chunk baselines. Readers who need implementation minutiae should consult that manuscript; this chapter keeps only the ideas needed to connect the book pipeline to decision support.
+\subsection{Worked example: asset-centric retrieval}
+One concrete implementation of observation records + asset passports + neighbour expansion is the asset-centric, propagation-aware RAG line associated with this group~\cite{huang2026iaprag}. In monograph voice we treat it as a \emph{worked example among many}: it shows that organising knowledge by maintainable assets and expanding along BIM adjacency can improve multi-hop diagnosis relative to chunk baselines. Parallel community designs---hybrid RAG for defect dialogue~\cite{jeon2025hybridrag}, code/safety RAG~\cite{joffe2025buildingcodes,lee2024ragsafety}, and BIM assistants~\cite{zheng2023bimassistant}---share the grounding intuition while targeting different corpora. Readers who need implementation minutiae of any one system should consult the primary sources; this chapter keeps the ideas needed to connect the book pipeline to decision support.
 
 \paragraph{Bridge.}
-We now look at how queries assemble evidence under multi-modal and topological constraints.
+We next assemble evidence under multimodal and topological constraints during a single query.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Multi-Modal Fusion and Topology-Aware RAG}
 \label{sec:ch8-multimodal}
 
 \subsection{Pipeline fusion versus end-to-end VLMs}
-Façade programmes are multi-modal, and vision--language models (VLMs) are a genuine part of the decision layer envisaged for this book---not a side remark. ``Fusion'', however, need not collapse into one opaque end-to-end VLM for every query. A book-consistent pattern that remains auditable today is: detectors (or a VLM perception head) write modality-tagged observations; retrieval selects asset passports; an LLM or VLM then composes answers under citation rules. End-to-end VLM-native twins that jointly read imagery and twin topology remain an active research direction (Chapter~9); the pedagogical point is to use VLMs where they add visual grounding, while keeping Asset-IDs and provenance outside the model's free text.
+Façade programmes are multi-modal, and VLMs are a real part of the decision layer~\cite{radford2021clip,liu2023llava,achiam2023gpt4}. ``Fusion'', however, need not collapse into one opaque end-to-end VLM for every query. A book-consistent pattern that remains auditable today is: detectors (or a VLM perception head) write modality-tagged observations; retrieval selects asset passports; an LLM or VLM then composes answers under citation rules. End-to-end VLM-native twins that jointly read imagery and twin topology remain an active research direction (Chapter~9); the pedagogical point is to use VLMs where they add visual grounding, while keeping Asset-IDs and provenance outside the model's free text.
 
 \begin{figure}[t]
 \centering
 \includegraphics[width=0.9\textwidth]{rag_workflow_topology.pdf}
-\caption{Conceptual retrieval flow: parse intent, fetch asset passports, expand neighbours, then generate with citations. Figure reused as a teaching schematic for topology-aware assembly.}
+\caption{Conceptual retrieval flow: parse intent, fetch asset passports, expand neighbours, then generate with citations. Teaching schematic for topology-aware assembly.}
 \label{fig:ch8-rag}
 \end{figure}
 
 \subsection{Intent, neighbourhood expansion, and citation rules}
-Textbook query types include local lookup, asset-health summary, propagation/root-cause reading, and floor- or elevation-level audit. Intent should change \emph{which neighbours enter the context}, not only the prompt wording.
+Textbook query types include local lookup, asset-health summary, propagation/root-cause reading, and floor- or elevation-level audit. Intent should change \emph{which neighbours enter the context}, not only the prompt wording. Surveys of RAG emphasise that retrieval quality dominates generation quality when facts are corpus-bound~\cite{gao2023ragsurvey,lewis2020}.
 
 A minimal assembly pattern is:
 \[
@@ -140,13 +167,13 @@ A minimal assembly pattern is:
 \cup
 \text{optional manuals}.
 \]
-Hard teaching rule: every cited asset/defect ID in the answer must appear in the retrieved set; otherwise the system must abstain or ask for human review. Optional expert corpora (codes, repair manuals) should be edition-versioned and separate from web scrape---a lesson shared with compliance-oriented BIM assistants~\cite{guo2025bimllmquery,xiao2025tenquestions}.
+Hard teaching rule: every cited asset/defect ID in the answer must appear in the retrieved set; otherwise the system must abstain or ask for human review. Optional expert corpora (codes, repair manuals) should be edition-versioned and separate from web scrape---a lesson shared with compliance-oriented BIM and code assistants~\cite{guo2025bimllmquery,joffe2025buildingcodes,xiao2025tenquestions}.
 
 \subsection{RGB/IR disagreements}
-When thermal and visual evidence disagree, good practice is disclosure rather than silent averaging: RGB-only evidence should not be escalated to subsurface claims; IR-only evidence should keep uncertainty flags. Perception chapters define what each modality can see; this chapter defines how language systems must talk about conflict.
+When thermal and visual evidence disagree, good practice is disclosure rather than silent averaging: RGB-only evidence should not be escalated to subsurface claims; IR-only evidence should keep uncertainty flags. Perception chapters define what each modality can see; this chapter defines how language systems must talk about conflict. VLMs may help \emph{describe} the disagreement; they must not erase the disagreement in fluent prose.
 
 \subsection{From static RAG to bounded agency}
-Agentic RAG can rewrite queries and call tools iteratively~\cite{singh2024agenticragsurvey}. For inspection we recommend \emph{bounded agency}: multi-step retrieval is welcome; final claims remain citation-locked to twin entities. Unbounded tool loops without Asset-ID checks recreate hallucination with extra latency.
+Agentic RAG can rewrite queries and call tools iteratively~\cite{singh2024agenticragsurvey,gao2023ragsurvey}. For inspection we recommend \emph{bounded agency}: multi-step retrieval is welcome; final claims remain citation-locked to twin entities. Unbounded tool loops without Asset-ID checks recreate hallucination with extra latency~\cite{ji2023,shuster2021}.
 
 \paragraph{Bridge.}
 Agents become essential when the system must \emph{act}, not only answer.
@@ -156,7 +183,7 @@ Agents become essential when the system must \emph{act}, not only answer.
 \label{sec:ch8-agents}
 
 \subsection{Why the book needs an agent section}
-RAG answers evidence-seeking questions. FM operations also require procedures: open a ticket, propose a UAV revisit, request a robot photo, or stage a twin update after human approval. That is the scope of agents~\cite{yao2023react,wang2024surveyagents}.
+RAG answers evidence-seeking questions. FM operations also require procedures: open a ticket, propose a UAV revisit, request a robot photo, or stage a twin update after human approval. That is the scope of agents~\cite{yao2023react,wang2024surveyagents,mialon2023}.
 
 \subsection{What others have built}
 Luo et al.\ place an LLM between the user, the twin, and robot middleware, emphasising human-approved twin commits~\cite{luo2025llmdtrobot}. Gao et al.\ show schema-guided multi-agent tool composition on IFC~\cite{gao2026ifcagent}. BIM2RDT stresses safety-first robot-ready twins~\cite{akhavian2025bim2rdt}. Energy-oriented agent libraries show how domain tools can be versioned~\cite{zhang2025llmagentschema}. None of these replace Chapters~2--7; they consume twin state those chapters create.
@@ -172,7 +199,7 @@ We describe four \emph{roles} (logical, not necessarily four model instances):
 
 \begin{table}[t]
 \centering
-\caption{Paradigms compared for teaching (not as a paper bake-off).}
+\caption{Paradigms compared for teaching (not as a bake-off among papers).}
 \label{tab:ch8-paradigms}
 \begin{tabular}{p{2.2cm}p{3.1cm}p{3.2cm}p{3.2cm}}
 \toprule
@@ -181,7 +208,7 @@ Aspect & Chunk RAG & Asset/topology RAG & Agentic twin loop \\
 Unit & text chunk & asset passport + neighbours & passports + tools \\
 State change & no & no & yes (gated) \\
 Audit focus & passage cites & Asset-ID + cites & cites + approvals \\
-Fits book chapters & manuals & Ch.~4--7 products & Ch.~2--3 tasking too \\
+Fits book chapters & manuals / codes & Ch.~4--7 products & Ch.~2--3 tasking too \\
 \bottomrule
 \end{tabular}
 \end{table}
@@ -203,7 +230,7 @@ Answers and proposals must land in artefacts FM systems already understand: repo
 \label{sec:ch8-reports}
 
 \subsection{Schema-first generation}
-Free-form paragraphs are hard to audit. A practical report schema groups identity (asset/defect IDs), diagnosis, propagation notes, recommended actions, and trust flags (confidence, human verification). Identity fields must be subsets of retrieved evidence.
+Free-form paragraphs are hard to audit. A practical report schema groups identity (asset/defect IDs), diagnosis, propagation notes, recommended actions, and trust flags (confidence, human verification). Identity fields must be subsets of retrieved evidence. Constrained generation is the report-level analogue of structured decoding used in BIM assistants and code QA systems~\cite{zheng2023bimassistant,joffe2025buildingcodes}.
 
 \begin{table}[t]
 \centering
@@ -225,7 +252,7 @@ Trust & confidence, human\_check & escalate on conflict \\
 \begin{figure}[t]
 \centering
 \includegraphics[width=0.82\textwidth]{platform_demo.pdf}
-\caption{Example twin UI for NL querying and report drafting (group platform). Shown as an interface pattern, not as a product claim.}
+\caption{Example twin UI for NL querying and report drafting. Shown as an interface pattern, not as a product claim.}
 \label{fig:ch8-platform}
 \end{figure}
 
@@ -246,27 +273,28 @@ Language quality collapses when site tags and twin IDs diverge. Registration aud
 \label{fig:ch8-asset-id}
 \end{figure}
 
-\subsection{Walkthrough box (non-paper narrative)}
+\subsection{Walkthrough box}
 A manager asks about water ingress on a vertical stack. The system returns neighbour passports, cites observation IDs whose images open in the twin UI, and either drafts a repair brief or abstains if evidence is thin. If a revisit is needed, the action proposer emits a planning hint for Chapters~2--3 rather than inventing a flight path in prose.
 
 \paragraph{Bridge.}
-We close with decision-support evaluation---carefully separated from ``reprinting a results section.''
+We close with decision-support evaluation---criteria first, case numbers second.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Decision Support and Predictive Maintenance}
 \label{sec:ch8-dss}
 
 \subsection{What to evaluate in a book context}
-Monograph readers need criteria, not only one paper's tables:
+Monograph readers need criteria that travel across implementations:
 \begin{itemize}[leftmargin=*]
-\item \textbf{Grounding:} are cited IDs in the evidence set?
+\item \textbf{Grounding:} are cited IDs in the evidence set?~\cite{ji2023,shuster2021}
 \item \textbf{Topology sensitivity:} do propagation questions improve when neighbours are included?
+\item \textbf{Corpus fidelity:} for codes/manuals, does RAG beat parametric recall?~\cite{lee2024ragsafety,joffe2025buildingcodes}
 \item \textbf{Operational usefulness:} can outputs drive schedules (gondola staging, revisit planning)?
-\item \textbf{Agent safety (emerging):} tool success under approval and geofence constraints.
+\item \textbf{Agent safety (emerging):} tool success under approval and geofence constraints~\cite{luo2025llmdtrobot,akhavian2025bim2rdt}.
 \end{itemize}
 
 \subsection{Case-study snapshot (illustrative)}
-As one data point---not the chapter's sole content---the asset-centric RAG case study on logistics-warehouse façades reports strong multi-hop localisation when asset passports and neighbour expansion are used, relative to chunk-style baselines~\cite{huang2026iaprag}. Headline figures from that study (retrieval Exact Hit $0.609$; multi-hop Exact Hit $0.926$; citation validity $0.878$) may be quoted when teaching why structure matters; they should not be mistaken for universal constants across cities or defect taxonomies.
+As one data point among the broader literature---not the chapter's sole content---an asset-centric RAG study on logistics-warehouse façades reports strong multi-hop localisation when asset passports and neighbour expansion are used, relative to chunk-style baselines~\cite{huang2026iaprag}. Headline figures from that study (retrieval Exact Hit $0.609$; multi-hop Exact Hit $0.926$; citation validity $0.878$) may be quoted when teaching why structure matters; they should not be mistaken for universal constants across cities or defect taxonomies. Community hybrid/GraphRAG defect-management results~\cite{jeon2025hybridrag} and safety/code RAG evaluations~\cite{lee2024ragsafety,joffe2025buildingcodes} provide complementary evidence on other corpora.
 
 \begin{figure}[t]
 \centering
@@ -285,7 +313,7 @@ As one data point---not the chapter's sole content---the asset-centric RAG case 
 \begin{figure}[t]
 \centering
 \includegraphics[width=0.75\textwidth]{hallucination_rate.pdf}
-\caption{Case-study view of unsupported claims versus grounded configurations (foundational baseline).}
+\caption{Case-study view of unsupported claims versus grounded configurations.}
 \label{fig:ch8-halluc}
 \end{figure}
 
@@ -300,11 +328,12 @@ Priority scoring and operational planning convert diagnosis into schedules. Tran
 \end{figure}
 
 \subsection{Open issues}
-Topology completeness and Asset-ID hygiene dominate error modes. Standard agent benchmarks for inspection (safe tool traces) are still missing. Stronger VLM grounding on twin entities, fully VLM-native twins, and swarm-continuous updates belong to Chapter~9's forward look, building on planning chapters for multi-UAV operations.
+Topology completeness and Asset-ID hygiene dominate error modes. Standard agent benchmarks for inspection (safe tool traces) are still missing. Stronger VLM grounding on twin entities, fully VLM-native twins, and swarm-continuous updates belong to Chapter~9's forward look, building on planning chapters for multi-UAV operations. Privacy and governance questions raised for building LLMs~\cite{xiao2025tenquestions,saka2024gptconstruction} remain open as portfolios scale.
 
 \paragraph{Chapter takeaways.}
 \begin{enumerate}[leftmargin=*]
-\item Chapter~8 is the book's decision layer: it consumes Ch.~4--7 products and must not be read as an isolated paper.
-\item Prior work already covers twinning, perception, BIM-LLMs, RAG, and agents; the synthesis is to keep observation/asset/query layers distinct and auditable.
-\item Asset-centric RAG~\cite{huang2026iaprag} is one case study among broader community and group contributions~\cite{zhang2025,yang2025detreconreg,zhao2026physical,luo2025llmdtrobot,gao2026ifcagent}.
+\item Chapter~8 is the book's decision layer: it consumes Ch.~4--7 products and answers with grounded language, not with geometry alone.
+\item LLM/VLM foundations (Transformers, instruction following, multimodal interfaces) explain capability; hallucination and ID errors explain why grounding is mandatory~\cite{vaswani2017attention,brown2020,ji2023}.
+\item RAG, tools/agents, and structured asset knowledge are complementary; AEC already uses them for BIM, codes, and safety---façade twins add topology and Asset-ID discipline~\cite{lewis2020,zheng2023bimassistant,lee2024ragsafety,luo2025llmdtrobot}.
+\item Asset-centric RAG~\cite{huang2026iaprag} is one worked example among group and community contributions~\cite{zhang2025,yang2025detreconreg,zhao2026physical,jeon2025hybridrag,gao2026ifcagent}.
 \end{enumerate}
