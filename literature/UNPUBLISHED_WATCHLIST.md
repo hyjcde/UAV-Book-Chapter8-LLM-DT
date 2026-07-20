@@ -2,7 +2,7 @@
 
 > Auto-refreshed by `scripts/lit_pipeline_tick.py`. **Do not** put these into `references.bib` cites until venue-confirmed.
 
-_Last tick: 2026-07-20T12:04:16+08:00_
+_Last tick: 2026-07-20T22:26:09+08:00_
 
 | Key | Flags | Title (short) |
 |-----|-------|---------------|
@@ -13,8 +13,8 @@ _Last tick: 2026-07-20T12:04:16+08:00_
 | `yan2024crag` | preprint | Corrective Retrieval Augmented Generation |
 | `he2025graphrag` | ahead-of-print | Addressing the information silo of construction planning constraints -- a graph retrieval augmented generation approach |
 | `akhavian2025bim2rdt` | preprint | Building Information Models to Robot-Ready Site Digital Twins (BIM2RDT) |
-| `xiao2025tenquestions` | unverified | Ten questions concerning Large Language Models (LLMs |
-| `singh2025multiagentvbm` | unverified | From design to operation: Multi-agent AI |
+| `ma2026tenquestions` | unverified | Ten questions concerning Large Language Models (LLMs |
+| `lee2025multiagentvbm` | unverified | From design to operation: Multi-agent AI |
 | `singh2024agenticragsurvey` | preprint, unverified | Agentic Retrieval-Augmented Generation: A Survey on Agentic RAG |
 | `huang2026iaprag` | under-review | Asset-centric and propagation-aware retrieval-augmented generation for building defect diagnosis and asset maintenance d |
 | `achiam2023gpt4` | preprint | GPT-4 |
@@ -24,8 +24,6 @@ _Last tick: 2026-07-20T12:04:16+08:00_
 
 | Key | Title |
 |-----|-------|
-| `zhao2025` | Detection of small-scale surface defects on building facades using images and point clouds |
-| `xu2025a` | Automatic defect localization method based on BIM |
 | `fernandez2025` | Enhanced digital twin for on-site inspections using distributed optical fiber sensors and augmented reality |
 | `yu2025` | Lightweight multimodal LLM |
 | `nahar2025` | AI |

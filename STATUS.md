@@ -1,15 +1,16 @@
 # Writing status — Chapter 8
 
-Target: **~50 pages** (EN). Current: **EN 24 / CN 17** pages.
+**Book Proposal TOC (frozen):** 8.1–8.6 only.  
+**Target:** ~50 pages. **Current build:** EN **43** / CN **34** (2026-07-20).
 
-| Section | EN | CN | Notes |
-|---------|----|----|-------|
-| 8.1 Digital Twins | draft | draft | |
-| 8.2 LLM Foundations | draft | draft | |
-| 8.3 DT → Language | expanded | expanded | IDP/IAP/index/VDPP formulas |
-| 8.4 Multimodal RAG | expanded | expanded | 3-phase retrieval |
-| 8.5 Agents | expanded | expanded | tool catalogue |
-| 8.6 Reports | expanded | expanded | schema table |
-| 8.7 DSS | expanded | expanded | metrics + k-sweep/halluc figs |
+| Section | Status | Notes |
+|---------|--------|-------|
+| 8.1 Digital Twins | draft+ | twin contract, maturity levels |
+| 8.2 LLM Foundations | **strengthened** | **T1–T8 → inspection** + composition walkthrough; memory ladder; practice map |
+| 8.3 DT → Language | draft+ | observation / passport / assembly (= IDP/IAP/VDPP teaching aliases) |
+| 8.4 Multi-Modal Fusion | draft+ | modality-tagged obs + RAG + bounded agents (no VLM chapter) |
+| 8.5 Reports | draft+ | schema, Asset-ID hygiene, CMMS map |
+| 8.6 DSS | draft+ | criteria, triage, governance |
 
-Next toward 50pp: Box 8.1 full walkthrough; more lit paragraphs in 8.2/8.5; platform architecture figure prose.
+**Lit / sync:** `cited_risky=0`; section labels sync OK.  
+**Toward 50pp:** optional T1–T8 schematic; F5 memory ladder; thicken 8.3/8.4 worked examples.

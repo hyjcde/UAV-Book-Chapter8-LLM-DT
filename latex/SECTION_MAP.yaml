@@ -1,6 +1,9 @@
 # EN ↔ CN section sync contract for Chapter 8
 # After editing either language, run: python scripts/sync_check.py
 # Labels must exist in both ch08.tex and ch08_cn.tex
+#
+# Structure follows Book Proposal 8.1--8.6 (Springer monograph style):
+# few numbered sections, continuous prose, minimal subsections.
 
 chapter_label: ch:llm-dt
 target_pages: 50
@@ -10,33 +13,31 @@ sections:
   - id: sec:ch8-dt
     en: Digital Twins for Building Inspection
     cn: 面向建筑巡检的数字孪生
-    pages: 6
+    pages: 7
   - id: sec:ch8-llm-foundations
     en: Foundations of LLMs for Civil Engineering Applications
     cn: 面向土木工程应用的大语言模型基础
-    pages: 6
+    pages: 10
   - id: sec:ch8-dt-to-language
     en: From Digital Twins to Language Reasoning
     cn: 从数字孪生到语言推理
     pages: 9
   - id: sec:ch8-multimodal
-    en: Multi-Modal Fusion and Topology-Aware RAG
-    cn: 多模态融合与拓扑感知检索增强生成
-    pages: 8
-  - id: sec:ch8-agents
-    en: Agentic Workflows for Twin-Grounded Inspection
-    cn: 面向孪生接地巡检的智能体工作流
-    pages: 8
+    en: Multi-Modal Fusion
+    cn: 多模态融合
+    pages: 9
   - id: sec:ch8-reports
     en: Inspection Report Generation and Management
     cn: 巡检报告生成与管理
-    pages: 6
+    pages: 7
   - id: sec:ch8-dss
     en: Decision Support and Predictive Maintenance
     cn: 决策支持与预测性维护
-    pages: 7
+    pages: 8
 
 notes: |
-  Book Proposal listed 8.1--8.6. We keep those titles for 8.1--8.4 and 8.6--8.7 numbering
-  in prose, and insert Agents as 8.5 to reach ~50 pages without breaking the proposal spine.
-  When merging into the full Springer book, renumber if editors require strict 8.1--8.6.
+  Aligned with Book Proposal numbering 8.1--8.6.
+  Memory and agents are taught inside 8.2 and 8.4 (not as a separate subsection forest).
+  Avoid deep \subsection trees; prefer continuous monograph prose per Springer SN/SVMono guidance.
+  Do NOT introduce VLMs; multimodal = modality-tagged observations from Ch.6 + grounded LLM assembly.
+  Target ~50 pages; expand with worked examples/tables, not subsection forests.

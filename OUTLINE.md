@@ -4,54 +4,53 @@
 **Book:** *AI-Driven UAV Building Inspection* (Springer Nature Monograph)  
 **Author / Lead:** Yijun Huang  
 **Scope:** Chapter 8 only（本书其余章节由其他作者负责）  
-**Target length:** 30–40 pages  
-**Primary source material:** DefectGPT / IAP-RAG manuscript & experiments  
+**Target length:** ~50 pages (proposal Phase 4 decision layer)  
+**Primary teaching spine:** language-ready twin + LLM tech families → inspection → reports / DSS  
 
 ---
 
-> **2026-07-20 update:** Target length **~50 pages**. Added section **8.5 Agentic Workflows** (EN/CN synced). Proposal's old 8.5/8.6 map to **8.6 Reports / 8.7 DSS** in the working draft; confirm numbering with editors before camera-ready.
-> Bilingual LaTeX: `latex/en/` + `latex/cn/`, build with `scripts/build.sh`. Literature: `literature/AGENT_LIT_NOTES.md`.
-> Book shell: PDF title is the **full monograph** *AI-Driven UAV Building Inspection* (no personal author line). TOC lists Chapters 1–9 names from the Book Proposal for orientation only; **do not draft Ch.1–7/9** (other authors). Only Ch.8 is edited here. VLMs are in-scope with LLMs (proposal Phase 4).
-> Ch.8 logic spine: need for language → LLM/VLM foundations → grounding (prompt/RAG/tools/structure) → AEC uses → twin knowledge packaging → multimodal query → agents → reports → DSS. Not a single-paper rewrite; IAP-RAG is one worked example.
-> Figures: see `literature/FIGURE_PLAN.md` — textbook schematics first (memory/grounding/agent ladders); do **not** lead with one paper’s ablation/SOTA plots.
+> **Aligned with Book Proposal 8.1–8.6.** Springer continuous prose (minimal `\subsection`). **8.2 teaches LLM tech families T1–T8** (pretrain, instruct, CoT, RAG, structured gen, tools, memory, bounded agents) **each mapped to façade inspection**. No standalone VLM section (methods focus LLM + Ch.6 detectors). Agents/memory inside 8.2/8.4.  
+> Logic: twin language gap → **LLM tech types → inspection uses** → asset-centric twin knowledge (obs/passport/propagation) → multimodal evidence + bounded agents → reports → DSS.  
+> Build: `scripts/build.sh`. Do not draft other chapters. Figures: `literature/FIGURE_PLAN.md`.
 
+---
 
 ## 0. Chapter one-liner
 
-把 Digital Twin 从「可视化的 3D 资产库」升级为「可检索、可引用、可决策」的语言推理底座：用 IDP/IAP 结构化缺陷知识，用拓扑感知 RAG（VDPP）接地 LLM，自动生成巡检报告与运维建议。
+把 Digital Twin 从「可视化的 3D 资产库」升级为「可检索、可引用、可决策」的语言推理底座：先讲清 LLM 技术族类如何接到立面巡检，再用观测/护照/邻域装配接地生成，产出可审计报告与运维建议。
 
 **Upstream（不写，只引用）：** Ch.4 三维重建、Ch.6 缺陷检测、Ch.7 GIS/GeoBIM  
-**本章写：** 语义结构化 → 多模态融合检索 → 报告生成 → 决策支持评测  
+**本章写：** LLM 技术→巡检应用 → 孪生语言接口 → 多模态装配 → 报告 → 决策支持  
 
 ---
 
-## 1. Section map (frozen TOC)
+## 1. Section map (frozen TOC = Book Proposal)
 
-| § | Title (EN, matches Book Proposal) | Pages | Status |
+| § | Title (EN) | Pages | Status |
 |---|-----------------------------------|-------|--------|
-| 8.1 | Digital Twins for Building Inspection | 5–6 | outline |
-| 8.2 | Foundations of LLMs for Civil Engineering Applications | 4–5 | outline |
-| 8.3 | From Digital Twins to Language Reasoning | 7–8 | outline |
-| 8.4 | Multi-Modal Fusion | 5–6 | outline |
-| 8.5 | Inspection Report Generation and Management | 5–6 | outline |
-| 8.6 | Decision Support and Predictive Maintenance | 6–8 | outline |
+| 8.1 | Digital Twins for Building Inspection | 5–7 | draft+ |
+| 8.2 | Foundations of LLMs for Civil Engineering Applications | 10–14 | **T1–T8 map + composition walkthrough** |
+| 8.3 | From Digital Twins to Language Reasoning | 7–9 | draft+ (obs / passport / assembly) |
+| 8.4 | Multi-Modal Fusion | 7–9 | draft+ (RAG + bounded agents) |
+| 8.5 | Inspection Report Generation and Management | 5–7 | draft+ |
+| 8.6 | Decision Support and Predictive Maintenance | 6–8 | draft+ (criteria, not paper bake-off) |
 
 ---
 
 ## 2. Reader path (keep this spine)
 
 ```text
-UAV / sensor observations
+UAV / sensor observations (Ch.6 modality tags)
         ↓
 DT registration (BIM / GeoBIM anchoring)
         ↓
-IDP construction  ⟨Imagery, Evidence, Semantics, Asset⟩
+Observation records  ⟨Imagery, Evidence, Semantics, Asset⟩  ≈ IDP teaching alias
         ↓
-IAP aggregation   (symptoms / geometry / topology)
+Asset passports       (symptoms / geometry / topology)       ≈ IAP teaching alias
         ↓
-Topology-aware retrieval  (VDPP k-hop)
+Neighbour / propagation assembly                             ≈ VDPP teaching alias
         ↓
-Grounded LLM generation  (cite-or-abstain)
+T4–T8 grounded generation  (cite-or-abstain)
         ↓
 Report schema + field Asset-ID audit
         ↓
@@ -64,232 +63,119 @@ Decision support & transferability
 
 ## 3. Detailed bullet outline
 
-### 8.1 Digital Twins for Building Inspection（5–6 页）
+### 8.1 Digital Twins for Building Inspection（5–7 页）
 
 **Goal：** 说明 DT 在巡检中的角色，以及为什么「只有 3D」不够。
 
-- [ ] 开场场景：巡检员问「哪些资产存在跨层渗水风险？」——纯几何 DT 答不了  
-- [ ] DT 定义（本书语境）：多模态观测 + BIM 锚定 + 可更新语义实体  
-- [ ] 与上游衔接（各 1 段，不展开方法）  
-  - Ch.4：点云 / 网格 / BIM  
-  - Ch.6：检测框 → 候选缺陷观测  
-  - Ch.7：GIS / GeoBIM 空间索引与资产 ID  
-- [ ] 缺口：可视化 ≠ 推理；缺 provenance、缺资产级聚合、缺自然语言接口  
-- [ ] 本章承诺：结构化知识单元 + 接地 LLM → 报告与决策  
-- [ ] **Fig 8.1** `dt_modeling_pipeline.pdf`  
-- [ ] **Fig 8.2** `framework_overview_overall.pdf`（全书中 Ch.8 位置可加小标注）  
+- [x] 开场场景：跨层渗水 / 吊篮 / 可审计简报  
+- [x] 语言可用孪生契约：Asset-ID、出处、邻域、时间、模态  
+- [x] 成熟度：几何 / 语义 / 决策可用  
+- [x] 上游接口（Ch.4/6/7），不重写方法  
+- [ ] （可选）采购话术 / 清单文化段落继续加厚  
 
-**Closing bridge → 8.2：** 要用语言接口，先理解 LLM 的能力边界与接地需求。
+**Closing bridge → 8.2：** 要用语言接口，先理解 LLM 技术边界与族类选型。
 
 ---
 
-### 8.2 Foundations of LLMs for Civil Engineering Applications（4–5 页）
+### 8.2 Foundations of LLMs for Civil Engineering Applications（10–14 页）★ 提案强化
 
-**Goal：** 教学向讲清 LLM/RAG，避免把本章写成「调 API 教程」。
+**Goal：** 按提案先讲清生成式语言技术族类，再逐类接到立面巡检。
 
-- [ ] LLM / VLM 在 AEC 的现有用法（问答、规范检索、BIM 文本）——简表即可  
-- [ ] 三个风险：幻觉、错误资产 ID、不可审计的建议  
-- [ ] 接地三件套：检索（RAG）/ 结构化 schema / 引用约束  
-- [ ] Chunk-RAG vs Entity-centric RAG vs Graph RAG ——选型直觉  
-- [ ] 本章立场：façade 运维问题应以 **资产（IAP）** 为检索单元，而不是任意文本块  
-- [ ] （可选新图）LLM-only vs RAG vs topology-aware RAG  
+- [x] **T1–T8 技术族类 + 表**：预训练/指令/思维链/RAG/结构化生成/工具调用/记忆/有界智能体  
+- [x] **一次查询串起八族**（空鼓↔上层渍迹↔吊篮）  
+- [x] 三种行为：语言能力 vs 参数回忆 vs 接地推理  
+- [x] 记忆阶梯（参数→上下文→RAG→孪生）  
+- [x] 已发表 AEC 实践地图 → Asset-ID/拓扑专门化  
+- [x] 选型与治理：接口 > 品牌；cite-or-abstain；写入门禁  
+- [ ] （可选图）T1–T8 一页示意 / F5 记忆阶梯  
 
-**Closing bridge → 8.3：** 接地所需的知识单元如何从 DT 中构造。
+**Closing bridge → 8.3：** 要把 T4–T8 落地，孪生必须提供观测/护照/邻域装配单元。
 
 ---
 
-### 8.3 From Digital Twins to Language Reasoning（7–8 页）★ 方法核心上半
+### 8.3 From Digital Twins to Language Reasoning（7–9 页）
 
-**Goal：** 讲清 IDP / IAP / 索引 / VDPP（教科书深度，比论文更分步）。
+**Goal：** 连续正文讲清观测记录 / 资产护照 / 查询装配（教学别名可称 IDP/IAP/VDPP，避免论文克隆）。
 
-#### 8.3.1 Integrated Defect Profiles (IDPs)
-- [ ] 定义四元组 ⟨I, E, S, A⟩（Imagery / Evidence / Semantics / Asset）  
-- [ ] 为什么需要 provenance（哪张图、哪个检测器、置信度、时间）  
-- [ ] 从检测输出 → IDP 的构造步骤（可配伪码 / Algorithm）  
-- [ ] **Fig 8.3** `idp_construction_pipeline.jpg`  
-
-#### 8.3.2 Integrated Asset Profiles (IAPs)
-- [ ] IDP 聚合到可维护资产  
-- [ ] 三视图：symptoms / geometry / topology  
-- [ ] 为何检索单位选 IAP：运维问题天然是 asset-centric  
-
-#### 8.3.3 Knowledge index (L1–L5)
-- [ ] 五层索引各自回答什么问题（一表讲清）  
-- [ ] 与纯向量库的差异  
-
-#### 8.3.4 Vertical Defect Propagation Paths (VDPPs)
-- [ ] BIM 邻接 → 传播路径  
-- [ ] \(k\)-hop 扩展的运维含义（渗水、裂缝上下传导）  
-- [ ] 与 multi-hop 问题类型的对应  
+- [x] 观测：四元组意象 ⟨I,E,S,A⟩ + 出处  
+- [x] 护照：symptoms / geometry / topology  
+- [x] 邻域扩展与传播阅读（≠ 文档相似图）  
+- [x] 索引直觉与检索单元选择  
+- [ ] （可选）轻量公式 / 伪码加深教科书感  
 
 **Closing bridge → 8.4：** 结构化之后，如何融合多模态证据并完成一次查询。
 
 ---
 
-### 8.4 Multi-Modal Fusion（5–6 页）★ 方法核心下半
+### 8.4 Multi-Modal Fusion（7–9 页）
 
-**Goal：** 描述一次完整查询的数据流（不是端到端 VLM 黑盒）。
+**Goal：** 完整查询数据流；感知写观测，LLM 接地阅读（不是端到端 VLM 专章）。
 
-- [ ] 模态清单：RGB / IR / 几何位姿 / 文本规范与手册  
-- [ ] 管线角色分工：视觉模型写 IDP；检索读 IAP；LLM 做组合与表述  
-- [ ] 意图解析（spatial / multi-hop / aggregation）  
-- [ ] 嵌入与索引栈（如 BGE-M3 + FAISS）——实现细节放适度，重点讲设计选择  
-- [ ] 冲突策略：影像置信度 vs 历史记录不一致时如何处理  
-- [ ] Expert grounding：规范 / 手册片段如何进入答案  
-- [ ] **Fig 8.4** `rag_workflow_topology.pdf`（本章最重要的方法图）  
+- [x] 模态清单：RGB / IR / 几何 / 手册文本  
+- [x] 冲突与保留模态标签  
+- [x] RAG 工作流 + 拓扑  
+- [x] 有界智能体（工具、记忆、门禁）嵌在本节  
+- [ ] （可选）更多失败案例 / TRACE 样例  
 
-**Closing bridge → 8.5：** 生成结果必须落入可管理的报告 schema，并在现场可核验。
+**Closing bridge → 8.5：** 生成结果必须落入可管理的报告 schema。
 
 ---
 
-### 8.5 Inspection Report Generation and Management（5–6 页）
+### 8.5 Inspection Report Generation and Management（5–7 页）
 
 **Goal：** 从「能答」到「能交付、能上现场」。
 
-- [ ] 输出 schema 字段表：classification / propagation / repair / compliance / cost-priority  
-- [ ] cite-or-abstain：无证据则拒答或降级  
-- [ ] 平台架构简述（微服务即可，不写成软件手册）  
-  - **Fig 8.5** `platform_architecture.pdf`  
-  - **Fig 8.6** `platform_demo.pdf`  
-  - **Fig 8.7** `multi_platform_field_interfaces.pdf`  
-  - 可选：`analysis_interface_nlq.png`  
-- [ ] Field Asset-ID registration audit（现场一致性）  
-  - **Fig 8.8** `field_asset_id_stages.pdf` / `field_deployment_audit.pdf`  
-- [ ] **Box 8.1（必写）：** 一道完整 NL 问题 → 检索 → 引用 → 报告草稿 的 walkthrough  
+- [x] 输出 schema、cite-or-abstain、CMMS 映射  
+- [x] 现场 Asset-ID 卫生 / 审计  
+- [x] 平台示意与 NLQ 界面（教学图）  
+- [x] Walkthrough：NL 问题 → 检索 → 引用 → 草稿  
 
-**Closing bridge → 8.6：** schema 与现场流程就绪后，用基准与案例证明决策支持效果。
+**Closing bridge → 8.6：** schema 就绪后讨论决策支持判据。
 
 ---
 
 ### 8.6 Decision Support and Predictive Maintenance（6–8 页）
 
-**Goal：** 用锁定实验数字证明方法，并讨论迁移与局限。
+**Goal：** 决策与预测运维的**判据与流程**（专著教学），不是单篇论文 bake-off。
 
-#### 8.6.1 Benchmark setup
-- [ ] 锁定规模表：11 仓 / 1500+ 观测 / 604 IDP / 44 assets / 200 Q  
-- [ ] 题型：70 spatial / 70 multi-hop / 60 aggregation  
-- [ ] 指标：Retr. Exact Hit、MH Exact Hit、Ans.-ID Exact、Cited∈Retr.  
+- [x] 检索/引用/拒答等可操作指标  
+- [x] 分诊 / 吊篮分期等运维案例  
+- [x] 可迁移性与治理局限  
+- [ ] 消融/SOTA 图仅作可选附录级证据，正文不锁死论文数字叙事  
+- [ ] Outlook：agentic RAG / cognitive twin（虚线）；不写 VLM-native 方法承诺  
 
-#### 8.6.2 Results
-- [ ] 消融：**Fig 8.9** + Table（论文 Table 1）  
-- [ ] 外部 SOTA：**Fig 8.10** + Table（论文 Table 2；GraphRAG 等）  
-- [ ] \(k\)-sweep / hallucination：**Fig 8.11–8.13**  
-- [ ] 关键数字（正文必须一致）：  
-  - Retr. Exact Hit **0.609**  
-  - MH Exact Hit **0.926**  
-  - Cited∈Retr. **0.878**  
-
-#### 8.6.3 Operational / predictive angle
-- [ ] 运维规划案例（如吊篮分期 / priority）——强调决策而非只问答  
-- [ ] 可迁移性：renovation / construction schema  
-  - **Fig 8.14–8.15** generalizability / transferability  
-
-#### 8.6.4 Limitations & outlook
-- [ ] 数据与拓扑质量依赖  
-- [ ] 尚未 VLM-native 的端到端孪生  
-- [ ] 与全书未来章（蜂群、持续更新 DT）的接口一句带过  
-
-**Chapter takeaways（3 条 bullet，固定收尾）**
+**Chapter takeaways**
 1. DT 决策就绪的前提是 provenance-aware 的资产级结构  
-2. LLM 必须经 topology-aware RAG 接地，不能当裸预言机  
+2. LLM 须经检索/结构/工具接地，不能当裸预言机  
 3. 报告 schema + 现场 Asset-ID 审计与模型同等重要  
 
 ---
 
-## 4. Locked numbers (do not drift)
+## 4. Teaching numbers (illustrative; do not over-claim)
 
-| Item | Value |
-|------|-------|
+内部基准数字（若引用须标注来源实验、勿写成全书唯一真理）：
+
+| Item | Value (internal study) |
+|------|------------------------|
 | Warehouses / buildings | 11 |
 | UAV observations (order) | 1,500+ |
-| IDPs | 604 |
-| Maintainable assets (IAPs) | 44 |
+| Observation packs / assets | 604 / 44 |
 | Benchmark questions | 200 (70 / 70 / 60) |
-| Retr. Exact Hit (D₁) | 0.609 |
-| MH Exact Hit (D₁) | 0.926 |
-| Cited∈Retr. | 0.878 |
 
-> 早期 9 栋 / 331 缺陷实验若出现，必须标注 *preliminary / historical*。
+正文以**方法与判据**为主；图表服务于教学示意。
 
 ---
 
 ## 5. Figures & tables checklist
 
-### Figures already in repo (`manuscript_official/book/figures/ch08/`)
-| # | File | Planned caption role |
-|---|------|----------------------|
-| 8.1 | `dt_modeling_pipeline.pdf` | DT modelling pipeline |
-| 8.2 | `framework_overview_overall.pdf` | Framework overview |
-| 8.3 | `idp_construction_pipeline.jpg` | IDP construction |
-| 8.4 | `rag_workflow_topology.pdf` | Topology-aware RAG |
-| 8.5 | `platform_architecture.pdf` | Software stack |
-| 8.6 | `platform_demo.pdf` | Desktop UI |
-| 8.7 | `multi_platform_field_interfaces.pdf` | Field UIs |
-| 8.8 | `field_asset_id_stages.pdf` | Asset-ID audit stages |
-| 8.9 | `deterministic_ablation_exact_hit.pdf` | Ablation |
-| 8.10 | `deterministic_external_exact_hit.pdf` | External baselines |
-| 8.11 | `deterministic_ksweep_coverage.pdf` | k-sweep |
-| 8.12 | `hallucination_rate.pdf` | Hallucination |
-| 8.13 | `score_by_type.pdf` | Score by question type |
-| 8.14 | `framework_generalizability_concept.pdf` | Transfer concept |
-| 8.15 | `platform_transferability_implementation.pdf` | Transfer implementation |
+见 `literature/FIGURE_PLAN.md`。优先教学示意（框架、孪生契约、RAG 拓扑、平台）；实验消融图降级。
 
-### Tables to write
-| # | Content | Source |
-|---|---------|--------|
-| 8.1 | Dataset statistics | paper §4.2 |
-| 8.2 | Model / embedding stack | paper §4.1 |
-| 8.3 | Ablation | paper Table 1 |
-| 8.4 | External SOTA | paper Table 2 |
-| 8.5 | Report output schema | paper §3.3.4 |
-
-### Must-write box
-- **Box 8.1** End-to-end NLQ walkthrough（建议 Goodman 仓 multi-hop 题）
+必保标签：`tab:ch8-tech-families`、`tab:ch8-memory`、`tab:ch8-twin-contract`。
 
 ---
 
-## 6. Source map (DefectGPT → this chapter)
+## 6. Lit / sync rules
 
-| Local path (DefectGPT) | Use in Ch.8 |
-|------------------------|-------------|
-| `paper/AIC-Rebuttal/manuscript_revised/main.tex` §3–§5 | Methods & experiments prose |
-| `paper/AIC-Rebuttal/figures/*` | Main figures |
-| `data/Asset_Health_Passport/` | Benchmark & IDP/IAP stats |
-| `docs/mechanisms/RAG_Mechanism.md` | Teaching notes (rewrite in EN) |
-| `docs/IDP_Asset_Passport_Guide.md` | IDP/IAP definitions |
-| `reproducibility/idp_only_external_sota_v1/` | Table 8.4 |
-| `reproducibility/operational_planning_case/` | DSS case in 8.6 |
-
----
-
-## 7. Writing schedule (Ch.8 only)
-
-| Week | Deliverable |
-|------|-------------|
-| W1 | 8.1–8.2 full English draft |
-| W2 | 8.3 full draft + Figs 8.1–8.3 placed |
-| W3 | 8.4–8.5 + Box 8.1 |
-| W4 | 8.6 tables/figures + limitations |
-| W5 | Polish, cross-refs to Ch.4/6/7, Overleaf compile clean |
-
-Daily rhythm: **800–1200 English words → place figures → equations/pseudocode last**.
-
----
-
-## 8. Definition of Done
-
-- [ ] All six sections written as continuous English prose (not bullets)  
-- [ ] ≥10 figures compiled in LaTeX with standalone captions  
-- [ ] ≥3 tables (stats / ablation / SOTA or schema)  
-- [ ] Box 8.1 complete  
-- [ ] Numbers match the locked table above  
-- [ ] `book/book.tex` Overleaf build passes with Ch.8 included  
-- [ ] No dangling citations  
-
----
-
-## 9. Next action
-
-1. Expand **§8.1** from this outline into full prose in `manuscript_official/book/ch08_llm_digital_twin.tex`  
-2. Pick one multi-hop gold question for **Box 8.1**  
-3. Keep this `OUTLINE.md` as the living checklist; tick items as you write  
+- Unpublished → `literature/UNPUBLISHED_WATCHLIST.md`，不 `\cite`  
+- `python3 scripts/sync_check.py` 后 `bash scripts/build.sh`  
+- EN/CN 节标题与 `latex/SECTION_MAP.yaml` 对齐  

@@ -1,8 +1,8 @@
-last_tick: '2026-07-20T12:13:01+08:00'
-bib_entries: 120
-en_cites: 43
-cn_cites: 43
-cited_risky: 1
+last_tick: '2026-07-20T22:26:09+08:00'
+bib_entries: 130
+en_cites: 60
+cn_cites: 60
+cited_risky: 0
 coverage_en:
   twin: true
   llm: true
@@ -15,7 +15,7 @@ coverage_en:
 coverage_cn:
   twin: true
   llm: true
-  vlm: true
+  vlm: false
   rag: true
   agent: true
   memory: true
@@ -23,11 +23,11 @@ coverage_cn:
   delivery: true
 flag_counts:
   ahead-of-print: 1
-  in-press: 9
+  in-press: 7
   preprint: 9
-  published-or-clean: 98
+  published-or-clean: 110
   under-review: 1
   unverified: 3
 figures_used: 11
-figures_paperish_used: 5
+figures_paperish_used: 1
 figures_missing_declared: 6

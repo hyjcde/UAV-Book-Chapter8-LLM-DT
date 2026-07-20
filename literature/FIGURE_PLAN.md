@@ -46,7 +46,7 @@ These files look like **single-study result panels**. Do not use them as the cha
 - `DefectGPT_V6_Architecture.svg` / `DefectGPT_V6_Research_Architecture.svg`
 - Heavy product shots: `platform_demo.pdf`, `analysis_interface_nlq.png` (optional “interface pattern” only)
 
-**Action for next prose edit:** remove or move result-plot includes out of the main DSS section; point readers to evaluation *criteria* (F11) instead.
+**Action (done in 2026-07-20 prose rewrite):** main EN/CN chapter text no longer includes ablation/SOTA/hallucination bar charts; DSS emphasises evaluation criteria. Still to draw: F3–F6, F9, F11 as original teaching schematics.
 
 ---
 

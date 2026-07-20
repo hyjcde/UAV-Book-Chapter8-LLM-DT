@@ -27,3 +27,10 @@
 - `huang2026iaprag` — under review
 - `akhavian2025bim2rdt`, `singh2024agenticragsurvey`, Zep/MemGPT arXiv memory papers — preprint until venue-confirmed
 - SSRN “Long-Term Construction Memory…” — preprint
+
+
+## Added to chapter (2026-07-20 evening)
+
+- `pan2026graphdtgpt`, `chen2024bimllmontology`, `li2024kgllmcheck`, `yang2024promptcode`, `liu2025bimcoder`, `buga2025llmfmsql`, `arslan2024ragenergy`, `nuyts2024comparativeacc`, `kruiper2024platformnlp`
+- Also activated existing `iversen2026`, `li2025b`, `li2025c` in practice-map prose.
+- EN/CN cite count ~59; `cited_risky=0`.
