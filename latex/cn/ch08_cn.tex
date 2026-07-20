@@ -2,7 +2,7 @@
 \chapter{巡检分析中的数字孪生与大语言模型}
 \label{ch:llm-dt}
 
-\noindent\textit{摘要：}本章展开无人机巡检流水线的决策层：在规划、重建、检测与 GIS 锚定之后，数字孪生如何支撑自然语言诊断与运维决策？我们先讲清大语言模型（LLM）与视觉—语言模型（VLM）的能力边界，再综述提示、检索增强、工具调用与结构化输出等接地策略，并给出区分「观测记录 / 资产护照 / 查询装配 / 智能体 / 报告交付」的书级框架。叙述综合 BIM 助手、建筑安全与规范 RAG、孪生—机器人智能体等社区工作与课题组贡献；资产中心 RAG 仅作为\textbf{众多路径中的一个工作示例}。
+\noindent\textit{摘要：}本章展开无人机巡检流水线的决策层：在规划、重建、检测与 GIS 锚定之后，大语言模型与视觉—语言模型如何支撑孪生上的诊断与运维决策？叙事遵循专著常见的\textbf{先广后专}：先综述 LLM/VLM 在建筑巡检与设施管理中的广泛用法，再阐明专业巡检相对通用聊天的约束，最后落到孪生接地的「观测记录 / 资产护照 / 拓扑检索 / 智能体 / 报告交付」框架。叙述综合社区工作与课题组贡献；资产中心 RAG 仅作众多路径中的一个工作示例。
 
 \vspace{0.8em}
 
@@ -51,16 +51,56 @@
 因此第8章承诺：结构化知识单元、接地的 LLM/VLM 生成、约束报告与决策指标——而不是把聊天机器人贴到点云上。
 
 \paragraph{过渡.}
-在组织可检索的孪生知识之前，需要先讲清现代语言与视觉—语言模型究竟提供什么——以及在缺乏接地时会如何失效。
+因此我们先从\textbf{广泛}层面梳理大模型已在巡检与设施实践中如何使用，再收束到孪生接地立面诊断的\textbf{专业}要求。
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{面向土木工程应用的大语言模型基础}
 \label{sec:ch8-llm-foundations}
 
-\subsection{从语言模型到大语言模型}
-当代 LLM 建立在 Transformer 架构之上~\cite{vaswani2017attention}：自注意力能够建模长程依赖，这对阅读规范、运维日志与多句巡检问题至关重要。大规模语料上的预训练带来了少样本学习者：只需自然语言指令即可完成新任务，而几乎不需要任务专用微调~\cite{brown2020}。指令微调与偏好优化进一步使模型更愿意遵循用户意图，而不是单纯续写文本~\cite{ouyang2022instructgpt}。思维链提示可引出中间推理步骤，从而改善许多基准上的多跳问答~\cite{wei2022cot}——这对「症状 + 位置 + 规范」交织的巡检对话有用——但\textbf{并不能}单独保证关于某栋立面的事实正确。
+\subsection{广角：大模型已在巡检中帮忙的地方}
+大语言模型（LLM）与视觉—语言模型（VLM）进入建筑巡检，并不是单一产品，而是人、文档、模型与机器之间的一类接口族~\cite{saka2024gptconstruction,ma2026tenquestions}。最宽的层面上，实践者主要用它们完成五类重复性工作：
 
-教材视角下，宜把 LLM 看作强大的条件文本生成器：其知识（1）在参数记忆中冻结于训练截止期；（2）又极易被提示上下文改写。正因这种双重性，当答案必须引用真实 Asset-ID 时，接地策略比模型品牌更重要。面向建筑应用的领域导读同样强调机遇与可靠性边界并存~\cite{ma2026tenquestions,saka2024gptconstruction}。
+\begin{enumerate}[leftmargin=*]
+\item \textbf{文档与规范问答.} 人员询问规范版本、安全手册与运维手册；检索增强生成（RAG）通常优于仅依赖参数记忆~\cite{joffe2025buildingcodes,lee2024ragsafety,krutli2025fmrags}。
+\item \textbf{BIM 与模型导航.} 自然语言助手在设计/建成 BIM 中定位对象、属性与关系~\cite{zheng2023bimassistant,guo2025bimllmquery}。
+\item \textbf{缺陷对话与分诊.} 混合 RAG 支持围绕缺陷记录与管理日志的对话~\cite{jeon2025hybridrag}，起草供人工审阅的优先级候选。
+\item \textbf{报告起草与摘要.} 模型把巡检笔记、照片说明与检查表结果整理为工程师再编辑的初稿。
+\item \textbf{面向孪生与机器人的任务经纪.} 新兴智能体把用户意图译为工具调用：读取孪生、请求机器人补拍，或在批准后暂存更新~\cite{luo2025llmdtrobot,gao2026ifcagent,rawat2025llmmas,lee2025multiagentvbm}。
+\end{enumerate}
+
+\begin{table}[t]
+\centering
+\caption{建筑巡检与设施管理中 LLM/VLM 的广义应用模式（专业化之前的版图）。}
+\label{tab:ch8-llm-modes}
+\begin{tabular}{p{2.6cm}p{3.6cm}p{5.4cm}}
+\toprule
+模式 & 典型输入 & 典型输出 \\
+\midrule
+规范/手册问答 & 法规文本、手册 & 带引用条款、检查清单 \\
+BIM 导航 & IFC/BIM 对象、查询 & 对象关联答案 \\
+缺陷对话 & 日志、影像、历史工单 & 分诊笔记、假设 \\
+报告起草 & 笔记 + 照片说明 & 可编辑报告草稿 \\
+孪生/机器人智能体 & 孪生状态 + 用户意图 & 门控工具调用/任务 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+这些模式对无人机项目已经成立：第5--6章产生观测，第4、7章产生几何与 Asset-ID，设施团队仍需要通向手册、BIM 与工单的语言接口。领域导读同时强调机遇与可靠性边界~\cite{ma2026tenquestions,saka2024gptconstruction}。本节余下部分先说明为何通用聊天不足以支撑专业巡检，再回顾所需的模型基础与接地机制，然后在第\ref{sec:ch8-dt-to-language}--\ref{sec:ch8-dss}节专业化到孪生接地的立面推理。
+
+\subsection{从广泛用法到专业巡检要求}
+巡检与运维决策是有后果的：错误 Asset-ID 浪费吊篮工时；不可审计建议无法通过合规审查；静默平均 RGB/IR 冲突可能掩盖渗水风险。相对开放域闲聊，专业巡检施加四类约束：
+
+\begin{itemize}[leftmargin=*]
+\item \textbf{身份纪律.} 主张必须绑定到与 GIS/FM 系统共享的稳定 Asset-ID（第7章），而不是虚构标签。
+\item \textbf{证据出处.} 每条实质性主张都应能打开由第5--6章产生、并由第4--7章配准的观测（传感器、时间、检测器、影像 URI）。
+\item \textbf{多模态诚实.} 可见光与热成像线索可能冲突；语言系统必须披露冲突，而不是抹平~\cite{zhao2024facade,zhao2025icra}。
+\item \textbf{行动门控.} 写孪生、无人机复访与机器人调度相对聊天是不可逆的；需要人工批准与安全检查~\cite{luo2025llmdtrobot}。
+\end{itemize}
+
+幻觉综述解释了底层风险：证据缺失或检索薄弱时，流畅生成器会虚构实体与引用~\cite{ji2023}。事后口头辩解不等于证据接地~\cite{zhao2024}。因此专业问题不是「哪个聊天品牌？」，而是「模型如何在带版本语料与孪生实体上接地？」
+
+\subsection{最低限度的技术基础（模型是什么）}
+当代 LLM 建立在 Transformer 架构之上~\cite{vaswani2017attention}：自注意力建模规范、日志与多句巡检问题中的长程依赖。大规模预训练带来少样本能力~\cite{brown2020}；指令微调使模型对齐用户意图~\cite{ouyang2022instructgpt}；思维链提示可为多跳问题引出中间步骤~\cite{wei2022cot}。这些\textbf{都不能}单独保证关于某栋立面的事实正确。
 
 \begin{figure}[t]
 \centering
@@ -80,19 +120,13 @@
 \node[below=0.35cm of c, font=\scriptsize, text width=2.4cm, align=center] {会分步说};
 \node[below=0.35cm of h, font=\scriptsize, text width=2.5cm, align=center] {需要在孪生\\证据上接地};
 \end{tikzpicture}
-\caption{巡检对话中 LLM 的能力阶梯。流畅与分步表述先于可审计性；接地是单独的工程层。}
+\caption{巡检对话中 LLM 的能力阶梯。流畅先于可审计性；接地是单独的工程层。}
 \label{fig:ch8-llm-ladder}
 \end{figure}
 
-\subsection{视觉—语言模型作为视觉接口}
-巡检数据并非纯文本。对比式视觉—语言预训练（如 CLIP）把图像与标题对齐到共享嵌入空间~\cite{radford2021clip}；经指令微调的多模态模型（如 LLaVA 及后续 GPT-4 类多模态系统）可同时接受图像与文本提示~\cite{liu2023llava}。在本书中，VLM 是决策层的真实组成部分：它们能描述视觉证据、用语言比较 RGB/IR 线索，并支持报告起草。当审计轨迹需要类型化缺陷标签、置信度与稳定宿主 ID 时，它们\textbf{补充}而非取代第6章检测器。
+宜把 LLM 看作条件文本生成器：其知识（1）冻结于训练截止期的参数记忆；（2）又极易被提示改写。当答案必须引用真实 Asset-ID 时，接地策略比品牌更重要。
 
-本章一以贯之的分工是：
-\begin{itemize}[leftmargin=*]
-\item \textbf{感知栈}（第5--6章，可选 VLM 头）写带模态标签的观测；
-\item \textbf{孪生/GIS 栈}（第4、7章）把观测挂到 Asset-ID 与拓扑；
-\item \textbf{LLM/VLM 栈}（本章）在引用规则下检索、解释并提议行动。
-\end{itemize}
+巡检数据并非纯文本。对比式视觉—语言预训练（如 CLIP）对齐图像与标题~\cite{radford2021clip}；经指令微调的多模态模型可同时接受图像与文本~\cite{liu2023llava}。在本书中，VLM 属于决策层：描述视觉证据、用语言比较 RGB/IR，并支持报告起草。当审计需要类型化标签、置信度与宿主 ID 时，它们\textbf{补充}而非取代第6章检测器。
 
 \begin{figure}[t]
 \centering
@@ -109,21 +143,18 @@
 \node[below=0.25cm of twin, font=\scriptsize] {第4、7章};
 \node[below=0.25cm of llm, font=\scriptsize] {第8章};
 \end{tikzpicture}
-\caption{感知、孪生/GIS 与语言栈的角色分工。VLM 可协助描述，但不得虚构 Asset-ID。}
+\caption{专业巡检中感知、孪生/GIS 与语言栈的角色分工。}
 \label{fig:ch8-vlm-roles}
 \end{figure}
 
-\subsection{失效模式：幻觉、错误编号与不可审计建议}
-幻觉综述表明：流畅的自然语言生成系统在证据缺失或检索薄弱时，很容易虚构实体、数字与引用~\cite{ji2023}。对立面运维而言，高代价失效非常具体：虚构 Asset-ID；缺乏可归因条款的维修建议；流畅却默默丢掉 RGB/IR 矛盾证据的摘要。可解释性综述也强调：事后口头辩解≠证据接地~\cite{zhao2024}。面向建筑的 GPT 类工具综述同样警告：机遇很大，但领域可靠性需要外部知识与流程控制~\cite{saka2024gptconstruction,ma2026tenquestions}。
-
-\subsection{记忆阶梯：参数记忆、上下文、检索与孪生库}
-专业读者应先分清四种记忆体制，再谈产品：
+\subsection{记忆与接地：专业控制栈}
+在专业化到立面孪生之前，先分清四种记忆体制：
 
 \begin{enumerate}[leftmargin=*]
-\item \textbf{参数记忆}——训练时压进权重的事实；每次巡检后难以即时更新~\cite{brown2020}。
-\item \textbf{工作/上下文记忆}——提示窗口与短对话状态；强但受长度与会话限制。
-\item \textbf{非参数检索记忆}——按需加载带版本手册或观测卡片的 RAG/稠密索引~\cite{lewis2020,shuster2021}；设施管理文档语料上已有落地~\cite{krutli2025fmrags}。
-\item \textbf{结构化长期孪生记忆}——BIM/GIS/孪生库中的 Asset-ID、拓扑与时间戳观测，并可连到知识图谱~\cite{pan2024b,zhang2025}。生成式智能体文献说明显式记忆流对多步行为为何重要~\cite{park2023generativeagents}；施工多智能体框架亦把图记忆与向量检索结合~\cite{rawat2025llmmas}。
+\item \textbf{参数记忆}——权重中的事实；每次飞行后难以即时更新~\cite{brown2020}。
+\item \textbf{工作/上下文记忆}——提示窗口与短对话状态。
+\item \textbf{非参数检索记忆}——覆盖带版本手册或观测卡片的 RAG 索引~\cite{lewis2020,shuster2021,krutli2025fmrags}。
+\item \textbf{结构化长期孪生记忆}——BIM/GIS/孪生库中的 Asset-ID、拓扑与时间戳观测~\cite{pan2024b,zhang2025,park2023generativeagents,rawat2025llmmas}。
 \end{enumerate}
 
 \begin{figure}[t]
@@ -144,20 +175,17 @@
 \node[below=0.4cm of c, font=\scriptsize, text width=2.5cm, align=center] {带版本文档/\\观测卡片};
 \node[below=0.4cm of d, font=\scriptsize, text width=2.6cm, align=center] {\textbf{权威长期库}\\对立面运维};
 \end{tikzpicture}
-\caption{四种记忆体制。对立面项目，孪生才是长期权威；LLM 应通过检索与工具读取它。}
+\caption{四种记忆体制。广义文档 RAG 多用第三层；孪生接地巡检还必须掌握第四层。}
 \label{fig:ch8-memory-ladder}
 \end{figure}
 
-对立面项目，孪生才是权威长期库；LLM 应通过检索与工具\textbf{读取}它，而不是假装权重记得上周裂缝的增长。
-
-\subsection{接地策略：提示、检索、工具与结构}
-NLP 与 AEC 部署中常见四类互补策略：
+AEC 部署中常见四类互补接地策略：
 
 \begin{enumerate}[leftmargin=*]
-\item \textbf{提示与 schema.} 约束输出格式（JSON/报告模板）可减少自由发挥；思维链有助于多步问题~\cite{wei2022cot}，但仍须对照证据核验。
-\item \textbf{检索增强生成（RAG）.} 经典 RAG 把生成接到外部记忆，使答案可引用检索段落~\cite{lewis2020,shuster2021}。已发表会议变体包括查询改写（HyDE）、反思有用性（Self-RAG）、自适应检索深度（Adaptive-RAG）~\cite{gao2023hyde,asai2024selfrag,jeong2024adaptive}；图导向检索综述把 LLM 接到结构化语料~\cite{peng2024}。
-\item \textbf{工具与智能体.} 模型可在推理—行动循环中调用 API、数据库或机器人~\cite{yao2023react,schick2023toolformer}；综述梳理单智能体/多智能体栈~\cite{wang2024surveyagents,li2024surveymultiagent}。
-\item \textbf{结构化知识.} 把 LLM 与知识图谱、类型化实体统一，有利于导航与约束检查~\cite{pan2024b}。对建筑而言，这意味着 Asset-ID、IFC/BIM 对象与观测记录——而不是仅有匿名文本块。
+\item \textbf{提示与 schema.} 约束 JSON/报告模板减少自由发挥~\cite{wei2022cot}。
+\item \textbf{RAG.} 把生成接到外部记忆，使答案可引用检索段落~\cite{lewis2020,shuster2021,gao2023hyde,asai2024selfrag,jeong2024adaptive,peng2024}。
+\item \textbf{工具与智能体.} 推理—行动循环调用 API、数据库或机器人~\cite{yao2023react,schick2023toolformer,wang2024surveyagents,li2024surveymultiagent}。
+\item \textbf{结构化知识.} 类型化实体与图谱改善约束检查~\cite{pan2024b}——对建筑而言即 Asset-ID、IFC 对象与观测记录。
 \end{enumerate}
 
 \begin{figure}[t]
@@ -175,37 +203,30 @@ NLP 与 AEC 部署中常见四类互补策略：
 \draw[arr] (s3) -- (s4);
 \node[below=0.55cm of $(s1)!0.5!(s4)$, font=\small] {可审计性增强 $\longrightarrow$};
 \end{tikzpicture}
-\caption{本章一以贯之的接地栈。每一层消解不同失效模式；Asset-ID 结构是 FM 行动前的最后闸门。}
+\caption{从广义 AEC 实践到专业化孪生纪律的接地栈。}
 \label{fig:ch8-grounding-stack}
 \end{figure}
 
-\subsection{AEC 已如何使用 LLM 与 RAG}
-快速增长的 AEC 文献显示这些策略何处有效——以及巡检场景仍有何不同：
+\subsection{专业化：面向数字孪生的无人机立面巡检}
+上述广义模式必要但不足够，尚不能回答第\ref{sec:ch8-dt}节的问题。规范 RAG 回答「版本怎么写？」；BIM 助手回答「对象在哪？」；立面运维还要问「哪些可维护资产处于传播路径，且每条主张都能打开孪生证据？」这一专业化带来三项设计后果：
 
-\paragraph{BIM 导航与虚拟助手.}
-基于提示的助手可检索 BIM 信息并返回对象关联答案~\cite{zheng2023bimassistant}；查询—DSL 对齐系统把自然语言接到可执行的 BIM 检索库~\cite{guo2025bimllmquery}。它们擅长\textbf{导航}设计/建成模型，本身并不诊断立面资产间的缺陷传播。
+\begin{enumerate}[leftmargin=*]
+\item \textbf{在资产及其邻域上检索}，而不仅在文档块上——设施问题以资产为中心，渗水/裂缝路径需要来自 BIM/GIS 邻接的拓扑~\cite{peng2024,jeon2025hybridrag}。
+\item \textbf{对孪生 ID 执行 cite-or-abstain.} 答案中每一个 Asset-ID / 观测 ID 都必须出现在检索集合中；否则拒答或升级~\cite{ji2023,shuster2021}。
+\item \textbf{专家语料与孪生观测分库.} 带版本手册仍然重要~\cite{krutli2025fmrags,joffe2025buildingcodes}，但与观测卡片混库会诱使模型用通用手册条款「补」上缺失的 Asset-ID。
+\end{enumerate}
 
-\paragraph{规范、安全与合规语料.}
-相对纯参数化 GPT，RAG 能改善建筑规范与安全手册问答~\cite{joffe2025buildingcodes,lee2024ragsafety}；混合检索也被用于敏感的缺陷管理对话~\cite{jeon2025hybridrag}；设施文档 RAG 则展示对运维手册与图纸的安全检索~\cite{krutli2025fmrags}。图导向检索综述与施工计划应用表明，结构化语料有助于打破信息孤岛~\cite{peng2024}。对第8章的启示：带版本的专家语料很有价值，但必须与网页抓取以及孪生观测库分离。
-
-\paragraph{能耗、运维与面向机器人的智能体.}
-能耗建模的 agent schema~\cite{zhang2025llmagentschema}，用户—孪生—机器人之间的 LLM 经纪~\cite{luo2025llmdtrobot}，原生 IFC 上的模式引导多智能体工具组合~\cite{gao2026ifcagent}，带混合记忆的施工 LLM 多智能体框架~\cite{rawat2025llmmas}，以及 BIM 内孪生的多智能体虚拟建模~\cite{lee2025multiagentvbm}，共同标出从「能答」到「能行动」的轨迹。认知孪生讨论同样强调可互操作知识上的检索~\cite{shi2025cognitivedt}。
-
-\paragraph{语言所继承的感知语境.}
-高分辨率立面数据与检测器~\cite{zhao2024facade,zhao2025icra}以及由实例分割走向物理量化~\cite{zhao2026physical}之所以重要，是因为语言系统会继承感知栈的粒度与偏差。
-
-\subsection{本章教学要点}
-对立面巡检对话，三项设计选择往往比品牌选择更关键：（1）在\textbf{可维护资产}及其邻域上检索，而不仅在文档块上检索；（2）强制引用出现在检索集合中的 Asset-ID / 观测 ID；（3）把不可逆动作（写孪生、调度无人机/机器人）放在批准门之后。下文把这些选择落成教学框架。
+认知孪生与智能体项目同样呈现从「能答」到「在可互操作知识上行动」的轨迹~\cite{shi2025cognitivedt,luo2025llmdtrobot,gao2026ifcagent,zhang2025llmagentschema}。感知语境仍然重要：语言系统会继承立面检测器与量化模型的粒度与偏差~\cite{zhao2024facade,zhao2025icra,zhao2026physical}。因此后续各节先把孪生产物封装为观测记录与资产护照，再装配多模态拓扑感知上下文，然后才讨论智能体、报告与决策指标。
 
 \paragraph{过渡.}
-接下来说明第4--7章的孪生产物应如何封装，才能让接地策略有可靠对象可检索。
+在从广泛巡检用法收束到专业化孪生要求之后，接下来说明第4--7章产物应如何封装，才能让接地策略有可靠对象可检索。
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{从数字孪生到语言推理}
 \label{sec:ch8-dt-to-language}
 
-\subsection{教学框架（书级）}
-我们不照搬任一论文的模块清单，而要求学生分清三层：
+\subsection{专业化教学框架（在广角版图之后）}
+第\ref{sec:ch8-llm-foundations}节已综述 LLM 在巡检中的广泛用法。此处开始专业化：我们不照搬任一论文的模块清单，而要求为孪生接地的立面推理分清三层：
 
 \begin{enumerate}[leftmargin=*]
 \item \textbf{观测记录}——带传感出处的一次缺陷目击；
