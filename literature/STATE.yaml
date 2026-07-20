@@ -1,0 +1,30 @@
+last_tick: '2026-07-20T11:39:45+08:00'
+bib_entries: 120
+en_cites: 43
+cn_cites: 43
+cited_risky: 1
+coverage_en:
+  twin: true
+  llm: true
+  vlm: true
+  rag: true
+  agent: true
+  memory: true
+  frontier: true
+  delivery: true
+coverage_cn:
+  twin: true
+  llm: true
+  vlm: true
+  rag: true
+  agent: true
+  memory: true
+  frontier: true
+  delivery: true
+flag_counts:
+  ahead-of-print: 1
+  in-press: 9
+  preprint: 9
+  published-or-clean: 98
+  under-review: 1
+  unverified: 3
