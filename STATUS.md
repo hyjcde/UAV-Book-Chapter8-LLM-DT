@@ -11,4 +11,5 @@
 | 8.3 | draft+ | obs/passport/assembly; bold fragments merged |
 | 8.4–8.6 | draft+ | further merge of leftover bold chips if needed |
 
-**Toward ~50pp:** thicken 8.4–8.5 continuous examples; optional L1–L3 schematic.
+**Build:** EN **41** / CN **32** (2026-07-20).  
+**Toward ~50pp:** thicken 8.4–8.5 as continuous examples (not more bold chips); optional L1–L3 schematic.
