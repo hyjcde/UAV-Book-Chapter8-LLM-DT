@@ -122,6 +122,29 @@ L3 记忆与流程 & 孪生/RAG 记忆、有界智能体 & 权威现场记忆；
 
 这三层意在组合，而非互斥。再看：「西立面中层空鼓是否与上层渍迹相关，本季度要不要安排吊篮？」L1 解析混合问句并强制模板；L2 工具取种子护照并扩展 BIM 邻域，RAG 装入卡片与钉扎手册条款，结构化生成输出 ID 属于证据集的草稿；L3 保证读的是长期孪生而非昨日聊天，且工单或复访提议须经人工门。跳过 L2，答案沦为参数讲故事；跳过结构校验与门禁，流畅文本会漏进 CMMS。这一组合正是提案中「生成式 AI 决策支持」在立面运维上的可操作读法~\cite{lewis2020,yao2023react,ji2023}。
 
+把三层真正黏成可上线系统的，不是又一个模型品牌，而是\emph{模型 harness}（运行时驾驭层）。在软件测试里，harness 指在受控条件下驱动被测组件的脚手架；在当代 LLM 工程里，同一词越来越多地指包裹可替换语言模型的、由代码拥有的控制层：它组装提示、选择检索单元、暴露类型化工具、按契约校验输出、记录轨迹，并决定何时拒答或升级。智能体综述已把规划、记忆与工具视为自主性的要素~\cite{wang2024surveyagents,li2024surveymultiagent}；推理—行动循环与工具学习则说明模型可以请求动作，却不必拥有世界状态~\cite{yao2023react,schick2023toolformer}。HELM 一类整体评价框架进一步提醒读者：场景、指标与标准化运行条件本身就是比较用的 harness，而不是单一准确率数字~\cite{liang2023helm}。对立面巡检，我们把这一思想专门化：Asset-ID 契约、版本钉扎、模态标签与写入门禁应住在 harness 里，这样更换底层 LLM 不会静默改写运维政策。
+
+教学上，巡检 harness 可拆成五个协同部分（表~\ref{tab:ch8-harness}）。\emph{接入与路由}负责意图分类，并在生成前把自然语言位置解析到 GeoBIM 别名。\emph{证据装配}加载护照、邻域、观测卡片与钉扎手册——即第 L2 层的 RAG 与打包职责~\cite{lewis2020,peng2024,krutli2025fmrags}。\emph{工具面}提供小而类型化的 API（\texttt{get\_passport}、\texttt{expand\_neighbours}、\texttt{list\_observations}、\texttt{draft\_report}、\texttt{propose\_revisit}），拒绝自由 SQL 或飞控指令；面向 IFC、能耗与运维机器人的 AEC 工具智能体同样把推理与世界动作分开并置于批准之下~\cite{gao2026ifcagent,zhang2025llmagentschema,luo2025llmdtrobot,guo2025bimllmquery}。\emph{契约校验器}在起草后检查可机检义务：点名的 Asset-ID 必须出现在检索包中；数值缺陷主张必须指向观测字段；模态冲突必须披露；写入或调度必须经人工门~\cite{ji2023,pan2024b,buga2025llmfmsql}。\emph{轨迹与评价}保存跑过哪些工具、钉扎了哪一版手册、哪条校验通过或失败，使答案可重放、可评分——这是对多指标、多场景评价的巡检读法，而不是只看聊天流畅度~\cite{liang2023helm,shuster2021}。自适应检索重试应作为 harness 内的受控循环，而不是临时即兴改提示~\cite{asai2024selfrag,jeong2024adaptive}。
+
+\begin{table}[t]
+\centering
+\caption{巡检模型 harness：包裹可替换 LLM 的代码侧部件。}
+\label{tab:ch8-harness}
+\begin{tabular}{llp{4.8cm}}
+\toprule
+部件 & 负责什么 & 巡检例子 \\
+\midrule
+接入/路由 & 意图、Asset-ID 解析 & ``西侧跨''$\rightarrow$ GeoBIM 种子 \\
+证据装配 & RAG + 打包 & 护照、邻域、手册 \\
+工具面 & 类型化 API + 门禁 & 扩展邻域；禁飞控指令 \\
+契约校验 & 引用或拒答检查 & ID $\subseteq$ 检索包；模态标记 \\
+轨迹/评价 & 可重放日志 + 指标 & 工具 TRACE；类 HELM 场景 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+由此得到两条采购与教学推论。其一，纯提示原型还不是 harness：``务必引用 Asset-ID''这类指令可被流畅模型忽略，而``ID 子集检查失败则禁止交付''的校验器才是承重结构。其二，模型替换应是 harness 测试，而不是项目重写——若校验器、工具 schema 与孪生接口固定，更换托管 LLM 应只改变措辞，而不改变哪些来源合格、写入门是否存在~\cite{liang2023helm,saka2024gptconstruction}。业界关于 harness engineering 的讨论强调把行为从提示迁到版本化契约、清单与轨迹；本章保留这一直觉，但只引用已发表的接地、工具、智能体与评价结果，并把每条契约映射到立面运维产物，而非通用聊天演示。简言之：L1--L3 命名能力；harness 是在每次查询上强制执行这些能力的软件。
+
 幻觉综述解释了缺乏纪律时会发生什么：流畅系统会虚构实体、数字与引用~\cite{ji2023}。在巡检中，高代价失效非常具体——虚构 Asset-ID、缺乏可归因证据的维修建议、抹掉 RGB 与红外观测分歧的摘要。因此接地远不止``写得好的提示''。约束 schema、检索及其自适应变体、工具型推理—行动循环、类型化结构化知识在 NLP 与 AEC 中反复出现~\cite{lewis2020,gao2023hyde,asai2024selfrag,jeong2024adaptive,peng2024,yao2023react,schick2023toolformer,pan2024b}。面向图与层次的检索提醒读者：文档相似不等于建筑邻接~\cite{peng2024,sarthi2024raptor,sun2024tog}。语义嵌入会把``潮湿、渍迹、渗水''聚在一起；建筑空间则按接缝、楼层与排水路径聚集板块。混合检索可以在\emph{已被拓扑约束的候选集}内用嵌入排序症状摘要，却不得用嵌入为传播问题\emph{发明}候选集~\cite{peng2024,jeon2025hybridrag,khattab2020}。当系统规则、检索手册、孪生事实与用户请求冲突时，优先级应明确：安全与写入门禁优先；孪生事实与观测字段其次；钉扎手册版本再次；用户文风偏好最后~\cite{saka2024gptconstruction}。
 
 土木与建筑应用已经在使用这些模式，而每一类接到巡检时都有独特要求。BIM 虚拟助手、查询—DSL 与自然语言 BIM 栈帮助用户导航模型~\cite{zheng2023bimassistant,guo2025bimllmquery,liu2025bimcoder}，但导航尚不等于跨立面资产的拓扑感知缺陷诊断。建筑语义查询系统把 RAG 与结构化库结合起来访问建筑数据~\cite{li2025c,li2025b}。面向规范与安全手册的 RAG 相对纯参数回忆更忠实~\cite{joffe2025buildingcodes,lee2024ragsafety,yang2024promptcode}；混合检索被用于缺陷管理对话~\cite{jeon2025hybridrag}；LLM—本体与知识图谱检查器把自动合规推进到纯聊天之外~\cite{chen2024bimllmontology,iversen2026,li2024kgllmcheck,nuyts2024comparativeacc,kruiper2024platformnlp}。能耗分析智能体、IFC 工具智能体与图孪生多智能体展示领域工具如何版本化，以及 LLM 如何在人工批准下经纪用户、孪生与机器人~\cite{zhang2025llmagentschema,luo2025llmdtrobot,gao2026ifcagent,pan2026graphdtgpt}；结构化 FM 查询进一步表明暴露 schema 优于自由 SQL~\cite{buga2025llmfmsql,arslan2024ragenergy}。知识增强工业诊断与认知孪生设想同样强调：语言系统应查询机器可读领域结构，而非发明它~\cite{zhou2024causalkgpt,shi2025cognitivedt}。高分辨率立面数据与物理量化管线之所以重要，是因为语言会继承感知的粒度~\cite{zhao2024facade,zhao2025icra,zhao2026physical}：若感知只写粗标签，LLM 就不能诚实输出毫米级断言。
@@ -165,7 +188,7 @@ FM 结构化查询 & \cite{buga2025llmfmsql} & schema 先于自由 SQL \\
 
 记忆失效把阶梯讲具体。若经理澄清``西侧''指装卸台立面而次日对话忘记，修复是持久化别名或强制 GeoBIM 种子选择——而不是指望模型``记得''。若 RAG 返回过期维护 PDF，修复是版本钉扎与语料冒烟测试~\cite{krutli2025fmrags,joffe2025buildingcodes}。若模型凭通用网络知识发明缝长，修复是禁止数值缺陷主张，除非观测字段提供~\cite{ji2023,zhao2026physical}。若孪生有正确 Asset-ID 但编排器根本没取，那是基础设施故障，不是文笔问题~\cite{lewis2020,peng2024}。LLM 起草后谁可写入孪生、对话澄清保留多久、两份 PDF 冲突时哪一版手册权威——这些都是基础问题，不是事后 IT 政策。对立面运维，建议简单规则：孪生库写入有门；对话窗口易失；RAG 索引带版本；参数记忆永不当作现场数据库~\cite{park2023generativeagents,rawat2025llmmas}。
 
-选择巡检用的 LLM 技术栈，同样更是接口问题而非品牌问题。团队应评估原生工具调用可靠性、护照集合上的长上下文行为、约束解码下的拒答意愿、建筑数据的本地/云约束，以及每个接地答案的成本而非闲聊 token 成本~\cite{saka2024gptconstruction,wang2024surveyagents}。带严格引用或拒答与扎实检索的较小模型，常常胜过会即兴编造 Asset-ID 的较大模型。即便在完整实验计分之前，手检十个答案已能区分接地作业与聊天演示：列出的 Asset-ID $\subseteq$ 检索集；假说已标记；模态标签保留；缺邻域时拒答~\cite{ji2023,shuster2021,lewis2020}。教学结论因此是三项设计选择，而不是一个模型名：在可维护资产及其邻域上检索；强制引用检索集合中出现的 ID；把不可逆动作放在批准门之后。第\ref{sec:ch8-dt-to-language}--\ref{sec:ch8-multimodal}节接着说明孪生记录与多模态证据如何让 L2 与 L3 落地。
+选择巡检用的 LLM 技术栈，同样更是 harness 问题而非品牌问题。团队应评估上文五个 harness 部件——尤其是校验器与工具门禁是否由代码拥有——以及原生工具调用可靠性、护照集合上的长上下文行为、约束解码下的拒答意愿、建筑数据的本地/云约束，以及每个接地答案的成本而非闲聊 token 成本~\cite{saka2024gptconstruction,wang2024surveyagents,liang2023helm}。放在严格引用或拒答 harness 里的较小模型，常常胜过在无校验闲聊环里即兴编造 Asset-ID 的较大模型。即便在完整实验计分之前，手检十个答案已能区分接地作业与聊天演示：列出的 Asset-ID $\subseteq$ 检索集；假说已标记；模态标签保留；缺邻域时拒答~\cite{ji2023,shuster2021,lewis2020}。教学结论因此是三项设计选择，而不是一个模型名：在可维护资产及其邻域上检索；强制引用检索集合中出现的 ID；把不可逆动作放在批准门之后。第\ref{sec:ch8-dt-to-language}--\ref{sec:ch8-multimodal}节接着说明孪生记录与多模态证据如何让 L2 与 L3 落地。
 
 
 \section{从数字孪生到语言推理}
@@ -282,7 +305,7 @@ function answer(q):
 \textbf{带记忆的智能体，专门化到巡检。}
 当巡检工作需要流程而不只是段落时，智能体才进入舞台：开工单、为第2--3章提议复访多边形、请求机器人补拍，或在批准后暂存孪生更新~\cite{yao2023react,schick2023toolformer,wang2024surveyagents,park2023generativeagents}。记忆是智能体的一部分，而不是事后补丁。短时对话状态跟踪当前问题；检索记忆刷新手册与观测卡片；孪生记忆提供 Asset-ID 与拓扑；过程记忆记录已调用的工具与批准~\cite{rawat2025llmmas,gao2026ifcagent,luo2025llmdtrobot}。LLM 智能体与多智能体综述同样强调规划、记忆与工具，并警告无约束自治并不安全~\cite{wang2024surveyagents,li2024surveymultiagent}。已发表的 AEC 智能体系统——IFC 工具智能体、运维机器人经纪、施工多智能体协调与 schema 引导的能耗智能体——标出从``能答''到``能行动''的轨迹~\cite{gao2026ifcagent,luo2025llmdtrobot,rawat2025llmmas,zhang2025llmagentschema}。因此工具增强推理应作为巡检语言系统的预期组件来教，而不是可选插件~\cite{yao2023react,schick2023toolformer}。
 
-对立面巡检，我们推荐\emph{有界智能体}。欢迎多步检索与工具调用；最终主张仍须引用锁定到检索证据集；调度与写孪生必须经过 geofence 与人工门。小型类型化工具面——取护照、扩邻域、列观测、起草报告、提议复访——优于自由 SQL 或不受限代码执行。这一立场把通用智能体文献专门化到巡检：孪生已经编码智能体不得轻易改写的世界状态；第2--3章已经拥有飞行规划；语言智能体是提议者，而不是飞机指挥官。
+对立面巡检，我们推荐把\emph{有界智能体}实现在第\ref{sec:ch8-llm-foundations}节的模型 harness 之内。欢迎多步检索与工具调用；最终主张仍须引用锁定到检索证据集；调度与写孪生必须经过 geofence 与人工门。小型类型化工具面——取护照、扩邻域、列观测、起草报告、提议复访——优于自由 SQL 或不受限代码执行。这一立场把通用智能体文献专门化到巡检：孪生已经编码智能体不得轻易改写的世界状态；第2--3章已经拥有飞行规划；语言智能体是提议者，而不是飞机指挥官。真正让这些边界在每次运行上可强制执行的，是 harness，而不是聊天记录~\cite{yao2023react,wang2024surveyagents,liang2023helm}。
 
 \begin{table}[t]
 \centering

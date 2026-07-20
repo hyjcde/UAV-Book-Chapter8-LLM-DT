@@ -1,4 +1,4 @@
-\begin{thebibliography}{60}
+\begin{thebibliography}{61}
 \providecommand{\natexlab}[1]{#1}
 \providecommand{\url}[1]{\texttt{#1}}
 \expandafter\ifx\csname urlstyle\endcsname\relax
@@ -220,6 +220,28 @@ Xinyi Li, S.~Wang, Siqi Zeng, Yu~Wu, and Yi~Yang.
   infrastructure, and challenges.
 \newblock \emph{Vicinagearth}, 1\penalty0 (1), 2024{\natexlab{b}}.
 \newblock \doi{10.1007/s44336-024-00009-2}.
+
+\bibitem[Liang et~al.(2023)Liang, Bommasani, Lee, Tsipras, Soylu, Yasunaga,
+  Zhang, Narayanan, Wu, Kumar, Newman, Yuan, Yan, Zhang, Cosgrove, Manning,
+  R{\'e}, Acosta-Navas, Hudson, Zelikman, Durmus, Ladhak, Rong, Ren, Yao, Wang,
+  Santhanam, Orr, Zheng, Yuksekgonul, Suzgun, Kim, Guha, Chatterji, Khattab,
+  Henderson, Huang, Chi, Xie, Santurkar, Ganguli, Hashimoto, Icard, Zhang,
+  Chaudhary, Wang, Li, Mai, Zhang, and Koreeda]{liang2023helm}
+Percy Liang, Rishi Bommasani, Tony Lee, Dimitris Tsipras, Dilara Soylu,
+  Michihiro Yasunaga, Yian Zhang, Deepak Narayanan, Yuhuai Wu, Ananya Kumar,
+  Benjamin Newman, Binhang Yuan, Bobby Yan, Ce~Zhang, Christian Cosgrove,
+  Christopher~D. Manning, Christopher R{\'e}, Diana Acosta-Navas, Drew~A.
+  Hudson, Eric Zelikman, Esin Durmus, Faisal Ladhak, Frieda Rong, Hongyu Ren,
+  Huaxiu Yao, Jue Wang, Keshav Santhanam, Laurel Orr, Lucia Zheng, Mert
+  Yuksekgonul, Mirac Suzgun, Nathan Kim, Neel Guha, Niladri~S. Chatterji, Omar
+  Khattab, Peter Henderson, Qian Huang, Ryan~Andrew Chi, Sang~Michael Xie,
+  Shibani Santurkar, Surya Ganguli, Tatsunori Hashimoto, Thomas Icard, Tianyi
+  Zhang, Vishrav Chaudhary, William Wang, Xuechen Li, Yifan Mai, Yuhui Zhang,
+  and Yuta Koreeda.
+\newblock Holistic evaluation of language models.
+\newblock \emph{Transactions on Machine Learning Research}, 2023.
+\newblock URL \url{https://openreview.net/forum?id=iO4LZibEqW}.
+\newblock Featured Certification.
 
 \bibitem[Liu and Chen(2025)]{liu2025bimcoder}
 Bingru Liu and Hainan Chen.

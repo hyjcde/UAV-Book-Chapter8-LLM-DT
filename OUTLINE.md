@@ -49,11 +49,12 @@ Ch.6 modality-tagged observations → GeoBIM hosts
 ### 8.1 Twin contract
 语言可用孪生：Asset-ID、出处、邻域、时间、模态；成熟度三级。
 
-### 8.2 LLM foundations（即用三层）
+### 8.2 LLM foundations（即用三层 + harness）
 - L1 语言接口：提示、模板、分步解释（现成模型）  
 - L2 证据接地：RAG、schema、工具  
 - L3 记忆与有界流程：记忆阶梯、有门智能体  
-- 不写训练/微调议程；连贯段落  
+- **Model harness**：接入/路由、证据装配、工具面、契约校验、轨迹评价（HELM 等）  
+- 不写训练/微调议程；连贯段落；未发表 harness 论文进 watchlist  
 
 ### 8.3 Twin → language
 观测 / 护照 / 查询装配（教学别名 IDP/IAP/VDPP）。

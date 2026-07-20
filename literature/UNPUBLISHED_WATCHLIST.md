@@ -19,6 +19,9 @@ _Last tick: 2026-07-20T22:26:09+08:00_
 | `huang2026iaprag` | under-review | Asset-centric and propagation-aware retrieval-augmented generation for building defect diagnosis and asset maintenance d |
 | `achiam2023gpt4` | preprint | GPT-4 |
 | `gao2023ragsurvey` | preprint | Retrieval-augmented generation for large language models: A survey |
+| `ahn2026harness` | preprint | From Prompts to Contracts: Harness Engineering for Auditable Enterprise LLM Agents (arXiv:2607.08028) |
+| `lou2026autoharness` | preprint | AutoHarness: synthesizing a code harness for LLM agents |
+| `wang2026harnesshandbook` | preprint | Harness Handbook: evolving agent harnesses |
 
 ## In-press (use with caution; prefer final pagination when available)
 

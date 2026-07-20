@@ -7,9 +7,9 @@
 | Section | Status | Notes |
 |---------|--------|-------|
 | 8.1 | draft+ | twin contract; checklist+procurement merged |
-| 8.2 | **rewritten** | **L1/L2/L3** continuous narrative (+ tables) |
+| 8.2 | **rewritten** | L1/L2/L3 + **model harness** (5 parts, HELM cite) |
 | 8.3 | draft+ | obs/passport/assembly; bold fragments merged |
 | 8.4–8.6 | draft+ | further merge of leftover bold chips if needed |
 
-**Build:** EN **41** / CN **32** (2026-07-20).  
-**Toward ~50pp:** thicken 8.4–8.5 as continuous examples (not more bold chips); optional L1–L3 schematic.
+**Build:** EN **42** / CN **34** (2026-07-21; +harness).  
+**Toward ~50pp:** thicken 8.4–8.5 continuous examples; optional harness schematic.
