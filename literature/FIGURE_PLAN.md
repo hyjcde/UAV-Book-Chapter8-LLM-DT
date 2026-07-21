@@ -46,7 +46,9 @@ These files look like **single-study result panels**. Do not use them as the cha
 - `DefectGPT_V6_Architecture.svg` / `DefectGPT_V6_Research_Architecture.svg`
 - Heavy product shots: `platform_demo.pdf`, `analysis_interface_nlq.png` (optional “interface pattern” only)
 
-**Action (done in 2026-07-20 prose rewrite):** main EN/CN chapter text no longer includes ablation/SOTA/hallucination bar charts; DSS emphasises evaluation criteria. Still to draw: F3–F6, F9, F11 as original teaching schematics.
+**Action (done in 2026-07-20 prose rewrite):** main EN/CN chapter text no longer includes ablation/SOTA/hallucination bar charts; DSS emphasises evaluation criteria. Still to draw: F3–F4, F11 as original teaching schematics (F5/F6/F9 TikZ done).
+
+**Caption/read-figure sync (2026-07-21):** EN+CN captions and short “read Figure…” prose now match the actual graphics for the eleven shared PDF/PNG figures (`framework_overview_overall` through `multi_platform_field_interfaces`), including quantitative panels (`field_asset_id_stages`, `field_deployment_audit`) described as measurement panels rather than process cartoons.
 
 ---
 
