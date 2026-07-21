@@ -27,6 +27,6 @@
 **Book shell (2026-07-21):** local EN/CN `book_ch08.tex` drop `\part{}` pages; proposal TOC is chapter-only (8.1–8.6). `part0*.tex` kept unused for a future full-book merge.  
 **§8.3/8.5 enrich (2026-07-21):** `tab:ch8-assembly-fail`; report walkthrough + `tab:ch8-report-accept` + lifecycle states/roles + `tab:ch8-cmms-map` + seasonal hygiene (EN+CN).  
 **CMMS framing (2026-07-21):** `tab:ch8-cmms-map` demoted to optional export example (one sink among CMMS/BIM tracker/spreadsheet); core = schema draft + openable evidence.  
-**§8.6 paper stats:** `score_by_type` + `hallucination_rate` restored from paper originals (dense labels; no book re-typeset).  
 **Proposal align (2026-07-21):** shell Ch.5–7 order + subtitle; four-phase/USP abstracts; VLM in §8.4; historical-record + predictive framing EN/CN.  
-**Front matter (2026-07-21):** title-first page (no author/date); proposal title+subtitle; dedication-style epigraph; preface without place/date signature; continuous §8.5 prose (fewer topic-label openers).
+**Front matter (2026-07-21):** title-first page (no author/date); proposal title+subtitle; dedication-style epigraph; preface without place/date signature; continuous §8.5 prose (fewer topic-label openers).  
+**Reader-first float cut (2026-07-22):** EN/CN thinned to ~10 figs + ~12 tabs + 1 algorithm; removed paper-audit / lit-map stack; ablation kept as grounding-outcome teaching panel only.

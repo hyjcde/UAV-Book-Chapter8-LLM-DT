@@ -34,13 +34,15 @@ Paper-derived plots may appear as **rubric evidence** in §8.6 when framed again
 
 ---
 
-## Statistical panels (restored in §8.6)
+## In-chapter floats (reader-first, not paper dump)
 
-- `deterministic_ksweep_coverage`, `deterministic_ablation_exact_hit`, `deterministic_external_exact_hit`
-- `score_by_type`, `hallucination_rate`
-- `field_asset_id_stages`; controlled ablation (`deterministic_ablation_exact_hit`) placed with report hygiene (not the crowded field-audit triptych)
+**Keep (~10 figures / ~12 tables / 1 algorithm):** framework, dt pipeline, memory ladder, harness, obs→passport, RAG topology, agent gate, ablation (grounding *outcome* illustration), NLQ UI, transfer concept; twin contract / outcomes / L1–L3 / memory / harness / intents / assembly-fail / tools / schema / report-accept / eval / triage.
 
-Colours: **BookInk** module hexes in `figures_src/statistical/scripts/figure_style.py` (`MODULES_BOOKINK`). Change series colours there; do not RGB-cast PDFs.
+**Cut from body (paper-audit stack):** field_deployment_audit, field_asset_id_stages, ksweep, external, score_by_type, hallucination_rate, transfer-impl, multiplatform, platform_architecture; lit-map tables (aec/practice/book-pipeline), mem-app, interfaces, pilot-week, symptom-lang, cmms-map.
+
+Framing rule: structure diagrams teach *concepts*; at most one quantitative panel shows *what success looks like* for the reader. Do not restage a paper results section inside the chapter.
+
+Colours: **BookInk** module hexes in `figures_src/statistical/scripts/figure_style.py` (`MODULES_BOOKINK`).
 
 Still demoted as spine: `DefectGPT_V6_*.svg`, heavy `platform_demo.pdf`.
 

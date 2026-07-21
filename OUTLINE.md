@@ -68,7 +68,7 @@ Ch.5–6 modality-tagged observations → Ch.7 GeoBIM hosts
 Schema、cite-or-abstain；CMMS 等仅为可选导出。
 
 ### 8.6 DSS
-报告 / 历史查询 / 预测性维护建议（分诊 + 预后边界）；论文统计原图。
+报告 / 历史查询 / 预测性维护建议（分诊 + 预后边界）；少量结果示意（接地 outcome），不堆论文评测墙。
 
 ---
 
