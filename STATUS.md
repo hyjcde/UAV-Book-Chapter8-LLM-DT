@@ -20,4 +20,5 @@
 **Citation audit:** `literature/CITATION_AUDIT_2026-07-21.md` (Crossref + claim–cite fitness; `zhao2025icra` DOI fixed).  
 **Figures:** sources + BookSlate regen under `figures_src/` (`bash figures_src/regenerate_all.sh`).  
 **Caption sync:** EN+CN figure captions + short read-figure prose aligned to graphics (2026-07-21); see `literature/FIGURE_PLAN.md`.  
-**Prose sync (2026-07-21):** EN foundations gains CN interface-behaviour paragraph; field-audit panel walkthrough + NLQ worked reading mirrored; DSS duplicate lifecycle block removed from EN.
+**Prose sync (2026-07-21):** EN foundations gains CN interface-behaviour paragraph; field-audit panel walkthrough + NLQ worked reading mirrored.  
+**DSS rewrite (2026-07-21):** §8.6 compacted from laundry-list teaching notes (~67 paras) into one continuous argument spine (criteria → transfer/prognosis → literature → one walkthrough → deployment → triage → Ch.9); §8.5 ending tightened to match; EN/CN mirrored.
