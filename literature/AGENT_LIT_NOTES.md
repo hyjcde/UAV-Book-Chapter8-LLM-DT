@@ -49,3 +49,25 @@ Book Ch.8 adds:    agent loop (plan→tool→observe→update DT) + multi-agent 
 2. Agent core: ReAct; Toolformer; agent surveys  
 3. AEC agents: Luo2025; Gao2026 IFC-Agent; Zhang2025; BIM2RDT; Guo2025  
 4. Our stack: IDP/IAP/VDPP experimental numbers (locked)
+
+## F. Local draft to consult — Memory 综述（未发表，勿直接当书章引用）
+
+**Path (actual):**  
+`~/Desktop/02_学术研究/论文/[撰写中]_Memory综述/`  
+（不是 `期刊投稿/撰写中/...`；同级在 `论文/[撰写中]_*` 下）
+
+**File:** `大模型Agent自演化综述.md`  
+主线：推理态 → 经验记忆生成 → 更新 → 演进；记忆类型学（工作 / 情景 / 语义 / 程序 / 元记忆）；强调 **externalization + harness**（能力增长多在运行时结构，而非静默改权重）。
+
+### Mapping → Chapter 8 memory ladder (teaching, not 1:1 copy)
+
+| Survey typology | Ch.8 ladder box | Inspection reading |
+|-----------------|-----------------|--------------------|
+| Working memory | Contextual | prompt + session aliases |
+| Episodic / semantic digests | Retrieval (RAG) | editioned manuals + observation cards |
+| Procedural memory | (harness tools / gates) | typed tools, revisit workflows — *not* free twin writes |
+| Parametric / weight memory | Parametric | language only; never site DB |
+| Authoritative long-term store | Twin store (Asset-ID) | geometry + topology + time — beyond flat vector “memory stream” |
+
+**Use for prose:** keep Ch.8 ladder four boxes; when mentioning agents, stress that rejected drafts / tool traces are *procedural* memory under gates, and that unchecked memory streams (Generative Agents–style) must not overwrite Asset-ID facts.  
+**Do not** cite the unpublished survey itself in `ch08.tex`; pull only peer-published items already in `references.bib` (or add published DOIs first).
