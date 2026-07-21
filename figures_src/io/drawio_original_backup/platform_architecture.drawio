@@ -1,0 +1,160 @@
+<mxfile host="app.diagrams.net" modified="2026-07-21T05:40:00.000Z" agent="Chapter8" version="22.1.0" type="device">
+  <diagram id="platform_architecture" name="Software layering">
+    <mxGraphModel dx="1400" dy="900" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1180" pageHeight="760" math="0" shadow="0" background="#FFFFFF">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+
+        <!-- ========== Presentation Layer ========== -->
+        <mxCell id="pres_band" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#E8EEF4;strokeColor=#2F4A6A;strokeWidth=1.5;" vertex="1" parent="1">
+          <mxGeometry x="40" y="28" width="1100" height="108" as="geometry" />
+        </mxCell>
+        <mxCell id="pres_title" value="Presentation Layer" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontStyle=1;fontSize=13;fontFamily=Helvetica;fontColor=#1A2332;" vertex="1" parent="1">
+          <mxGeometry x="52" y="32" width="220" height="22" as="geometry" />
+        </mxCell>
+        <mxCell id="pres1" value="Web Dashboard" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#5B7BA6;strokeWidth=1.2;fontSize=12;fontFamily=Helvetica;fontColor=#1A2332;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="70" y="68" width="230" height="48" as="geometry" />
+        </mxCell>
+        <mxCell id="pres2" value="3D Visualization" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#5B7BA6;strokeWidth=1.2;fontSize=12;fontFamily=Helvetica;fontColor=#1A2332;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="330" y="68" width="230" height="48" as="geometry" />
+        </mxCell>
+        <mxCell id="pres3" value="Natural Language Query Interface" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#5B7BA6;strokeWidth=1.2;fontSize=12;fontFamily=Helvetica;fontColor=#1A2332;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="590" y="68" width="260" height="48" as="geometry" />
+        </mxCell>
+        <mxCell id="pres4" value="Report Generation" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#5B7BA6;strokeWidth=1.2;fontSize=12;fontFamily=Helvetica;fontColor=#1A2332;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="880" y="68" width="230" height="48" as="geometry" />
+        </mxCell>
+
+        <!-- arrow Presentation <-> API -->
+        <mxCell id="arr1" value="" style="endArrow=classic;startArrow=classic;html=1;strokeColor=#5D6D7E;strokeWidth=2;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="pres_band" target="api_band">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <!-- ========== API Gateway ========== -->
+        <mxCell id="api_band" value="API Gateway — Authentication | Request Routing" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#2F4A6A;strokeColor=#1A2332;strokeWidth=1;fontSize=13;fontFamily=Helvetica;fontColor=#FFFFFF;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="40" y="158" width="1100" height="36" as="geometry" />
+        </mxCell>
+
+        <!-- arrow API <-> Application -->
+        <mxCell id="arr2" value="" style="endArrow=classic;startArrow=classic;html=1;strokeColor=#5D6D7E;strokeWidth=2;" edge="1" parent="1" source="api_band" target="app_band">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <!-- ========== Application Layer ========== -->
+        <mxCell id="app_band" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#F7F2E8;strokeColor=#8B7355;strokeWidth=1.5;" vertex="1" parent="1">
+          <mxGeometry x="40" y="216" width="1100" height="248" as="geometry" />
+        </mxCell>
+        <mxCell id="app_title" value="Application Layer" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontStyle=1;fontSize=13;fontFamily=Helvetica;fontColor=#1A2332;" vertex="1" parent="1">
+          <mxGeometry x="52" y="220" width="220" height="22" as="geometry" />
+        </mxCell>
+
+        <!-- Digital Twin Service -->
+        <mxCell id="svc_dt" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#E8EEF4;strokeColor=#2F4A6A;strokeWidth=1.2;" vertex="1" parent="1">
+          <mxGeometry x="60" y="252" width="340" height="192" as="geometry" />
+        </mxCell>
+        <mxCell id="svc_dt_t" value="Digital Twin Service" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;fontStyle=1;fontSize=12;fontFamily=Helvetica;fontColor=#2F4A6A;" vertex="1" parent="1">
+          <mxGeometry x="60" y="258" width="340" height="22" as="geometry" />
+        </mxCell>
+        <mxCell id="dt1" value="BIM Parser" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#5B7BA6;fontSize=11;fontFamily=Helvetica;fontColor=#1A2332;" vertex="1" parent="1">
+          <mxGeometry x="80" y="290" width="140" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="dt2" value="3D Reconstruction" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#5B7BA6;fontSize=11;fontFamily=Helvetica;fontColor=#1A2332;" vertex="1" parent="1">
+          <mxGeometry x="240" y="290" width="140" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="dt3" value="BIM-Reality Registration" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#D6E3F0;strokeColor=#2F4A6A;fontSize=11;fontFamily=Helvetica;fontColor=#1A2332;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="80" y="360" width="300" height="60" as="geometry" />
+        </mxCell>
+
+        <!-- Defect Profile Service -->
+        <mxCell id="svc_idp" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#E8F0EA;strokeColor=#3D7A5A;strokeWidth=1.2;" vertex="1" parent="1">
+          <mxGeometry x="420" y="252" width="340" height="192" as="geometry" />
+        </mxCell>
+        <mxCell id="svc_idp_t" value="Defect Profile Service" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;fontStyle=1;fontSize=12;fontFamily=Helvetica;fontColor=#3D7A5A;" vertex="1" parent="1">
+          <mxGeometry x="420" y="258" width="340" height="22" as="geometry" />
+        </mxCell>
+        <mxCell id="idp1" value="IDP Constructor" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#3D7A5A;fontSize=11;fontFamily=Helvetica;fontColor=#1A2332;" vertex="1" parent="1">
+          <mxGeometry x="440" y="290" width="140" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="idp2" value="AHP Aggregator" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#3D7A5A;fontSize=11;fontFamily=Helvetica;fontColor=#1A2332;" vertex="1" parent="1">
+          <mxGeometry x="600" y="290" width="140" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="idp3" value="Embedding Generator" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#CDE5D6;strokeColor=#3D7A5A;fontSize=11;fontFamily=Helvetica;fontColor=#1A2332;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="440" y="360" width="300" height="60" as="geometry" />
+        </mxCell>
+
+        <!-- RAG Inference Service -->
+        <mxCell id="svc_rag" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#EEE8F2;strokeColor=#6C3483;strokeWidth=1.2;" vertex="1" parent="1">
+          <mxGeometry x="780" y="252" width="340" height="192" as="geometry" />
+        </mxCell>
+        <mxCell id="svc_rag_t" value="RAG Inference Service" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;fontStyle=1;fontSize=12;fontFamily=Helvetica;fontColor=#6C3483;" vertex="1" parent="1">
+          <mxGeometry x="780" y="258" width="340" height="22" as="geometry" />
+        </mxCell>
+        <mxCell id="rag1" value="Query Parser" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#6C3483;fontSize=11;fontFamily=Helvetica;fontColor=#1A2332;" vertex="1" parent="1">
+          <mxGeometry x="800" y="290" width="140" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="rag2" value="Targeted Retrieval" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#6C3483;fontSize=11;fontFamily=Helvetica;fontColor=#1A2332;" vertex="1" parent="1">
+          <mxGeometry x="960" y="290" width="140" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="rag3" value="LLM Response Generator" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E0D4EA;strokeColor=#6C3483;fontSize=11;fontFamily=Helvetica;fontColor=#1A2332;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="800" y="360" width="300" height="60" as="geometry" />
+        </mxCell>
+
+        <!-- arrow Application <-> Infra -->
+        <mxCell id="arr3" value="" style="endArrow=classic;startArrow=classic;html=1;strokeColor=#5D6D7E;strokeWidth=2;" edge="1" parent="1" source="app_band" target="infra_band">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <!-- ========== Infrastructure Services ========== -->
+        <mxCell id="infra_band" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ECEFF1;strokeColor=#5D6D7E;strokeWidth=1.5;" vertex="1" parent="1">
+          <mxGeometry x="40" y="490" width="1100" height="96" as="geometry" />
+        </mxCell>
+        <mxCell id="infra_title" value="Infrastructure Services" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontStyle=1;fontSize=13;fontFamily=Helvetica;fontColor=#1A2332;" vertex="1" parent="1">
+          <mxGeometry x="52" y="494" width="240" height="22" as="geometry" />
+        </mxCell>
+        <mxCell id="inf1" value="Task Queue" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#5D6D7E;fontSize=11;fontFamily=Helvetica;fontColor=#1A2332;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="70" y="528" width="180" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="inf2" value="Logging" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#5D6D7E;fontSize=11;fontFamily=Helvetica;fontColor=#1A2332;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="280" y="528" width="180" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="inf3" value="Model Serving" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#5D6D7E;fontSize=11;fontFamily=Helvetica;fontColor=#1A2332;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="490" y="528" width="180" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="inf4" value="File Processing" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#5D6D7E;fontSize=11;fontFamily=Helvetica;fontColor=#1A2332;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="700" y="528" width="180" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="inf5" value="Embedding Service" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#5D6D7E;fontSize=11;fontFamily=Helvetica;fontColor=#1A2332;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="910" y="528" width="200" height="40" as="geometry" />
+        </mxCell>
+
+        <!-- arrow Infra <-> Data -->
+        <mxCell id="arr4" value="" style="endArrow=classic;startArrow=classic;html=1;strokeColor=#5D6D7E;strokeWidth=2;" edge="1" parent="1" source="infra_band" target="data_band">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <!-- ========== Data Layer ========== -->
+        <mxCell id="data_band" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#EAF2F8;strokeColor=#1B4F72;strokeWidth=1.5;" vertex="1" parent="1">
+          <mxGeometry x="40" y="612" width="1100" height="120" as="geometry" />
+        </mxCell>
+        <mxCell id="data_title" value="Data Layer" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontStyle=1;fontSize=13;fontFamily=Helvetica;fontColor=#1A2332;" vertex="1" parent="1">
+          <mxGeometry x="52" y="616" width="180" height="22" as="geometry" />
+        </mxCell>
+        <mxCell id="db1" value="Relational&#10;Database" style="shape=cylinder3;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;size=12;fillColor=#D4E6F1;strokeColor=#1B4F72;fontSize=11;fontFamily=Helvetica;fontColor=#1A2332;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="80" y="646" width="160" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="db2" value="Vector Store" style="shape=cylinder3;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;size=12;fillColor=#D4E6F1;strokeColor=#1B4F72;fontSize=11;fontFamily=Helvetica;fontColor=#1A2332;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="290" y="646" width="160" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="db3" value="Object Storage" style="shape=cylinder3;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;size=12;fillColor=#D4E6F1;strokeColor=#1B4F72;fontSize=11;fontFamily=Helvetica;fontColor=#1A2332;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="500" y="646" width="160" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="db4" value="Cache" style="shape=cylinder3;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;size=12;fillColor=#D4E6F1;strokeColor=#1B4F72;fontSize=11;fontFamily=Helvetica;fontColor=#1A2332;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="710" y="646" width="160" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="db5" value="Spatial Index" style="shape=cylinder3;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;size=12;fillColor=#D4E6F1;strokeColor=#1B4F72;fontSize=11;fontFamily=Helvetica;fontColor=#1A2332;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="920" y="646" width="180" height="70" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

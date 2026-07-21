@@ -5,8 +5,8 @@
 | Asset class | Policy |
 |-------------|--------|
 | **Transfer / generalizability** (`framework_generalizability_concept`, `platform_transferability_implementation`) | Use **paper originals** only (PNG/PDF). Do **not** recolor or re-export from drawio. |
-| **Architecture drawio** (`framework_overview_overall`, `rag_workflow_topology`, `idp_construction_pipeline`) | Restore from `drawio_original_backup`, then apply **AcademicSlate** hex remap in XML (cool blue/grey/cream). No copper overlay. |
-| **Raster screenshots** (`dt_modeling_pipeline`, `platform_architecture`, `multi_platform_*`, `analysis_interface_nlq`) | Copy paper rasters **as-is**. Never apply RGB tint casts. |
+| **Architecture drawio** (`framework_overview_overall`, `rag_workflow_topology`, `idp_construction_pipeline`, `platform_architecture`) | Editable `.drawio` under `io/drawio/`. Non-platform diagrams: restore from `drawio_original_backup`, then **AcademicSlate** hex remap. `platform_architecture` is a book-local layered redraw (paper PNG had no drawio; transparent RGBA must not be RGB-matted to black). No copper overlay. |
+| **Raster screenshots** (`dt_modeling_pipeline`, `multi_platform_*`, `analysis_interface_nlq`) | Copy paper rasters **as-is**, composite RGBA onto **white** before PDF. Never apply RGB tint casts. |
 | **Statistical panels** | Matplotlib with `CH8_FIGURE_THEME=BookInk` (default). Each series/module has its own hex in `figure_style.MODULES_BOOKINK` — edit those hexes, never tint a finished PDF. Chapter figures: ksweep, ablation, external, score_by_type, hallucination, field_asset_id_stages, field_deployment_audit. |
 
 ## Palette (AcademicSlate for architecture)

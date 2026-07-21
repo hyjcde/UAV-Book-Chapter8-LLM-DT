@@ -2,7 +2,8 @@
 # Regenerate Chapter 8 figures with clear policy:
 #   - Transfer / generalizability: paper originals only (no recolor, no drawio overwrite)
 #   - Architecture drawio: AcademicSlate remap from backup, then export
-#   - Raster screenshots: copy originals as-is (no RGB tint cast)
+#     (platform_architecture: book-local drawio; do not RGB-matte paper PNG)
+#   - Raster screenshots: composite RGBA onto white, no RGB tint cast
 set -euo pipefail
 ROOT="$(cd "$(dirname "$0")" && pwd)"
 BOOK="$(cd "$ROOT/.." && pwd)"
@@ -30,7 +31,7 @@ echo "== 2. Architecture drawio: restore backup → AcademicSlate remap =="
 python3 "$IO/recolor_drawio.py" --from-backup --apply
 
 echo "== 3. Export architecture drawio (non-transfer only) =="
-for name in framework_overview_overall rag_workflow_topology idp_construction_pipeline; do
+for name in framework_overview_overall rag_workflow_topology idp_construction_pipeline platform_architecture; do
   f="$IO/drawio/${name}.drawio"
   [ -f "$f" ] || continue
   echo "  export $name"
@@ -47,7 +48,7 @@ cp -f "$ORIG/platform_transferability_implementation.pdf" "$SHARED/"
 cp -f "$RAS/platform_transferability_implementation.png" "$IO/out/" 2>/dev/null || true
 echo "  synced paper transfer PDFs/PNGs"
 
-echo "== 5. Raster screenshots: originals, no tint =="
+echo "== 5. Raster screenshots: originals on white (no tint, no black matte) =="
 python3 << PY
 from pathlib import Path
 from PIL import Image
@@ -58,7 +59,6 @@ shared = Path("$SHARED")
 out.mkdir(parents=True, exist_ok=True)
 for stem in [
     "dt_modeling_pipeline",
-    "platform_architecture",
     "multi_platform_field_interfaces",
     "analysis_interface_nlq",
 ]:
@@ -68,7 +68,15 @@ for stem in [
         print("missing", stem, "in", ras)
         continue
     p = cands[0]
-    im = Image.open(p).convert("RGB")
+    src = Image.open(p)
+    # RGBA paper exports use transparent (0,0,0,0) corners; convert("RGB")
+    # mattes them black. Always composite onto white for print PDFs.
+    if src.mode in ("RGBA", "LA") or (src.mode == "P" and "transparency" in src.info):
+        rgba = src.convert("RGBA")
+        bg = Image.new("RGBA", rgba.size, (255, 255, 255, 255))
+        im = Image.alpha_composite(bg, rgba).convert("RGB")
+    else:
+        im = src.convert("RGB")
     pdf = out / f"{stem}.pdf"
     im.save(pdf, "PDF", resolution=200.0)
     dest_png = out / f"{stem}.png"
@@ -83,8 +91,9 @@ if idp.exists():
 PY
 
 echo "== 6. Sync architecture + stats into latex/shared =="
-for name in framework_overview_overall rag_workflow_topology idp_construction_pipeline; do
+for name in framework_overview_overall rag_workflow_topology idp_construction_pipeline platform_architecture; do
   [ -f "$IO/out/${name}.pdf" ] && cp -f "$IO/out/${name}.pdf" "$SHARED/" && echo "  arch $name.pdf"
+  [ -f "$IO/out/${name}.png" ] && cp -f "$IO/out/${name}.png" "$SHARED/"
 done
 # Prefer paper JPG for idp in chapter; keep drawio PDF as optional
 [ -f "$RAS/idp_construction_pipeline.jpg" ] && cp -f "$RAS/idp_construction_pipeline.jpg" "$SHARED/"
