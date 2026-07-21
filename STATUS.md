@@ -6,7 +6,7 @@
 **CN shell:** same trim/body via shared file; 10pt + slightly tighter `\linespread`; mirrored frontmatter stubs.  
 **Author:** left empty for now.  
 **Stance:** ready-to-use LLM + harness; no site training agenda. Prefer 2024–2026 published cites.  
-**Build:** `bash scripts/build.sh` → EN ≈70 pp, CN ≈61 pp (synced shells; Ch.8 expanded).  
+**Build:** `bash scripts/build.sh` → EN ≈60 pp, CN ≈54 pp (after §8.6 spine rewrite).  
 **Layout notes:**  
 - Use `\begin{dedication}...\end{dedication}` (not `\dedication{...}`).  
 - Letter/A4 canvas without trim correction causes fake huge side margins.
