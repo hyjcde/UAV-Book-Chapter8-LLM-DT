@@ -31,6 +31,7 @@ Outputs:
 | `literature/AGENT_LIT_NOTES.md` | Agent / DT+LLM literature beyond RAG |
 | `latex/SECTION_MAP.yaml` | EN↔CN section contract |
 | `latex/en/book_ch08.tex` | EN root: SNmono shell (mirrors Overleaf `book.tex`) |
+| `latex/shared/springer_local_trim.tex` | Shared 160×241 mm trim + 117×191 mm body (real-book margins) |
 | `latex/en/ch08.tex` | English Chapter 8 body (expanded) |
 | `latex/en/{dedication,preface,acknow,acronym,glossary}.tex` | Front/back matter from SNmono / Overleaf |
 | `latex/en/ch0{1-7,9}_*.tex` + `part0*.tex` | Title stubs for numbering/TOC only |
