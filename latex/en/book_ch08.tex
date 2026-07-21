@@ -61,23 +61,18 @@
 \include{acronym}
 
 \mainmatter%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% Four thematic parts matching the Overleaf shell.
+% Proposal TOC is chapter-based (Ch.~1--9 / Sec.~8.1--8.6), not \part{}-based.
+% Keep part0*.tex in the tree for a future full-book shell; do not insert Part
+% pages in this Chapter-8 working PDF.
 % Stub chapters keep numbering and TOC correct; only Ch.~8 is expanded.
 
-\include{part01_acquisition}
 \include{ch01_introduction}
 \include{ch02_task_planning}
 \include{ch03_motion_planning}
-
-\include{part02_representation}
 \include{ch04_3d_reconstruction}
 \include{ch07_gis}
-
-\include{part03_defect_ai}
 \include{ch05_datasets}
 \include{ch06_ai_models}
-
-\include{part04_decision_support}
 \include{ch08}
 \include{ch09_conclusion}
 
