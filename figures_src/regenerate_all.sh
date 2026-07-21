@@ -95,7 +95,8 @@ for name in framework_overview_overall rag_workflow_topology idp_construction_pi
   [ -f "$IO/out/${name}.pdf" ] && cp -f "$IO/out/${name}.pdf" "$SHARED/" && echo "  arch $name.pdf"
   [ -f "$IO/out/${name}.png" ] && cp -f "$IO/out/${name}.png" "$SHARED/"
 done
-# Prefer paper JPG for idp in chapter; keep drawio PDF as optional
+# Prefer AcademicSlate drawio PDF for IDP; keep paper JPG as archive companion
+[ -f "$IO/out/idp_construction_pipeline.pdf" ] && cp -f "$IO/out/idp_construction_pipeline.pdf" "$SHARED/"
 [ -f "$RAS/idp_construction_pipeline.jpg" ] && cp -f "$RAS/idp_construction_pipeline.jpg" "$SHARED/"
 
 for name in \

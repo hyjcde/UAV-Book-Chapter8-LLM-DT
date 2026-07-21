@@ -18,7 +18,7 @@
   <rect x="180" y="100" width="980" height="180" rx="15" fill="#f8f9fa" stroke="#dcdde1" stroke-width="2" />
   <rect x="180" y="320" width="980" height="200" rx="15" fill="#e1f5fe" stroke="#339af0" stroke-width="2" />
   <rect x="180" y="560" width="980" height="240" rx="15" fill="#fff9db" stroke="#fab005" stroke-width="2" />
-  <rect x="180" y="830" width="980" height="140" rx="15" fill="#e8f5e9" stroke="#40c057" stroke-width="2" />
+  <rect x="180" y="830" width="980" height="140" rx="15" fill="#E8F0EA" stroke="#40c057" stroke-width="2" />
 
   <!-- Perception Details -->
   <g transform="translate(200, 130)">

@@ -151,10 +151,10 @@ L3 记忆与流程 & 孪生/RAG 记忆、有界智能体 & 权威现场记忆；
 \begin{figure}[htbp]
 \centering
 \begin{tikzpicture}[node distance=6mm and 7mm]
-  \node[ch8box, fill=gray!8, minimum width=2.5cm] (p) {参数记忆};
-  \node[ch8box, fill=gray!12, minimum width=2.5cm, right=of p] (c) {上下文记忆};
-  \node[ch8box, fill=gray!18, minimum width=2.5cm, right=of c] (r) {检索记忆\\(RAG)};
-  \node[ch8box, fill=gray!28, minimum width=2.5cm, right=of r] (t) {孪生库\\(Asset-ID)};
+  \node[ch8boxalt, minimum width=2.5cm] (p) {参数记忆};
+  \node[ch8box, minimum width=2.5cm, right=of p] (c) {上下文记忆};
+  \node[ch8boxrag, minimum width=2.5cm, right=of c] (r) {检索记忆\\(RAG)};
+  \node[ch8boxok, minimum width=2.5cm, right=of r] (t) {孪生库\\(Asset-ID)};
   \draw[ch8arr] (p) -- (c);
   \draw[ch8arr] (c) -- (r);
   \draw[ch8arr] (r) -- (t);
@@ -196,11 +196,11 @@ L3 记忆与流程 & 孪生/RAG 记忆、有界智能体 & 权威现场记忆；
 \centering
 \begin{tikzpicture}[node distance=7mm and 9mm]
   \node[ch8box, minimum width=2.3cm] (in) {接入/\\路由};
-  \node[ch8box, minimum width=2.3cm, right=of in] (ev) {证据\\装配};
-  \node[ch8box, minimum width=2.3cm, right=of ev] (tool) {工具面};
-  \node[ch8box, minimum width=2.3cm, below=of ev] (val) {契约\\校验};
-  \node[ch8box, minimum width=2.3cm, left=of val] (tr) {轨迹/\\评价};
-  \node[ch8box, fill=gray!15, minimum width=2.3cm, right=of tool] (llm) {可替换\\LLM};
+  \node[ch8boxrag, minimum width=2.3cm, right=of in] (ev) {证据\\装配};
+  \node[ch8boxok, minimum width=2.3cm, right=of ev] (tool) {工具面};
+  \node[ch8boxgate, minimum width=2.3cm, below=of ev] (val) {契约\\校验};
+  \node[ch8boxalt, minimum width=2.3cm, left=of val] (tr) {轨迹/\\评价};
+  \node[ch8boxllm, minimum width=2.3cm, right=of tool] (llm) {可替换\\LLM};
   \draw[ch8arr] (in) -- (ev);
   \draw[ch8arr] (ev) -- (tool);
   \draw[ch8arr] (tool) -- (llm);
@@ -277,7 +277,7 @@ FM 结构化查询 & \cite{buga2025llmfmsql} & schema 先于自由 SQL \\
 
 \begin{figure}[htbp]
 \centering
-\includegraphics[width=\linewidth]{idp_construction_pipeline.jpg}
+\includegraphics[width=\linewidth]{idp_construction_pipeline.pdf}
 \caption{从航次影像与检测器输出构建语言可用巡检记录：带模态与证据指针的类型化观测挂接到可维护宿主，再聚合为检索可加载的资产中心护照。各实现命名不同；教学模式仍是观测$\rightarrow$宿主挂接$\rightarrow$护照。}
 \label{fig:ch8-obs-passport}
 \end{figure}
@@ -421,11 +421,11 @@ stage\_twin\_write & 待写入更新 & 强制批准 \\
 \begin{figure}[htbp]
 \centering
 \begin{tikzpicture}[node distance=8mm and 11mm]
-  \node[ch8box, minimum width=2.6cm] (q) {用户问题};
-  \node[ch8box, minimum width=2.6cm, right=of q] (a) {有界智能体\\（五工具）};
-  \node[ch8box, minimum width=2.6cm, right=of a] (g) {人工/\\geofence 门};
+  \node[ch8boxalt, minimum width=2.6cm] (q) {用户问题};
+  \node[ch8boxrag, minimum width=2.6cm, right=of q] (a) {有界智能体\\（五工具）};
+  \node[ch8boxgate, minimum width=2.6cm, right=of a] (g) {人工/\\geofence 门};
   \node[ch8box, minimum width=2.6cm, below=of a] (tw) {孪生记忆\\只读};
-  \node[ch8box, fill=gray!20, minimum width=2.6cm, below=of g] (w) {批准写入/\\复访提示};
+  \node[ch8boxok, minimum width=2.6cm, below=of g] (w) {批准写入/\\复访提示};
   \draw[ch8arr] (q) -- (a);
   \draw[ch8arr] (a) -- (g);
   \draw[ch8arr] (a) -- (tw);

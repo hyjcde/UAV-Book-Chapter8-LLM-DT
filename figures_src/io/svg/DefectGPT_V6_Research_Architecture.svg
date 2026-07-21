@@ -35,7 +35,7 @@
   <text x="760" y="80" font-family="Arial, sans-serif" font-size="18" font-weight="bold" text-anchor="middle" fill="#f59f00">III: COGNITION</text>
 
   <!-- Stage IV: Operational Execution -->
-  <rect x="960" y="100" width="200" height="700" rx="15" fill="#e8f5e9" stroke="#40c057" stroke-width="2"/>
+  <rect x="960" y="100" width="200" height="700" rx="15" fill="#E8F0EA" stroke="#40c057" stroke-width="2"/>
   <text x="1060" y="80" font-family="Arial, sans-serif" font-size="18" font-weight="bold" text-anchor="middle" fill="#2f9e44">IV: EXECUTION</text>
 
   <!-- Stage I Elements -->

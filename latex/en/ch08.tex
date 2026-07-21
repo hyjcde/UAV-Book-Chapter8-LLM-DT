@@ -148,10 +148,10 @@ Twin store & Asset-ID + topology + time & authoritative site memory \\
 \begin{figure}[htbp]
 \centering
 \begin{tikzpicture}[node distance=6mm and 8mm]
-  \node[ch8box, fill=gray!8, minimum width=2.6cm] (p) {Parametric\\memory};
-  \node[ch8box, fill=gray!12, minimum width=2.6cm, right=of p] (c) {Contextual\\memory};
-  \node[ch8box, fill=gray!18, minimum width=2.6cm, right=of c] (r) {Retrieval\\(RAG)};
-  \node[ch8box, fill=gray!28, minimum width=2.6cm, right=of r] (t) {Twin store\\(Asset-ID)};
+  \node[ch8boxalt, minimum width=2.6cm] (p) {Parametric\\memory};
+  \node[ch8box, minimum width=2.6cm, right=of p] (c) {Contextual\\memory};
+  \node[ch8boxrag, minimum width=2.6cm, right=of c] (r) {Retrieval\\(RAG)};
+  \node[ch8boxok, minimum width=2.6cm, right=of r] (t) {Twin store\\(Asset-ID)};
   \draw[ch8arr] (p) -- (c);
   \draw[ch8arr] (c) -- (r);
   \draw[ch8arr] (r) -- (t);
@@ -193,11 +193,11 @@ Trace / evaluation & replayable logs + metrics & tool TRACE; HELM-style scenario
 \centering
 \begin{tikzpicture}[node distance=7mm and 10mm]
   \node[ch8box, minimum width=2.4cm] (in) {Intake /\\routing};
-  \node[ch8box, minimum width=2.4cm, right=of in] (ev) {Evidence\\assembly};
-  \node[ch8box, minimum width=2.4cm, right=of ev] (tool) {Tool\\surface};
-  \node[ch8box, minimum width=2.4cm, below=of ev] (val) {Contract\\validators};
-  \node[ch8box, minimum width=2.4cm, left=of val] (tr) {Trace /\\evaluation};
-  \node[ch8box, fill=gray!15, minimum width=2.4cm, right=of tool] (llm) {Replaceable\\LLM};
+  \node[ch8boxrag, minimum width=2.4cm, right=of in] (ev) {Evidence\\assembly};
+  \node[ch8boxok, minimum width=2.4cm, right=of ev] (tool) {Tool\\surface};
+  \node[ch8boxgate, minimum width=2.4cm, below=of ev] (val) {Contract\\validators};
+  \node[ch8boxalt, minimum width=2.4cm, left=of val] (tr) {Trace /\\evaluation};
+  \node[ch8boxllm, minimum width=2.4cm, right=of tool] (llm) {Replaceable\\LLM};
   \draw[ch8arr] (in) -- (ev);
   \draw[ch8arr] (ev) -- (tool);
   \draw[ch8arr] (tool) -- (llm);
@@ -274,7 +274,7 @@ In UAV inspection practice, useful observation records store host Asset-ID, time
 
 \begin{figure}[htbp]
 \centering
-\includegraphics[width=\linewidth]{idp_construction_pipeline.jpg}
+\includegraphics[width=\linewidth]{idp_construction_pipeline.pdf}
 \caption{Construction of language-ready inspection records from campaign imagery and detector outputs: typed observations with modality and evidence pointers are attached to maintainable hosts, then aggregated into asset-centred passports that retrieval can load. Implementation names differ across systems; the teaching pattern remains observation $\rightarrow$ host attachment $\rightarrow$ passport.}
 \label{fig:ch8-obs-passport}
 \end{figure}
@@ -415,11 +415,11 @@ stage\_twin\_write & pending update & mandatory approval \\
 \begin{figure}[htbp]
 \centering
 \begin{tikzpicture}[node distance=8mm and 12mm]
-  \node[ch8box, minimum width=2.8cm] (q) {User question};
-  \node[ch8box, minimum width=2.8cm, right=of q] (a) {Bounded agent\\(5 tools)};
-  \node[ch8box, minimum width=2.8cm, right=of a] (g) {Human /\\geofence gate};
+  \node[ch8boxalt, minimum width=2.8cm] (q) {User question};
+  \node[ch8boxrag, minimum width=2.8cm, right=of q] (a) {Bounded agent\\(5 tools)};
+  \node[ch8boxgate, minimum width=2.8cm, right=of a] (g) {Human /\\geofence gate};
   \node[ch8box, minimum width=2.8cm, below=of a] (tw) {Twin memory\\read};
-  \node[ch8box, fill=gray!20, minimum width=2.8cm, below=of g] (w) {Approved write /\\revisit hint};
+  \node[ch8boxok, minimum width=2.8cm, below=of g] (w) {Approved write /\\revisit hint};
   \draw[ch8arr] (q) -- (a);
   \draw[ch8arr] (a) -- (g);
   \draw[ch8arr] (a) -- (tw);

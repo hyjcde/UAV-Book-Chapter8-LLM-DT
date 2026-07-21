@@ -7,7 +7,7 @@
         <mxCell id="D5NGcvgCAcNfVg2UiYoK-236" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#F7F2E8;strokeColor=#8B7355;align=left;verticalAlign=top;spacingLeft=10;spacingTop=10;dashed=1;fontFamily=Times New Roman;fontSize=13;" value="" vertex="1">
           <mxGeometry height="150" width="1080" x="1040" y="1540" as="geometry" />
         </mxCell>
-        <mxCell id="D5NGcvgCAcNfVg2UiYoK-237" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontFamily=Times New Roman;fontSize=13;fontColor=#000000;" value="&lt;b&gt;MODULE IV: HUMAN-MACHINE INTERACTION &amp;amp; SERVICE&lt;/b&gt;" vertex="1">
+        <mxCell id="D5NGcvgCAcNfVg2UiYoK-237" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontFamily=Times New Roman;fontSize=13;fontColor=#1A2332;" value="&lt;b&gt;MODULE IV: HUMAN-MACHINE INTERACTION &amp;amp; SERVICE&lt;/b&gt;" vertex="1">
           <mxGeometry height="30" width="490" x="1050" y="1545" as="geometry" />
         </mxCell>
         <mxCell id="D5NGcvgCAcNfVg2UiYoK-238" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#8B7355;fontFamily=Times New Roman;fontSize=13;" value="&lt;b&gt;Immersive 3D Visualization&lt;/b&gt;&lt;br&gt;&lt;span style=&quot;color: rgb(102, 102, 102);&quot;&gt;Web-based Rendering Engine&lt;br&gt;Real-time Interaction&lt;/span&gt;" vertex="1">
@@ -19,43 +19,43 @@
         <mxCell id="D5NGcvgCAcNfVg2UiYoK-240" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#8B7355;fontFamily=Times New Roman;fontSize=13;" value="&lt;b&gt;Cognitive Copilot&lt;/b&gt;&lt;br&gt;&lt;span style=&quot;color: rgb(102, 102, 102);&quot;&gt;Natural Language Interface&lt;br&gt;Q&amp;amp;A System&lt;/span&gt;" vertex="1">
           <mxGeometry height="70" width="260" x="1760" y="1590" as="geometry" />
         </mxCell>
-        <mxCell id="D5NGcvgCAcNfVg2UiYoK-241" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#cccccc;align=left;verticalAlign=top;spacingLeft=10;spacingTop=10;fontFamily=Times New Roman;fontSize=13;" value="" vertex="1">
+        <mxCell id="D5NGcvgCAcNfVg2UiYoK-241" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#E8EEF4;strokeColor=#5B7BA6;align=left;verticalAlign=top;spacingLeft=10;spacingTop=10;fontFamily=Times New Roman;fontSize=13;" value="" vertex="1">
           <mxGeometry height="460" width="420" x="1040" y="1720" as="geometry" />
         </mxCell>
         <mxCell id="D5NGcvgCAcNfVg2UiYoK-242" edge="1" parent="1" source="D5NGcvgCAcNfVg2UiYoK-243" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" target="D5NGcvgCAcNfVg2UiYoK-238" value="">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="D5NGcvgCAcNfVg2UiYoK-243" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontFamily=Times New Roman;fontSize=13;fontColor=#000000;" value="&lt;b&gt;MODULE II: TWIN CONSTRUCTION&lt;/b&gt;" vertex="1">
+        <mxCell id="D5NGcvgCAcNfVg2UiYoK-243" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontFamily=Times New Roman;fontSize=13;fontColor=#1A2332;" value="&lt;b&gt;MODULE II: TWIN CONSTRUCTION&lt;/b&gt;" vertex="1">
           <mxGeometry height="30" width="420" x="1040" y="1730" as="geometry" />
         </mxCell>
-        <mxCell id="D5NGcvgCAcNfVg2UiYoK-244" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#e6e6e6;align=left;verticalAlign=top;fontFamily=Times New Roman;fontSize=13;" value="" vertex="1">
+        <mxCell id="D5NGcvgCAcNfVg2UiYoK-244" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#A8B0B8;align=left;verticalAlign=top;fontFamily=Times New Roman;fontSize=13;" value="" vertex="1">
           <mxGeometry height="170" width="380" x="1060" y="1770" as="geometry" />
         </mxCell>
-        <mxCell id="D5NGcvgCAcNfVg2UiYoK-245" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontFamily=Times New Roman;fontSize=13;fontColor=#333333;" value="&lt;b&gt;Subsystem A: Geometric Reconstruction&lt;/b&gt;" vertex="1">
+        <mxCell id="D5NGcvgCAcNfVg2UiYoK-245" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontFamily=Times New Roman;fontSize=13;fontColor=#2F4A6A;" value="&lt;b&gt;Subsystem A: Geometric Reconstruction&lt;/b&gt;" vertex="1">
           <mxGeometry height="25" width="380" x="1060" y="1775" as="geometry" />
         </mxCell>
-        <mxCell id="D5NGcvgCAcNfVg2UiYoK-246" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#000000;fontFamily=Times New Roman;fontSize=13;" value="&lt;b&gt;Photogrammetry Pipeline&lt;/b&gt;&lt;br&gt;&lt;span style=&quot;color: rgb(102, 102, 102);&quot;&gt;Sparse/Dense Point Cloud Generation&lt;br&gt;Mesh Reconstruction&lt;/span&gt;" vertex="1">
+        <mxCell id="D5NGcvgCAcNfVg2UiYoK-246" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#5B7BA6;fontFamily=Times New Roman;fontSize=13;" value="&lt;b&gt;Photogrammetry Pipeline&lt;/b&gt;&lt;br&gt;&lt;span style=&quot;color: rgb(102, 102, 102);&quot;&gt;Sparse/Dense Point Cloud Generation&lt;br&gt;Mesh Reconstruction&lt;/span&gt;" vertex="1">
           <mxGeometry height="55" width="340" x="1080" y="1805" as="geometry" />
         </mxCell>
-        <mxCell id="D5NGcvgCAcNfVg2UiYoK-247" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#000000;fontFamily=Times New Roman;fontSize=13;" value="&lt;b&gt;Model Alignment&lt;/b&gt;&lt;br&gt;&lt;span style=&quot;color: rgb(102, 102, 102);&quot;&gt;Design Model Parsing&lt;br&gt;Geometric Deviation Check&lt;/span&gt;" vertex="1">
+        <mxCell id="D5NGcvgCAcNfVg2UiYoK-247" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#5B7BA6;fontFamily=Times New Roman;fontSize=13;" value="&lt;b&gt;Model Alignment&lt;/b&gt;&lt;br&gt;&lt;span style=&quot;color: rgb(102, 102, 102);&quot;&gt;Design Model Parsing&lt;br&gt;Geometric Deviation Check&lt;/span&gt;" vertex="1">
           <mxGeometry height="55" width="340" x="1080" y="1875" as="geometry" />
         </mxCell>
-        <mxCell id="D5NGcvgCAcNfVg2UiYoK-248" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#e6e6e6;align=left;verticalAlign=top;fontFamily=Times New Roman;fontSize=13;" value="" vertex="1">
+        <mxCell id="D5NGcvgCAcNfVg2UiYoK-248" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#A8B0B8;align=left;verticalAlign=top;fontFamily=Times New Roman;fontSize=13;" value="" vertex="1">
           <mxGeometry height="170" width="380" x="1060" y="1960" as="geometry" />
         </mxCell>
-        <mxCell id="D5NGcvgCAcNfVg2UiYoK-249" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontFamily=Times New Roman;fontSize=13;fontColor=#333333;" value="&lt;b&gt;Subsystem B: Visual Perception&lt;/b&gt;" vertex="1">
+        <mxCell id="D5NGcvgCAcNfVg2UiYoK-249" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontFamily=Times New Roman;fontSize=13;fontColor=#2F4A6A;" value="&lt;b&gt;Subsystem B: Visual Perception&lt;/b&gt;" vertex="1">
           <mxGeometry height="25" width="380" x="1060" y="1965" as="geometry" />
         </mxCell>
-        <mxCell id="D5NGcvgCAcNfVg2UiYoK-250" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#000000;fontFamily=Times New Roman;fontSize=13;" value="&lt;b&gt;Automated Defect Recognition&lt;/b&gt;&lt;br&gt;&lt;span style=&quot;color: rgb(102, 102, 102);&quot;&gt;Deep Learning Object Detection&lt;br&gt;Feature Extraction&lt;/span&gt;" vertex="1">
+        <mxCell id="D5NGcvgCAcNfVg2UiYoK-250" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#5B7BA6;fontFamily=Times New Roman;fontSize=13;" value="&lt;b&gt;Automated Defect Recognition&lt;/b&gt;&lt;br&gt;&lt;span style=&quot;color: rgb(102, 102, 102);&quot;&gt;Deep Learning Object Detection&lt;br&gt;Feature Extraction&lt;/span&gt;" vertex="1">
           <mxGeometry height="55" width="340" x="1080" y="1995" as="geometry" />
         </mxCell>
-        <mxCell id="D5NGcvgCAcNfVg2UiYoK-251" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#000000;fontFamily=Times New Roman;fontSize=13;" value="&lt;b&gt;Semantic Segmentation&lt;/b&gt;&lt;br&gt;&lt;span style=&quot;color: rgb(102, 102, 102);&quot;&gt;Pixel-level Instance Masking&lt;br&gt;Material Classification&lt;/span&gt;" vertex="1">
+        <mxCell id="D5NGcvgCAcNfVg2UiYoK-251" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#5B7BA6;fontFamily=Times New Roman;fontSize=13;" value="&lt;b&gt;Semantic Segmentation&lt;/b&gt;&lt;br&gt;&lt;span style=&quot;color: rgb(102, 102, 102);&quot;&gt;Pixel-level Instance Masking&lt;br&gt;Material Classification&lt;/span&gt;" vertex="1">
           <mxGeometry height="55" width="340" x="1080" y="2065" as="geometry" />
         </mxCell>
         <mxCell id="D5NGcvgCAcNfVg2UiYoK-252" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#E8EEF4;strokeColor=#5B7BA6;align=center;verticalAlign=middle;fontFamily=Times New Roman;fontSize=13;" value="" vertex="1">
           <mxGeometry height="260" width="140" x="1490" y="1840" as="geometry" />
         </mxCell>
-        <mxCell id="D5NGcvgCAcNfVg2UiYoK-253" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontFamily=Times New Roman;fontSize=13;fontColor=#000000;" value="&lt;b&gt;SEMANTIC&lt;br&gt;FUSION&lt;br&gt;ENGINE&lt;/b&gt;" vertex="1">
+        <mxCell id="D5NGcvgCAcNfVg2UiYoK-253" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontFamily=Times New Roman;fontSize=13;fontColor=#1A2332;" value="&lt;b&gt;SEMANTIC&lt;br&gt;FUSION&lt;br&gt;ENGINE&lt;/b&gt;" vertex="1">
           <mxGeometry height="40" width="140" x="1490" y="1850" as="geometry" />
         </mxCell>
         <mxCell id="D5NGcvgCAcNfVg2UiYoK-254" parent="1" style="shape=rhombus;whiteSpace=wrap;html=1;fillColor=#1E3A5F;strokeColor=#ffffff;fontFamily=Times New Roman;fontColor=#ffffff;fontStyle=0;fontSize=13;" value="&lt;b&gt;IDP&lt;/b&gt;&lt;br&gt;&lt;span&gt;(Integrated&lt;br&gt;Defect&lt;br&gt;Profile)&lt;/span&gt;" vertex="1">
@@ -64,37 +64,37 @@
         <mxCell id="D5NGcvgCAcNfVg2UiYoK-255" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontFamily=Times New Roman;fontSize=13;" value="&lt;span style=&quot;color: rgb(85, 85, 85);&quot;&gt;Mapping 2D Masks&lt;br&gt;to 3D Coordinates&lt;/span&gt;" vertex="1">
           <mxGeometry height="30" width="140" x="1490" y="2050" as="geometry" />
         </mxCell>
-        <mxCell id="D5NGcvgCAcNfVg2UiYoK-256" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#cccccc;align=left;verticalAlign=top;spacingLeft=10;spacingTop=10;fontFamily=Times New Roman;fontSize=13;" value="" vertex="1">
+        <mxCell id="D5NGcvgCAcNfVg2UiYoK-256" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#EEE8F2;strokeColor=#6C3483;align=left;verticalAlign=top;spacingLeft=10;spacingTop=10;fontFamily=Times New Roman;fontSize=13;" value="" vertex="1">
           <mxGeometry height="460" width="460" x="1660" y="1720" as="geometry" />
         </mxCell>
-        <mxCell id="D5NGcvgCAcNfVg2UiYoK-257" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontFamily=Times New Roman;fontSize=13;fontColor=#000000;" value="&lt;b&gt;MODULE III: COGNITIVE REASONING&lt;/b&gt;" vertex="1">
+        <mxCell id="D5NGcvgCAcNfVg2UiYoK-257" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontFamily=Times New Roman;fontSize=13;fontColor=#1A2332;" value="&lt;b&gt;MODULE III: COGNITIVE REASONING&lt;/b&gt;" vertex="1">
           <mxGeometry height="30" width="460" x="1660" y="1730" as="geometry" />
         </mxCell>
-        <mxCell id="D5NGcvgCAcNfVg2UiYoK-258" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#e6e6e6;align=left;verticalAlign=top;fontFamily=Times New Roman;fontSize=13;" value="" vertex="1">
+        <mxCell id="D5NGcvgCAcNfVg2UiYoK-258" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#A8B0B8;align=left;verticalAlign=top;fontFamily=Times New Roman;fontSize=13;" value="" vertex="1">
           <mxGeometry height="170" width="420" x="1680" y="1770" as="geometry" />
         </mxCell>
-        <mxCell id="D5NGcvgCAcNfVg2UiYoK-259" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontFamily=Times New Roman;fontSize=13;fontColor=#333333;" value="&lt;b&gt;Subsystem D: Context Engine&lt;/b&gt;" vertex="1">
+        <mxCell id="D5NGcvgCAcNfVg2UiYoK-259" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontFamily=Times New Roman;fontSize=13;fontColor=#2F4A6A;" value="&lt;b&gt;Subsystem D: Context Engine&lt;/b&gt;" vertex="1">
           <mxGeometry height="25" width="420" x="1680" y="1775" as="geometry" />
         </mxCell>
-        <mxCell id="D5NGcvgCAcNfVg2UiYoK-260" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#000000;fontFamily=Times New Roman;fontSize=13;" value="&lt;b&gt;Large Language Model (LLM)&lt;/b&gt;&lt;br&gt;&lt;span style=&quot;color: rgb(102, 102, 102);&quot;&gt;Contextual Understanding&lt;br&gt;Logical Inference&lt;/span&gt;" vertex="1">
+        <mxCell id="D5NGcvgCAcNfVg2UiYoK-260" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#6C3483;fontFamily=Times New Roman;fontSize=13;" value="&lt;b&gt;Large Language Model (LLM)&lt;/b&gt;&lt;br&gt;&lt;span style=&quot;color: rgb(102, 102, 102);&quot;&gt;Contextual Understanding&lt;br&gt;Logical Inference&lt;/span&gt;" vertex="1">
           <mxGeometry height="55" width="380" x="1700" y="1805" as="geometry" />
         </mxCell>
-        <mxCell id="D5NGcvgCAcNfVg2UiYoK-261" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#000000;fontFamily=Times New Roman;fontSize=13;" value="&lt;b&gt;RAG Orchestrator&lt;/b&gt;&lt;br&gt;&lt;span style=&quot;color: rgb(102, 102, 102);&quot;&gt;Retrieval Augmented Generation&lt;br&gt;Prompt Engineering&lt;/span&gt;" vertex="1">
+        <mxCell id="D5NGcvgCAcNfVg2UiYoK-261" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#6C3483;fontFamily=Times New Roman;fontSize=13;" value="&lt;b&gt;RAG Orchestrator&lt;/b&gt;&lt;br&gt;&lt;span style=&quot;color: rgb(102, 102, 102);&quot;&gt;Retrieval Augmented Generation&lt;br&gt;Prompt Engineering&lt;/span&gt;" vertex="1">
           <mxGeometry height="55" width="380" x="1700" y="1875" as="geometry" />
         </mxCell>
-        <mxCell id="D5NGcvgCAcNfVg2UiYoK-262" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#e6e6e6;align=left;verticalAlign=top;fontFamily=Times New Roman;fontSize=13;" value="" vertex="1">
+        <mxCell id="D5NGcvgCAcNfVg2UiYoK-262" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#A8B0B8;align=left;verticalAlign=top;fontFamily=Times New Roman;fontSize=13;" value="" vertex="1">
           <mxGeometry height="170" width="420" x="1680" y="1960" as="geometry" />
         </mxCell>
-        <mxCell id="D5NGcvgCAcNfVg2UiYoK-263" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontFamily=Times New Roman;fontSize=13;fontColor=#333333;" value="&lt;b&gt;Subsystem C: Knowledge Management&lt;/b&gt;" vertex="1">
+        <mxCell id="D5NGcvgCAcNfVg2UiYoK-263" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontFamily=Times New Roman;fontSize=13;fontColor=#2F4A6A;" value="&lt;b&gt;Subsystem C: Knowledge Management&lt;/b&gt;" vertex="1">
           <mxGeometry height="25" width="420" x="1680" y="1965" as="geometry" />
         </mxCell>
-        <mxCell id="D5NGcvgCAcNfVg2UiYoK-264" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#000000;fontFamily=Times New Roman;fontSize=13;" value="&lt;b&gt;Knowledge Graph&lt;/b&gt;&lt;br&gt;&lt;span style=&quot;color: rgb(102, 102, 102);&quot;&gt;Topological Relationships&lt;br&gt;Domain Schema&lt;/span&gt;" vertex="1">
+        <mxCell id="D5NGcvgCAcNfVg2UiYoK-264" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#6C3483;fontFamily=Times New Roman;fontSize=13;" value="&lt;b&gt;Knowledge Graph&lt;/b&gt;&lt;br&gt;&lt;span style=&quot;color: rgb(102, 102, 102);&quot;&gt;Topological Relationships&lt;br&gt;Domain Schema&lt;/span&gt;" vertex="1">
           <mxGeometry height="100" width="180" x="1700" y="2005" as="geometry" />
         </mxCell>
-        <mxCell id="D5NGcvgCAcNfVg2UiYoK-265" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#000000;fontFamily=Times New Roman;fontSize=13;" value="&lt;b&gt;Vector Database&lt;/b&gt;&lt;br&gt;&lt;span style=&quot;color: rgb(102, 102, 102);&quot;&gt;High-dim Embeddings&lt;br&gt;Similarity Search&lt;/span&gt;" vertex="1">
+        <mxCell id="D5NGcvgCAcNfVg2UiYoK-265" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#6C3483;fontFamily=Times New Roman;fontSize=13;" value="&lt;b&gt;Vector Database&lt;/b&gt;&lt;br&gt;&lt;span style=&quot;color: rgb(102, 102, 102);&quot;&gt;High-dim Embeddings&lt;br&gt;Similarity Search&lt;/span&gt;" vertex="1">
           <mxGeometry height="100" width="180" x="1900" y="2005" as="geometry" />
         </mxCell>
-        <mxCell id="D5NGcvgCAcNfVg2UiYoK-266" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#333333;strokeColor=#333333;align=left;verticalAlign=top;spacingLeft=10;spacingTop=10;fontFamily=Times New Roman;fontSize=13;" value="" vertex="1">
+        <mxCell id="D5NGcvgCAcNfVg2UiYoK-266" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#2F4A6A;strokeColor=#2F4A6A;align=left;verticalAlign=top;spacingLeft=10;spacingTop=10;fontFamily=Times New Roman;fontSize=13;" value="" vertex="1">
           <mxGeometry height="150" width="1080" x="1040" y="2200" as="geometry" />
         </mxCell>
         <mxCell id="D5NGcvgCAcNfVg2UiYoK-267" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontFamily=Times New Roman;fontSize=13;fontColor=#ffffff;" value="&lt;b&gt;MODULE I: PHYSICAL ASSET &amp;amp; DATA ACQUISITION&lt;/b&gt;" vertex="1">

@@ -1,8 +1,34 @@
 % Shared TikZ helpers for Chapter 8 teaching figures (EN/CN captions live in chapter files).
+% AcademicSlate — aligned with platform_architecture / BookInk.
 \usepackage{tikz}
 \usetikzlibrary{positioning,arrows.meta,fit,calc,shapes.geometric}
+\definecolor{ch8ink}{HTML}{1A2332}
+\definecolor{ch8navy}{HTML}{2F4A6A}
+\definecolor{ch8steel}{HTML}{5B7BA6}
+\definecolor{ch8slate}{HTML}{E8EEF4}
+\definecolor{ch8cream}{HTML}{F7F2E8}
+\definecolor{ch8green}{HTML}{E8F0EA}
+\definecolor{ch8teal}{HTML}{3D7A5A}
+\definecolor{ch8lilac}{HTML}{EEE8F2}
+\definecolor{ch8purple}{HTML}{6C3483}
+\definecolor{ch8grey}{HTML}{ECEFF1}
+\definecolor{ch8mute}{HTML}{5D6D7E}
 \tikzset{
-  ch8box/.style={draw, rounded corners=1pt, align=center, inner sep=4pt, font=\small},
-  ch8arr/.style={-Latex, thick},
-  ch8tiny/.style={font=\scriptsize}
+  ch8box/.style={
+    draw=ch8navy,
+    line width=0.7pt,
+    rounded corners=2pt,
+    align=center,
+    inner sep=5pt,
+    font=\small,
+    fill=ch8slate,
+    text=ch8ink
+  },
+  ch8boxalt/.style={ch8box, fill=ch8cream, draw=ch8steel},
+  ch8boxok/.style={ch8box, fill=ch8green, draw=ch8teal},
+  ch8boxrag/.style={ch8box, fill=ch8lilac, draw=ch8purple},
+  ch8boxgate/.style={ch8box, fill=ch8cream, draw=ch8navy},
+  ch8boxllm/.style={ch8box, fill=white, draw=ch8mute, densely dashed},
+  ch8arr/.style={-Latex, thick, draw=ch8mute},
+  ch8tiny/.style={font=\scriptsize, text=ch8mute}
 }
