@@ -434,7 +434,27 @@ function answer(q):
 
 
 
-概括孪生到语言的装配：意图决定装哪些护照与邻域；引用或拒答决定草稿能否离开 harness；GeoBIM 解析决定哪个宿主有资格被点名~\cite{lewis2020,peng2024,zhang2025}。下一节加入模态标签与有界智能体，使 RGB/IR 冲突与工单提议仍服从同一套契约。
+
+表~\ref{tab:ch8-assembly-fail} 把同一纪律压成课堂与采购语言。每一行把常见捷径与 harness 应发出的结构化拒答配对。学生可用冻结孪生上``系统能否产出这些拒答''给供应商演示打分；实现者可把右列变成伪代码旁的单元测试~\cite{ji2023,peng2024,liang2023helm}。
+
+\begin{table}[htbp]
+\centering
+\caption{常见装配捷径与应阻止它们的拒答。}
+\label{tab:ch8-assembly-fail}
+\begin{tabular}{llp{4.4cm}}
+\toprule
+捷径 & 会坏什么 & 优选拒答 \\
+\midrule
+模糊宿主静默选定 & 错误 Asset-ID 工单 & \texttt{ABSTAIN:asset\_ambiguous} \\
+嵌入``相似渍迹'' & 假渗水路径 & \texttt{ABSTAIN:no\_neighbour} \\
+整面立面倾倒进上下文 & 引用无法核对 & 收缩为过滤后集合 \\
+手册未钉扎 & 版本折中 & \texttt{ABSTAIN:edition\_unpinned} \\
+跳过 ID 校验 & 散文虚构板块 & \texttt{ABSTAIN:id\_not\_in\_package} \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+概括孪生到语言的装配：意图决定装哪些护照与邻域；引用或拒答决定草稿能否离开 harness；GeoBIM 解析决定哪个宿主有资格被点名~\cite{lewis2020,peng2024,zhang2025}。表~ef{tab:ch8-assembly-fail} 使这些决策可核对；下一节再在同一契约下加入模态标签与有界智能体。
 
 \section{多模态融合}
 \label{sec:ch8-multimodal}
@@ -594,6 +614,25 @@ RGB & IR $\rightarrow$ 语言动作 \\
 \end{tabular}
 \end{table}
 
+用一次走读把表~\ref{tab:ch8-schema}钉牢。设渗水路径题的检索包已含 \texttt{W-3-17} 与 \texttt{W-4-17} 护照、观测 ID \texttt{obs-2403-118}（RGB 渍迹）与 \texttt{obs-2403-204}（红外异常），以及含上层宿主的一跳邻域列表。守 schema 的草稿便只点名这些 Asset-ID，把两条观测 ID 挂在诊断证据下，把传播写成向上路径，按可达性给出局部探查优先级，并因 RGB/红外不一致而抬高 \texttt{human\_check}。失败草稿可以同样流畅：发明 \texttt{W-3-18}、声称``已确认渗水''，或在没有观测字段时写严重度。验收是机械的：草稿中每个身份必须是检索包的子集，每个证据 URI 必须打开到正确裁剪，冲突标记必须进入信任块~\cite{ji2023,zheng2023bimassistant,joffe2025buildingcodes}。表~\ref{tab:ch8-report-accept} 把该验收写成交接前清单。
+
+\begin{table}[htbp]
+\centering
+\caption{报告草稿离开语言层之前的验收检查。}
+\label{tab:ch8-report-accept}
+\begin{tabular}{llp{4.6cm}}
+\toprule
+检查项 & 通过条件 & 坏味道 \\
+\midrule
+ID 子集 & 资产/缺陷 ID $\subseteq$ 证据包 & 虚构板块编码 \\
+可打开证据 & 每个 URI 打开正确裁剪 & 引用表演 \\
+冲突诚实 & 保留 RGB/IR 分歧 & 静默平均诊断 \\
+行动可读 & 排程器可直接用字段 & 仅散文工单 \\
+写入暂存 & 孪生更新仅 pending & 草稿按钮直接改孪生 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
 \begin{figure}[t]
 \centering
 \includegraphics[width=0.88\linewidth]{field_asset_id_stages.pdf}
@@ -612,6 +651,10 @@ RGB & IR $\rightarrow$ 语言动作 \\
 
 报告生命周期。 报告管理不止一次性生成。草稿应版本化；人工签核应被记录；已批准事实可以写回第\ref{sec:ch8-llm-foundations}节引入的长期孪生记忆。被拒草稿不应静默污染护照。若机构已使用 CMMS 或 BIM 问题追踪，上表 schema 应映射到既有字段。也不另起一套散文 PDF 宇宙。自然语言查询界面可以帮助非专业人员提问，但权威交付物仍是约束报告加上可打开证据。
 
+生命周期状态机把纪律变成可强制执行的顺序。实用机器是 DRAFT $\rightarrow$ VALIDATE $\rightarrow$ REVIEW $\rightarrow$ APPROVED/REJECTED $\rightarrow$ CMMS\_MAPPED $\rightarrow$（可选）TWIN\_WRITE。LLM 只在 DRAFT 内填字段；表~\ref{tab:ch8-report-accept} 负责 VALIDATE；人类负责 REVIEW；薄映射器负责 CMMS\_MAPPED；只有批准路径可调用 \texttt{stage\_twin\_write}。ReAct 式工具循环与 schema 引导的 AEC 智能体已表明：多步工具使用有价值，前提是每一步仍类型化且有门~\cite{yao2023react,gao2026ifcagent,luo2025llmdtrobot}。对立面报告，同一教训表现为状态权属：不得因十分钟后开会就用流畅度跳过 VALIDATE~\cite{li2024surveymultiagent,rawat2025llmmas,hellin2025bimmas}。
+
+报告角色可为软件清晰度而拆分，但不得制造多个 Asset-ID 真相。检索角色刷新证据包；起草角色在引用或拒答下填 schema；映射角色产出 CMMS/问题追踪载荷；行动提议者可为第2--3章附上复访提示。所有角色读同一孪生记忆与同一批准政策。IFC 工具智能体与运维机器人经纪展示了模型查询与机器人任务的类似拆分；本章把拆分放在报告管理之内，使工单继承可打开证据，而绝不另造第二套世界模型~\cite{gao2026ifcagent,luo2025llmdtrobot,quan2026bimfacrag,buga2025llmfmsql}。多智能体编排综述提醒：基础设施与工作流设计重于人格数量；巡检教学因此应给共享记忆与门禁打分，而不是给命名智能体个数打分~\cite{li2024surveymultiagent,wang2024surveyagents}。
+
 \begin{figure}[htbp]
 \centering
 \includegraphics[width=\linewidth]{analysis_interface_nlq.pdf}
@@ -627,9 +670,30 @@ RGB & IR $\rightarrow$ 语言动作 \\
 
 供应商演示也因同一套契约失效：只有 PDF RAG 而无 Asset-ID、聊天界面打不开被引影像、未批准草稿自动写孪生、无几何归一化的严重度语言，或用嵌入邻居而非 BIM 邻接讲传播故事。命中两项及以上，系统仍只是原型。
 
-交付随后有必须合拢的两半。一半是 schema 约束草稿，另一半是进入既有系统的字段映射：\texttt{asset\_ids} 到设备编码，\texttt{priority} 到工单优先级，\texttt{human\_check} 到巡检挂起标记，证据 URI 到附件槽。没有映射，流畅报告只会堆成无人排程的 PDF~\cite{chen2023facility,krutli2025fmrags,buga2025llmfmsql}。叙述必须由已填字段渲染，不得事后从散文刮 ID；每个证据 URI 必须打开到正确裁剪；夜间链接检查应与检测器质控并列~\cite{zheng2023bimassistant,joffe2025buildingcodes,zhang2025,gao2026ifcagent}。交接包因此应携带 Asset-ID 词典、观测 schema、手册版本钉扎、批准日志，以及用于语言评价的冻结孪生快照。报告生命周期的厚度来自这些契约：草稿先通过 ID 子集校验再进人工审，驳回进入过程记忆，批准字段以尽量免重写的方式映射进 CMMS，Asset-ID 冲突留在草稿侧栏可见，不得被散文抹平~\cite{buga2025llmfmsql,chen2023facility,quan2026bimfacrag,hellin2025bimmas}。无法打开证据的``正式报告''比聊天幻觉更危险，因为它会推动预算与脚手架~\cite{ji2023,saka2024gptconstruction}。
+交付随后有必须合拢的两半。一半是 schema 约束草稿，另一半是进入既有系统的字段映射。表~\ref{tab:ch8-cmms-map} 给出设施团队可尽早协商的最小映射：\texttt{asset\_ids} 到设备编码，\texttt{priority} 到工单优先级，\texttt{human\_check} 到巡检挂起标记，证据 URI 到附件槽，传播路径到相关资产备注。没有映射，流畅报告只会堆成无人排程的 PDF~\cite{chen2023facility,krutli2025fmrags,buga2025llmfmsql}。叙述必须由已填字段渲染；不得事后从散文刮 ID；每个证据 URI 必须打开到正确裁剪；夜间链接检查应与检测器质控并列~\cite{zheng2023bimassistant,joffe2025buildingcodes,zhang2025,gao2026ifcagent}。
 
-概括言之，权威交付物是带可打开证据、人工签核与既有 CMMS/问题追踪字段映射的 schema 约束草稿。下一节用实现无关准则，追问这些制品是否真的改变排程。
+\begin{table}[htbp]
+\centering
+\caption{立面工单的最小报告--CMMS 字段映射。}
+\label{tab:ch8-cmms-map}
+\begin{tabular}{llp{4.8cm}}
+\toprule
+报告字段 & 典型 CMMS/追踪槽位 & 映射规则 \\
+\midrule
+\texttt{asset\_ids} & 设备/位置编码 & 与台账精确匹配 \\
+\texttt{defect\_ids} & 附件/证据引用 & 仅可打开 URI \\
+\texttt{priority} & 工单优先级 & 用设施量表，不用 LLM 自定量表 \\
+\texttt{human\_check} & 挂起/复核标记 & true 阻断自动关闭 \\
+propagation path & 相关资产备注 & 仅 BIM 邻域 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+交接包因此应携带 Asset-ID 词典、观测 schema、手册版本钉扎、批准日志、上表 CMMS 映射，以及用于语言评价的冻结孪生快照。报告生命周期的厚度来自这些契约：草稿先通过 ID 子集校验再进人工审，驳回进入过程记忆，批准字段以尽量免重写的方式映射进 CMMS，Asset-ID 冲突留在草稿侧栏可见~\cite{buga2025llmfmsql,chen2023facility,quan2026bimfacrag,hellin2025bimmas}。已发表的运维机器人与 IFC 智能体闭环（语言请求、结构化动作、批准下更新孪生或模型）走的是同类圆圈；立面运维把圆圈专门化，使每张工单在预算或脚手架移动之前仍引用可打开的观测裁剪~\cite{luo2025llmdtrobot,gao2026ifcagent,saka2024gptconstruction}。无法打开证据的``正式报告''因此比聊天幻觉更危险~\cite{ji2023}。
+
+跨航次的季节性报告卫生，让生命周期在多季之间仍诚实。每次主要飞行周结束后，冻结孪生快照，在含拒答的金标题集上重跑表~\ref{tab:ch8-report-accept}，并在更换任何托管 LLM 之前统计虚构 ID 率与断链证据率~\cite{liang2023helm,zhang2025}。跨航次主张（``比上季更严重''）要求证据包含既往观测 ID；否则 harness 必须强制拒答，或把叙述留给仅人类填写的字段。该规则保护纵向语言，正如 Asset-ID 卫生保护单次草稿~\cite{chen2023facility,krutli2025fmrags}。
+
+概括言之，权威交付物是带可打开证据、人工签核与既有 CMMS/问题追踪字段映射的 schema 约束草稿。表~\ref{tab:ch8-report-accept}与表~\ref{tab:ch8-cmms-map}使这些义务可核对。下一节用实现无关准则，追问这些制品是否真的改变排程。
 
 \section{决策支持与预测性维护}
 \label{sec:ch8-dss}
