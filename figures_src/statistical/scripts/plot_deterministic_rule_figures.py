@@ -107,14 +107,14 @@ def _annotate_nonzero(ax, bars, heights, color) -> None:
 
 
 def _ablation_colors() -> list[str]:
-    nat = theme_colors("BookSlate")
-    eg = external_group_colors("BookSlate")
+    nat = theme_colors(None)
+    eg = external_group_colors(None)
     return [eg["E"], eg["F"], eg["J"], eg["I"], nat["Ours"]]
 
 
 def plot_ksweep(ksweep_csv: Path, out_stem: Path) -> None:
     ks = pd.read_csv(ksweep_csv).sort_values("k")
-    colors = theme_colors("BookSlate")
+    colors = theme_colors(None)
     fig, ax = plt.subplots(figsize=(7.4, 4.3))
     x = ks["k"].to_numpy(dtype=int)
     coverage = np.array([KSWEEP_COVERAGE[int(k)] for k in x], dtype=float)
@@ -213,7 +213,7 @@ def _load_external_rows(idp_dir: Path) -> list[tuple[str, str, dict]]:
 
 def plot_external(idp_dir: Path, out_stem: Path) -> None:
     rows = _load_external_rows(idp_dir)
-    eg = external_group_colors("BookSlate")
+    eg = external_group_colors(None)
     color_map = {
         "I": eg["I"], "J": eg["J"], "K": "#7E6148",
         "H_ner": eg["H"], "D": eg["D"],
@@ -268,7 +268,7 @@ def _sig_stars(p: float) -> str:
 def plot_forest(stats_csv: Path, out_stem: Path) -> None:
     stats = pd.read_csv(stats_csv)
     stats = stats[stats["metric"] == "score"].copy()
-    ours = theme_colors("BookSlate")["Ours"]
+    ours = theme_colors(None)["Ours"]
     worse = "#8491B4"
     ns_c = "#B0B0B0"
 

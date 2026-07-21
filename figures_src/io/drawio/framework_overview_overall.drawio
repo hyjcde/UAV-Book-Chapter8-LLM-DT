@@ -4,19 +4,19 @@
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
-        <mxCell id="D5NGcvgCAcNfVg2UiYoK-236" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#FDE8D4;strokeColor=#d6b656;align=left;verticalAlign=top;spacingLeft=10;spacingTop=10;dashed=1;fontFamily=Times New Roman;fontSize=13;" value="" vertex="1">
+        <mxCell id="D5NGcvgCAcNfVg2UiYoK-236" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#F7F2E8;strokeColor=#8B7355;align=left;verticalAlign=top;spacingLeft=10;spacingTop=10;dashed=1;fontFamily=Times New Roman;fontSize=13;" value="" vertex="1">
           <mxGeometry height="150" width="1080" x="1040" y="1540" as="geometry" />
         </mxCell>
         <mxCell id="D5NGcvgCAcNfVg2UiYoK-237" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontFamily=Times New Roman;fontSize=13;fontColor=#000000;" value="&lt;b&gt;MODULE IV: HUMAN-MACHINE INTERACTION &amp;amp; SERVICE&lt;/b&gt;" vertex="1">
           <mxGeometry height="30" width="490" x="1050" y="1545" as="geometry" />
         </mxCell>
-        <mxCell id="D5NGcvgCAcNfVg2UiYoK-238" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#d6b656;fontFamily=Times New Roman;fontSize=13;" value="&lt;b&gt;Immersive 3D Visualization&lt;/b&gt;&lt;br&gt;&lt;span style=&quot;color: rgb(102, 102, 102);&quot;&gt;Web-based Rendering Engine&lt;br&gt;Real-time Interaction&lt;/span&gt;" vertex="1">
+        <mxCell id="D5NGcvgCAcNfVg2UiYoK-238" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#8B7355;fontFamily=Times New Roman;fontSize=13;" value="&lt;b&gt;Immersive 3D Visualization&lt;/b&gt;&lt;br&gt;&lt;span style=&quot;color: rgb(102, 102, 102);&quot;&gt;Web-based Rendering Engine&lt;br&gt;Real-time Interaction&lt;/span&gt;" vertex="1">
           <mxGeometry height="70" width="260" x="1120" y="1590" as="geometry" />
         </mxCell>
-        <mxCell id="D5NGcvgCAcNfVg2UiYoK-239" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#D6E5E8;strokeColor=#6c8ebf;fontFamily=Times New Roman;fontSize=13;" value="&lt;b&gt;Analytical Dashboard&lt;/b&gt;&lt;br&gt;&lt;span style=&quot;color: rgb(102, 102, 102);&quot;&gt;Decision Support System&lt;br&gt;Statistical Charts&lt;/span&gt;" vertex="1">
+        <mxCell id="D5NGcvgCAcNfVg2UiYoK-239" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E8EEF4;strokeColor=#5B7BA6;fontFamily=Times New Roman;fontSize=13;" value="&lt;b&gt;Analytical Dashboard&lt;/b&gt;&lt;br&gt;&lt;span style=&quot;color: rgb(102, 102, 102);&quot;&gt;Decision Support System&lt;br&gt;Statistical Charts&lt;/span&gt;" vertex="1">
           <mxGeometry height="70" width="260" x="1420" y="1590" as="geometry" />
         </mxCell>
-        <mxCell id="D5NGcvgCAcNfVg2UiYoK-240" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#d6b656;fontFamily=Times New Roman;fontSize=13;" value="&lt;b&gt;Cognitive Copilot&lt;/b&gt;&lt;br&gt;&lt;span style=&quot;color: rgb(102, 102, 102);&quot;&gt;Natural Language Interface&lt;br&gt;Q&amp;amp;A System&lt;/span&gt;" vertex="1">
+        <mxCell id="D5NGcvgCAcNfVg2UiYoK-240" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#8B7355;fontFamily=Times New Roman;fontSize=13;" value="&lt;b&gt;Cognitive Copilot&lt;/b&gt;&lt;br&gt;&lt;span style=&quot;color: rgb(102, 102, 102);&quot;&gt;Natural Language Interface&lt;br&gt;Q&amp;amp;A System&lt;/span&gt;" vertex="1">
           <mxGeometry height="70" width="260" x="1760" y="1590" as="geometry" />
         </mxCell>
         <mxCell id="D5NGcvgCAcNfVg2UiYoK-241" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#cccccc;align=left;verticalAlign=top;spacingLeft=10;spacingTop=10;fontFamily=Times New Roman;fontSize=13;" value="" vertex="1">
@@ -52,13 +52,13 @@
         <mxCell id="D5NGcvgCAcNfVg2UiYoK-251" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#000000;fontFamily=Times New Roman;fontSize=13;" value="&lt;b&gt;Semantic Segmentation&lt;/b&gt;&lt;br&gt;&lt;span style=&quot;color: rgb(102, 102, 102);&quot;&gt;Pixel-level Instance Masking&lt;br&gt;Material Classification&lt;/span&gt;" vertex="1">
           <mxGeometry height="55" width="340" x="1080" y="2065" as="geometry" />
         </mxCell>
-        <mxCell id="D5NGcvgCAcNfVg2UiYoK-252" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#D6E5E8;strokeColor=#6c8ebf;align=center;verticalAlign=middle;fontFamily=Times New Roman;fontSize=13;" value="" vertex="1">
+        <mxCell id="D5NGcvgCAcNfVg2UiYoK-252" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#E8EEF4;strokeColor=#5B7BA6;align=center;verticalAlign=middle;fontFamily=Times New Roman;fontSize=13;" value="" vertex="1">
           <mxGeometry height="260" width="140" x="1490" y="1840" as="geometry" />
         </mxCell>
         <mxCell id="D5NGcvgCAcNfVg2UiYoK-253" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontFamily=Times New Roman;fontSize=13;fontColor=#000000;" value="&lt;b&gt;SEMANTIC&lt;br&gt;FUSION&lt;br&gt;ENGINE&lt;/b&gt;" vertex="1">
           <mxGeometry height="40" width="140" x="1490" y="1850" as="geometry" />
         </mxCell>
-        <mxCell id="D5NGcvgCAcNfVg2UiYoK-254" parent="1" style="shape=rhombus;whiteSpace=wrap;html=1;fillColor=#003366;strokeColor=#ffffff;fontFamily=Times New Roman;fontColor=#ffffff;fontStyle=0;fontSize=13;" value="&lt;b&gt;IDP&lt;/b&gt;&lt;br&gt;&lt;span&gt;(Integrated&lt;br&gt;Defect&lt;br&gt;Profile)&lt;/span&gt;" vertex="1">
+        <mxCell id="D5NGcvgCAcNfVg2UiYoK-254" parent="1" style="shape=rhombus;whiteSpace=wrap;html=1;fillColor=#1E3A5F;strokeColor=#ffffff;fontFamily=Times New Roman;fontColor=#ffffff;fontStyle=0;fontSize=13;" value="&lt;b&gt;IDP&lt;/b&gt;&lt;br&gt;&lt;span&gt;(Integrated&lt;br&gt;Defect&lt;br&gt;Profile)&lt;/span&gt;" vertex="1">
           <mxGeometry height="120" width="120" x="1500" y="1910" as="geometry" />
         </mxCell>
         <mxCell id="D5NGcvgCAcNfVg2UiYoK-255" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontFamily=Times New Roman;fontSize=13;" value="&lt;span style=&quot;color: rgb(85, 85, 85);&quot;&gt;Mapping 2D Masks&lt;br&gt;to 3D Coordinates&lt;/span&gt;" vertex="1">

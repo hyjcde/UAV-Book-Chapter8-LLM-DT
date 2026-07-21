@@ -527,9 +527,9 @@ RGB & IR $\rightarrow$ 语言动作 \\
 \end{tabular}
 \end{table}
 
-\begin{figure}[htbp]
+\begin{figure}[t]
 \centering
-\includegraphics[width=0.85\textwidth]{field_asset_id_stages.pdf}
+\includegraphics[width=0.88\linewidth]{field_asset_id_stages.pdf}
 \caption{现场核验集上的分阶段 Asset-ID 检查：空间题与多跳题在现场记录审计、检索 ID 召回、答案 ID 召回与 LLM 评判准确率上的成功率。高审计完整度并不意味着高答案 ID 保真度；身份卫生须按阶段分别计分。}
 \label{fig:ch8-asset-id}
 \end{figure}
@@ -590,23 +590,23 @@ RGB & IR $\rightarrow$ 语言动作 \\
 
 可迁移性与预测性维护必须落在同一条论证线上。图~\ref{fig:ch8-transfer}与图~\ref{fig:ch8-transfer-impl}表明：观测--几何--依赖脊柱可通过更换实体语义与边类型，实例化为建筑运维、改造排序或施工进度监测。schema 复用是真实的；预测技能并不自动获得。语言系统可按证据支持的严重度与可达性约束给资产排序，也可呈现提示词之外的外部时序模型输出；它不应从单次航次发明未来一年的剥落概率~\cite{gao2026ifcagent,zhang2025llmagentschema,zhao2026physical}。单时相优先级分数是分诊。预后要等到同一 Asset-ID 积累可比的多模态历史，并把非 LLM 时序模型作为只读工具接入 harness 之后。
 
-\begin{figure}[htbp]
+\begin{figure}[t]
 \centering
-\includegraphics[width=0.82\textwidth]{framework_generalizability_concept.pdf}
+\includegraphics[width=\linewidth]{framework_generalizability_concept.png}
 \caption{检测画像 / 实体画像 / $k$ 跳检索脊柱的概念可迁移性：同一套观测--几何--依赖结构，可通过更换实体语义与边类型，实例化为建筑运维、改造排序与施工进度监测。schema 复用不是预测能力的保证。}
 \label{fig:ch8-transfer}
 \end{figure}
 
-\begin{figure}[htbp]
+\begin{figure}[t]
 \centering
 \includegraphics[width=\linewidth]{platform_transferability_implementation.pdf}
 \caption{框架迁移的实现视图：经验证的缺陷管理部署与概念性施工进度部署共享同一不变核心（实体/检测画像、$k$ 跳检索、LLM+RAG 管线），同时适配 schema 与现场设备。迁移意味着 schema 实例化，并不自动获得预测性维护。}
 \label{fig:ch8-transfer-impl}
 \end{figure}
 
-\begin{figure}[htbp]
+\begin{figure}[t]
 \centering
-\includegraphics[width=\linewidth]{multi_platform_field_interfaces.pdf}
+\includegraphics[width=0.92\linewidth]{multi_platform_field_interfaces.pdf}
 \caption{面向现场与办公的多平台自然语言界面（手机端对话对比，与平板端带表格/图表的分布查询）。界面成败取决于被点名的缺陷/Asset-ID 是否一致、证据是否可打开，而不取决于屏幕排版本身。}
 \label{fig:ch8-multiplatform}
 \end{figure}

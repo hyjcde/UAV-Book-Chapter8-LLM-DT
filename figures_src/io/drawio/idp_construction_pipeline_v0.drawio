@@ -34,16 +34,16 @@
         <mxCell id="idp-loc-label" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontFamily=Courier New;fontSize=10;fontColor=#333333;fontStyle=1" value="&quot;Localization&quot;" vertex="1">
           <mxGeometry height="14" width="100" x="65" y="198" as="geometry" />
         </mxCell>
-        <mxCell id="idp-loc-gps" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#D6E5E8;strokeColor=#6c8ebf;fontFamily=Courier New;fontSize=9;align=left;spacingLeft=6;" value="{&lt;b&gt;global&lt;/b&gt; (GPS): [114.123, 22.384, 45.7m]}" vertex="1">
+        <mxCell id="idp-loc-gps" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#E8EEF4;strokeColor=#5B7BA6;fontFamily=Courier New;fontSize=9;align=left;spacingLeft=6;" value="{&lt;b&gt;global&lt;/b&gt; (GPS): [114.123, 22.384, 45.7m]}" vertex="1">
           <mxGeometry height="24" width="175" x="65" y="217" as="geometry" />
         </mxCell>
         <mxCell id="idp-loc-local" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#cccccc;fontFamily=Courier New;fontSize=9;align=left;spacingLeft=6;" value="{&lt;b&gt;local&lt;/b&gt;: [x:0.09, y:2.79]m}" vertex="1">
           <mxGeometry height="24" width="98" x="260" y="217" as="geometry" />
         </mxCell>
-        <mxCell id="idp-loc-relative" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#FDE8D4;strokeColor=#d6b656;fontFamily=Courier New;fontSize=9;align=left;spacingLeft=6;" value="{&lt;b&gt;relative&lt;/b&gt;: [0.46, 0.93]}" vertex="1">
+        <mxCell id="idp-loc-relative" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#F7F2E8;strokeColor=#8B7355;fontFamily=Courier New;fontSize=9;align=left;spacingLeft=6;" value="{&lt;b&gt;relative&lt;/b&gt;: [0.46, 0.93]}" vertex="1">
           <mxGeometry height="24" width="130" x="65" y="247" as="geometry" />
         </mxCell>
-        <mxCell id="idp-loc-semantic" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#E4EFD0;strokeColor=#82b366;fontFamily=Courier New;fontSize=9;align=left;spacingLeft=6;" value="{&lt;b&gt;semantic&lt;/b&gt;: &quot;Top-Center&quot;}" vertex="1">
+        <mxCell id="idp-loc-semantic" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#E8F0EA;strokeColor=#82b366;fontFamily=Courier New;fontSize=9;align=left;spacingLeft=6;" value="{&lt;b&gt;semantic&lt;/b&gt;: &quot;Top-Center&quot;}" vertex="1">
           <mxGeometry height="24" width="155" x="203" y="247" as="geometry" />
         </mxCell>
         <mxCell id="idp-loc-bim" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#cccccc;fontFamily=Courier New;fontSize=9;align=center;" value="&lt;b&gt;BIM_ID&lt;/b&gt;: IFC_WALL_0a4R30sjrEFes7mtu9Nbvn" vertex="1">
@@ -82,25 +82,25 @@
         <mxCell id="idp-conf" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#cccccc;fontFamily=Courier New;fontSize=9;align=center;" value="&lt;b&gt;Conf&lt;/b&gt;: 0.92" vertex="1">
           <mxGeometry height="20" width="183" x="175" y="420" as="geometry" />
         </mxCell>
-        <mxCell id="platform-bg" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#D6E5E8;strokeColor=#6c8ebf;strokeWidth=2;" value="" vertex="1">
+        <mxCell id="platform-bg" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#E8EEF4;strokeColor=#5B7BA6;strokeWidth=2;" value="" vertex="1">
           <mxGeometry height="260" width="260" x="440" y="60" as="geometry" />
         </mxCell>
         <mxCell id="platform-title" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontStyle=1;fontSize=11;fontFamily=Times New Roman;fontColor=#333333;" value="DIGITAL TWIN PLATFORM" vertex="1">
           <mxGeometry height="18" width="180" x="480" y="68" as="geometry" />
         </mxCell>
-        <mxCell id="platform-idp" parent="1" style="shape=rhombus;whiteSpace=wrap;html=1;fillColor=#003366;strokeColor=#ffffff;fontFamily=Times New Roman;fontSize=10;fontColor=#ffffff;strokeWidth=2;" value="&lt;b&gt;IDP&lt;/b&gt;&lt;br&gt;&lt;span style=&quot;font-size:9px;&quot;&gt;(Integrated&lt;br&gt;Defect&lt;br&gt;Profile)&lt;/span&gt;" vertex="1">
+        <mxCell id="platform-idp" parent="1" style="shape=rhombus;whiteSpace=wrap;html=1;fillColor=#1E3A5F;strokeColor=#ffffff;fontFamily=Times New Roman;fontSize=10;fontColor=#ffffff;strokeWidth=2;" value="&lt;b&gt;IDP&lt;/b&gt;&lt;br&gt;&lt;span style=&quot;font-size:9px;&quot;&gt;(Integrated&lt;br&gt;Defect&lt;br&gt;Profile)&lt;/span&gt;" vertex="1">
           <mxGeometry height="90" width="100" x="510" y="92" as="geometry" />
         </mxCell>
-        <mxCell id="platform-sub-geo" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#6c8ebf;fontFamily=Times New Roman;fontSize=9;fontColor=#555555;arcSize=15;" value="&lt;b&gt;Geometric&lt;br&gt;Reconstruction&lt;/b&gt;&lt;br&gt;&lt;font color=&quot;#888888&quot;&gt;&lt;i&gt;SfM / MVS&lt;/i&gt;&lt;/font&gt;" vertex="1">
+        <mxCell id="platform-sub-geo" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#5B7BA6;fontFamily=Times New Roman;fontSize=9;fontColor=#555555;arcSize=15;" value="&lt;b&gt;Geometric&lt;br&gt;Reconstruction&lt;/b&gt;&lt;br&gt;&lt;font color=&quot;#888888&quot;&gt;&lt;i&gt;SfM / MVS&lt;/i&gt;&lt;/font&gt;" vertex="1">
           <mxGeometry height="55" width="90" x="455" y="195" as="geometry" />
         </mxCell>
-        <mxCell id="platform-sub-vis" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#6c8ebf;fontFamily=Times New Roman;fontSize=9;fontColor=#555555;arcSize=15;" value="&lt;b&gt;Visual&lt;br&gt;Perception&lt;/b&gt;&lt;br&gt;&lt;font color=&quot;#888888&quot;&gt;&lt;i&gt;Detection&lt;/i&gt;&lt;/font&gt;" vertex="1">
+        <mxCell id="platform-sub-vis" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#5B7BA6;fontFamily=Times New Roman;fontSize=9;fontColor=#555555;arcSize=15;" value="&lt;b&gt;Visual&lt;br&gt;Perception&lt;/b&gt;&lt;br&gt;&lt;font color=&quot;#888888&quot;&gt;&lt;i&gt;Detection&lt;/i&gt;&lt;/font&gt;" vertex="1">
           <mxGeometry height="55" width="90" x="555" y="195" as="geometry" />
         </mxCell>
-        <mxCell id="platform-sub-bim" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FDE8D4;strokeColor=#d6b656;fontFamily=Times New Roman;fontSize=9;fontColor=#555555;arcSize=15;" value="&lt;b&gt;BIM/GIS Context&lt;/b&gt;&lt;br&gt;&lt;font color=&quot;#888888&quot;&gt;&lt;i&gt;Spatial Anchoring&lt;/i&gt;&lt;/font&gt;" vertex="1">
+        <mxCell id="platform-sub-bim" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F7F2E8;strokeColor=#8B7355;fontFamily=Times New Roman;fontSize=9;fontColor=#555555;arcSize=15;" value="&lt;b&gt;BIM/GIS Context&lt;/b&gt;&lt;br&gt;&lt;font color=&quot;#888888&quot;&gt;&lt;i&gt;Spatial Anchoring&lt;/i&gt;&lt;/font&gt;" vertex="1">
           <mxGeometry height="50" width="90" x="455" y="260" as="geometry" />
         </mxCell>
-        <mxCell id="platform-sub-topo" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#D9E4E7;strokeColor=#9673a6;fontFamily=Times New Roman;fontSize=9;fontColor=#555555;arcSize=15;" value="&lt;b&gt;Topology Graph&lt;/b&gt;&lt;br&gt;&lt;font color=&quot;#888888&quot;&gt;&lt;i&gt;IFC Relations&lt;/i&gt;&lt;/font&gt;" vertex="1">
+        <mxCell id="platform-sub-topo" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#EEE8F2;strokeColor=#9673a6;fontFamily=Times New Roman;fontSize=9;fontColor=#555555;arcSize=15;" value="&lt;b&gt;Topology Graph&lt;/b&gt;&lt;br&gt;&lt;font color=&quot;#888888&quot;&gt;&lt;i&gt;IFC Relations&lt;/i&gt;&lt;/font&gt;" vertex="1">
           <mxGeometry height="50" width="90" x="555" y="260" as="geometry" />
         </mxCell>
         <mxCell id="platform-mapping" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontFamily=Times New Roman;fontSize=8;fontColor=#555555;fontStyle=2" value="Mapping 2D Masks to 3D Coordinates" vertex="1">
@@ -115,7 +115,7 @@
         <mxCell id="layer-defect-db" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#999999;strokeWidth=1;fontFamily=Times New Roman;fontSize=10;fontColor=#555555;" value="&lt;b&gt;Defect Records&lt;/b&gt;&lt;br&gt;&lt;font color=&quot;#888888&quot; style=&quot;font-size: 8px;&quot;&gt;Imagery • Metadata&lt;/font&gt;" vertex="1">
           <mxGeometry height="45" width="130" x="440" y="404.5" as="geometry" />
         </mxCell>
-        <mxCell id="layer-index" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#D9E4E7;strokeColor=#9673a6;strokeWidth=1;fontFamily=Times New Roman;fontSize=10;fontColor=#555555;" value="&lt;b&gt;Hierarchical Index&lt;/b&gt;&lt;br&gt;&lt;font color=&quot;#888888&quot; style=&quot;font-size: 8px;&quot;&gt;Site → IAP → IDP&lt;/font&gt;" vertex="1">
+        <mxCell id="layer-index" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#EEE8F2;strokeColor=#9673a6;strokeWidth=1;fontFamily=Times New Roman;fontSize=10;fontColor=#555555;" value="&lt;b&gt;Hierarchical Index&lt;/b&gt;&lt;br&gt;&lt;font color=&quot;#888888&quot; style=&quot;font-size: 8px;&quot;&gt;Site → IAP → IDP&lt;/font&gt;" vertex="1">
           <mxGeometry height="45" width="120" x="580" y="349.5" as="geometry" />
         </mxCell>
         <mxCell id="layer-storage" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#999999;strokeWidth=1;fontFamily=Times New Roman;fontSize=10;fontColor=#555555;" value="&lt;b&gt;Object Storage&lt;/b&gt;&lt;br&gt;&lt;font color=&quot;#888888&quot; style=&quot;font-size: 8px;&quot;&gt;Images • BIM Files&lt;/font&gt;" vertex="1">
@@ -133,10 +133,10 @@
         <mxCell id="context-engine-title" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontFamily=Times New Roman;fontSize=10;fontColor=#333333;" value="&lt;b&gt;Context Engine&lt;/b&gt;" vertex="1">
           <mxGeometry height="14" width="130" x="790" y="185" as="geometry" />
         </mxCell>
-        <mxCell id="context-llm" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FDE8D4;strokeColor=#d6b656;fontFamily=Times New Roman;fontSize=9;arcSize=15;" value="&lt;b&gt;LLM&lt;/b&gt;&lt;br&gt;&lt;font color=&quot;#888888&quot;&gt;&lt;i&gt;Inference&lt;/i&gt;&lt;/font&gt;" vertex="1">
+        <mxCell id="context-llm" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F7F2E8;strokeColor=#8B7355;fontFamily=Times New Roman;fontSize=9;arcSize=15;" value="&lt;b&gt;LLM&lt;/b&gt;&lt;br&gt;&lt;font color=&quot;#888888&quot;&gt;&lt;i&gt;Inference&lt;/i&gt;&lt;/font&gt;" vertex="1">
           <mxGeometry height="35" width="60" x="790" y="203" as="geometry" />
         </mxCell>
-        <mxCell id="context-rag" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FDE8D4;strokeColor=#d6b656;fontFamily=Times New Roman;fontSize=9;arcSize=15;" value="&lt;b&gt;RAG&lt;/b&gt;&lt;br&gt;&lt;font color=&quot;#888888&quot;&gt;&lt;i&gt;Retrieval&lt;/i&gt;&lt;/font&gt;" vertex="1">
+        <mxCell id="context-rag" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F7F2E8;strokeColor=#8B7355;fontFamily=Times New Roman;fontSize=9;arcSize=15;" value="&lt;b&gt;RAG&lt;/b&gt;&lt;br&gt;&lt;font color=&quot;#888888&quot;&gt;&lt;i&gt;Retrieval&lt;/i&gt;&lt;/font&gt;" vertex="1">
           <mxGeometry height="35" width="60" x="860" y="203" as="geometry" />
         </mxCell>
         <mxCell id="context-prompt" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontFamily=Times New Roman;fontSize=8;fontColor=#888888;fontStyle=2" value="Prompt Engineering" vertex="1">
@@ -148,10 +148,10 @@
         <mxCell id="knowledge-title" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontFamily=Times New Roman;fontSize=10;fontColor=#333333;" value="&lt;b&gt;Knowledge Management&lt;/b&gt;" vertex="1">
           <mxGeometry height="14" width="140" x="785" y="315" as="geometry" />
         </mxCell>
-        <mxCell id="knowledge-graph" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#D9E4E7;strokeColor=#9673a6;fontFamily=Times New Roman;fontSize=9;arcSize=15;" value="&lt;b&gt;Knowledge Graph&lt;/b&gt;&lt;br&gt;&lt;font color=&quot;#888888&quot;&gt;&lt;i&gt;Topology&lt;/i&gt;&lt;/font&gt;" vertex="1">
+        <mxCell id="knowledge-graph" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#EEE8F2;strokeColor=#9673a6;fontFamily=Times New Roman;fontSize=9;arcSize=15;" value="&lt;b&gt;Knowledge Graph&lt;/b&gt;&lt;br&gt;&lt;font color=&quot;#888888&quot;&gt;&lt;i&gt;Topology&lt;/i&gt;&lt;/font&gt;" vertex="1">
           <mxGeometry height="40" width="60" x="790" y="335" as="geometry" />
         </mxCell>
-        <mxCell id="knowledge-vector" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#D9E4E7;strokeColor=#9673a6;fontFamily=Times New Roman;fontSize=9;arcSize=15;" value="&lt;b&gt;Vector DB&lt;/b&gt;&lt;br&gt;&lt;font color=&quot;#888888&quot;&gt;&lt;i&gt;Embeddings&lt;/i&gt;&lt;/font&gt;" vertex="1">
+        <mxCell id="knowledge-vector" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#EEE8F2;strokeColor=#9673a6;fontFamily=Times New Roman;fontSize=9;arcSize=15;" value="&lt;b&gt;Vector DB&lt;/b&gt;&lt;br&gt;&lt;font color=&quot;#888888&quot;&gt;&lt;i&gt;Embeddings&lt;/i&gt;&lt;/font&gt;" vertex="1">
           <mxGeometry height="40" width="60" x="860" y="335" as="geometry" />
         </mxCell>
         <mxCell id="knowledge-expert" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontFamily=Times New Roman;fontSize=8;fontColor=#888888;fontStyle=2" value="Expert Knowledge (Standards)" vertex="1">
@@ -166,14 +166,14 @@
             <mxPoint x="570" y="320" as="targetPoint" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="arr-plat-idp" edge="1" parent="1" style="endArrow=classic;html=1;rounded=0;strokeWidth=2;strokeColor=#6c8ebf;fontFamily=Times New Roman;fontSize=10;fontStyle=1;fontColor=#6c8ebf;labelBackgroundColor=#ffffff;" value="Instantiate">
+        <mxCell id="arr-plat-idp" edge="1" parent="1" style="endArrow=classic;html=1;rounded=0;strokeWidth=2;strokeColor=#5B7BA6;fontFamily=Times New Roman;fontSize=10;fontStyle=1;fontColor=#5B7BA6;labelBackgroundColor=#ffffff;" value="Instantiate">
           <mxGeometry height="50" relative="1" width="50" x="0.1" y="10" as="geometry">
             <mxPoint as="offset" />
             <mxPoint x="440" y="190" as="sourcePoint" />
             <mxPoint x="380" y="190" as="targetPoint" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="arr-context-kb" edge="1" parent="1" style="endArrow=classic;html=1;rounded=0;strokeWidth=1.5;strokeColor=#d6b656;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="knowledge-box" value="">
+        <mxCell id="arr-context-kb" edge="1" parent="1" style="endArrow=classic;html=1;rounded=0;strokeWidth=1.5;strokeColor=#8B7355;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="knowledge-box" value="">
           <mxGeometry height="50" relative="1" width="50" as="geometry">
             <mxPoint x="855" y="265" as="sourcePoint" />
             <mxPoint x="855" y="273" as="targetPoint" />

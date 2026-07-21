@@ -20,17 +20,18 @@ PROJECT_ROOT = Path(__file__).resolve().parents[1]
 DEFAULT_INPUT = PROJECT_ROOT / "data" / "field_deployment_record_audit_frozen.json"
 DEFAULT_OUTPUT = PROJECT_ROOT / "out" / "field_deployment_audit"
 
+# Nature / AcademicSlate (cool blues) — same family as architecture diagrams
 COLORS = {
     "ink": "#1A2332",
     "muted": "#6B7280",
     "grid": "#E5E7EB",
     "light": "#F3F4F6",
-    "blue": "#0F4C5C",
-    "blue_light": "#7BA3AD",
-    "teal": "#5C8001",
-    "teal_light": "#B5C98E",
-    "amber": "#E36414",
-    "red": "#B45309",
+    "blue": "#3C5488",
+    "blue_light": "#8491B4",
+    "teal": "#00A087",
+    "teal_light": "#91D1C2",
+    "amber": "#E64B35",
+    "red": "#B2182B",
 }
 
 
@@ -334,22 +335,21 @@ def main() -> None:
 
     style()
     audit = json.loads(args.input.read_text(encoding="utf-8"))
-    fig = plt.figure(figsize=(7.2, 3.55), constrained_layout=True)
-    grid = fig.add_gridspec(1, 3, width_ratios=[1.0, 1.40, 1.12], wspace=0.34)
-    plot_inventory(fig.add_subplot(grid[0, 0]), audit)
-    plot_stage_metrics(fig.add_subplot(grid[0, 1]), audit)
-    plot_calibration(fig.add_subplot(grid[0, 2]), audit)
+    # Explicit margins avoid constrained_layout collapse on tight Springer columns
+    fig, axes = plt.subplots(1, 3, figsize=(7.6, 3.7), gridspec_kw={"width_ratios": [1.0, 1.35, 1.15]})
+    plot_inventory(axes[0], audit)
+    plot_stage_metrics(axes[1], audit)
+    plot_calibration(axes[2], audit)
+    fig.subplots_adjust(left=0.06, right=0.99, top=0.90, bottom=0.18, wspace=0.38)
 
     args.output.parent.mkdir(parents=True, exist_ok=True)
-    fig.savefig(args.output.with_suffix(".svg"), bbox_inches="tight")
-    fig.savefig(args.output.with_suffix(".pdf"), bbox_inches="tight")
-    fig.savefig(args.output.with_suffix(".png"), dpi=600, bbox_inches="tight")
-    fig.savefig(
-        args.output.with_suffix(".tiff"),
-        dpi=600,
-        bbox_inches="tight",
-        pil_kwargs={"compression": "tiff_lzw"},
-    )
+    for ext, kw in [
+        (".svg", {}),
+        (".pdf", {}),
+        (".png", {"dpi": 600}),
+        (".tiff", {"dpi": 600, "pil_kwargs": {"compression": "tiff_lzw"}}),
+    ]:
+        fig.savefig(args.output.with_suffix(ext), bbox_inches="tight", **kw)
     plt.close(fig)
     print(f"[OK] Figure -> {args.output}.{{svg,pdf,png,tiff}}")
 

@@ -508,9 +508,9 @@ Trust & confidence, human\_check & escalate on modality conflict \\
 \end{tabular}
 \end{table}
 
-\begin{figure}[htbp]
+\begin{figure}[t]
 \centering
-\includegraphics[width=0.85\textwidth]{field_asset_id_stages.pdf}
+\includegraphics[width=0.88\linewidth]{field_asset_id_stages.pdf}
 \caption{Staged Asset-ID checks on a field verification set: success rates for spatial and multi-hop questions across field-record audit, retrieved-ID recall, answer-ID recall, and LLM-judge accuracy. High audit completeness does not imply high answer-ID fidelity; identity hygiene must be scored at each stage.}
 \label{fig:ch8-asset-id}
 \end{figure}
@@ -571,23 +571,23 @@ The rubric should be scored at the level of actions, not only at the level of se
 
 Transferability and predictive maintenance must be kept on the same argument line. Figures~\ref{fig:ch8-transfer} and~\ref{fig:ch8-transfer-impl} show that an observation--geometry--dependency spine can be instantiated for building O\&M, renovation sequencing, or construction-progress monitoring by changing entity semantics and edge types. Schema reuse is real; forecasting skill is not automatic. A language system may rank assets by evidence-backed severity and access constraints, and it may present outputs from an external temporal model that lives outside the prompt. It should not invent year-ahead spalling probabilities from a single campaign~\cite{gao2026ifcagent,zhang2025llmagentschema,zhao2026physical}. Priority scores from one epoch are triage. Prognosis waits for repeated observations on the same Asset-IDs, comparable modalities, and a non-LLM temporal model wired as a read-only tool.
 
-\begin{figure}[htbp]
+\begin{figure}[t]
 \centering
-\includegraphics[width=0.82\textwidth]{framework_generalizability_concept.pdf}
+\includegraphics[width=\linewidth]{framework_generalizability_concept.png}
 \caption{Conceptual transferability of a detection-profile / entity-profile / $k$-hop retrieval spine: the same observation--geometry--dependency structure can be instantiated for building O\&M, renovation sequencing, and construction-progress monitoring by changing entity semantics and edge types. Schema reuse is not a guarantee of forecasting skill.}
 \label{fig:ch8-transfer}
 \end{figure}
 
-\begin{figure}[htbp]
+\begin{figure}[t]
 \centering
 \includegraphics[width=\linewidth]{platform_transferability_implementation.pdf}
 \caption{Implementation view of framework transfer: a validated defect-management deployment and a conceptual construction-progress deployment share the same invariant core (entity/detection profiles, $k$-hop retrieval, LLM+RAG pipeline) while adapting schemas and field devices. Transfer means schema instantiation, not automatic predictive maintenance.}
 \label{fig:ch8-transfer-impl}
 \end{figure}
 
-\begin{figure}[htbp]
+\begin{figure}[t]
 \centering
-\includegraphics[width=\linewidth]{multi_platform_field_interfaces.pdf}
+\includegraphics[width=0.92\linewidth]{multi_platform_field_interfaces.pdf}
 \caption{Multi-platform natural-language interfaces for field and office use (phone chat comparison versus tablet distribution query with tables and charts). Interfaces succeed or fail by whether named defect/Asset-IDs remain consistent and evidence remains openable, not by screen layout alone.}
 \label{fig:ch8-multiplatform}
 \end{figure}

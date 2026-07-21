@@ -23,7 +23,7 @@ from figure_style import (
 )
 
 apply_rcparams()
-COLORS = external_group_colors("BookSlate")
+COLORS = external_group_colors(None)
 
 PROJECT = Path(__file__).resolve().parents[1]
 FIG_DIR = PROJECT / "out"

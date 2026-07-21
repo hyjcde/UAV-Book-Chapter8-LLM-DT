@@ -1,12 +1,13 @@
 """Shared style for Chapter 8 statistical figures (book-local copy).
 
-Colour language: BookSlate — deep teal + copper accents, Springer-print friendly.
-Distinct from the paper Nature (#3C5488) family so book figures are not a silent reprint.
+Default: Nature / AcademicSlate family (cool blues) matching architecture diagrams.
+BookSlate (teal+copper) kept only for optional A/B via CH8_FIGURE_THEME.
 """
 
 from __future__ import annotations
 
 import colorsys
+import os
 from typing import Dict
 
 import matplotlib as mpl
@@ -24,22 +25,31 @@ RADAR_LINEWIDTH = 2.8
 GUIDE_LINEWIDTH = 1.2
 
 THEMES: Dict[str, Dict[str, str]] = {
-    "BookSlate": {
-        "Ours": "#0F4C5C",      # deep teal (primary / IAP-RAG)
-        "Atomic": "#E36414",    # copper accent
-        "Basic": "#5C8001",     # olive green
-        "Raw": "#6B7280",       # neutral slate
-    },
-    # Kept for reference / A-B tests against paper figures
+    # Paper / AcademicSlate — default for monograph statistical panels
     "Nature": {
         "Ours": "#3C5488",
         "Atomic": "#4DBBD5",
         "Basic": "#00A087",
         "Raw": "#849184",
     },
+    "AcademicSlate": {
+        "Ours": "#2F4A6A",
+        "Atomic": "#5B8FA8",
+        "Basic": "#3D7A5A",
+        "Raw": "#6B7280",
+    },
+    # Optional alternate (not used for architecture diagrams)
+    "BookSlate": {
+        "Ours": "#0F4C5C",
+        "Atomic": "#E36414",
+        "Basic": "#5C8001",
+        "Raw": "#6B7280",
+    },
 }
 
-DEFAULT_THEME = "BookSlate"
+DEFAULT_THEME = os.environ.get("CH8_FIGURE_THEME", "Nature")
+if DEFAULT_THEME not in THEMES:
+    DEFAULT_THEME = "Nature"
 
 FIGURE_THEMES = {
     "performance_evaluation_stats": DEFAULT_THEME,
@@ -80,7 +90,7 @@ def external_group_colors(theme: str | None = None) -> Dict[str, str]:
     theme = theme or DEFAULT_THEME
     t = THEMES[theme]
     ours, atomic, basic, raw = t["Ours"], t["Atomic"], t["Basic"], t["Raw"]
-    if theme == "BookSlate":
+    if theme in ("BookSlate", "AcademicSlate"):
         return {
             "D": ours,
             "E": raw,

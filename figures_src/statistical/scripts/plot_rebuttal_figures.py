@@ -34,7 +34,7 @@ RAW_INPUTS = [
 ]
 STATS_CSV = PROJECT_ROOT / "data" / "statistical_analysis_final.csv"
 
-COLORS = external_group_colors("BookSlate")
+COLORS = external_group_colors(None)
 GROUP_NAMES = {
     "D": "IAP-RAG (Ours)",
     "E": "Naive Chunk-RAG",
