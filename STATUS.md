@@ -1,12 +1,13 @@
 # Writing status — Chapter 8
 
-**TOC spine:** 8.1–8.6 (reader-facing).  
+**TOC spine:** 8.1–8.6 (reader-facing). Book order per proposal: **5 Dataset → 6 AI → 7 GIS → 8 DT+LLM**.  
+**Subtitle:** *An End-to-End Framework from Autonomous Flight to Digital Twins* (proposal).  
 **EN shell:** Overleaf / `manuscript_official` **SNmono** + local trim `latex/shared/springer_local_trim.tex`  
   (paper **160×241 mm**, body **117×191 mm**, matching published Springer OA monographs).  
 **CN shell:** same trim/body via shared file; 10pt + slightly tighter `\linespread`; mirrored frontmatter stubs.  
 **Author:** left empty for now.  
-**Stance:** ready-to-use LLM + harness; no site training agenda. Prefer 2024–2026 published cites.  
-**Build:** `bash scripts/build.sh` → EN ≈64 pp, CN ≈57 pp.  
+**Stance:** four-phase decision support; ready-to-use LLM + optional VLM crop reader; no site training agenda. Prefer 2024–2026 published cites.  
+**Build:** `bash scripts/build.sh`.  
 **Layout notes:**  
 - Use `\begin{dedication}...\end{dedication}` (not `\dedication{...}`).  
 - Letter/A4 canvas without trim correction causes fake huge side margins.
@@ -26,4 +27,5 @@
 **Book shell (2026-07-21):** local EN/CN `book_ch08.tex` drop `\part{}` pages; proposal TOC is chapter-only (8.1–8.6). `part0*.tex` kept unused for a future full-book merge.  
 **§8.3/8.5 enrich (2026-07-21):** `tab:ch8-assembly-fail`; report walkthrough + `tab:ch8-report-accept` + lifecycle states/roles + `tab:ch8-cmms-map` + seasonal hygiene (EN+CN).  
 **CMMS framing (2026-07-21):** `tab:ch8-cmms-map` demoted to optional export example (one sink among CMMS/BIM tracker/spreadsheet); core = schema draft + openable evidence.  
-**§8.6 paper stats:** `score_by_type` + `hallucination_rate` restored from paper originals (dense labels; no book re-typeset).
+**§8.6 paper stats:** `score_by_type` + `hallucination_rate` restored from paper originals (dense labels; no book re-typeset).  
+**Proposal align (2026-07-21):** shell Ch.5–7 order + subtitle; four-phase/USP abstracts; VLM in §8.4; historical-record + predictive framing EN/CN.

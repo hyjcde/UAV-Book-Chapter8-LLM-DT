@@ -36,8 +36,8 @@ sections:
     pages: 8
 
 notes: |
-  Aligned with Book Proposal numbering 8.1--8.6.
-  Memory and agents are taught inside 8.2 and 8.4 (not as a separate subsection forest).
-  Avoid deep \subsection trees; prefer continuous monograph prose per Springer SN/SVMono guidance.
-  Do NOT introduce VLMs; multimodal = modality-tagged observations from Ch.6 + grounded LLM assembly.
+  Aligned with Springer book proposal + attached TOC (8.1--8.6).
+  Book chapter order: Ch.5 Dataset, Ch.6 AI Models, Ch.7 GIS, Ch.8 DT+LLM.
+  Memory and agents inside 8.2 and 8.4; VLM positioned in 8.4 (optional crop reader; not a second detector).
+  Avoid deep \subsection trees; continuous monograph prose.
   Target ~50 pages; expand with worked examples/tables, not subsection forests.
