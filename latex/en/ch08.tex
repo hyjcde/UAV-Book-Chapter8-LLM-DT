@@ -402,23 +402,32 @@ A second worked micro-example clarifies elevation audits. The manager asks: ``Su
 
 Managers often ask whether a stain is ``new.'' Querying historical maintenance records is a first-class proposal capability and a first-class assembly intent. Cross-campaign comparison requires the same Asset-ID across time, comparable modality coverage, prior observation IDs or work-order links when available, and explicit handling of missing priors. If the previous campaign lacks infrared, the system must not invent a thermal delta. If geometry was remeshed and Asset-IDs were remapped carelessly, language will compare the wrong hosts. A natural-language question such as ``what was repaired on the west elevation after the 2024 campaign?'' should retrieve editioned twin memory and any linked approved reports; it must abstain when those IDs are absent rather than invent a repair narrative~\cite{zhang2025,yang2025detreconreg,chen2023facility}. Longitudinal discipline is therefore twin hygiene before it is model cleverness~\cite{zhang2025,yang2025detreconreg,zhao2026physical}. Perception may emit confidences; geometry may support length or area features; O\&M may need ordinal severity for scheduling. The language layer should not convert ordinal triage into false millimetre certainty. Prefer phrases tied to fields (``severity=medium from geometry-normalised crack length; confidence=0.71 from detector'') over cinematic adjectives. Physical quantification pipelines show why numbers need provenance~\cite{zhao2024facade,zhao2026physical}; the LLM's job is to carry that provenance into sentences, not to decorate it.
 
-The following teaching pseudocode summarises assembly. It is deliberately dull: every branch is a place students try to be clever, and where inspection systems usually break~\cite{lewis2020,peng2024,jeon2025hybridrag}.
-\begin{verbatim}
-function answer(q):
-  intent <- classify(q)
-  seeds  <- resolve_assets(q)          # else ABSTAIN:asset_unresolved
-  packs  <- [passport(s) for s in seeds]
-  if intent in {propagation}:
-      packs <- packs + expand(seeds,k=1)
-  if intent in {elevation_audit}:
-      packs <- spatial_filter(packs,q)
-  obs <- list_obs(packs)
-  manuals <- retrieve_manuals(q) if needs_code(q) else []
-  package <- {intent,packs,obs,manuals,edition_pin}
-  draft <- generate(package)           # cite-or-abstain
-  validate_ids(draft, package)         # else ABSTAIN:id_not_in_package
-  return draft
-\end{verbatim}
+Algorithm~\ref{alg:ch8-assembly} summarises assembly as a numbered procedure. It is deliberately dull: every branch is a place students try to be clever, and where inspection systems usually break~\cite{lewis2020,peng2024,jeon2025hybridrag}.
+
+\begin{algorithm}[htbp]
+\caption{Intent-conditioned twin assembly for a grounded inspection answer.}
+\label{alg:ch8-assembly}
+\begin{algorithmic}[1]
+\Require natural-language query $q$
+\Ensure draft answer, or a structured abstention code
+\State $\mathit{intent} \gets \textsc{Classify}(q)$
+\State $\mathit{seeds} \gets \textsc{ResolveAssets}(q)$ \Comment{else \texttt{ABSTAIN:asset\_unresolved}}
+\State $\mathit{packs} \gets \{\textsc{Passport}(s): s\in\mathit{seeds}\}$
+\If{$\mathit{intent}=\texttt{propagation}$}
+  \State $\mathit{packs} \gets \mathit{packs}\cup\textsc{Expand}(\mathit{seeds},k{=}1)$
+\EndIf
+\If{$\mathit{intent}=\texttt{elevation\_audit}$}
+  \State $\mathit{packs} \gets \textsc{SpatialFilter}(\mathit{packs},q)$
+\EndIf
+\State $\mathit{obs} \gets \textsc{ListObservations}(\mathit{packs})$
+\State $\mathit{manuals} \gets \textsc{RetrieveManuals}(q)$ if $\textsc{NeedsCode}(q)$, else $\emptyset$
+\State $\mathcal{C}(q) \gets \{\mathit{intent},\mathit{packs},\mathit{obs},\mathit{manuals},\mathit{edition\_pin}\}$
+\State $\hat{y} \gets \textsc{Generate}(\mathcal{C}(q))$ \Comment{cite-or-abstain}
+\State $\textsc{ValidateIDs}(\hat{y},\mathcal{C}(q))$ \Comment{else \texttt{ABSTAIN:id\_not\_in\_package}}
+\State \Return $\hat{y}$
+\end{algorithmic}
+\end{algorithm}
+
 Natural-language locations remain ambiguous: ``third bay'' may mean different hosts after remeshing. Resolution against GeoBIM aliases must precede passport fetch. Fuzzy string match can propose candidates; it must not silently pick one when two candidates score closely. Disambiguation questions are successful system behaviour, not UX failure~\cite{zhang2025,han2025,guo2025bimllmquery}. The same discipline appears in recent twin-query systems that refuse to answer from unconstrained text when the structured store lacks a path~\cite{pan2026graphdtgpt,buga2025llmfmsql}: for inspection, ``no upstairs neighbour in the twin'' is a better product behaviour than a fluent moisture story.
 
 Published 2024--2025 retrieval practice also clarifies what not to reinvent. Hybrid defect-management RAG and safety-manual RAG show gains when corpora are editioned and noisy maintenance language is expected~\cite{jeon2025hybridrag,lee2024ragsafety}; code and regulation hybrids show that clause retrieval must still meet site evidence before advice becomes operational~\cite{joffe2025buildingcodes,he2025regulationhybrid,yang2024promptcode}. Facility-document RAG and structured FM querying show that building corpora scale only when schemas and Asset-ID links exist~\cite{krutli2025fmrags,buga2025llmfmsql,arslan2024ragenergy}. Translating those results into UAV fa\c{c}ade O\&M means treating observation cards and asset passports as the primary retrieval units, manuals as secondary pinned context, and topology expansion as a first-class assembly step~\cite{peng2024,pan2024b,ma2026tenquestions}.
@@ -431,7 +440,7 @@ Assembly discipline can be restated as teaching narrative that facilities and so
 
 
 
-Table~\ref{tab:ch8-assembly-fail} compresses the same discipline into classroom and procurement language. Each row pairs a common shortcut with the structured refusal the harness should emit. Students can score a vendor demo by asking which of these refusals the system can produce on a frozen twin; implementers can turn the right-hand column into unit tests beside the pseudocode above~\cite{ji2023,peng2024,liang2023helm}.
+Table~\ref{tab:ch8-assembly-fail} compresses the same discipline into classroom and procurement language. Each row pairs a common shortcut with the structured refusal the harness should emit. Students can score a vendor demo by asking which of these refusals the system can produce on a frozen twin; implementers can turn the right-hand column into unit tests beside Algorithm~\ref{alg:ch8-assembly}~\cite{ji2023,peng2024,liang2023helm}.
 
 \begin{table}[htbp]
 \centering
