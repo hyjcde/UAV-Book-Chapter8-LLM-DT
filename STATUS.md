@@ -29,4 +29,5 @@
 **CMMS framing (2026-07-21):** `tab:ch8-cmms-map` demoted to optional export example (one sink among CMMS/BIM tracker/spreadsheet); core = schema draft + openable evidence.  
 **Proposal align (2026-07-21):** shell Ch.5–7 order + subtitle; four-phase/USP abstracts; VLM in §8.4; historical-record + predictive framing EN/CN.  
 **Front matter (2026-07-21):** title-first page (no author/date); proposal title+subtitle; dedication-style epigraph; preface without place/date signature; continuous §8.5 prose (fewer topic-label openers).  
-**Reader-first float cut (2026-07-22):** EN/CN thinned to ~10 figs + ~12 tabs + 1 algorithm; removed paper-audit / lit-map stack; ablation kept as grounding-outcome teaching panel only.
+**Reader-first float cut (2026-07-22):** EN/CN thinned to ~10 figs + ~12 tabs + 1 algorithm; removed paper-audit / lit-map stack; ablation kept as grounding-outcome teaching panel only.  
+**Sync polish (2026-07-22):** keywords; shortened §8.2/§8.6 lit dumps; predictive maintenance as triage/conditional/external-prognosis; CN duplicate agent para removed; topic-label openers smoothed.
