@@ -169,16 +169,15 @@ Li H, Yang R, Xu S, Xiao Y, Zhao H (2024{\natexlab{a}}) Intelligent checking
   method for construction schemes via fusion of knowledge graph and large
   language models. Buildings 14(8):2502, \doi{10.3390/buildings14082502}
 
-\bibitem[{Li and Wang(2025)}]{li2025c}
-Li M, Wang Z (2025) {BuildingGPT}: Query building semantic data using large
+\bibitem[{Li and Wang(2026)}]{li2025c}
+Li M, Wang Z (2026) {BuildingGPT}: Query building semantic data using large
   language models and vector-graph retrieval-augmented generation. Building and
-  Environment 287:113855, \doi{10.1016/j.buildenv.2025.113855}, in press
+  Environment 287:113855, \doi{10.1016/j.buildenv.2025.113855}
 
-\bibitem[{Li et~al.(2025)Li, Hu, Mohebi, Li, and Wang}]{li2025b}
-Li M, Hu Z, Mohebi P, Li S, Wang Z (2025) Enhancing {LLM}-based building data
+\bibitem[{Li et~al.(2026)Li, Hu, Mohebi, Li, and Wang}]{li2025b}
+Li M, Hu Z, Mohebi P, Li S, Wang Z (2026) Enhancing {LLM}-based building data
   query with chain-of-thought, retrieval-augmented generation, and fine-tuning.
-  Automation in Construction 182:106738, \doi{10.1016/j.autcon.2025.106738}, in
-  press
+  Automation in Construction 182:106738, \doi{10.1016/j.autcon.2025.106738}
 
 \bibitem[{Li et~al.(2024{\natexlab{b}})Li, Wang, Zeng, Wu, and
   Yang}]{li2024surveymultiagent}
@@ -269,11 +268,12 @@ Park JS, O'Brien JC, Cai CJ, Morris MR, Liang P, Bernstein MS (2023) Generative
   Annual ACM Symposium on User Interface Software and Technology,
   \doi{10.1145/3586183.3606763}
 
-\bibitem[{Peng et~al.(2024)Peng, Zhu, Liu, Bo, Shi, Hong, Zhang, and
+\bibitem[{Peng et~al.(2026)Peng, Zhu, Liu, Bo, Shi, Hong, Zhang, and
   Tang}]{peng2024}
-Peng B, Zhu Y, Liu Y, Bo X, Shi H, Hong C, Zhang Y, Tang S (2024) Graph
+Peng B, Zhu Y, Liu Y, Bo X, Shi H, Hong C, Zhang Y, Tang S (2026) Graph
   retrieval-augmented generation: A survey. ACM Transactions on Information
-  Systems \doi{10.1145/3777378}
+  Systems 44(2):1--52, \doi{10.1145/3777378}, advance online 2025; journal
+  issue year 2026
 
 \bibitem[{Quan et~al.(2026)Quan, Kensek, Raghavachary, and
   Wang}]{quan2026bimfacrag}
@@ -416,7 +416,7 @@ Zhao B, Duan Q, Yang G, Tang J, Song Z, Wen J, Liu X, Li Q, Lei L, Zhang J,
   Chen X, Mueller MW, Chen BM (2025) Lightweight yet high-performance defect
   detector for {UAV}-based large-scale infrastructure real-time inspection. In:
   2025 IEEE International Conference on Robotics and Automation ({ICRA}), pp
-  13675--13682, \doi{10.1109/ICRA55743.2025.11128112}
+  13675--13682, \doi{10.1109/ICRA55743.2025.11127758}
 
 \bibitem[{Zhao et~al.(2026)Zhao, Zhang, Huang, Chen, and
   Chen}]{zhao2026physical}

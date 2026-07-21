@@ -219,21 +219,19 @@ Hao Li, Rongzheng Yang, Shuangshuang Xu, Yao Xiao, and Hongyu Zhao.
 \newblock \emph{Buildings}, 14\penalty0 (8):\penalty0 2502, 2024{\natexlab{a}}.
 \newblock \doi{10.3390/buildings14082502}.
 
-\bibitem[Li and Wang(2025)]{li2025c}
+\bibitem[Li and Wang(2026)]{li2025c}
 M.~Li and Z.~Wang.
 \newblock {BuildingGPT}: Query building semantic data using large language
   models and vector-graph retrieval-augmented generation.
-\newblock \emph{Building and Environment}, 287:\penalty0 113855, 2025.
+\newblock \emph{Building and Environment}, 287:\penalty0 113855, 2026.
 \newblock \doi{10.1016/j.buildenv.2025.113855}.
-\newblock in press.
 
-\bibitem[Li et~al.(2025)Li, Hu, Mohebi, Li, and Wang]{li2025b}
+\bibitem[Li et~al.(2026)Li, Hu, Mohebi, Li, and Wang]{li2025b}
 M.~Li, Z.~Hu, P.~Mohebi, S.~Li, and Z.~Wang.
 \newblock Enhancing {LLM}-based building data query with chain-of-thought,
   retrieval-augmented generation, and fine-tuning.
-\newblock \emph{Automation in Construction}, 182:\penalty0 106738, 2025.
+\newblock \emph{Automation in Construction}, 182:\penalty0 106738, 2026.
 \newblock \doi{10.1016/j.autcon.2025.106738}.
-\newblock in press.
 
 \bibitem[Li et~al.(2024{\natexlab{b}})Li, Wang, Zeng, Wu, and
   Yang]{li2024surveymultiagent}
@@ -354,13 +352,15 @@ Joon~Sung Park, Joseph~C. O'Brien, Carrie~J. Cai, Meredith~Ringel Morris, Percy
   Interface Software and Technology}, 2023.
 \newblock \doi{10.1145/3586183.3606763}.
 
-\bibitem[Peng et~al.(2024)Peng, Zhu, Liu, Bo, Shi, Hong, Zhang, and
+\bibitem[Peng et~al.(2026)Peng, Zhu, Liu, Bo, Shi, Hong, Zhang, and
   Tang]{peng2024}
 Boci Peng, Yun Zhu, Yongchao Liu, Xiaohe Bo, Haizhou Shi, Chuntao Hong, Yan
   Zhang, and Siliang Tang.
 \newblock Graph retrieval-augmented generation: A survey.
-\newblock \emph{ACM Transactions on Information Systems}, 2024.
+\newblock \emph{ACM Transactions on Information Systems}, 44\penalty0
+  (2):\penalty0 1--52, 2026.
 \newblock \doi{10.1145/3777378}.
+\newblock Advance online 2025; journal issue year 2026.
 
 \bibitem[Quan et~al.(2026)Quan, Kensek, Raghavachary, and
   Wang]{quan2026bimfacrag}
@@ -545,14 +545,14 @@ Benyun Zhao, Xunkuai Zhou, Guidong Yang, Junjie Wen, Jihan Zhang, Jiahao Dou,
 
 \bibitem[Zhao et~al.(2025)Zhao, Duan, Yang, Tang, Song, Wen, Liu, Li, Lei,
   Zhang, Chen, Mueller, and Chen]{zhao2025icra}
-Benyun Zhao, Qingcheng Duan, Guidong Yang, Junwei Tang, Zihan Song, Junjie Wen,
-  Xinyi Liu, Qingxiang Li, Lei Lei, Jihan Zhang, Xi~Chen, Mark~W. Mueller, and
+Benyun Zhao, Qigeng Duan, Guidong Yang, Jerry Tang, Zhenbo Song, Junjie Wen,
+  Xuchen Liu, Qingxiang Li, Lei Lei, Jihan Zhang, Xi~Chen, Mark~W. Mueller, and
   Ben~M. Chen.
 \newblock Lightweight yet high-performance defect detector for {UAV}-based
   large-scale infrastructure real-time inspection.
 \newblock In \emph{2025 IEEE International Conference on Robotics and
   Automation ({ICRA})}, pages 13675--13682, 2025.
-\newblock \doi{10.1109/ICRA55743.2025.11128112}.
+\newblock \doi{10.1109/ICRA55743.2025.11127758}.
 
 \bibitem[Zhao et~al.(2026)Zhao, Zhang, Huang, Chen, and Chen]{zhao2026physical}
 Benyun Zhao, Jihan Zhang, Yijun Huang, Xi~Chen, and Ben~M. Chen.

@@ -16,4 +16,5 @@
 | 8.1–8.6 | draft+ | body in `latex/en/ch08.tex` + `latex/cn/ch08_cn.tex` |
 
 **Style notes:** `literature/springer_style_refs/MONOGRAPH_CHAPTER_STYLE.md`  
-**Lit rule:** `cited_risky=0`.
+**Lit rule:** `cited_risky=0`.  
+**Citation audit:** `literature/CITATION_AUDIT_2026-07-21.md` (Crossref + claim–cite fitness; `zhao2025icra` DOI fixed).
