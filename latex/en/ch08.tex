@@ -112,7 +112,7 @@ This section introduces generative language technology for civil engineering and
 \centering
 \caption{Three layers of ready-to-use LLM technique $\rightarrow$ fa\c{c}ade inspection (overview).}
 \label{tab:ch8-tech-families}
-\begin{tabular}{llp{4.6cm}}
+\begin{tabularx}{\textwidth}{@{}>{\raggedright\arraybackslash}p{2.4cm}>{\raggedright\arraybackslash}p{3.2cm}X@{}}
 \toprule
 Layer & Core techniques & Inspection application \\
 \midrule
@@ -120,7 +120,7 @@ L1 Language interface & prompts, templates, stepwise explanation & parse questio
 L2 Evidence grounding & RAG, schemas, tools/APIs & fetch passports/manuals; constrain report fields; cite-or-abstain \\
 L3 Memory \& procedures & twin/RAG memory, bounded agents & authoritative site memory; tickets/revisits behind gates \\
 \bottomrule
-\end{tabular}
+\end{tabularx}
 \end{table}
 
 Layer~L1 begins with what a ready model can already do when an orchestrator supplies a careful prompt. The model can parse mixed spatial-symptom questions such as ``mid-storey hollow with upstairs staining,'' draft readable briefs for different stakeholders, and follow a short answer template that forces named Asset-IDs, separates observations from hypotheses, and emits an abstention code when checks fail~\cite{ouyang2022instructgpt,ji2023}. Stepwise prompting can then verbalise a propagation hypothesis, but only after neighbours have already entered the evidence package; otherwise the model may invent a structural story that merely sounds plausible~\cite{wei2022cot,ji2023}. A practical system prompt for fa\c{c}ade O\&M can therefore be short: classify intent; speak only about Asset-IDs present in the retrieved package; preserve modality tags from Chapter~6; and emit \texttt{ABSTAIN:<reason>} when evidence is thin. Few-shot examples in the prompt should demonstrate abstention, not only success. What L1 must \emph{not} be asked to do is remember last campaign's Asset-IDs from parametric recall, invent crack lengths, or override twin facts when a hurried manager says ``just mark it repaired.'' Those duties belong to grounding and gates, not to fluent wording.
