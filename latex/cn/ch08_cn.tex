@@ -547,12 +547,19 @@ RGB & IR $\rightarrow$ 语言动作 \\
 
 \begin{figure}[htbp]
 \centering
-\includegraphics[width=\linewidth]{analysis_interface_nlq.png}
+\includegraphics[width=\linewidth]{platform_demo.pdf}
+\caption{巡检决策看板示例：航次计数与类别构成、孪生视窗上的 Asset-ID 标记，以及返回楼层与高程观测 ID 的语言面板。布局当作交互模式阅读；验收仍取决于可打开证据与有门禁写入。}
+\label{fig:ch8-platform-demo}
+\end{figure}
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\linewidth]{analysis_interface_nlq.pdf}
 \caption{自然语言分析界面示例：巡检员提问后得到点名资产、可打开证据与结构化后续建议。界面布局当作交互模式阅读；验收标准仍是稳定 Asset-ID、可打开引用、拒答能力与有门禁的写入。}
 \label{fig:ch8-nlq-ui}
 \end{figure}
 
-图~\ref{fig:ch8-nlq-ui}只有与第\ref{sec:ch8-dt-to-language}--\ref{sec:ch8-multimodal}节合读才有用：结构化孪生记忆、多模态证据装配与有界工具。没有这些契约的流畅聊天面板，仍只是演示。对界面模式做一次短走读，可以把区别钉牢。设巡检员问：三层以上西立面哪些宿主出现潮湿相关症状，且证据可打开。守契约的答案会点名已在检索护照集合中的 Asset-ID，列出可在孪生浏览器打开裁剪的观测 ID，在存在 RGB/IR 冲突时显式披露，并给出``扩展邻域''或``起草 schema 约束简报''一类结构化后续。失败界面在屏幕上仍可能很像：它返回流畅段落、发明板块绰号，并提供不经门禁就写孪生的``标为已修''按钮。因此读图~\ref{fig:ch8-nlq-ui}时，应沿用对供应商的同一套四项测验：稳定 Asset-ID、可打开引用、证据包偏薄时拒答、写入有门~\cite{ji2023,zhang2025,buga2025llmfmsql}。
+图~\ref{fig:ch8-platform-demo}与图~\ref{fig:ch8-nlq-ui}只有与第\ref{sec:ch8-dt-to-language}--\ref{sec:ch8-multimodal}节合读才有用：结构化孪生记忆、多模态证据装配与有界工具。没有这些契约的流畅聊天面板，仍只是演示。对界面模式做一次短走读，可以把区别钉牢。设巡检员问：三层以上西立面哪些宿主出现潮湿相关症状，且证据可打开。守契约的答案会点名已在检索护照集合中的 Asset-ID，列出可在孪生浏览器打开裁剪的观测 ID，在存在 RGB/IR 冲突时显式披露，并给出``扩展邻域''或``起草 schema 约束简报''一类结构化后续。失败界面在屏幕上仍可能很像：它返回流畅段落、发明板块绰号，并提供不经门禁就写孪生的``标为已修''按钮。因此读图~\ref{fig:ch8-nlq-ui}时，应沿用对供应商的同一套四项测验：稳定 Asset-ID、可打开引用、证据包偏薄时拒答、写入有门~\cite{ji2023,zhang2025,buga2025llmfmsql}。
 
 报告 schema 应尽早与设施利益相关方协商。没人会在 CMMS 里打开的字段不会被维护；律师要求的责任字段可能需要比内部分诊更严的引用或拒答检查。教学折中是核心 schema（身份、诊断、证据链接、信任）加上可选的组织扩展（成本代码、承包商 ID、可达时间窗）。LLM 仅可从检索上下文或人工表单起草扩展字段；不得虚构成本代码~\cite{zheng2023bimassistant,joffe2025buildingcodes}。
 

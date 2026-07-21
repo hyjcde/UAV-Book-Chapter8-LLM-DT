@@ -528,12 +528,19 @@ Report lifecycle. Report management means more than one-shot generation. Drafts 
 
 \begin{figure}[htbp]
 \centering
-\includegraphics[width=\linewidth]{analysis_interface_nlq.png}
+\includegraphics[width=\linewidth]{platform_demo.pdf}
+\caption{Example inspection decision dashboard: campaign counts and category mix, Asset-ID markers on a twin viewer, and a language panel that returns observation IDs with floor and altitude. Treat the layout as an interaction pattern; acceptance still depends on openable evidence and gated writes.}
+\label{fig:ch8-platform-demo}
+\end{figure}
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\linewidth]{analysis_interface_nlq.pdf}
 \caption{Example natural-language analysis interface: an inspector query is answered with named assets, openable evidence, and structured follow-ups. Treat the layout as an interaction pattern; the acceptance tests remain stable Asset-IDs, openable citations, abstention, and gated writes.}
 \label{fig:ch8-nlq-ui}
 \end{figure}
 
-Figure~\ref{fig:ch8-nlq-ui} is useful only when read together with Sections~\ref{sec:ch8-dt-to-language}--\ref{sec:ch8-multimodal}: structured twin memory, multimodal evidence assembly, and bounded tools. A fluent chat panel without those contracts is still a demo. A short worked reading of the interface pattern keeps that distinction sharp. Suppose the inspector asks which west-elevation hosts above storey three show moisture-related symptoms with openable evidence. A contract-respecting answer names Asset-IDs that already sit in the retrieved passport set, lists observation IDs whose crops open in the twin viewer, discloses RGB/IR conflict when present, and offers structured follow-ups such as expand neighbours or draft a schema-constrained brief. A failing interface may still look similar on screen: it returns a fluent paragraph, invents a panel nickname, and offers a ``mark repaired'' button that writes the twin without a gate. Readers should therefore score Figure~\ref{fig:ch8-nlq-ui} with the same four tests used for vendors: stable Asset-IDs, openable citations, abstention when the package is thin, and gated writes~\cite{ji2023,zhang2025,buga2025llmfmsql}.
+Figures~\ref{fig:ch8-platform-demo} and~\ref{fig:ch8-nlq-ui} are useful only when read together with Sections~\ref{sec:ch8-dt-to-language}--\ref{sec:ch8-multimodal}: structured twin memory, multimodal evidence assembly, and bounded tools. A fluent chat panel without those contracts is still a demo. A short worked reading of the interface pattern keeps that distinction sharp. Suppose the inspector asks which west-elevation hosts above storey three show moisture-related symptoms with openable evidence. A contract-respecting answer names Asset-IDs that already sit in the retrieved passport set, lists observation IDs whose crops open in the twin viewer, discloses RGB/IR conflict when present, and offers structured follow-ups such as expand neighbours or draft a schema-constrained brief. A failing interface may still look similar on screen: it returns a fluent paragraph, invents a panel nickname, and offers a ``mark repaired'' button that writes the twin without a gate. Readers should therefore score Figure~\ref{fig:ch8-nlq-ui} with the same four tests used for vendors: stable Asset-IDs, openable citations, abstention when the package is thin, and gated writes~\cite{ji2023,zhang2025,buga2025llmfmsql}.
 
 Report schemas should be negotiated with facility stakeholders early. Fields that nobody will open in a CMMS will not be maintained. Fields that lawyers require for liability may need stricter cite-or-abstain checks than fields used for internal triage. A teaching compromise is a core schema (identity, diagnosis, evidence links, trust) plus optional organisation-specific extensions (cost codes, contractor IDs, access windows). The LLM may draft extensions only from retrieved context or human-provided forms; it must not invent cost codes~\cite{zheng2023bimassistant,joffe2025buildingcodes}.
 

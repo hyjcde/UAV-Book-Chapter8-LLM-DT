@@ -48,7 +48,10 @@ cp -f "$ORIG/platform_transferability_implementation.pdf" "$SHARED/"
 cp -f "$RAS/platform_transferability_implementation.png" "$IO/out/" 2>/dev/null || true
 echo "  synced paper transfer PDFs/PNGs"
 
-echo "== 5. Raster screenshots: originals on white (no tint, no black matte) =="
+echo "== 5a. HTML UI figures (AcademicSlate) =="
+bash "$IO/html/export_html_figures.sh"
+
+echo "== 5b. Other raster screenshots: originals on white (no tint, no black matte) =="
 python3 << PY
 from pathlib import Path
 from PIL import Image
@@ -59,8 +62,6 @@ shared = Path("$SHARED")
 out.mkdir(parents=True, exist_ok=True)
 for stem in [
     "dt_modeling_pipeline",
-    "multi_platform_field_interfaces",
-    "analysis_interface_nlq",
 ]:
     cands = sorted(ras.glob(stem + ".*"))
     cands = [p for p in cands if p.suffix.lower() in {".png", ".jpg", ".jpeg"}]
