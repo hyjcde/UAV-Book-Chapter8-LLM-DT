@@ -38,7 +38,7 @@ Paper-derived plots may appear as **rubric evidence** in §8.6 when framed again
 
 - `deterministic_ksweep_coverage`, `deterministic_ablation_exact_hit`, `deterministic_external_exact_hit`
 - `score_by_type`, `hallucination_rate`
-- `field_asset_id_stages`, `field_deployment_audit`
+- `field_asset_id_stages`; controlled ablation (`deterministic_ablation_exact_hit`) placed with report hygiene (not the crowded field-audit triptych)
 
 Colours: **BookInk** module hexes in `figures_src/statistical/scripts/figure_style.py` (`MODULES_BOOKINK`). Change series colours there; do not RGB-cast PDFs.
 
