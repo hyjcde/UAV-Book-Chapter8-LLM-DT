@@ -7,9 +7,9 @@
 | **Transfer / generalizability** (`framework_generalizability_concept`, `platform_transferability_implementation`) | Use **paper originals** only (PNG/PDF). Do **not** recolor or re-export from drawio. |
 | **Architecture drawio** (`framework_overview_overall`, `rag_workflow_topology`, `idp_construction_pipeline`) | Restore from `drawio_original_backup`, then apply **AcademicSlate** hex remap in XML (cool blue/grey/cream). No copper overlay. |
 | **Raster screenshots** (`dt_modeling_pipeline`, `platform_architecture`, `multi_platform_*`, `analysis_interface_nlq`) | Copy paper rasters **as-is**. Never apply RGB tint casts. |
-| **Statistical panels** | Matplotlib with `CH8_FIGURE_THEME=Nature` (default). |
+| **Statistical panels** | Matplotlib with `CH8_FIGURE_THEME=BookInk` (default). Each series/module has its own hex in `figure_style.MODULES_BOOKINK` — edit those hexes, never tint a finished PDF. Chapter figures: ksweep, ablation, external, score_by_type, hallucination, field_asset_id_stages, field_deployment_audit. |
 
-## Palette (AcademicSlate)
+## Palette (AcademicSlate for architecture)
 
 Architecture remaps stay in the same hue family as the paper Nature blues:
 
@@ -22,7 +22,20 @@ Architecture remaps stay in the same hue family as the paper Nature blues:
 | Cream panel | `#F7F2E8` (not copper) |
 | Ink | `#1A2332` |
 
-`BookSlate` teal+copper is optional only via `CH8_FIGURE_THEME=BookSlate` for statistical A/B — **not** used on architecture diagrams.
+### BookInk (statistical series — edit these hexes)
+
+| Module | Hex | Role |
+|--------|-----|------|
+| D / Ours / Spatial / CitedInRet | `#1B4F72` | IAP-RAG primary |
+| E / RetrExact | `#5D6D7E` | Chunk / residual |
+| F / OK | `#117A65` | Graph-neighbour / complete |
+| H | `#6C3483` | GraphRAG |
+| I | `#1A5276` | RAPTOR |
+| J / Warn / AnsExact | `#B9770E` / `#7D6608` | HyDE / answer-ID metric |
+| K / Risk | `#7B241C` / `#922B21` | Corrective / risk |
+| MultiHop | `#A04000` | Spatial contrast series |
+
+`BookSlate` teal+copper is optional A/B only (`CH8_FIGURE_THEME=BookSlate`) — not used for chapter stats.
 
 ## Regenerate
 

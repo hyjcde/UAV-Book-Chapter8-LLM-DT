@@ -588,6 +588,43 @@ RGB & IR $\rightarrow$ 语言动作 \\
 
 量规应按行动层计分，而不能只按句子层计分。一段从不改变维修排程的接地段落，运维价值有限；一份带可打开证据的 Asset-ID 简短排序，可能已足够安排一周吊篮。月度看板因此可跟踪虚构 ID 率、可打开证据率、模态冲突披露率、复访提示采纳率与 CMMS 免重写率~\cite{lee2024ragsafety,luo2025llmdtrobot,rawat2025llmmas,liang2023helm}。若更换托管 LLM 提升了流畅度却恶化了虚构 ID，应拒绝替换；若流畅度不变而 TRACE 完整度上升，应接受 harness 变更。基础模型之间的精确匹配竞赛，次于这些可运维曲线。
 
+同一套量规可用冻结孪生上的测量面板来说明。把它们读作表~\ref{tab:ch8-eval} 的证据，而不是供应商 bake-off。图~\ref{fig:ch8-ksweep} 表明：打开拓扑扩展后，多跳题的完整 culprit-set 覆盖率上升并随后平台化；跳数是装配设计参数，不是自由提示旋钮。图~\ref{fig:ch8-ablation} 在同一题集上对比受控检索单元：仅切块与原子基线，在答案 ID 与被引 ID 接地指标上弱于带一跳扩展的资产中心护照。图~\ref{fig:ch8-external} 把同一护照中心装配放到已发表的同类检索模式旁；教学点是单元选择与拓扑使用，而不是模型参数量。图~\ref{fig:ch8-score-type} 按题型拆分分数，避免空间、多跳与分析意图被平均成一个误导数字。图~\ref{fig:ch8-hallucination} 报告总体与分题型的评判幻觉率，提醒读者流畅答案仍需要引用或拒答校验器~\cite{ji2023,peng2024,lee2024ragsafety}。
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=0.82\linewidth]{deterministic_ksweep_coverage.pdf}
+\caption{多跳题上的拓扑跳数扫描：完整 culprit-set 覆盖率随扩展深度~$k$ 变化。覆盖率从 $k=0$ 升至 $k=1$ 后平台化；装配必须把跳数作为受控参数暴露出来。}
+\label{fig:ch8-ksweep}
+\end{figure}
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=\linewidth]{deterministic_ablation_exact_hit.pdf}
+\caption{冻结孪生上的受控消融（每单元 $N=200$）：切块、原子与资产护照（IAP）在有/无一跳扩展下的检索精确命中、答案 ID 精确命中与被引 ID$\in$检索集。带 $k=1$ 的护照单元改善的正是表~\ref{tab:ch8-eval} 关心的接地指标。}
+\label{fig:ch8-ablation}
+\end{figure}
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=\linewidth]{deterministic_external_exact_hit.pdf}
+\caption{在同一套回链 Asset-ID 的观测文本上评测的同类检索模式（$N=200$）：RAPTOR、HyDE+Fusion、Corrective-RAG、GraphRAG 风格与资产护照 RAG。比较单元与拓扑使用；不要把该面板读成商业排名。}
+\label{fig:ch8-external}
+\end{figure}
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=0.92\linewidth]{score_by_type.pdf}
+\caption{按题型（空间、多跳、分析）拆分的得分。意图条件评价可防止单一总分掩盖拓扑失效。}
+\label{fig:ch8-score-type}
+\end{figure}
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=\linewidth]{hallucination_rate.pdf}
+\caption{总体与分题型的评判幻觉率。高流畅可与高幻觉并存；引用或拒答校验器与 ID 子集检查仍是承重部件。}
+\label{fig:ch8-hallucination}
+\end{figure}
+
 可迁移性与预测性维护必须落在同一条论证线上。图~\ref{fig:ch8-transfer}与图~\ref{fig:ch8-transfer-impl}表明：观测--几何--依赖脊柱可通过更换实体语义与边类型，实例化为建筑运维、改造排序或施工进度监测。schema 复用是真实的；预测技能并不自动获得。语言系统可按证据支持的严重度与可达性约束给资产排序，也可呈现提示词之外的外部时序模型输出；它不应从单次航次发明未来一年的剥落概率~\cite{gao2026ifcagent,zhang2025llmagentschema,zhao2026physical}。单时相优先级分数是分诊。预后要等到同一 Asset-ID 积累可比的多模态历史，并把非 LLM 时序模型作为只读工具接入 harness 之后。
 
 \begin{figure}[t]

@@ -18,6 +18,6 @@
 **Style notes:** `literature/springer_style_refs/MONOGRAPH_CHAPTER_STYLE.md`  
 **Lit rule:** `cited_risky=0`.  
 **Citation audit:** `literature/CITATION_AUDIT_2026-07-21.md` (Crossref + claim–cite fitness; `zhao2025icra` DOI fixed).  
-**Figures:** `figures_src/` — AcademicSlate from drawio XML (no RGB cast); transfer figs = paper originals; see `figures_src/README.md`. Regen: `bash figures_src/regenerate_all.sh`.  
+**Figures:** architecture = AcademicSlate XML; transfer = paper originals; stats = BookInk module hexes + restored in §8.6. See `figures_src/README.md`. Regen: `bash figures_src/regenerate_all.sh`.  
 **Caption sync:** EN+CN figure captions + read-figure prose aligned (2026-07-21).  
 **DSS rewrite (2026-07-21):** §8.6 continuous spine; EN ≈60 pp, CN ≈54 pp.

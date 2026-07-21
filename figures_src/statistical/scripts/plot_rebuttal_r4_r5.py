@@ -40,9 +40,8 @@ def bootstrap_ci(vals: np.ndarray, n: int = 8000, seed: int = 0):
 
 def plot_r4(out_pdf: Path, out_png: Path) -> None:
     """Grouped bars for field audit stages (bar-first, clearer than lines)."""
-    # Distinct Spatial / Multi-hop pair (blue / orange), not the cool Nature pair
-    # which made both series read as blue-cyan and broke the figure colour language.
-    dark, light = "#0F4C5C", "#E36414"
+    # Spatial / Multi-hop: distinct module hexes from BookInk (not a post-hoc tint).
+    dark, light = series_pair()
     df = pd.read_csv(STAGE_CSV)
     sp = df[df.task_type == "Spatial"]
     mh = df[df.task_type == "Multi-hop"]

@@ -74,15 +74,19 @@ DEFAULT_SOURCE = (
     / "field_asset_id_stage_source_data.csv"
 )
 
-SPATIAL = "#4C78A8"
-MULTI_HOP = "#E29A54"
-INK = "#2C3338"
+# BookInk module hexes (same map as figure_style.MODULES_BOOKINK)
+from figure_style import INK as _BOOK_INK
+from figure_style import MODULES as _M
+
+SPATIAL = _M["Spatial"]
+MULTI_HOP = _M["MultiHop"]
+INK = _BOOK_INK
 GRID = "#D9DEE2"
 NONE_C = "#CFCECE"
 PARTIAL_C = "#9CB4C7"
-FULL_C = "#2E5C8A"
-AGREE_C = "#7FA77A"
-DISAGREE_C = "#D98C7A"
+FULL_C = _M["D"]
+AGREE_C = _M["OK"]
+DISAGREE_C = _M["Risk"]
 
 
 def load_json(path: Path) -> Any:

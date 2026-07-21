@@ -12,6 +12,9 @@ import matplotlib.pyplot as plt
 import numpy as np
 from matplotlib.colors import LinearSegmentedColormap
 
+from figure_style import INK as _INK
+from figure_style import MODULES
+
 plt.rcParams["font.family"] = "sans-serif"
 plt.rcParams["font.sans-serif"] = ["Arial", "DejaVu Sans", "Liberation Sans"]
 plt.rcParams["svg.fonttype"] = "none"
@@ -20,18 +23,18 @@ PROJECT_ROOT = Path(__file__).resolve().parents[1]
 DEFAULT_INPUT = PROJECT_ROOT / "data" / "field_deployment_record_audit_frozen.json"
 DEFAULT_OUTPUT = PROJECT_ROOT / "out" / "field_deployment_audit"
 
-# Nature / AcademicSlate (cool blues) — same family as architecture diagrams
+# BookInk module hexes — edit MODULES_BOOKINK in figure_style.py, not pixels.
 COLORS = {
-    "ink": "#1A2332",
-    "muted": "#6B7280",
+    "ink": _INK,
+    "muted": MODULES["E"],
     "grid": "#E5E7EB",
-    "light": "#F3F4F6",
-    "blue": "#3C5488",
-    "blue_light": "#8491B4",
-    "teal": "#00A087",
-    "teal_light": "#91D1C2",
-    "amber": "#E64B35",
-    "red": "#B2182B",
+    "light": "#F4F6F7",
+    "blue": MODULES["D"],
+    "blue_light": "#7FB3D5",
+    "teal": MODULES["F"],
+    "teal_light": "#76D7C4",
+    "amber": MODULES["Warn"],
+    "red": MODULES["Risk"],
 }
 
 

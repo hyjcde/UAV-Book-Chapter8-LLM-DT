@@ -17,10 +17,10 @@ mkdir -p "$SHARED" "$IO/out" "$STAT/out"
 
 echo "== 1. Statistical plots (AcademicSlate = Nature family for print) =="
 cd "$STAT/scripts"
-# Prefer Nature theme for chapter statistical panels (matches paper architecture blues)
-export CH8_FIGURE_THEME="${CH8_FIGURE_THEME:-Nature}"
-python3 plot_deterministic_rule_figures.py --out_dir "$STAT/out" || true
-python3 plot_rebuttal_figures.py --out_dir "$STAT/out" || true
+# BookInk: per-module hexes in figure_style.py (not RGB casts on finished PDFs)
+export CH8_FIGURE_THEME="${CH8_FIGURE_THEME:-BookInk}"
+python3 plot_deterministic_rule_figures.py --out_dir "$STAT/out"
+python3 plot_rebuttal_figures.py --out_dir "$STAT/out"
 python3 plot_rebuttal_r4_r5.py --out_dir "$STAT/out"
 python3 plot_field_deployment_audit.py \
   --input "$STAT/data/field_deployment_record_audit_frozen.json" \

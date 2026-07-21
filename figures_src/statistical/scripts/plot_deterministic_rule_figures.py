@@ -23,6 +23,7 @@ from figure_style import (
     LINEWIDTH,
     apply_rcparams,
     external_group_colors,
+    metric_colors,
     setup_academic_ax,
     style_bar,
     theme_colors,
@@ -72,7 +73,7 @@ EXTERNAL_METRICS = [
     ("cited_in_retr", r"Cited-ID $\in$ retrieved"),
 ]
 
-METRIC_COLORS = ["#6B7280", "#5C8001", "#0F4C5C"]
+METRIC_COLORS = metric_colors()  # RetrExact / AnsExact / CitedInRet module hexes
 
 FOREST_BASELINES = [
     ("E", "Naive Chunk-RAG"),
@@ -172,7 +173,7 @@ def plot_ablation(csv_path: Path, out_stem: Path) -> None:
         )
         _annotate_nonzero(ax, bars, heights, METRIC_COLORS[mi])
 
-    ax.axvspan(4 - 0.48, 4 + 0.48, color="#3C5488", alpha=0.07, zorder=0)
+    ax.axvspan(4 - 0.48, 4 + 0.48, color=theme_colors(None)["Ours"], alpha=0.08, zorder=0)
     ax.set_xticks(x)
     ax.set_xticklabels(
         [f"{name}\n({code})" for _, name, code in ABLATION_ORDER],
@@ -215,7 +216,7 @@ def plot_external(idp_dir: Path, out_stem: Path) -> None:
     rows = _load_external_rows(idp_dir)
     eg = external_group_colors(None)
     color_map = {
-        "I": eg["I"], "J": eg["J"], "K": "#7E6148",
+        "I": eg["I"], "J": eg["J"], "K": eg["K"],
         "H_ner": eg["H"], "D": eg["D"],
     }
     n_g, n_m = len(rows), len(EXTERNAL_METRICS)
@@ -234,7 +235,7 @@ def plot_external(idp_dir: Path, out_stem: Path) -> None:
         )
         _annotate_nonzero(ax, bars, heights, METRIC_COLORS[mi])
 
-    ax.axvspan(n_g - 1 - 0.48, n_g - 1 + 0.48, color="#3C5488", alpha=0.07, zorder=0)
+    ax.axvspan(n_g - 1 - 0.48, n_g - 1 + 0.48, color=eg["D"], alpha=0.08, zorder=0)
     ax.set_xticks(x)
     ax.set_xticklabels([r[1] for r in rows], fontsize=TICK_FS)
     for tick, (key, _, _) in zip(ax.get_xticklabels(), rows):
@@ -269,7 +270,7 @@ def plot_forest(stats_csv: Path, out_stem: Path) -> None:
     stats = pd.read_csv(stats_csv)
     stats = stats[stats["metric"] == "score"].copy()
     ours = theme_colors(None)["Ours"]
-    worse = "#8491B4"
+    worse = theme_colors(None)["Raw"]
     ns_c = "#B0B0B0"
 
     fig, ax = plt.subplots(figsize=(10.2, 8.4))

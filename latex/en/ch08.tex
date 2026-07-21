@@ -569,6 +569,43 @@ Agent safety & Gates on write/dispatch? & silent twin mutation \\
 
 The rubric should be scored at the level of actions, not only at the level of sentences. A grounded paragraph that never changes a maintenance schedule has limited O\&M value; a terse ranked list of Asset-IDs with openable evidence may already plan a gondola week. Monthly boards can therefore track invented-ID rate, openable-evidence rate, modality-conflict disclosure rate, revisit-hint adoption, and CMMS no-rewrite rate~\cite{lee2024ragsafety,luo2025llmdtrobot,rawat2025llmmas,liang2023helm}. If a hosted-LLM swap improves fluency but worsens invented IDs, reject the swap. If fluency is unchanged but TRACE completeness improves, accept the harness change. Exact-match contests among foundation models remain secondary to those operability curves.
 
+The same rubric can be illustrated with frozen-twin measurement panels from a fa\c{c}ade programme. Read them as evidence for Table~\ref{tab:ch8-eval}, not as a vendor bake-off. Figure~\ref{fig:ch8-ksweep} shows that multi-hop culprit-set coverage rises when topology expansion is enabled and then plateaus: hop depth is a design parameter of assembly, not a free prompt knob. Figure~\ref{fig:ch8-ablation} compares controlled retrieval units on the same question set: chunk-only and atomic baselines underperform asset-centred passports with one-hop expansion on answer-ID and cited-ID grounding. Figure~\ref{fig:ch8-external} places the same passport-centred assembly beside published peer retrieval patterns on identical Asset-ID text; the teaching point is unit choice and topology, not model size. Figure~\ref{fig:ch8-score-type} breaks scores by question type so spatial, multi-hop, and analytical intents are not averaged into one misleading number. Figure~\ref{fig:ch8-hallucination} reports judge-flagged hallucination rates overall and by type, reminding readers that fluent answers still need cite-or-abstain validators~\cite{ji2023,peng2024,lee2024ragsafety}.
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=0.82\linewidth]{deterministic_ksweep_coverage.pdf}
+\caption{Topology hop sweep on multi-hop questions: full culprit-set coverage versus expansion depth~$k$. Coverage rises from $k=0$ to $k=1$ and then plateaus; assembly must expose hop depth as a controlled parameter.}
+\label{fig:ch8-ksweep}
+\end{figure}
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=\linewidth]{deterministic_ablation_exact_hit.pdf}
+\caption{Controlled ablation of retrieval units on a frozen twin ($N=200$ per cell): chunk, atomic, and asset-passport (IAP) settings with and without one-hop expansion, scored by retrieval exact hit, answer-ID exact hit, and cited-ID$\in$retrieved. Passport units with $k=1$ improve grounding metrics that Table~\ref{tab:ch8-eval} cares about.}
+\label{fig:ch8-ablation}
+\end{figure}
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=\linewidth]{deterministic_external_exact_hit.pdf}
+\caption{Peer retrieval patterns evaluated on the same Asset-ID-linked observation text ($N=200$): RAPTOR, HyDE+Fusion, Corrective-RAG, GraphRAG-style, and asset-passport RAG. Compare units and topology use; do not read the panel as a commercial ranking.}
+\label{fig:ch8-external}
+\end{figure}
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=0.92\linewidth]{score_by_type.pdf}
+\caption{Score by question type (spatial, multi-hop, analytical) across retrieval patterns. Intent-conditioned evaluation prevents a single aggregate score from hiding topology failures.}
+\label{fig:ch8-score-type}
+\end{figure}
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=\linewidth]{hallucination_rate.pdf}
+\caption{Judge-flagged hallucination rate overall and by question type. High fluency can coexist with high hallucination; cite-or-abstain validators and ID subset checks remain load-bearing.}
+\label{fig:ch8-hallucination}
+\end{figure}
+
 Transferability and predictive maintenance must be kept on the same argument line. Figures~\ref{fig:ch8-transfer} and~\ref{fig:ch8-transfer-impl} show that an observation--geometry--dependency spine can be instantiated for building O\&M, renovation sequencing, or construction-progress monitoring by changing entity semantics and edge types. Schema reuse is real; forecasting skill is not automatic. A language system may rank assets by evidence-backed severity and access constraints, and it may present outputs from an external temporal model that lives outside the prompt. It should not invent year-ahead spalling probabilities from a single campaign~\cite{gao2026ifcagent,zhang2025llmagentschema,zhao2026physical}. Priority scores from one epoch are triage. Prognosis waits for repeated observations on the same Asset-IDs, comparable modalities, and a non-LLM temporal model wired as a read-only tool.
 
 \begin{figure}[t]

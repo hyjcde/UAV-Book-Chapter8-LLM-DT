@@ -1,21 +1,20 @@
-"""Shared style for Chapter 8 statistical figures (book-local copy).
+"""Shared style for Chapter 8 statistical figures.
 
-Default: Nature / AcademicSlate family (cool blues) matching architecture diagrams.
-BookSlate (teal+copper) kept only for optional A/B via CH8_FIGURE_THEME.
+BookInk (default): every *series / module* has its own hex in THEMES / MODULES.
+Plots must call theme_colors() / module_colors() — never RGB-cast a finished PDF.
 """
 
 from __future__ import annotations
 
 import colorsys
 import os
-from typing import Dict
+from typing import Dict, List
 
 import matplotlib as mpl
 
 INK = "#1A2332"
 GRID_ALPHA = 0.35
-
-FILL_ALPHA = 0.58
+FILL_ALPHA = 0.62
 BAND_ALPHA = 0.15
 SCATTER_ALPHA = 0.40
 LINE_ALPHA = 0.90
@@ -24,21 +23,24 @@ LINEWIDTH = 2.5
 RADAR_LINEWIDTH = 2.8
 GUIDE_LINEWIDTH = 1.2
 
+# ---------------------------------------------------------------------------
+# BookInk — monograph statistical language (distinct from paper Nature blues)
+# Each key is a semantic module; hexes are chosen for print + role contrast.
+# ---------------------------------------------------------------------------
 THEMES: Dict[str, Dict[str, str]] = {
-    # Paper / AcademicSlate — default for monograph statistical panels
+    "BookInk": {
+        "Ours": "#1B4F72",      # IAP-RAG / primary — deep academic blue
+        "Atomic": "#117A65",    # atomic / graph-neighbour — forest teal
+        "Basic": "#7D6608",     # chunk / flat dense — olive gold
+        "Raw": "#5D6D7E",       # naive / residual — cool grey
+    },
+    # Paper reference (A/B only)
     "Nature": {
         "Ours": "#3C5488",
         "Atomic": "#4DBBD5",
         "Basic": "#00A087",
         "Raw": "#849184",
     },
-    "AcademicSlate": {
-        "Ours": "#2F4A6A",
-        "Atomic": "#5B8FA8",
-        "Basic": "#3D7A5A",
-        "Raw": "#6B7280",
-    },
-    # Optional alternate (not used for architecture diagrams)
     "BookSlate": {
         "Ours": "#0F4C5C",
         "Atomic": "#E36414",
@@ -47,18 +49,35 @@ THEMES: Dict[str, Dict[str, str]] = {
     },
 }
 
-DEFAULT_THEME = os.environ.get("CH8_FIGURE_THEME", "Nature")
+# Per-module hexes for grouped bars / legends (BookInk). Edit these, not pixels.
+MODULES_BOOKINK: Dict[str, str] = {
+    "D": "#1B4F72",   # IAP-RAG (Ours)
+    "E": "#5D6D7E",   # Naive Chunk-RAG
+    "F": "#117A65",   # Graph-Neighbour
+    "H": "#6C3483",   # GraphRAG / community
+    "I": "#1A5276",   # RAPTOR
+    "J": "#B9770E",   # HyDE+Fusion
+    "K": "#7B241C",   # Corrective-RAG
+    "Spatial": "#1B4F72",
+    "MultiHop": "#A04000",  # burnt sienna — clear contrast vs Spatial
+    "RetrExact": "#5D6D7E",
+    "AnsExact": "#7D6608",
+    "CitedInRet": "#1B4F72",
+    "Risk": "#922B21",
+    "OK": "#117A65",
+    "Warn": "#B9770E",
+}
+
+DEFAULT_THEME = os.environ.get("CH8_FIGURE_THEME", "BookInk")
 if DEFAULT_THEME not in THEMES:
-    DEFAULT_THEME = "Nature"
+    DEFAULT_THEME = "BookInk"
 
 FIGURE_THEMES = {
-    "performance_evaluation_stats": DEFAULT_THEME,
-    "score_distribution": DEFAULT_THEME,
-    "paradigm_spectrum": DEFAULT_THEME,
     "score_by_type": DEFAULT_THEME,
     "forest_score_diff": DEFAULT_THEME,
     "hallucination_rate": DEFAULT_THEME,
     "field_asset_id_stages": DEFAULT_THEME,
+    "paradigm_spectrum": DEFAULT_THEME,
 }
 
 
@@ -86,19 +105,13 @@ def theme_colors(theme: str | None = None) -> Dict[str, str]:
     return dict(THEMES[theme or DEFAULT_THEME])
 
 
-def external_group_colors(theme: str | None = None) -> Dict[str, str]:
+def module_colors(theme: str | None = None) -> Dict[str, str]:
+    """Return per-series module hex map for the active theme."""
     theme = theme or DEFAULT_THEME
+    if theme == "BookInk":
+        return dict(MODULES_BOOKINK)
     t = THEMES[theme]
     ours, atomic, basic, raw = t["Ours"], t["Atomic"], t["Basic"], t["Raw"]
-    if theme in ("BookSlate", "AcademicSlate"):
-        return {
-            "D": ours,
-            "E": raw,
-            "F": atomic,
-            "H": basic,
-            "I": "#3D6B7C",
-            "J": "#F0A06A",
-        }
     if theme == "Nature":
         return {
             "D": ours,
@@ -107,20 +120,49 @@ def external_group_colors(theme: str | None = None) -> Dict[str, str]:
             "H": basic,
             "I": "#8491B4",
             "J": "#91D1C2",
+            "K": "#E64B35",
+            "Spatial": ours,
+            "MultiHop": atomic,
+            "RetrExact": raw,
+            "AnsExact": basic,
+            "CitedInRet": ours,
+            "Risk": "#E64B35",
+            "OK": basic,
+            "Warn": atomic,
         }
+    # BookSlate fallback
     return {
         "D": ours,
         "E": raw,
         "F": atomic,
         "H": basic,
-        "I": _shift(ours, dh=0.06, dl=0.12, ds=-0.05),
-        "J": _shift(atomic, dh=-0.05, dl=0.08, ds=-0.08),
+        "I": "#3D6B7C",
+        "J": "#F0A06A",
+        "K": "#B45309",
+        "Spatial": ours,
+        "MultiHop": atomic,
+        "RetrExact": raw,
+        "AnsExact": basic,
+        "CitedInRet": ours,
+        "Risk": atomic,
+        "OK": basic,
+        "Warn": atomic,
     }
 
 
+def external_group_colors(theme: str | None = None) -> Dict[str, str]:
+    m = module_colors(theme)
+    return {k: m[k] for k in ("D", "E", "F", "H", "I", "J", "K") if k in m}
+
+
+def metric_colors(theme: str | None = None) -> List[str]:
+    m = module_colors(theme)
+    return [m["RetrExact"], m["AnsExact"], m["CitedInRet"]]
+
+
 def series_pair(theme: str | None = None) -> tuple[str, str]:
-    t = theme_colors(theme)
-    return t["Ours"], t["Atomic"]
+    m = module_colors(theme)
+    return m["Spatial"], m["MultiHop"]
 
 
 def apply_rcparams() -> None:
@@ -207,6 +249,8 @@ def style_hbar(ax, y, widths, *, color, height=0.55, xerr=None, label=None, zord
 
 FIG9 = THEMES[DEFAULT_THEME]
 GROUP_COLORS = external_group_colors(DEFAULT_THEME)
+MODULES = module_colors(DEFAULT_THEME)
 OURS = FIG9["Ours"]
-SERIES_DARK, SERIES_LIGHT = FIG9["Ours"], FIG9["Atomic"]
-NAVY, CYAN, TEAL, SLATE = OURS, FIG9["Atomic"], FIG9["Basic"], "#3D6B7C"
+SERIES_DARK, SERIES_LIGHT = series_pair(DEFAULT_THEME)
+NAVY, CYAN, TEAL, SLATE = OURS, FIG9["Atomic"], FIG9["Basic"], FIG9["Raw"]
+METRIC_COLORS = metric_colors(DEFAULT_THEME)
