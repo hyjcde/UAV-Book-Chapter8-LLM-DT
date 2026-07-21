@@ -13,9 +13,9 @@
 
 专著是一条流水线。第2--3章的任务与运动规划给出安全覆盖；第4章重建把影像变成几何；第5--6章的数据与感知模型给缺陷命名；第7章 GIS/GeoBIM 为资产赋予城市尺度地址。这些产物单独都还回答不了立面运维里最常见的问题：哪些板块处于跨层渗水路径，本季度哪些资产应安排吊篮，如何起草一份工程师可审计的维修简报。这些问题属于决策层：要把孪生实体接到语言、检索、记忆，以及在需要行动时接到工具型智能体。
 
-\begin{figure}[t]
+\begin{figure}[htbp]
 \centering
-\includegraphics[width=0.9\textwidth]{framework_overview_overall.pdf}
+\includegraphics[width=\linewidth]{framework_overview_overall.pdf}
 \caption{巡检智能的专著级视图。本章展开消费前几章孪生与感知产物的语言与决策层。}
 \label{fig:ch8-framework}
 \end{figure}
@@ -26,14 +26,14 @@
 
 UAV--BIM 巡检综述很早提出指向决策层的自动化议程~\cite{zhang2022}。已发表的 GeoBIM 耦合孪生建模~\cite{zhang2025}与检测—重建—配准管线~\cite{yang2025detreconreg}上的工作，为下文提供几何与标识前提；孪生应用也可延伸到立面之外的现场监测~\cite{han2025}。面向设施的数字孪生讨论进一步强调：只有当孪生接到工作流程与文档库时，运维价值才会出现~\cite{chen2023facility,wu2022}。读者不必重推重建或 GIS 方法。第4--7章应被当作\emph{接口契约}：若孪生不能告诉语言系统某次检测挂在哪个 Asset-ID、影像何时采集、邻居是谁，语言接口就会发明结构。
 
-\begin{figure}[t]
+\begin{figure}[htbp]
 \centering
-\includegraphics[width=0.88\textwidth]{dt_modeling_pipeline.pdf}
+\includegraphics[width=\linewidth]{dt_modeling_pipeline.pdf}
 \caption{前几章展开的无人机→孪生建模路径，本章把它视为语言分析的输入接口。}
 \label{fig:ch8-dt-pipeline}
 \end{figure}
 
-\begin{table}[t]
+\begin{table}[htbp]
 \centering
 \caption{在 LLM 支撑立面运维之前，孪生至少应具备的承诺。}
 \label{tab:ch8-twin-contract}
@@ -74,7 +74,7 @@ UAV--BIM 巡检综述很早提出指向决策层的自动化议程~\cite{zhang20
 
 读完本章后，学生或实现者应能：（i）列出表~\ref{tab:ch8-twin-contract} 的最低孪生承诺，并为每项缺失解释一种失效；（ii）把一个立面问题映射到第 L1--L3 层与表~\ref{tab:ch8-harness} 中的某一 harness 部件；（iii）用护照与 BIM 邻域为传播题装配引用或拒答包；（iv）展示一条在写入或复访请求上停在人工门禁的 TRACE~\cite{peng2024,yao2023react,liang2023helm,hellin2025bimmas}。这些结果定义的是决策层契约：前几章可以满足它，后几章可以加硬它。本章并不引入新的检测器。
 
-\begin{table}[t]
+\begin{table}[htbp]
 \centering
 \caption{第8章可核对结果。}
 \label{tab:ch8-outcomes}
@@ -107,7 +107,7 @@ L1--L3 + harness & 把问题映射到层/部件 & 会用表~\ref{tab:ch8-harness
 
 本节先介绍面向土木的生成式语言技术，再接到巡检分析。正文不罗列训练配方，而把即用技术组织为可组合的三层决策栈（表~\ref{tab:ch8-tech-families}）。感知仍是第6章的职责；语言技术消费带类型、带模态标签的观测。第 L1 层是\emph{语言接口}：如何用提示与答案模板驾驭现成模型。第 L2 层是\emph{证据接地}：如何用检索、结构化输出与工具把答案钉在孪生记录上。第 L3 层是\emph{记忆与有界流程}：如何用长期孪生记忆与有门智能体支撑多步运维，而不放任无监督行动。下文以连贯叙述展开三层，再说明已发表 AEC 系统如何专门化，或未能专门化，到立面巡检。
 
-\begin{table}[t]
+\begin{table}[htbp]
 \centering
 \caption{三层即用 LLM 技术$\rightarrow$立面巡检（总览）。}
 \label{tab:ch8-tech-families}
@@ -128,7 +128,7 @@ L3 记忆与流程 & 孪生/RAG 记忆、有界智能体 & 权威现场记忆；
 
 第 L3 层让技术栈跨会话可持续，并在可控条件下可行动。在智能体之前，读者需要记忆阶梯（表~\ref{tab:ch8-memory}）。参数记忆是权重里已有的通用知识，对语言有用，对``上周某仓立面裂缝增长''几乎无用~\cite{brown2020}。上下文记忆是提示窗口与短对话状态：能力强，但受长度与会话限制；若明天新开对话，昨天关于``西侧指装卸台立面''的澄清可能消失，除非外部库保存了别名。检索记忆按需加载带版本手册与观测卡片~\cite{lewis2020,shuster2021,krutli2025fmrags}。结构化长期孪生记忆则是 Asset-ID 库本身，BIM/GIS 中的几何、拓扑与时间戳观测~\cite{pan2024b,zhang2025}。对立面运维，孪生才是权威；模型应通过检索与工具读取它。模型不得假装权重记得现场。有界智能体再把规划、记忆与工具组成工单或复访等流程，并置于 geofence 与人工门之下~\cite{wang2024surveyagents,li2024surveymultiagent,rawat2025llmmas,pan2026graphdtgpt,zhang2025llmagentschema}，不是无监督飞控或静默篡改孪生的许可证。没有检索的 ReAct 循环只是多几步的参数叙事；没有孪生记忆的工具调用可能打错宿主；没有写入门禁的记忆流可能把推测积成``事实''~\cite{yao2023react,park2023generativeagents}。
 
-\begin{table}[t]
+\begin{table}[htbp]
 \centering
 \caption{专门化到立面巡检的记忆阶梯。}
 \label{tab:ch8-memory}
@@ -144,7 +144,7 @@ L3 记忆与流程 & 孪生/RAG 记忆、有界智能体 & 权威现场记忆；
 \end{tabular}
 \end{table}
 
-\begin{figure}[t]
+\begin{figure}[htbp]
 \centering
 \begin{tikzpicture}[node distance=6mm and 7mm]
   \node[ch8box, fill=gray!8, minimum width=2.5cm] (p) {参数记忆};
@@ -171,7 +171,7 @@ L3 记忆与流程 & 孪生/RAG 记忆、有界智能体 & 权威现场记忆；
 
 巡检 harness 可拆成五个协同部分（表~\ref{tab:ch8-harness}）。\emph{接入与路由}负责意图分类，并在生成前把自然语言位置解析到 GeoBIM 别名。\emph{证据装配}加载护照、邻域、观测卡片与钉扎手册，即第 L2 层的 RAG 与打包职责~\cite{lewis2020,peng2024,krutli2025fmrags}。\emph{工具面}提供小而类型化的 API（\texttt{get\_passport}、\texttt{expand\_neighbours}、\texttt{list\_observations}、\texttt{draft\_report}、\texttt{propose\_revisit}），拒绝自由 SQL 或飞控指令；面向 IFC、能耗与运维机器人的 AEC 工具智能体同样把推理与世界动作分开并置于批准之下~\cite{gao2026ifcagent,zhang2025llmagentschema,luo2025llmdtrobot,guo2025bimllmquery}。\emph{契约校验器}在起草后检查可机检义务：点名的 Asset-ID 必须出现在检索包中；数值缺陷主张必须指向观测字段；模态冲突必须披露；写入或调度必须经人工门~\cite{ji2023,pan2024b,buga2025llmfmsql}。\emph{轨迹与评价}保存跑过哪些工具、钉扎了哪一版手册、哪条校验通过或失败，使答案可重放、可评分，这是对多指标、多场景评价的巡检读法。聊天流畅度并不是充分指标~\cite{liang2023helm,shuster2021}。自适应检索重试应作为 harness 内的受控循环。临时即兴改提示应被禁止~\cite{asai2024selfrag,jeong2024adaptive}。
 
-\begin{table}[t]
+\begin{table}[htbp]
 \centering
 \caption{巡检模型 harness：包裹可替换 LLM 的代码侧部件。}
 \label{tab:ch8-harness}
@@ -188,7 +188,7 @@ L3 记忆与流程 & 孪生/RAG 记忆、有界智能体 & 权威现场记忆；
 \end{tabular}
 \end{table}
 
-\begin{figure}[t]
+\begin{figure}[htbp]
 \centering
 \begin{tikzpicture}[node distance=7mm and 9mm]
   \node[ch8box, minimum width=2.3cm] (in) {接入/\\路由};
@@ -218,7 +218,7 @@ L3 记忆与流程 & 孪生/RAG 记忆、有界智能体 & 权威现场记忆；
 
 土木与建筑应用已经在使用这些模式，而每一类接到巡检时都有独特要求。BIM 虚拟助手、查询，DSL 与自然语言 BIM 栈帮助用户导航模型~\cite{zheng2023bimassistant,guo2025bimllmquery,liu2025bimcoder}，但导航尚不等于跨立面资产的拓扑感知缺陷诊断。建筑语义查询系统把 RAG 与结构化库结合起来访问建筑数据~\cite{li2025c,li2025b}。面向规范与安全手册的 RAG 相对纯参数回忆更忠实~\cite{joffe2025buildingcodes,lee2024ragsafety,yang2024promptcode}；混合检索被用于缺陷管理对话~\cite{jeon2025hybridrag}；LLM，本体与知识图谱检查器把自动合规推进到纯聊天之外~\cite{chen2024bimllmontology,iversen2026,li2024kgllmcheck,nuyts2024comparativeacc,kruiper2024platformnlp}。能耗分析智能体、IFC 工具智能体与图孪生多智能体展示领域工具如何版本化，以及 LLM 如何在人工批准下经纪用户、孪生与机器人~\cite{zhang2025llmagentschema,luo2025llmdtrobot,gao2026ifcagent,pan2026graphdtgpt}；结构化 FM 查询进一步表明暴露 schema 优于自由 SQL~\cite{buga2025llmfmsql,arslan2024ragenergy}。知识增强工业诊断与认知孪生设想同样强调：语言系统应查询机器可读领域结构，而非发明它~\cite{zhou2024causalkgpt,shi2025cognitivedt}。高分辨率立面数据与物理量化管线之所以重要，是因为语言会继承感知的粒度~\cite{zhao2024facade,zhao2025icra,zhao2026physical}：若感知只写粗标签，LLM 就不能诚实输出毫米级断言。
 
-\begin{table}[t]
+\begin{table}[htbp]
 \centering
 \caption{已发表 AEC 语言模式及其巡检专门化。}
 \label{tab:ch8-aec-map}
@@ -237,7 +237,7 @@ FM 文档 RAG & O\&M 语料 & 文档挂到 Asset-ID \\
 
 同一文献也标出迁移的止点。BIM 助手教查询纪律；规范与安全 RAG 教版本忠实；缺陷对话 RAG 教嘈杂运维语言；FM 文档 RAG 教大规模建筑语料；能耗与 IFC 智能体教工具版本化与批准~\cite{zheng2023bimassistant,joffe2025buildingcodes,lee2024ragsafety,jeon2025hybridrag,krutli2025fmrags,gao2026ifcagent,luo2025llmdtrobot}。2025--2026 的图孪生与人--DT 多智能体系统则教结构化交互与降低 GUI 负担，但仍假定孪生已经存在~\cite{pan2026graphdtgpt,lu2026highwaymas,lee2025multiagentvbm}。它们单独都不是立面巡检孪生。读者必须把默认检索单元换成资产护照与 BIM 邻域，让第6章检测器继续写带模态标签的观测，并警惕语料错配：擅长公开规范基准的模型，仍可能在本地行政语言写成的私有立面手册上失败~\cite{lee2024ragsafety,jeon2025hybridrag,ma2026tenquestions}。表~\ref{tab:ch8-practice-map} 因此是专门化检查清单，不是奖杯柜。
 
-\begin{table}[t]
+\begin{table}[htbp]
 \centering
 \caption{已发表 LLM 实践簇（侧重 2024--2026）及其巡检专门化。}
 \label{tab:ch8-practice-map}
@@ -271,14 +271,14 @@ FM 结构化查询 & \cite{buga2025llmfmsql} & schema 先于自由 SQL \\
 
 在无人机巡检实践中，有用的观测通常包含宿主 Asset-ID、时间、模态（RGB、红外等）、检测器签名、位姿或表面坐标，以及影像路径。任何 LLM 介入之前，配准就应把检测挂到 BIM 宿主上~\cite{zhang2025,yang2025detreconreg}。自然语言位置短语帮助模型（``西立面、装卸台上方第三跨''），度量坐标留给现场导航。资产护照再附上症状摘要、用于严重度归一化的几何，以及上/下/侧邻接。这些链接使传播式阅读成为可能，例如把中层空鼓与上层潮湿一并考虑，而不把文档相似图误当作结构图或 BIM 邻接图~\cite{peng2024}。
 
-\begin{figure}[t]
+\begin{figure}[htbp]
 \centering
-\includegraphics[width=0.88\textwidth]{idp_construction_pipeline.jpg}
+\includegraphics[width=\linewidth]{idp_construction_pipeline.jpg}
 \caption{从航次影像与检测器输出到语言检索可消费的资产中心记录。各实现命名不同；教学模式是观测$\rightarrow$宿主挂接$\rightarrow$护照。}
 \label{fig:ch8-obs-passport}
 \end{figure}
 
-\begin{table}[t]
+\begin{table}[htbp]
 \centering
 \caption{前几章如何喂给语言决策层。}
 \label{tab:ch8-interfaces}
@@ -298,7 +298,7 @@ FM 结构化查询 & \cite{buga2025llmfmsql} & schema 先于自由 SQL \\
 
 查询装配是巡检不同于通用企业 RAG 之处。局部查找（``资产~$A$ 上月登记了哪些缺陷？''）主要需要~$A$ 的护照；传播类问题需要沿立面拓扑的邻域。仅共享词汇的 top-$k$ 文本块不能替代拓扑邻域；楼层或立面尺度审计需要第7章空间过滤下的受控护照集合。因此意图应改变\emph{哪些}孪生记录进入上下文，而不只是改提示措辞~\cite{lewis2020,peng2024}。当问题把现场证据与规范语言混在一起时，可并行检索带版本手册与安全条款~\cite{joffe2025buildingcodes,lee2024ragsafety,krutli2025fmrags}。
 
-\begin{table}[t]
+\begin{table}[htbp]
 \centering
 \caption{常见查询意图及其应加载的孪生记录。}
 \label{tab:ch8-intents}
@@ -368,18 +368,18 @@ function answer(q):
 
 立面项目天然多模态：航次常同时产生 RGB 影像、红外通道与文本元数据。在本章中，\emph{多模态融合}指的是：把第6章感知已经写出、并由第4与第7章完成挂接的带模态标签观测记录，纪律地装配进接地 LLM 检索与生成。缺陷发现仍是第6章感知职责；语言负责在引用规则下检索、解释、拒答与行动提议。
 
-\begin{figure}[t]
+\begin{figure}[htbp]
 \centering
-\includegraphics[width=0.9\textwidth]{rag_workflow_topology.pdf}
+\includegraphics[width=\linewidth]{rag_workflow_topology.pdf}
 \caption{巡检查询装配示意：解析意图、取资产护照、扩展邻域，再带引用生成。}
 \label{fig:ch8-rag}
 \end{figure}
 
 融合模态而不抹掉冲突。 对立面运维，常用查询类型包括局部查找、资产健康摘要、传播/根因阅读，以及楼层或立面尺度审计。最小装配是资产~$A$ 的护照、其邻域，以及可选的带版本手册。答案中出现的每一个 Asset-ID 或缺陷 ID 都必须落在该检索集合中，否则拒答或升级。当 RGB 与红外观测冲突时，披露优于静默平均：仅 RGB 证据不应变成地下/内部断言；仅红外证据应保留不确定标记。高分辨率立面传感与物理量化工作说明这些标记为何重要：过度宣称几何的语言会继承感知误差~\cite{zhao2024facade,zhao2026physical}。教学上实用的融合规则因此是记录级而非像素级：观测保留模态标签；由 LLM 叙述一致或冲突；在没有人工核验标记前，绝不把冲突坍缩成单一自信缺陷类型。
 
-\begin{figure}[t]
+\begin{figure}[htbp]
 \centering
-\includegraphics[width=0.88\textwidth]{platform_architecture.pdf}
+\includegraphics[width=\linewidth]{platform_architecture.pdf}
 \caption{决策层架构模式示例：孪生与文档库喂给检索；LLM 在工具与批准约束下组织答案与草稿。视为教学布局，而非产品规格。}
 \label{fig:ch8-platform}
 \end{figure}
@@ -390,7 +390,7 @@ function answer(q):
 
 对立面巡检，\emph{有界智能体}实现在第\ref{sec:ch8-llm-foundations}节的模型 harness 之内。欢迎多步检索与工具调用；最终主张仍须引用锁定到检索证据集；调度与写孪生必须经过 geofence 与人工门。小型类型化工具面，取护照、扩邻域、列观测、起草报告、提议复访，优于自由 SQL 或不受限代码执行。这一立场把通用智能体文献专门化到巡检：孪生已经编码智能体不得轻易改写的世界状态；第2--3章已经拥有飞行规划；语言智能体只作提议，不指挥飞机。近年孪生交互 MAS 研究强化同一分工：智能体编排功能、降低界面摩擦，但不取代领域批准与章节权属~\cite{lu2026highwaymas,pan2026graphdtgpt,ma2026tenquestions}。真正让这些边界在每次运行上可强制执行的是 harness。聊天记录本身不能充当门禁~\cite{yao2023react,wang2024surveyagents,liang2023helm}。
 
-\begin{table}[t]
+\begin{table}[htbp]
 \centering
 \caption{巡检语言智能体的有界工具面。}
 \label{tab:ch8-tools}
@@ -408,7 +408,7 @@ stage\_twin\_write & 待写入更新 & 强制批准 \\
 \end{tabular}
 \end{table}
 
-\begin{figure}[t]
+\begin{figure}[htbp]
 \centering
 \begin{tikzpicture}[node distance=8mm and 11mm]
   \node[ch8box, minimum width=2.6cm] (q) {用户问题};
@@ -500,7 +500,7 @@ RGB & IR $\rightarrow$ 语言动作 \\
 
 巡检答案只有落入设施管理系统已经理解的交付物时才真正有用。自由段落难以审计。实用报告 schema 可分组为身份字段（资产与缺陷 ID）、诊断、传播说明、建议行动与信任标记。身份字段必须是检索证据集的子集，这是报告层面的约束解码，与 BIM/规范助手同类~\cite{zheng2023bimassistant,joffe2025buildingcodes}。诊断字段应回指可在孪生界面打开影像的观测 ID；行动字段应可被排程系统直接阅读，而不再需要另一个 LLM 重解析散文。
 
-\begin{table}[t]
+\begin{table}[htbp]
 \centering
 \caption{巡检报告草稿的约束字段示例。}
 \label{tab:ch8-schema}
@@ -517,16 +517,16 @@ RGB & IR $\rightarrow$ 语言动作 \\
 \end{tabular}
 \end{table}
 
-\begin{figure}[t]
+\begin{figure}[htbp]
 \centering
 \includegraphics[width=0.85\textwidth]{field_asset_id_stages.pdf}
 \caption{现场采集与语言检索之间的分阶段 Asset-ID 核验。身份卫生属于决策层。}
 \label{fig:ch8-asset-id}
 \end{figure}
 
-\begin{figure}[t]
+\begin{figure}[htbp]
 \centering
-\includegraphics[width=0.88\textwidth]{field_deployment_audit.pdf}
+\includegraphics[width=\linewidth]{field_deployment_audit.pdf}
 \caption{现场到办公的身份与证据路径。报告质量取决于与检索相同的 Asset-ID 卫生。}
 \label{fig:ch8-field-audit}
 \end{figure}
@@ -535,9 +535,9 @@ RGB & IR $\rightarrow$ 语言动作 \\
 
 报告生命周期。 报告管理不止一次性生成。草稿应版本化；人工签核应被记录；已批准事实可以写回第\ref{sec:ch8-llm-foundations}节引入的长期孪生记忆。被拒草稿不应静默污染护照。若机构已使用 CMMS 或 BIM 问题追踪，上表 schema 应映射到既有字段。也不另起一套散文 PDF 宇宙。自然语言查询界面可以帮助非专业人员提问，但权威交付物仍是约束报告加上可打开证据。
 
-\begin{figure}[t]
+\begin{figure}[htbp]
 \centering
-\includegraphics[width=0.9\textwidth]{analysis_interface_nlq.png}
+\includegraphics[width=\linewidth]{analysis_interface_nlq.png}
 \caption{自然语言分析界面模式示例。用于教学交互流程；并不声称某一特定商业产品。}
 \label{fig:ch8-nlq-ui}
 \end{figure}
@@ -578,7 +578,7 @@ schema 约束草稿只是交付的一半；另一半是字段映射：\texttt{as
 
 专著读者需要可迁移的评价标准。品牌之间的胜负赛是次要的。对巡检语言系统，应追问：被引 ID 是否在证据集中~\cite{ji2023,shuster2021}；纳入邻域后传播类问题是否改善；面向规范/手册的 RAG 是否优于纯参数回忆~\cite{lee2024ragsafety,joffe2025buildingcodes,krutli2025fmrags}；输出能否驱动运维排程；智能体工具轨迹是否遵守批准与 geofence~\cite{luo2025llmdtrobot,rawat2025llmmas}。缺陷、安全与设施语料上的已发表评测已表明结构化检索有帮助。仓立面现场项目可以用来说明同一结构教训；未发表数字不作为本章参考文献主张。
 
-\begin{table}[t]
+\begin{table}[htbp]
 \centering
 \caption{巡检语言系统的评价准则（实现无关）。}
 \label{tab:ch8-eval}
@@ -595,25 +595,25 @@ schema 约束草稿只是交付的一半；另一半是字段映射：\texttt{as
 \end{tabular}
 \end{table}
 
-\begin{figure}[t]
+\begin{figure}[htbp]
 \centering
 \includegraphics[width=0.82\textwidth]{framework_generalizability_concept.pdf}
 \caption{孪生，语言模式在运维任务间迁移的概念示意。schema 复用不是预测能力的保证。}
 \label{fig:ch8-transfer}
 \end{figure}
 
-\begin{figure}[t]
+\begin{figure}[htbp]
 \centering
-\includegraphics[width=0.88\textwidth]{platform_transferability_implementation.pdf}
+\includegraphics[width=\linewidth]{platform_transferability_implementation.pdf}
 \caption{可迁移性意味着跨站点或任务复用资产中心记忆、schema 与工具。自动获得预测性维护并不成立。}
 \label{fig:ch8-transfer-impl}
 \end{figure}
 
 优先级评分把诊断转成排程；真正的劣化预测仍需要超越单次巡检时相的时序模型。语言系统可按证据支持的严重度与可达性约束给资产排序；除非时序模型明确在环，否则不应从单次航次宣称未来一年的剥落预测。把 schema 迁移到改造排序或施工监测，应作为资产中心记忆与工具的复用来教~\cite{gao2026ifcagent,luo2025llmdtrobot,zhang2025llmagentschema}。这不构成有保证的预测。多平台现场界面是否成功，仍取决于是否守住同一套 Asset-ID 与出处契约。
 
-\begin{figure}[t]
+\begin{figure}[htbp]
 \centering
-\includegraphics[width=0.9\textwidth]{multi_platform_field_interfaces.pdf}
+\includegraphics[width=\linewidth]{multi_platform_field_interfaces.pdf}
 \caption{多平台现场界面的成败仍取决于身份与证据纪律。屏幕排版本身不能决定成败。}
 \label{fig:ch8-multiplatform}
 \end{figure}
@@ -709,7 +709,7 @@ schema 约束草稿只是交付的一半；另一半是字段映射：\texttt{as
 
 示意性优先级评分（不是现场定律）。 设调度员用 $s = 0.4\,\tilde{\ell} + 0.3\,c + 0.2\,a + 0.1\,m$ 给资产打分，其中 $\tilde{\ell}$ 为归一化到 $[0,1]$ 的几何缺陷尺度，$c$ 为检测置信度，$a$ 为可达紧迫性（即将安排吊篮），$m$ 为模态冲突惩罚（RGB/IR 不一致时更低）。该公式仅作分诊示意：系数属于设施方，不属于 LLM。语言系统应暴露每项分数背后的项与引用，再让人类重排。只有当重复航次喂给时序模型时，预测性维护才开始；在此之前，$s$ 只是分诊~\cite{zhao2026physical,gao2026ifcagent}。
 
-\begin{table}[t]
+\begin{table}[htbp]
 \centering
 \caption{语言系统可用引用解释的示意分诊项。}
 \label{tab:ch8-triage}
@@ -733,7 +733,7 @@ $m$ & RGB/IR 冲突标记 & 披露分歧 \\
 
 面向语言系统的缺陷家族阅读笔记。 不同立面症状对决策层的压力不同。\emph{表面裂缝}常以 RGB 为主；语言应把缝长特征绑到几何归一化，并避免在无邻域或手册支持时讲结构成因故事。\emph{剥落/空鼓}可能在 RGB 可见，却常连到需要红外或上层证据的潮湿假说；缺失模态必须披露。\emph{渍迹与潮湿线索}天生多模态；仅红外主张在第二模态或人工确认前应保持不确定。\emph{密封胶与接缝失效}局部但对立面防水路径运维紧迫；立面审计不应把它们淹没在墙跨平均里。\emph{既有修补}造成时间陷阱：旧修补旁的``新''渍迹，若无跨航次 ID，不能自动当成进展。这些笔记不取代第6章分类体系；它们告诉语言层：分类标签存在之后该怎么说话~\cite{zhao2024facade,zhao2025icra,zhao2026physical,jeon2025hybridrag}。
 
-\begin{table}[t]
+\begin{table}[htbp]
 \centering
 \caption{常见立面症状家族如何压迫语言接地。}
 \label{tab:ch8-symptom-lang}
@@ -823,7 +823,7 @@ $m$ & RGB/IR 冲突标记 & 披露分歧 \\
 
 
 
-\begin{table}[t]
+\begin{table}[htbp]
 \centering
 \caption{试点周验收检查：在更换托管 LLM 之前。}
 \label{tab:ch8-pilot-week}

@@ -1,0 +1,36 @@
+% Shared local preview trim for EN/CN Chapter-8 builds.
+% Published Springer Nature monographs in this series are ~160 x 241 mm
+% (approx. 453.5 x 683.2 pt), with a body block near 117 x 191 mm.
+% Compiling SNmono on Letter/A4 without resetting the paper canvas leaves
+% large empty side margins even when the body font/size is already correct.
+% This file only corrects the paper canvas + margins; it keeps the SNmono
+% text block dimensions used by the Overleaf shell.
+\usepackage{geometry}
+\geometry{%
+  paperwidth=160mm,%
+  paperheight=241mm,%
+  textwidth=117mm,%
+  textheight=191mm,%
+  hmargin=21.5mm,%
+  top=16mm,%
+  bottom=20mm,%
+  headheight=14pt,%
+  headsep=8pt,%
+  footskip=16pt%
+}
+% Slightly denser float placement for screen/PDF review (still Springer-like).
+\setlength{\textfloatsep}{12pt plus 2pt minus 2pt}
+\setlength{\floatsep}{10pt plus 2pt minus 2pt}
+\setlength{\intextsep}{10pt plus 2pt minus 2pt}
+\setlength{\abovecaptionskip}{5pt}
+\setlength{\belowcaptionskip}{3pt}
+% Allow floats to occupy more of a page so body text is less often stranded.
+\renewcommand{\topfraction}{0.9}
+\renewcommand{\bottomfraction}{0.8}
+\renewcommand{\textfraction}{0.08}
+\renewcommand{\floatpagefraction}{0.75}
+\setcounter{topnumber}{3}
+\setcounter{bottomnumber}{2}
+\setcounter{totalnumber}{5}
+% Stretch page bottoms instead of leaving large ragged gaps when possible.
+\flushbottom

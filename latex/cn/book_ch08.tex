@@ -1,6 +1,8 @@
-%%%%%%%%%%%%%%%%%%%% book_ch08.tex (CN book shell; 仅第8章正文) %%%%%%%%%%%%%%%%%%%%
-% 全书书名取自 proposal。其他章由合作作者撰写：此处只列章名，不写正文。
-\documentclass[UTF8,a4paper,openany]{ctexbook}
+%%%%%%%%%%%%%%%%%%%% book_ch08.tex (CN) %%%%%%%%%%%%%%%%%%%%
+% 中文工作稿书壳：版心/开本与英文 SNmono 本地预览对齐（160×241 mm，栏宽 117 mm）。
+% 仅第8章展开正文；其余章只保留标题占位，便于与英文目录同步。
+% 10pt 与英文 SNmono 正文字号对齐；开本/栏宽由 springer_local_trim 统一。
+\documentclass[UTF8,openany,oneside,10pt]{ctexbook}
 
 \usepackage{graphicx}
 \usepackage{booktabs}
@@ -13,51 +15,124 @@
 \usepackage{xcolor}
 \usepackage[numbers,sort&compress]{natbib}
 \usepackage{hyperref}
-\usepackage{geometry}
-% Match Springer SNmono text block (~117mm) so bilingual page counts are comparable;
-% keep A4 paper for Chinese production, but avoid the overly wide 2.5cm-margin layout.
-\geometry{a4paper,textwidth=117mm,textheight=222mm,centering}
+\setlist{itemsep=2pt,parsep=0pt,topsep=4pt}
+
+% 与英文共享 Springer 本地开本/栏宽设置
+\input{../shared/springer_local_trim}
+% 中文行距略收，避免相对英文显得过疏（仍保持可读）。
+\linespread{1.08}\selectfont
 \input{../shared/ch08_tikz_macros}
 
 \graphicspath{{figures/}{figures/ch08/}}
 
 \begin{document}
 
-\thispagestyle{empty}
-\vspace*{2em}
-{\Huge AI驱动的无人机建筑巡检\par}
-\vfill
-{\Large Springer Nature\par}
+\frontmatter
+
+\begin{center}
+\vspace*{4\baselineskip}
+{\Large\itshape
+To safer, smarter, and more scalable building inspection.\\[0.5em]
+面向更安全、更智能、可扩展的建筑巡检。
+\par}
+\end{center}
 \clearpage
 
-\chapter*{目录}
-\markboth{目录}{目录}
-
+\chapter*{前言}
+\markboth{前言}{前言}
 \noindent
-\begin{tabular}{@{}r@{\hspace{0.75em}}p{0.88\textwidth}@{}}
-1 & 无人机建筑巡检导论 \\
-2 & 面向数据采集的无人机任务规划 \\
-3 & 复杂环境下的无人机运动规划 \\
-4 & 建筑三维重建 \\
-5 & 数据集构建与基准 \\
-6 & 面向建筑巡检的人工智能模型 \\
-7 & 面向建筑监测的GIS集成 \\
-8 & 巡检分析中的数字孪生与大语言模型 \\
-9 & 结论与展望 \\
+城市建筑存量老化与密集化并存，结构健康监测需要比传统人工吊绳巡检更安全、更快速、更一致的流程。无人机改变了立面影像采集方式，但文献中飞行规划、三维重建、缺陷识别与设施决策支持仍常彼此割裂。
+
+本书给出 AI 驱动无人机建筑巡检的端到端视角：连接任务与运动规划、数字表达与 GIS、缺陷分析深度学习，并在最后的技术章中讨论以数字孪生为据的大语言模型报告与运维决策支持。
+
+\vspace{\baselineskip}
+\begin{flushright}
+香港\hfill {\itshape 无人系统研究组}\\
+2026\hfill {\itshape 香港中文大学}\\
+\end{flushright}
+
+\chapter*{致谢}
+\markboth{致谢}{致谢}
+\noindent
+致谢将随全书作者名单一并完善。本仓库中文稿当前聚焦第8章内容与中英版式同步。
+
+\tableofcontents
+
+\chapter*{缩写表}
+\markboth{缩写表}{缩写表}
+\noindent
+\begin{tabular}{ll}
+AEC & 建筑、工程与施工（Architecture, Engineering and Construction）\\
+Asset-ID & 孪生/CMMS 台账中的稳定资产标识\\
+BIM & 建筑信息模型（Building Information Modelling）\\
+CMMS & 计算机化维护管理系统\\
+DT & 数字孪生（Digital Twin）\\
+GeoBIM & 地理空间锚定的 BIM\\
+GIS & 地理信息系统\\
+IAP & 综合资产档案 / 资产护照\\
+IDP & 综合缺陷档案 / 观测记录\\
+IFC & 工业基础类（Industry Foundation Classes）\\
+LLM & 大语言模型\\
+MAS & 多智能体系统\\
+O\&M & 运维（Operations and Maintenance）\\
+RAG & 检索增强生成\\
+SHM & 结构健康监测\\
+UAV & 无人驾驶航空器\\
+VDPP & 竖向缺陷传播路径\\
+VLM & 视觉—语言模型\\
 \end{tabular}
 
-\vspace{1.5em}
-\noindent\textbf{第8章细目}
-\vspace{0.5em}
+\mainmatter
 
-% 仅展开第8章自动写入的细目（不再次打印「目录」标题）
-\makeatletter
-\@starttoc{toc}
-\makeatother
+% ---- 占位：第1--7、9章仅保留章题，正文由合作作者撰写 ----
+\part{智能数据采集}
+\chapter{无人机建筑巡检导论}
+\noindent\textit{（本章正文由合作作者撰写；此处仅保留章题以便与英文目录同步。）}
 
-% 本仓库只写第8章
-\setcounter{chapter}{7}
+\chapter{面向数据采集的无人机任务规划}
+\noindent\textit{（占位）}
+
+\chapter{复杂环境下的无人机运动规划}
+\noindent\textit{（占位）}
+
+\part{数字表达与空间语境}
+\chapter{建筑三维重建}
+\noindent\textit{（占位）}
+
+\chapter{面向建筑监测的GIS集成}
+\noindent\textit{（占位）}
+
+\part{AI驱动的缺陷分析}
+\chapter{数据集构建与基准}
+\noindent\textit{（占位）}
+
+\chapter{面向建筑巡检的人工智能模型}
+\noindent\textit{（占位）}
+
+\part{新一代决策支持}
+% 第8章：本仓库展开
 \include{ch08_cn}
+
+\chapter{结论与展望}
+\noindent\textit{（占位）}
+
+\backmatter
+\chapter*{术语表}
+\markboth{术语表}{术语表}
+\paragraph{Asset-ID}
+可维护宿主在孪生与设施台账中的稳定标识；语言答案与 CMMS 工单应点名同一编码。
+
+\paragraph{资产护照}
+以资产为中心的检索单元，汇总近期观测、几何/严重度摘要与显式邻域列表。
+
+\paragraph{有界智能体}
+可调用工具的 LLM 流程：可读孪生记忆并起草行动，但写入/复访须经人工与 geofence 门禁。
+
+\paragraph{引用或拒答}
+生成契约：答案中点名的 Asset-ID/观测 ID 必须出现在检索证据包中，否则系统拒答。
+
+\paragraph{模型 harness}
+包裹可替换 LLM 的代码侧控制层：接入、证据装配、类型化工具、校验器、轨迹与写入门禁。
 
 \bibliographystyle{plainnat}
 \bibliography{references}

@@ -4,7 +4,9 @@
 % Chapters 1--7 and 9 are title stubs only; Chapter 8 is fully drafted here.
 %%%%%%%%%%%%%%%% Springer Nature %%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\documentclass[graybox,envcountchap,sectrefs]{SNmono}
+% openany: avoid blank verso pages in the local working PDF (print books often
+% keep openright; Overleaf production can drop this option later).
+\documentclass[graybox,envcountchap,sectrefs,openany]{SNmono}
 
 \usepackage{type1cm}
 \usepackage{makeidx}
@@ -26,6 +28,10 @@
 \usepackage{algpseudocode}
 \usepackage{xcolor}
 \usepackage[numbers,sort&compress]{natbib}
+\setlist{itemsep=2pt,parsep=0pt,topsep=4pt}
+
+% Match published Springer trim (~160 x 241 mm); keep SNmono 117 x 191 mm body.
+\input{../shared/springer_local_trim}
 
 % Chapter 8 TikZ helpers (memory ladder / harness / agent gate)
 \input{../shared/ch08_tikz_macros}
