@@ -11,7 +11,7 @@ Figures must explain **concepts and workflows for professional readers**, not de
 | Book-pipeline diagrams linking Ch.4–7 → Ch.8 | Product UI screenshots as scientific claims |
 | Generic ladders (memory / grounding / agent roles) | DefectGPT / IAP-RAG architecture dumps as chapter spine |
 
-Paper-derived plots may appear later only as **optional appendix illustrations**, clearly labeled, and never as the only proof.
+Paper-derived plots may appear as **rubric evidence** in §8.6 when framed against Table eval criteria, not as a bake-off lead.
 
 ---
 
@@ -19,53 +19,44 @@ Paper-derived plots may appear later only as **optional appendix illustrations**
 
 | ID | Working title | Layer | Pedagogical job | Status |
 |----|---------------|-------|-----------------|--------|
-| F1 | Book pipeline → decision layer | L0 | Where Ch.8 sits after planning/recon/detect/GIS | **Reuse ok** if redrawn as book schematic (`framework_overview_overall`) — caption must stay book-level |
-| F2 | Twin inputs for language | L0 | Asset-ID + provenance + topology as interfaces | Need clean schematic (current `dt_modeling_pipeline` is OK if caption stays “input interface”) |
-| F3 | LLM capability & failure ladder | L1 | Pretrain → instruct → CoT → hallucination/ID errors | **MISSING** — draw new |
-| F4 | VLM vs detector vs LLM roles | L2 | Who writes observations / who retrieves / who narrates | **MISSING** — draw new |
-| F5 | Memory ladder (4 boxes) | L5 | Parametric / context / RAG index / twin store | **Done** — TikZ `fig:ch8-memory-ladder` |
-| F6 | Grounding stack / harness | L3–L4 | Intake → evidence → tools → validators → TRACE | **Done** — TikZ `fig:ch8-harness-fig` (+ table) |
-| F7 | Query assembly (topology RAG) | L3 | Intent → passport → neighbours → cite-or-abstain | Partial: `rag_workflow_topology` — **redraw** to remove paper-specific module names |
-| F8 | Observation → asset passport | L0/L3 | Generic records, not IDP acronym dump | Partial: `idp_construction_pipeline` — **replace** with textbook naming |
-| F9 | Agent role stack + approval gate | L4 | Retriever / topology / report / action + human gate | **Done** — TikZ `fig:ch8-agent-gate` |
-| F10 | Report schema → FM artefact | L7 | Constrained fields + evidence links | Table exists; optional one schematic |
-| F11 | Evaluation criteria (not bake-off) | L7 | Grounding / topology / corpus / safety checklist | **MISSING** — replace ablation bars |
-| F12 | Frontier outlook | L6 | Agentic RAG / cognitive twin / VLM-native (dashed) | Partial: `framework_generalizability_concept` — keep only if generic |
+| F1 | Book pipeline → decision layer | L0 | Where Ch.8 sits after planning/recon/detect/GIS | **Reuse ok** (`framework_overview_overall`) |
+| F2 | Twin inputs for language | L0 | Asset-ID + provenance + topology as interfaces | OK if caption stays “input interface” |
+| F3 | LLM capability & failure ladder | L1 | Pretrain → instruct → CoT → hallucination/ID errors | **MISSING** |
+| F4 | VLM vs detector vs LLM roles | L2 | Who writes observations / who retrieves / who narrates | **MISSING** |
+| F5 | Memory ladder (4 boxes) | L5 | Parametric / context / RAG index / twin store | **Done** TikZ |
+| F6 | Grounding stack / harness | L3–L4 | Intake → evidence → tools → validators → TRACE | **Done** TikZ |
+| F7 | Query assembly (topology RAG) | L3 | Intent → passport → neighbours → cite-or-abstain | Partial: `rag_workflow_topology` |
+| F8 | Observation → asset passport | L0/L3 | Generic records | Partial: `idp_construction_pipeline` |
+| F9 | Agent role stack + approval gate | L4 | Retriever / topology / report / action + human gate | **Done** TikZ |
+| F10 | Report schema → FM artefact | L7 | Constrained fields + evidence links | Table exists |
+| F11 | Evaluation criteria | L7 | Grounding / topology / corpus / safety | Table + restored stats panels |
+| F12 | Frontier outlook | L6 | Transfer / generalizability | Paper originals (PNG/PDF) |
 
 ---
 
-## Demote / do not lead with (paper residue)
+## Statistical panels (restored in §8.6)
 
-These files look like **single-study result panels**. Do not use them as the chapter’s main story figures:
+- `deterministic_ksweep_coverage`, `deterministic_ablation_exact_hit`, `deterministic_external_exact_hit`
+- `score_by_type`, `hallucination_rate`
+- `field_asset_id_stages`, `field_deployment_audit`
 
-- `deterministic_ablation_exact_hit.pdf`
-- `deterministic_external_exact_hit.pdf`
-- `deterministic_ksweep_coverage.pdf`
-- `hallucination_rate.pdf`
-- `score_by_type.pdf`
-- `DefectGPT_V6_Architecture.svg` / `DefectGPT_V6_Research_Architecture.svg`
-- Heavy product shots: `platform_demo.pdf`, `analysis_interface_nlq.png` (optional “interface pattern” only)
+Colours: **BookInk** module hexes in `figures_src/statistical/scripts/figure_style.py` (`MODULES_BOOKINK`). Change series colours there; do not RGB-cast PDFs.
 
-**Action (done in 2026-07-20 prose rewrite):** main EN/CN chapter text no longer includes ablation/SOTA/hallucination bar charts; DSS emphasises evaluation criteria. Still to draw: F3–F4, F11 as original teaching schematics (F5/F6/F9 TikZ done).
-
-**Caption/read-figure sync (2026-07-21):** EN+CN captions and short “read Figure…” prose now match the actual graphics for the eleven shared PDF/PNG figures (`framework_overview_overall` through `multi_platform_field_interfaces`), including quantitative panels (`field_asset_id_stages`, `field_deployment_audit`) described as measurement panels rather than process cartoons.
+Still demoted as spine: `DefectGPT_V6_*.svg`, heavy `platform_demo.pdf`.
 
 ---
 
 ## Drawing order (recommended)
 
-1. **F5 Memory ladder** — closes the biggest conceptual gap  
-2. **F3 + F6** — foundations + grounding in one visual spine  
+1. **F5 Memory ladder**  
+2. **F3 + F6**  
 3. **F4** — VLM placement  
-4. **F9** — agents with approval  
-5. **F7 + F8 redraw** — kill paper jargon in filenames/captions  
-6. **F11** — stop leading with ablation bars  
+4. **F7 + F8 redraw** — kill paper jargon in filenames/captions  
 
-Style: Springer mono-friendly, grayscale-safe, English master + Chinese mirror labels later.
+Style: Springer mono-friendly, grayscale-safe, English master + Chinese mirror.
 
 ---
 
 ## Automation note
 
-The 10-minute literature tick should **report figure gaps from this file**, not invent new paper plots.  
-Cursor cloud Automations: user-owned; this repo only keeps `FIGURE_PLAN.md` + tick scripts.
+The literature tick should **report figure gaps from this file**, not invent new paper plots.
