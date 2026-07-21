@@ -48,8 +48,8 @@ cp -f "$ORIG/platform_transferability_implementation.pdf" "$SHARED/"
 cp -f "$RAS/platform_transferability_implementation.png" "$IO/out/" 2>/dev/null || true
 echo "  synced paper transfer PDFs/PNGs"
 
-echo "== 5a. HTML UI figures (AcademicSlate) =="
-bash "$IO/html/export_html_figures.sh"
+echo "== 5a. UI screenshots: paper originals + light accent nudge (no redesign) =="
+python3 "$IO/html/polish_ui_rasters.py"
 
 echo "== 5b. Other raster screenshots: originals on white (no tint, no black matte) =="
 python3 << PY
