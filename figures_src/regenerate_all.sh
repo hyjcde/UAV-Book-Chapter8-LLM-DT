@@ -104,12 +104,15 @@ for name in \
   deterministic_ablation_exact_hit \
   deterministic_external_exact_hit \
   deterministic_ksweep_coverage \
-  score_by_type \
-  hallucination_rate \
   field_asset_id_stages \
   field_deployment_audit
 do
   [ -f "$STAT/out/${name}.pdf" ] && cp -f "$STAT/out/${name}.pdf" "$SHARED/" && echo "  stat $name.pdf"
+done
+
+# Dense-label score / hallucination panels: paper originals only (hard to re-typeset)
+for name in score_by_type hallucination_rate; do
+  [ -f "$ORIG/${name}.pdf" ] && cp -f "$ORIG/${name}.pdf" "$SHARED/" && echo "  paper-stat $name.pdf"
 done
 
 for lang in en cn; do

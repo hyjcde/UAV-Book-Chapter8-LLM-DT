@@ -24,4 +24,6 @@
 **Pipeline lit map (2026-07-21):** `tab:ch8-book-pipeline-lit` — book stages × group interfaces × community LLM/agent patterns × Ch.8 specialisation (EN+CN).  
 **Memory-survey apply (2026-07-21):** externalised loop eqs + `tab:ch8-mem-app` (operators → already-built artefacts); passport/$k$-hop/cite-or-abstain eqs in §8.3. Unpublished survey stays in `AGENT_LIT_NOTES.md` only.  
 **Book shell (2026-07-21):** local EN/CN `book_ch08.tex` drop `\part{}` pages; proposal TOC is chapter-only (8.1–8.6). `part0*.tex` kept unused for a future full-book merge.  
-**§8.3/8.5 enrich (2026-07-21):** `tab:ch8-assembly-fail`; report walkthrough + `tab:ch8-report-accept` + lifecycle states/roles + `tab:ch8-cmms-map` + seasonal hygiene (EN+CN).
+**§8.3/8.5 enrich (2026-07-21):** `tab:ch8-assembly-fail`; report walkthrough + `tab:ch8-report-accept` + lifecycle states/roles + `tab:ch8-cmms-map` + seasonal hygiene (EN+CN).  
+**CMMS framing (2026-07-21):** `tab:ch8-cmms-map` demoted to optional export example (one sink among CMMS/BIM tracker/spreadsheet); core = schema draft + openable evidence.  
+**§8.6 paper stats:** `score_by_type` + `hallucination_rate` restored from paper originals (dense labels; no book re-typeset).

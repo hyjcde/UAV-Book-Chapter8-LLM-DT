@@ -9,7 +9,7 @@
 | **TikZ teaching figs** (memory ladder, harness, agent gate) | `latex/shared/ch08_tikz_macros.tex` AcademicSlate styles; EN/CN chapter bodies only change labels. |
 | **UI screenshots** (`analysis_interface_nlq`, `multi_platform_field_interfaces`, `platform_demo`) | Use **paper rasters** in `io/raster_originals/`. `html/polish_ui_rasters.py` only composites onto white and lightly nudges purple accents → steel/navy. Do **not** replace with redesigned HTML mockups for the chapter. (`io/html/*.html` are optional drafts only.) |
 | **Raster screenshots** (`dt_modeling_pipeline`) | Copy paper rasters **as-is**, composite RGBA onto **white** before PDF. Never apply RGB tint casts. |
-| **Statistical panels** | Matplotlib with `CH8_FIGURE_THEME=BookInk` (default). Each series/module has its own hex in `figure_style.MODULES_BOOKINK` — edit those hexes, never tint a finished PDF. Chapter figures: ksweep, ablation, external, score_by_type, hallucination, field_asset_id_stages, field_deployment_audit. |
+| **Statistical panels** | Matplotlib with `CH8_FIGURE_THEME=BookInk` for ksweep / ablation / external / field audits. **`score_by_type` and `hallucination_rate`**: use **paper originals** only (dense numeric labels; do not re-typeset). Regen script copies them from `originals_book_copy/`. |
 
 ## Palette (AcademicSlate for architecture)
 
