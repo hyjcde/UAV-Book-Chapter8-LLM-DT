@@ -27,8 +27,24 @@
 
 \begin{document}
 
+% 扉页：先书名，再副标题；不写作者、不写日期（与提案工作稿一致）。
+\begin{titlepage}
+\centering
+\vspace*{3cm}
+{\Huge AI-Driven UAV Building Inspection\par}
+\vspace{1.2cm}
+{\LARGE An End-to-End Framework from Autonomous Flight to Digital Twins\par}
+\vspace{0.8cm}
+{\large 人工智能驱动的无人机建筑巡检\par}
+\vspace{0.4cm}
+{\large 从自主飞行到数字孪生的端到端框架\par}
+\vfill
+{\Large Springer Nature\par}
+\end{titlepage}
+
 \frontmatter
 
+% 题献页：与英文 dedication 同款居中斜体样式
 \begin{center}
 \vspace*{4\baselineskip}
 {\Large\itshape
@@ -43,18 +59,14 @@ To safer, smarter, and more scalable building inspection.\\[0.5em]
 \noindent
 城市建筑存量老化与密集化并存，结构健康监测需要比传统人工吊绳巡检更安全、更快速、更一致的流程。无人机改变了立面影像采集方式，但文献中飞行规划、三维重建、缺陷识别与设施决策支持仍常彼此割裂。
 
-本书按提案中的四阶段教学路径展开端到端框架：智能数据采集（任务与运动规划）、数字表达与空间语境（三维重建与 GIS）、AI 驱动缺陷分析（数据集与检测模型），以及新一代决策支持（数字孪生与大语言模型/视觉—语言模型）。第8章落在第四阶段，讲授如何把视觉缺陷证据与生成式 AI 融合，自动起草巡检报告、查询历史维修记录，并给出可审计的预测性维护建议。
+本书\emph{AI-Driven UAV Building Inspection: An End-to-End Framework from Autonomous Flight to Digital Twins}（人工智能驱动的无人机建筑巡检：从自主飞行到数字孪生的端到端框架）按四阶段连续展开：智能数据采集（任务与运动规划）、数字表达与空间语境（三维重建与 GIS）、AI 驱动缺陷分析（数据集与检测模型），以及新一代决策支持。最后的技术章把数字孪生与大语言模型、视觉—语言模型融合，使读者能查询历史维修记录、生成巡检报告，并在可审计规则下获得预测性维护建议。
 
-\vspace{\baselineskip}
-\begin{flushright}
-香港\hfill {\itshape 无人系统研究组}\\
-2026\hfill {\itshape 香港中文大学}\\
-\end{flushright}
+本书面向希望设计或部署自主巡检管线的研究生、研究者，以及土木、机器人与人工智能领域的实践者。
 
 \chapter*{致谢}
 \markboth{致谢}{致谢}
 \noindent
-致谢将随全书作者名单一并完善。本仓库中文稿当前聚焦第8章内容与中英版式同步。
+致谢将随全书作者名单一并完善。
 
 \tableofcontents
 
@@ -85,7 +97,6 @@ VLM & 视觉—语言模型\\
 \mainmatter
 
 % Proposal 正式目录按章（第1--9章 / 8.1--8.6），不按 \part{} 分部分。
-% 本地第8章工作 PDF 不插入「第×部分 / 新一代决策支持」分部分页。
 % ---- 占位：第1--7、9章仅保留章题，正文由合作作者撰写 ----
 \chapter{无人机建筑巡检导论}
 \noindent\textit{（本章正文由合作作者撰写；此处仅保留章题以便与英文目录同步。）}
@@ -109,7 +120,6 @@ VLM & 视觉—语言模型\\
 \chapter{面向建筑监测的GIS集成}
 \noindent\textit{（占位）}
 
-% 第8章：本仓库展开
 \include{ch08_cn}
 
 \chapter{结论与展望}
@@ -118,20 +128,8 @@ VLM & 视觉—语言模型\\
 \backmatter
 \chapter*{术语表}
 \markboth{术语表}{术语表}
-\paragraph{Asset-ID}
-本章对``资产标识''的简写：可维护宿主在设施台账与孪生中的稳定编码；语言答案与 CMMS 工单应点名同一编码。采集阶段的临时文件名不能代替台账编码。
-
-\paragraph{资产护照}
-以资产为中心的检索单元，汇总近期观测、几何/严重度摘要与显式邻域列表。
-
-\paragraph{有界智能体}
-可调用工具的 LLM 流程：可读孪生记忆并起草行动，但写入/复访须经人工与 geofence 门禁。
-
-\paragraph{引用或拒答}
-生成契约：答案中点名的 Asset-ID/观测 ID 必须出现在检索证据包中，否则系统拒答。
-
-\paragraph{模型 harness}
-包裹可替换 LLM 的代码侧控制层：接入、证据装配、类型化工具、校验器、轨迹与写入门禁。
+\noindent
+Asset-ID 是本章对``资产标识''的简写：可维护宿主在设施台账与孪生中的稳定编码；语言答案与工单应点名同一编码。资产护照以资产为中心汇总近期观测、几何摘要与显式邻域。有界智能体可调用工具起草行动，但写入与复访须经人工与 geofence 门禁。引用或拒答要求答案中的 ID 属于检索证据包。模型 harness 是包裹可替换 LLM 的代码侧控制层。
 
 \bibliographystyle{plainnat}
 \bibliography{references}

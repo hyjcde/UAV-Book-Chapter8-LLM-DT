@@ -1,0 +1,25 @@
+% Clean monograph title page for local Chapter-8 builds.
+% Proposal title/subtitle only: no author block, no date.
+% Order: title first, then subtitle, then publisher imprint.
+\makeatletter
+\def\@maketitle{%
+  \newpage
+  \null
+  \vskip 3em
+  \begingroup
+    \parindent=\z@
+    \pretolerance=10000
+    \rightskip=\z@ \@plus 3cm
+    \centering
+    {\Huge \@title \par}%
+    \vskip 1.2cm
+    \if!\@subtitle!\else
+      {\LARGE\ignorespaces\@subtitle \par}%
+      \vskip 1cm
+    \fi
+    \vfill
+    {\Large Springer Nature\par}%
+  \endgroup
+  \thispagestyle{empty}%
+}
+\makeatother

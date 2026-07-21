@@ -652,11 +652,7 @@ ID 子集 & 资产/缺陷 ID $\subseteq$ 证据包 & 虚构板块编码 \\
 
 图~\ref{fig:ch8-asset-id}与图~\ref{fig:ch8-field-audit}是测量面板，不是流程卡通。它们说明现场标签与孪生 ID 分叉时语言质量为何崩塌：航次可能影像与 GPS 锚点齐全，却仍在空间题上失败于检索 ID 或答案 ID 检查~\cite{zhang2025}。教学上宜按面板顺序读图。图~\ref{fig:ch8-field-audit}(a) 中，高观测计数与近乎完整的影像/GPS/锚点字段，只证明采集与配准很忙，并不证明答案会点名正确宿主。面板~(b) 再按阶段计分：现场记录审计可以看起来健康，检索 ID 或答案 ID 召回却可能塌陷，尤其是需要拓扑的空间题。面板~(c) 提醒：现场审计与 LLM 评判是不同仪器；二者一致有信息量，但用其一替换另一会掩盖阶段性失效。图~\ref{fig:ch8-asset-id}用对比把同一教训写清楚：空间题与多跳题须在审计、召回与评判各阶段分开跟踪，因为系统可以通过审计清单，却仍在答案字符串里发明邻居。因此现场身份卫生属于本章，而不只属于 IT 运维。再看经理询问竖向栈渗水的例子：系统返回邻域护照，引用可打开影像的观测 ID，并在证据充足时按上表 schema 起草维修简报，否则拒答。若需复访，行动提议者为第2--3章发出规划提示。散文中不得虚构航线。
 
-报告生命周期。 报告管理不止一次性生成。草稿应版本化；人工签核应被记录；已批准事实可以写回第\ref{sec:ch8-llm-foundations}节引入的长期孪生记忆。被拒草稿不应静默污染护照。若机构已使用 CMMS 或 BIM 问题追踪，上表 schema 应映射到既有字段。也不另起一套散文 PDF 宇宙。自然语言查询界面可以帮助非专业人员提问，但权威交付物仍是约束报告加上可打开证据。
-
-生命周期状态机把纪律变成可强制执行的顺序。实用机器是 DRAFT $\rightarrow$ VALIDATE $\rightarrow$ REVIEW $\rightarrow$ APPROVED/REJECTED $\rightarrow$（可选）EXPORT $\rightarrow$（可选）TWIN\_WRITE。LLM 只在 DRAFT 内填字段；表~\ref{tab:ch8-report-accept} 负责 VALIDATE；人类负责 REVIEW；EXPORT 仅服务于现场已有的工作系统；只有批准路径可调用 \texttt{stage\_twin\_write}。ReAct 式工具循环与 schema 引导的 AEC 智能体已表明：多步工具使用有价值，前提是每一步仍类型化且有门~\cite{yao2023react,gao2026ifcagent,luo2025llmdtrobot}。对立面报告，同一教训表现为状态权属：不得因十分钟后开会就用流畅度跳过 VALIDATE~\cite{li2024surveymultiagent,rawat2025llmmas,hellin2025bimmas}。
-
-报告角色可为软件清晰度而拆分，但不得制造多个 Asset-ID 真相。检索角色刷新证据包；起草角色在引用或拒答下填 schema；可选的映射角色为现场已有工作系统产出载荷；行动提议者可为第2--3章附上复访提示。所有角色读同一孪生记忆与同一批准政策。IFC 工具智能体与运维机器人经纪展示了模型查询与机器人任务的类似拆分；本章把拆分放在报告管理之内，使工单继承可打开证据，而绝不另造第二套世界模型~\cite{gao2026ifcagent,luo2025llmdtrobot,quan2026bimfacrag,buga2025llmfmsql}。多智能体编排综述提醒：基础设施与工作流设计重于人格数量；巡检教学因此应给共享记忆与门禁打分，而不是给命名智能体个数打分~\cite{li2024surveymultiagent,wang2024surveyagents}。
+报告管理不止一次性生成。草稿应版本化；人工签核应被记录；已批准事实可以写回第\ref{sec:ch8-llm-foundations}节引入的长期孪生记忆。被拒草稿不应静默污染护照。若机构已使用 CMMS 或 BIM 问题追踪，上表 schema 可作为可选导出映射到既有字段。也不另起一套散文 PDF 宇宙。自然语言查询界面可以帮助非专业人员提问，但权威交付物仍是约束报告加上可打开证据。实用状态机把纪律变成可强制执行的顺序：DRAFT $\rightarrow$ VALIDATE $\rightarrow$ REVIEW $\rightarrow$ APPROVED/REJECTED $\rightarrow$（可选）EXPORT $\rightarrow$（可选）TWIN\_WRITE。LLM 只在 DRAFT 内填字段；表~\ref{tab:ch8-report-accept} 负责 VALIDATE；人类负责 REVIEW；EXPORT 仅服务于现场已有的工作系统；只有批准路径可调用 \texttt{stage\_twin\_write}。ReAct 式工具循环与 schema 引导的 AEC 智能体已表明：多步工具使用有价值，前提是每一步仍类型化且有门~\cite{yao2023react,gao2026ifcagent,luo2025llmdtrobot}。不得因十分钟后开会就用流畅度跳过 VALIDATE~\cite{li2024surveymultiagent,rawat2025llmmas,hellin2025bimmas}。软件角色可为清晰度而拆分（检索、起草、可选映射、行动提议），但不得制造多个 Asset-ID 真相：所有角色读同一孪生记忆与同一批准政策~\cite{gao2026ifcagent,luo2025llmdtrobot,quan2026bimfacrag,buga2025llmfmsql,li2024surveymultiagent,wang2024surveyagents}。
 
 \begin{figure}[htbp]
 \centering
@@ -671,9 +667,7 @@ ID 子集 & 资产/缺陷 ID $\subseteq$ 证据包 & 虚构板块编码 \\
 
 人在环不是认输，而是产品。签核记录应保存谁批准了什么、批准时可见哪些证据 ID，以及是否覆盖了模态冲突标记。这些记录成为下一航次的孪生出处。没有它们，下一季的 LLM 会把上一季的推测草稿当作事实。本节身份卫生图因此不是 IT 传说：它们是纵向语言推理的前提~\cite{zhang2025}。
 
-供应商演示也因同一套契约失效：只有 PDF RAG 而无 Asset-ID、聊天界面打不开被引影像、未批准草稿自动写孪生、无几何归一化的严重度语言，或用嵌入邻居而非 BIM 邻接讲传播故事。命中两项及以上，系统仍只是原型。
-
-交付有固定一半与可选一半。固定一半是带可打开证据的 schema 约束草稿：身份、诊断、信任标记，以及打开正确裁剪的 URI。Asset-ID 卫生与引用或拒答属于这一半，但并不是产品的全部。叙述必须由已填字段渲染；不得事后从散文刮 ID；夜间链接检查应与检测器质控并列~\cite{zheng2023bimassistant,joffe2025buildingcodes,zhang2025,gao2026ifcagent}。可选一半，是把这些字段导出到现场\emph{已经在用}的工作系统。接收端可以是 CMMS、BIM 问题追踪、承包商门户，或一张简单电子表；本章并不发明新的 CMMS 产品。表~\ref{tab:ch8-cmms-map} 只是这种导出的一个教学示例，之所以用 CMMS 词汇，是因为许多运维读者已经熟悉它~\cite{chen2023facility,krutli2025fmrags,buga2025llmfmsql}。没有 CMMS 的现场，只要保住约束草稿、可打开证据与人工签核，仍然算成功。
+同一套契约也会很快暴露薄弱演示：只有 PDF RAG 而无 Asset-ID、聊天界面打不开被引影像、未批准草稿自动写孪生、无几何归一化的严重度语言，或用嵌入邻居而非 BIM 邻接讲传播故事。命中两项及以上，系统仍只是原型。交付本身有固定一半与可选一半。固定一半是带可打开证据的 schema 约束草稿：身份、诊断、信任标记，以及打开正确裁剪的 URI。Asset-ID 卫生与引用或拒答属于这一半，但并不是产品的全部。叙述必须由已填字段渲染；不得事后从散文刮 ID；夜间链接检查应与检测器质控并列~\cite{zheng2023bimassistant,joffe2025buildingcodes,zhang2025,gao2026ifcagent}。可选一半，是把这些字段导出到现场\emph{已经在用}的工作系统。接收端可以是 CMMS、BIM 问题追踪、承包商门户，或一张简单电子表；本章并不发明新的 CMMS 产品。表~\ref{tab:ch8-cmms-map} 只是这种导出的一个教学示例，之所以用 CMMS 词汇，是因为许多运维读者已经熟悉它~\cite{chen2023facility,krutli2025fmrags,buga2025llmfmsql}。没有 CMMS 的现场，只要保住约束草稿、可打开证据与人工签核，仍然算成功。
 
 \begin{table}[htbp]
 \centering
@@ -694,9 +688,7 @@ propagation path & 相关资产备注 & 仅 BIM 邻域 \\
 
 交接包因此应携带 Asset-ID 词典、观测 schema、手册版本钉扎、批准日志，以及用于语言评价的冻结孪生快照。仅当已知接收系统时，才附上表~\ref{tab:ch8-cmms-map} 一类导出映射。报告生命周期的厚度来自这些契约：草稿先通过 ID 子集校验再进人工审，驳回进入过程记忆，批准字段可尽量免重写地导出，Asset-ID 冲突留在草稿侧栏可见~\cite{buga2025llmfmsql,chen2023facility,quan2026bimfacrag,hellin2025bimmas}。已发表的运维机器人与 IFC 智能体闭环（语言请求、结构化动作、批准下更新孪生或模型）走的是同类圆圈；立面运维把圆圈专门化，使每份可行动制品在预算或脚手架移动之前仍引用可打开的观测裁剪~\cite{luo2025llmdtrobot,gao2026ifcagent,saka2024gptconstruction}。无法打开证据的``正式报告''因此比聊天幻觉更危险~\cite{ji2023}。
 
-跨航次的季节性报告卫生，让生命周期在多季之间仍诚实。每次主要飞行周结束后，冻结孪生快照，在含拒答的金标题集上重跑表~\ref{tab:ch8-report-accept}，并在更换任何托管 LLM 之前统计虚构 ID 率与断链证据率~\cite{liang2023helm,zhang2025}。跨航次主张（``比上季更严重''）要求证据包含既往观测 ID；否则 harness 必须强制拒答，或把叙述留给仅人类填写的字段。该规则保护纵向语言，正如 Asset-ID 卫生保护单次草稿~\cite{chen2023facility,krutli2025fmrags}。
-
-概括言之，权威交付物是带可打开证据与人工签核的 schema 约束草稿。表~\ref{tab:ch8-report-accept} 检查这一核心。表~\ref{tab:ch8-cmms-map} 只是可选的后续导出配方，并不要求每个项目都上某一种 CMMS。下一节用实现无关准则，追问这些制品是否真的改变排程。
+每次主要飞行周结束后，冻结孪生快照，在含拒答的金标题集上重跑表~\ref{tab:ch8-report-accept}，并在更换任何托管 LLM 之前统计虚构 ID 率与断链证据率~\cite{liang2023helm,zhang2025}。跨航次主张（``比上季更严重''）要求证据包含既往观测 ID；否则 harness 必须强制拒答，或把叙述留给仅人类填写的字段。这种季节性卫生保护纵向语言，正如 Asset-ID 卫生保护单次草稿~\cite{chen2023facility,krutli2025fmrags}。权威交付物仍是带可打开证据与人工签核的 schema 约束草稿；表~\ref{tab:ch8-report-accept} 检查这一核心，表~\ref{tab:ch8-cmms-map} 只是可选的后续导出配方。下一节用实现无关准则，追问这些制品是否真的改变排程。
 
 \section{决策支持与预测性维护}
 \label{sec:ch8-dss}
