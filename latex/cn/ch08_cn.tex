@@ -167,7 +167,32 @@ L3 记忆与流程 & 孪生/RAG 记忆、有界智能体 & 权威现场记忆；
 \label{fig:ch8-memory-ladder}
 \end{figure}
 
+智能体记忆研究常用``生成、更新、演进''闭环描述经验条目~\cite{park2023generativeagents,yao2023react,wang2024surveyagents}。对立面巡检，我们保留同一符号，但强制\emph{外部化}演进：变的是孪生与 harness，模型权重保持冻结。令 $S_t$ 为查询~$t$ 的推理态（意图、工具 TRACE、校验结果），$M_t$ 为外部记忆（孪生库、版本钉扎与过程轨迹）。则
+\begin{equation}
+\label{eq:ch8-mem-loop}
+M_{t+1}=\mathrm{Update}\!\bigl(\mathrm{Generate}(S_t,M_t),\,M_t\bigr),\qquad
+\pi_{t+1}=\mathrm{Evolve}_{\mathrm{ext}}(\pi_t,M_{t+1}),
+\end{equation}
+其中 $\mathrm{Generate}$ 可产出护照摘要、驳回草稿备注或复访提示；$\mathrm{Update}$ 仅经有门写回或过程日志合并；$\mathrm{Evolve}_{\mathrm{ext}}$ 改变 harness 内的工具策略、版本钉扎或检索包，并禁止在现场文本上静默微调~\cite{lewis2020,luo2025llmdtrobot,gao2026ifcagent}。表~\ref{tab:ch8-mem-app} 把这些抽象算子映射到本书第4--7章已构建、并在本章专门化的制品。
 
+\begin{table}[htbp]
+\centering
+\caption{记忆与自演化算子映射到已构建的巡检制品（应用视角）。}
+\label{tab:ch8-mem-app}
+\begin{tabular}{p{2.8cm}p{3.4cm}p{4.6cm}}
+\toprule
+算子/存储 & 已构建制品 & 巡检读法 \\
+\midrule
+工作/上下文 & 会话别名；GeoBIM 解析 & ``西侧''$\rightarrow$ 宿主集合 \\
+情景卡片 & 带模态标签观测 & 第6章写；语言层读 \\
+语义摘要 & 资产护照摘要 & 症状 + 几何字段 \\
+检索+扩展 & 护照 + BIM $k$ 跳 & 式~\eqref{eq:ch8-passport}--\eqref{eq:ch8-package} \\
+有门写入/巩固 & 批准后孪生写回 & 驳回草稿仅进过程记忆 \\
+$\mathrm{Evolve}_{\mathrm{ext}}$ & harness 钉扎、TRACE、门禁 & 改检索包，不改权重 \\
+有界遗忘/拒答 & 引用或拒答；过期旗标 & 式~\eqref{eq:ch8-cite} \\
+\bottomrule
+\end{tabular}
+\end{table}
 
 这三层意在组合，而非互斥。再看：「西立面中层空鼓是否与上层渍迹相关，本季度要不要安排吊篮？」L1 解析混合问句并强制模板；L2 工具取种子护照并扩展 BIM 邻域，RAG 装入卡片与钉扎手册条款，结构化生成输出 ID 属于证据集的草稿；L3 保证读的是长期孪生而非昨日聊天，且工单或复访提议须经人工门。跳过 L2，答案沦为参数讲故事；跳过结构校验与门禁，流畅文本会漏进 CMMS。这一组合正是「生成式 AI 决策支持」在立面运维上的可操作读法~\cite{lewis2020,yao2023react,ji2023}。
 
@@ -323,7 +348,22 @@ FM 结构化查询 & \cite{buga2025llmfmsql} & schema 先于自由 SQL \\
 
 面向语言使用的最小观测 schema 包括观测 ID、宿主 Asset-ID、航次或采集时间、模态标签、第6章给出的缺陷类型与置信度、可选的由几何导出的严重度特征、影像或裁剪 URI，以及简短可读位置短语。可选字段包括天气标记、巡检员备注，以及同一宿主上历史观测链接。绝不能只靠自由文本维系的是宿主 Asset-ID。采集阶段临时起的影像文件名或文件夹标签，记录的是文件如何存放，并不是设施台账编码。若影像到宿主的唯一链接只是这类文件名约定，检索终将发明邻居。企业 RAG 常常切分 PDF，但巡检问题通常关于可维护宿主及其邻域。因此护照应为每个 Asset-ID 打包紧凑症状摘要、近期观测 ID、用于严重度归一化的几何摘要，以及显式邻域列表。严重度归一化很重要，因为小板块上 20\,cm 裂缝与大墙跨上 20\,cm 裂缝并不是同一运维对象；语言系统应从孪生几何继承该归一化。语言层不得自行发明该归一化~\cite{zhao2026physical}。邻域列表应来自 BIM 或 GeoBIM 邻接。报告句子之间的嵌入相似不能充当邻域。
 
-查询装配是巡检不同于通用企业 RAG 之处。局部查找（``资产~$A$ 上月登记了哪些缺陷？''）主要需要~$A$ 的护照；传播类问题需要沿立面拓扑的邻域。仅共享词汇的 top-$k$ 文本块不能替代拓扑邻域；楼层或立面尺度审计需要第7章空间过滤下的受控护照集合。因此意图应改变\emph{哪些}孪生记录进入上下文，而不只是改提示措辞~\cite{lewis2020,peng2024}。当问题把现场证据与规范语言混在一起时，可并行检索带版本手册与安全条款~\cite{joffe2025buildingcodes,lee2024ragsafety,krutli2025fmrags}。
+查询装配是巡检不同于通用企业 RAG 之处。先把已构建记录写清楚，再让意图选择检索包。宿主~$a$ 的资产护照打包身份、几何摘要~$G(a)$、一跳 BIM 邻域~$N_1(a)$、观测集~$O(a)$与紧凑症状摘要~$d(a)$：
+\begin{equation}
+\label{eq:ch8-passport}
+P(a)=\bigl\langle a,\,G(a),\,N_1(a),\,O(a),\,d(a)\bigr\rangle.
+\end{equation}
+由问题~$q$ 解析得到的种子 Asset-ID 集合~$A_q$，以及由意图~$\iota$ 决定的跳数~$k(\iota)$（局部查找为 0，传播为 1），BIM 邻域为
+\begin{equation}
+\label{eq:ch8-khop}
+\mathcal{N}_{k}(A_q)=\bigl\{v:\exists\,a\in A_q,\;\mathrm{dist}_{\mathrm{BIM}}(a,v)\le k\bigr\},
+\end{equation}
+供生成使用的证据包为
+\begin{equation}
+\label{eq:ch8-package}
+\mathcal{C}(q)=\mathrm{Pack}\!\Bigl(\bigl\{P(v):v\in\mathcal{N}_{k(\iota)}(A_q)\bigr\},\,R_{\mathrm{man}}(q),\,e\Bigr),
+\end{equation}
+其中 $R_{\mathrm{man}}(q)$ 为可选的带版本手册切片，$e$ 为版本钉扎本身~\cite{lewis2020,peng2024,joffe2025buildingcodes}。局部查找（``资产~$A$ 上月登记了哪些缺陷？''）取 $k=0$；传播类问题取沿立面拓扑的邻域，而不是仅共享词汇的 top-$k$ 文本块；楼层或立面审计则用第7章空间过滤替代跳数扩展。因此意图改变的是进入~$\mathcal{C}(q)$ 的\emph{哪些}孪生记录，而不只是提示措辞~\cite{lewis2020,peng2024}。当问题把现场证据与规范语言混在一起时，$R_{\mathrm{man}}$ 可并入带版本手册与安全条款~\cite{joffe2025buildingcodes,lee2024ragsafety,krutli2025fmrags}。
 
 \begin{table}[htbp]
 \centering
@@ -350,7 +390,13 @@ FM 结构化查询 & \cite{buga2025llmfmsql} & schema 先于自由 SQL \\
 
 索引选择应服从同一启发式。护照摘要上的向量索引支持模糊症状搜索（``空鼓且上方有渍迹的板块''）。Asset-ID 上的图或关系索引支持精确邻域扩展。观测 ID 上的关键词索引支持审计查找。混合检索之所以有吸引力，正因为巡检问题把模糊语言与精确标识混在一起~\cite{jeon2025hybridrag,krutli2025fmrags}。但拓扑权威性不能被混合掉：当问题关于传播时，嵌入相似不得静默取代 BIM 邻接。
 
-拒答应有同等教学时间。工程师在现场本来就会说``证据不足''；语言系统必须学会同一习惯。引用或拒答规则可自动检查：答案字符串中的每个 Asset-ID 必须出现在检索集；每个严重度主张必须指向观测 ID；每条传播路径必须是已扩展邻接序列。若检查失败，系统返回结构化拒绝，并说明缺失证据类型（无上层邻居、模态冲突、航次过旧等）。这比一段无法在孪生界面打开的流畅段落更有价值~\cite{ji2023,shuster2021}。
+拒答应有同等教学时间。工程师在现场本来就会说``证据不足''；语言系统必须学会同一习惯。令 $\hat{y}$ 为草稿答案，$\mathrm{IDs}(\cdot)$ 为字符串或检索包中点名的 Asset-ID（及观测 ID）。可机检的引用或拒答门禁为
+\begin{equation}
+\label{eq:ch8-cite}
+\mathrm{IDs}(\hat{y})\subseteq\mathrm{IDs}\bigl(\mathcal{C}(q)\bigr)
+\quad\text{否则返回 }\texttt{ABSTAIN}.
+\end{equation}
+严重度主张还必须指向 $\mathcal{C}(q)$ 内 $O(\cdot)$ 的成员；任何传播路径必须是式~\eqref{eq:ch8-khop} 已扩展 BIM 邻域中的一条通路。若检查失败，系统返回结构化拒绝，并说明缺失证据类型（无上层邻居、模态冲突、航次过旧等）。这比一段无法在孪生界面打开的流畅段落更有价值~\cite{ji2023,shuster2021}。
 
 第二个微型示例澄清立面审计。经理问：``汇总三层以上、需要吊篮接近的西立面问题。''装配应应用第7章空间过滤，加载所得护照集合，保留模态标签，并按几何继承的严重度特征排序。它不应叙述整栋楼，也不应丢掉 Asset-ID 只剩楼层散文。输出是排程用的决策交付物，不是游记。
 

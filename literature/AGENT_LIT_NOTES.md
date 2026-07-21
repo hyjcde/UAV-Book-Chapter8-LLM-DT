@@ -71,3 +71,12 @@ Book Ch.8 adds:    agent loop (plan→tool→observe→update DT) + multi-agent 
 
 **Use for prose:** keep Ch.8 ladder four boxes; when mentioning agents, stress that rejected drafts / tool traces are *procedural* memory under gates, and that unchecked memory streams (Generative Agents–style) must not overwrite Asset-ID facts.  
 **Do not** cite the unpublished survey itself in `ch08.tex`; pull only peer-published items already in `references.bib` (or add published DOIs first).
+
+### Applied in chapter (2026-07-21)
+
+| Symbol / table | Role |
+|----------------|------|
+| `eq:ch8-mem-loop` | Externalised generate-update-evolve (weights frozen) |
+| `tab:ch8-mem-app` | Survey operators → already-built twin/harness artefacts |
+| `eq:ch8-passport`, `eq:ch8-khop`, `eq:ch8-package` | Passport + BIM $k$-hop package |
+| `eq:ch8-cite` | Cite-or-abstain ID subset gate |

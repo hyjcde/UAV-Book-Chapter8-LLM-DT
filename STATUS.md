@@ -21,4 +21,5 @@
 **Figures:** architecture = AcademicSlate XML; transfer = paper originals; stats = BookInk module hexes + restored in §8.6. See `figures_src/README.md`. Regen: `bash figures_src/regenerate_all.sh`.  
 **Caption sync:** EN+CN figure captions + read-figure prose aligned (2026-07-21).  
 **DSS rewrite (2026-07-21):** §8.6 continuous spine.  
-**Pipeline lit map (2026-07-21):** `tab:ch8-book-pipeline-lit` — book stages × group interfaces × community LLM/agent patterns × Ch.8 specialisation (EN+CN).
+**Pipeline lit map (2026-07-21):** `tab:ch8-book-pipeline-lit` — book stages × group interfaces × community LLM/agent patterns × Ch.8 specialisation (EN+CN).  
+**Memory-survey apply (2026-07-21):** externalised loop eqs + `tab:ch8-mem-app` (operators → already-built artefacts); passport/$k$-hop/cite-or-abstain eqs in §8.3. Unpublished survey stays in `AGENT_LIT_NOTES.md` only.

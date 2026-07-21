@@ -164,7 +164,32 @@ Twin store & Asset-ID + topology + time & authoritative site memory \\
 \label{fig:ch8-memory-ladder}
 \end{figure}
 
+Agent-memory research often writes a generate-update-evolve loop over experiential entries~\cite{park2023generativeagents,yao2023react,wang2024surveyagents}. For fa\c{c}ade inspection we keep the same symbols but force \emph{externalised} evolution: the twin and harness change, model weights do not. Let $S_t$ be the reasoning state of query~$t$ (intent, tool TRACE, validator outcomes) and $M_t$ the external memory (twin store plus edition pins and procedural traces). Then
+\begin{equation}
+\label{eq:ch8-mem-loop}
+M_{t+1}=\mathrm{Update}\!\bigl(\mathrm{Generate}(S_t,M_t),\,M_t\bigr),\qquad
+\pi_{t+1}=\mathrm{Evolve}_{\mathrm{ext}}(\pi_t,M_{t+1}),
+\end{equation}
+where $\mathrm{Generate}$ may emit a passport digest, a rejected-draft note, or a revisit hint; $\mathrm{Update}$ merges only through gated writeback or procedural logs; and $\mathrm{Evolve}_{\mathrm{ext}}$ changes tool policy, edition pins, or retrieved packages inside the harness, never silent fine-tuning on site text~\cite{lewis2020,luo2025llmdtrobot,gao2026ifcagent}. Table~\ref{tab:ch8-mem-app} maps those abstract operators onto artefacts this monograph already builds in Chapters~4--7 and specialises here.
 
+\begin{table}[htbp]
+\centering
+\caption{Memory and self-evolution operators mapped to already-built inspection artefacts (application view).}
+\label{tab:ch8-mem-app}
+\begin{tabular}{p{3.2cm}p{3.6cm}p{4.4cm}}
+\toprule
+Operator / store & Already-built artefact & Inspection reading \\
+\midrule
+Working / contextual & session aliases; GeoBIM resolve & ``west'' $\rightarrow$ host set \\
+Episodic cards & modality-tagged observations & Chapter~6 writes; language reads \\
+Semantic digests & asset passport summaries & symptoms + geometry fields \\
+Retrieve + expand & passport + BIM $k$-hop & Eqs.~\eqref{eq:ch8-passport}--\eqref{eq:ch8-package} \\
+Gated write / consolidate & approved twin writeback & rejected drafts stay procedural \\
+$\mathrm{Evolve}_{\mathrm{ext}}$ & harness pins, TRACE, gates & change packages, not weights \\
+Bounded forget / abstain & cite-or-abstain; stale flags & Eq.~\eqref{eq:ch8-cite} \\
+\bottomrule
+\end{tabular}
+\end{table}
 
 These three layers are meant to compose, not to compete. Consider again: ``Is mid-storey hollow on the west elevation related to upstairs staining, and should we stage a gondola this quarter?'' L1 parses the mixed utterance and forces a template. L2 tools fetch seed passports and expand BIM neighbours; RAG packs those cards plus any pinned manual clauses; structured generation emits a draft whose IDs are subsets of the evidence set. L3 ensures that the long-term twin, not yesterday's chat, is the store being read, and that any ticket or revisit proposal waits behind a human gate. Skip L2 and the answer becomes parametric storytelling; skip structured checks and gates and fluent text leaks into CMMS. That composition is generative AI for decision support made operational for fa\c{c}ade O\&M~\cite{lewis2020,yao2023react,ji2023}.
 
@@ -320,7 +345,22 @@ This chapter & retrieval, memory, agents, reports & traceable answers and action
 
 A minimal observation schema for language use includes observation ID, host Asset-ID, campaign or capture time, modality tag, defect type and confidence from Chapter~6, optional severity features derived from geometry, image or crop URI, and a short human-readable location phrase. Optional fields include weather flags, inspector notes, and links to prior observations on the same host. What must not be left as free text alone is the host Asset-ID. A temporary image filename or folder label created at capture time records how a file was stored; it is not a facility register code. If the only link from image to host is such a filename convention, retrieval will eventually invent neighbours. Enterprise RAG often chunks PDFs, but inspection questions are usually about maintainable hosts and their neighbourhoods. Passports therefore package, for each Asset-ID, a compact symptom digest, recent observation IDs, geometry summaries used for severity normalisation, and explicit neighbour lists. Severity normalisation matters because a 20\,cm crack on a small panel is not the same operational object as a 20\,cm crack on a large wall bay; the language layer inherits that normalisation from twin geometry~\cite{zhao2026physical}. Neighbour lists should come from BIM or GeoBIM adjacency, not from embedding similarity among report sentences.
 
-Query assembly is where inspection differs from generic enterprise RAG. A local lookup (``what defects were logged on asset~$A$ last month?'') needs the passport of~$A$ and little else. A propagation question needs neighbours along fa\c{c}ade topology, not merely the top-$k$ text chunks that happen to share vocabulary with the query. A floor- or elevation-level audit needs a controlled set of passports under a spatial filter from Chapter~7. Intent should therefore change \emph{which} twin records enter the context, not only the prompt wording~\cite{lewis2020,peng2024}. Editioned manuals and safety clauses may be retrieved in parallel when the question mixes site evidence with code language~\cite{joffe2025buildingcodes,lee2024ragsafety,krutli2025fmrags}.
+Query assembly is where inspection differs from generic enterprise RAG. Write the already-built records once, then let intent choose the package. An asset passport for host~$a$ packages identity, geometry summary~$G(a)$, one-hop BIM neighbours~$N_1(a)$, observation set~$O(a)$, and a compact symptom digest~$d(a)$:
+\begin{equation}
+\label{eq:ch8-passport}
+P(a)=\bigl\langle a,\,G(a),\,N_1(a),\,O(a),\,d(a)\bigr\rangle.
+\end{equation}
+Given seed Asset-IDs~$A_q$ resolved from question~$q$ and hop depth~$k(\iota)$ set by intent~$\iota$ (zero for local lookup, one for propagation), the BIM neighbourhood is
+\begin{equation}
+\label{eq:ch8-khop}
+\mathcal{N}_{k}(A_q)=\bigl\{v:\exists\,a\in A_q,\;\mathrm{dist}_{\mathrm{BIM}}(a,v)\le k\bigr\},
+\end{equation}
+and the evidence package packed for generation is
+\begin{equation}
+\label{eq:ch8-package}
+\mathcal{C}(q)=\mathrm{Pack}\!\Bigl(\bigl\{P(v):v\in\mathcal{N}_{k(\iota)}(A_q)\bigr\},\,R_{\mathrm{man}}(q),\,e\Bigr),
+\end{equation}
+where $R_{\mathrm{man}}(q)$ is the optional edition-pinned manual slice and $e$ the edition pin itself~\cite{lewis2020,peng2024,joffe2025buildingcodes}. A local lookup (``what defects were logged on asset~$A$ last month?'') uses $k=0$. A propagation question uses neighbours along fa\c{c}ade topology, not merely the top-$k$ text chunks that share vocabulary with the query. A floor- or elevation-level audit replaces hop expansion by a Chapter~7 spatial filter on passports. Intent therefore changes \emph{which} twin records enter~$\mathcal{C}(q)$, not only the prompt wording~\cite{lewis2020,peng2024}. Editioned manuals and safety clauses may join~$R_{\mathrm{man}}$ when the question mixes site evidence with code language~\cite{joffe2025buildingcodes,lee2024ragsafety,krutli2025fmrags}.
 
 \begin{table}[htbp]
 \centering
@@ -348,7 +388,13 @@ Implementation teams often ask how large a passport should be. Too small, and pr
 
 Indexing choices should follow the same heuristic. Vector indexes over passport digests support fuzzy symptom search (``hollow sounding panels with staining above''). Graph or relational indexes over Asset-IDs support exact neighbour expansion. Keyword indexes over observation IDs support audit lookups. Hybrid retrieval is attractive precisely because inspection questions mix fuzzy language with exact identifiers~\cite{jeon2025hybridrag,krutli2025fmrags}. What should not be hybridised away is the authority of topology: embedding similarity must not silently replace BIM adjacency when the question is about propagation.
 
-Abstention deserves equal teaching time. Engineers already know how to say ``insufficient evidence'' on site; language systems must learn the same habit. Cite-or-abstain rules can be checked automatically: every Asset-ID in the answer string must appear in the retrieved set; every severity claim must point to an observation ID; every propagation path must be a sequence of neighbour links that were expanded. If checks fail, the system returns a structured refusal plus the missing evidence type (no upstairs neighbour, conflicting modalities, stale campaign, and so on). That behaviour is more valuable than a fluent paragraph that cannot be opened in the twin UI~\cite{ji2023,shuster2021}.
+Abstention deserves equal teaching time. Engineers already know how to say ``insufficient evidence'' on site; language systems must learn the same habit. Let $\hat{y}$ be a draft answer and $\mathrm{IDs}(\cdot)$ the Asset-IDs (and observation IDs) named in a string or package. The machine-checkable cite-or-abstain gate is
+\begin{equation}
+\label{eq:ch8-cite}
+\mathrm{IDs}(\hat{y})\subseteq\mathrm{IDs}\bigl(\mathcal{C}(q)\bigr)
+\quad\text{else return }\texttt{ABSTAIN}.
+\end{equation}
+Severity claims must further point to members of~$O(\cdot)$ inside~$\mathcal{C}(q)$, and any propagation path must be a walk inside the expanded BIM neighbourhood of Eq.~\eqref{eq:ch8-khop}. If checks fail, the system returns a structured refusal plus the missing evidence type (no upstairs neighbour, conflicting modalities, stale campaign, and so on). That behaviour is more valuable than a fluent paragraph that cannot be opened in the twin UI~\cite{ji2023,shuster2021}.
 
 A second worked micro-example clarifies elevation audits. The manager asks: ``Summarise west-elevation issues above level three that need gondola access.'' Assembly should apply a Chapter~7 spatial filter, load the resulting passport set, keep modality tags, and rank by severity features inherited from geometry. It should not narrate the whole building, and it should not drop Asset-IDs in favour of storey prose alone. The output is a decision artefact for scheduling, not a travelogue.
 
