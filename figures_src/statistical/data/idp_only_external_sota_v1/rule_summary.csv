@@ -1,0 +1,5 @@
+group,label,n,n_with_gt_ids,retr_exact_hit,retr_any_hit,mh_retr_exact_hit,mh_retr_any_hit,n_mh,ans_id_exact,cited_in_retr,evidence_fully_grounded,n_answers_with_ids
+I,RAPTOR,200,138,0.051,0.051,0.0,0.0,68,0.058,0.183,0.066,198
+J,HyDE+Fusion,200,138,0.101,0.225,0.059,0.309,68,0.094,0.143,0.02,198
+K,Corrective-RAG,200,138,0.13,0.167,0.088,0.162,68,0.087,0.193,0.041,193
+D,IAP-RAG (locked D1),200,138,0.609,0.645,0.926,1.0,68,0.5,0.878,0.678,199

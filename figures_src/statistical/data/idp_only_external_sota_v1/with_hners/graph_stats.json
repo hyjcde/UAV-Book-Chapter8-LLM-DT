@@ -1,0 +1,9 @@
+{
+  "n_nodes": 578,
+  "n_edges": 5368,
+  "n_communities": 9,
+  "n_docs": 604,
+  "uses_bim_topology": false,
+  "uses_iap_passport": false,
+  "pipeline": "LLM NER \u2192 graph \u2192 Louvain \u2192 community summary"
+}

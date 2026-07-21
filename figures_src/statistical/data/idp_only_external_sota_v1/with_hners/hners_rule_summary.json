@@ -1,0 +1,31 @@
+{
+  "H_ner": {
+    "label": "GraphRAG (NER→Louvain)",
+    "n": 200,
+    "n_with_gt_ids": 138,
+    "retr_exact_hit": 0.478,
+    "retr_any_hit": 0.609,
+    "mh_retr_exact_hit": 0.0,
+    "mh_retr_any_hit": 0.265,
+    "n_mh": 68,
+    "ans_id_exact": 0.478,
+    "cited_in_retr": 0.312,
+    "evidence_fully_grounded": 0.01,
+    "n_answers_with_ids": 200
+  },
+  "D": {
+    "label": "IAP-RAG (locked D1)",
+    "source_trace": "/Users/huangyijun/Projects/DefectGPT/logs/scientific_eval/external_full_appc_D_trace_20260716_160315.jsonl",
+    "n": 200,
+    "n_with_gt_ids": 138,
+    "retr_exact_hit": 0.609,
+    "retr_any_hit": 0.645,
+    "mh_retr_exact_hit": 0.926,
+    "mh_retr_any_hit": 1.0,
+    "n_mh": 68,
+    "ans_id_exact": 0.5,
+    "cited_in_retr": 0.878,
+    "evidence_fully_grounded": 0.678,
+    "n_answers_with_ids": 199
+  }
+}

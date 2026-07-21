@@ -1,0 +1,83 @@
+{
+  "created_at": "2026-07-18T06:31:33.998924+00:00",
+  "sources": {
+    "ijk_dir": "/Users/huangyijun/Projects/DefectGPT/logs/scientific_eval/messy_external_gold200_idp_only_external_sota_v1_20260718_021921",
+    "hners_dir": "/Users/huangyijun/Projects/DefectGPT/logs/scientific_eval/messy_external_gold200_idp_only_hners_v1_20260718_142102",
+    "d1_trace": "/Users/huangyijun/Projects/DefectGPT/logs/scientific_eval/external_full_appc_D_trace_20260716_160315.jsonl",
+    "n_ijk_traces": 600,
+    "n_hners_traces": 200
+  },
+  "summary": {
+    "I": {
+      "label": "RAPTOR",
+      "n": 200,
+      "n_with_gt_ids": 138,
+      "retr_exact_hit": 0.051,
+      "retr_any_hit": 0.051,
+      "mh_retr_exact_hit": 0.0,
+      "mh_retr_any_hit": 0.0,
+      "n_mh": 68,
+      "ans_id_exact": 0.058,
+      "cited_in_retr": 0.183,
+      "evidence_fully_grounded": 0.066,
+      "n_answers_with_ids": 198
+    },
+    "J": {
+      "label": "HyDE+Fusion",
+      "n": 200,
+      "n_with_gt_ids": 138,
+      "retr_exact_hit": 0.101,
+      "retr_any_hit": 0.225,
+      "mh_retr_exact_hit": 0.059,
+      "mh_retr_any_hit": 0.309,
+      "n_mh": 68,
+      "ans_id_exact": 0.094,
+      "cited_in_retr": 0.143,
+      "evidence_fully_grounded": 0.02,
+      "n_answers_with_ids": 198
+    },
+    "K": {
+      "label": "Corrective-RAG",
+      "n": 200,
+      "n_with_gt_ids": 138,
+      "retr_exact_hit": 0.13,
+      "retr_any_hit": 0.167,
+      "mh_retr_exact_hit": 0.088,
+      "mh_retr_any_hit": 0.162,
+      "n_mh": 68,
+      "ans_id_exact": 0.087,
+      "cited_in_retr": 0.193,
+      "evidence_fully_grounded": 0.041,
+      "n_answers_with_ids": 193
+    },
+    "H_ner": {
+      "label": "GraphRAG (NER→Louvain)",
+      "n": 200,
+      "n_with_gt_ids": 138,
+      "retr_exact_hit": 0.478,
+      "retr_any_hit": 0.609,
+      "mh_retr_exact_hit": 0.0,
+      "mh_retr_any_hit": 0.265,
+      "n_mh": 68,
+      "ans_id_exact": 0.478,
+      "cited_in_retr": 0.312,
+      "evidence_fully_grounded": 0.01,
+      "n_answers_with_ids": 200
+    },
+    "D": {
+      "label": "IAP-RAG (locked D1)",
+      "source_trace": "/Users/huangyijun/Projects/DefectGPT/logs/scientific_eval/external_full_appc_D_trace_20260716_160315.jsonl",
+      "n": 200,
+      "n_with_gt_ids": 138,
+      "retr_exact_hit": 0.609,
+      "retr_any_hit": 0.645,
+      "mh_retr_exact_hit": 0.926,
+      "mh_retr_any_hit": 1.0,
+      "n_mh": 68,
+      "ans_id_exact": 0.5,
+      "cited_in_retr": 0.878,
+      "evidence_fully_grounded": 0.678,
+      "n_answers_with_ids": 199
+    }
+  }
+}

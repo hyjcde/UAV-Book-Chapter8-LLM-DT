@@ -1,0 +1,315 @@
+<mxfile host="Electron" agent="Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/29.3.0 Chrome/140.0.7339.249 Electron/38.7.2 Safari/537.36" version="29.3.0">
+  <diagram name="Platform Transferability" id="platform-workflow">
+    <mxGraphModel dx="1400" dy="900" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1600" pageHeight="950" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        
+        <!-- ========== (a) DEFECT MANAGEMENT ========== -->
+        <mxCell id="a-box" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#f0f7ff;strokeColor=#2980B9;strokeWidth=2;" value="" vertex="1">
+          <mxGeometry x="30" y="30" width="680" height="560" as="geometry" />
+        </mxCell>
+        <mxCell id="a-header" parent="1" style="text;html=1;strokeColor=none;fillColor=#2980B9;align=center;verticalAlign=middle;fontFamily=Times New Roman;fontSize=15;fontColor=#fff;fontStyle=1;" value="(a) BUILDING DEFECT MANAGEMENT" vertex="1">
+          <mxGeometry x="30" y="30" width="600" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="a-badge" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#27AE60;strokeColor=none;fontFamily=Times New Roman;fontSize=10;fontColor=#fff;fontStyle=1;" value="VALIDATED" vertex="1">
+          <mxGeometry x="630" y="33" width="70" height="22" as="geometry" />
+        </mxCell>
+        
+        <!-- ===== 顶部: RAG + LLM Platform ===== -->
+        <mxCell id="a-platform-label" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;fontFamily=Times New Roman;fontSize=13;fontColor=#333;fontStyle=1;" value="RAG + LLM Decision Support Platform" vertex="1">
+          <mxGeometry x="180" y="68" width="300" height="20" as="geometry" />
+        </mxCell>
+        
+        <!-- Desktop Dashboard -->
+        <mxCell id="a-desktop" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#fff;strokeColor=#333;strokeWidth=2;" value="" vertex="1">
+          <mxGeometry x="90" y="95" width="480" height="180" as="geometry" />
+        </mxCell>
+        <mxCell id="a-desktop-t" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;fontFamily=Courier New;fontSize=11;fontColor=#888;" value="Desktop Dashboard" vertex="1">
+          <mxGeometry x="90" y="170" width="480" height="25" as="geometry" />
+        </mxCell>
+        
+        <!-- ===== 中间层: Manager (Remote Decision) ===== -->
+        <mxCell id="a-remote-label" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;fontFamily=Times New Roman;fontSize=12;fontColor=#555;fontStyle=2;" value="Remote Decision" vertex="1">
+          <mxGeometry x="250" y="285" width="120" height="18" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="a-manager" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#fff;strokeColor=#333;strokeWidth=1.5;" value="" vertex="1">
+          <mxGeometry x="260" y="305" width="100" height="35" as="geometry" />
+        </mxCell>
+        <mxCell id="a-manager-t" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;fontFamily=Times New Roman;fontSize=12;fontColor=#333;" value="Manager" vertex="1">
+          <mxGeometry x="260" y="305" width="100" height="35" as="geometry" />
+        </mxCell>
+        
+        <!-- Dashboard ↔ Manager -->
+        <mxCell id="a-dash-mgr" parent="1" style="endArrow=classic;startArrow=classic;html=1;strokeWidth=1.5;strokeColor=#333;" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="310" y="275" as="sourcePoint" />
+            <mxPoint x="310" y="305" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        
+        <!-- Command (Manager → On-site) -->
+        <mxCell id="a-cmd-line" parent="1" style="endArrow=classic;html=1;strokeWidth=1.5;strokeColor=#333;" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="260" y="322" as="sourcePoint" />
+            <mxPoint x="140" y="322" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="a-cmd-v" parent="1" style="endArrow=classic;html=1;strokeWidth=1.5;strokeColor=#333;" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="140" y="322" as="sourcePoint" />
+            <mxPoint x="140" y="395" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="a-cmd-label" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;fontFamily=Times New Roman;fontSize=11;fontColor=#333;" value="Command" vertex="1">
+          <mxGeometry x="155" y="350" width="70" height="18" as="geometry" />
+        </mxCell>
+        
+        <!-- Feedback (On-site → Manager) -->
+        <mxCell id="a-fb-v" parent="1" style="endArrow=none;html=1;strokeWidth=1.5;strokeColor=#333;" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="520" y="500" as="sourcePoint" />
+            <mxPoint x="520" y="322" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="a-fb-line" parent="1" style="endArrow=classic;html=1;strokeWidth=1.5;strokeColor=#333;" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="520" y="322" as="sourcePoint" />
+            <mxPoint x="360" y="322" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="a-fb-label" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;fontFamily=Times New Roman;fontSize=11;fontColor=#333;" value="Feedback" vertex="1">
+          <mxGeometry x="435" y="350" width="70" height="18" as="geometry" />
+        </mxCell>
+        
+        <!-- ===== 底部: On-site Field Decision ===== -->
+        <mxCell id="a-onsite-label" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;fontFamily=Times New Roman;fontSize=13;fontColor=#333;fontStyle=1;" value="On-site Decision Support" vertex="1">
+          <mxGeometry x="200" y="395" width="240" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="a-field-label" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;fontFamily=Times New Roman;fontSize=12;fontColor=#555;fontStyle=2;" value="Field Decision via Mobile" vertex="1">
+          <mxGeometry x="360" y="415" width="180" height="18" as="geometry" />
+        </mxCell>
+        
+        <!-- Scene 占位符 -->
+        <mxCell id="a-scene" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#fff;strokeColor=#aaa;strokeWidth=1;dashed=1;" value="" vertex="1">
+          <mxGeometry x="55" y="430" width="180" height="145" as="geometry" />
+        </mxCell>
+        <mxCell id="a-scene-t" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;fontFamily=Courier New;fontSize=10;fontColor=#888;" value="On-site Scene&#xa;(Data Acquisition)" vertex="1">
+          <mxGeometry x="55" y="485" width="180" height="35" as="geometry" />
+        </mxCell>
+        
+        <!-- Scene → Mobile (Data flow) -->
+        <mxCell id="a-data-line" parent="1" style="endArrow=classic;html=1;strokeWidth=1.5;strokeColor=#E74C3C;dashed=1;" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="235" y="502" as="sourcePoint" />
+            <mxPoint x="280" y="502" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="a-data-label" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;fontFamily=Times New Roman;fontSize=10;fontColor=#E74C3C;" value="Data" vertex="1">
+          <mxGeometry x="235" y="515" width="45" height="16" as="geometry" />
+        </mxCell>
+        
+        <!-- Mobile platform -->
+        <mxCell id="a-tablet" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#fff;strokeColor=#333;strokeWidth=1.5;" value="" vertex="1">
+          <mxGeometry x="280" y="440" width="170" height="120" as="geometry" />
+        </mxCell>
+        <mxCell id="a-tablet-t" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;fontFamily=Courier New;fontSize=10;fontColor=#888;" value="Tablet" vertex="1">
+          <mxGeometry x="280" y="490" width="170" height="18" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="a-mobile" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#fff;strokeColor=#333;strokeWidth=1.5;" value="" vertex="1">
+          <mxGeometry x="475" y="435" width="60" height="125" as="geometry" />
+        </mxCell>
+        <mxCell id="a-mobile-t" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;fontFamily=Courier New;fontSize=9;fontColor=#888;" value="Mobile" vertex="1">
+          <mxGeometry x="475" y="490" width="60" height="16" as="geometry" />
+        </mxCell>
+        
+        <!-- Mobile ↔ Platform (Field Query) -->
+        <mxCell id="a-query-line" parent="1" style="endArrow=classic;startArrow=classic;html=1;strokeWidth=1.2;strokeColor=#2980B9;dashed=1;" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="365" y="440" as="sourcePoint" />
+            <mxPoint x="365" y="275" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="a-query-label" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontFamily=Times New Roman;fontSize=10;fontColor=#2980B9;fontStyle=2;" value="Query/&#xa;Response" vertex="1">
+          <mxGeometry x="375" y="355" width="55" height="30" as="geometry" />
+        </mxCell>
+        
+        <!-- ========== (b) CONSTRUCTION MANAGEMENT ========== -->
+        <mxCell id="b-box" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#f0fff0;strokeColor=#27AE60;strokeWidth=2;" value="" vertex="1">
+          <mxGeometry x="760" y="30" width="680" height="560" as="geometry" />
+        </mxCell>
+        <mxCell id="b-header" parent="1" style="text;html=1;strokeColor=none;fillColor=#27AE60;align=center;verticalAlign=middle;fontFamily=Times New Roman;fontSize=15;fontColor=#fff;fontStyle=1;" value="(b) CONSTRUCTION PROGRESS MANAGEMENT" vertex="1">
+          <mxGeometry x="760" y="30" width="590" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="b-badge" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f39c12;strokeColor=none;fontFamily=Times New Roman;fontSize=10;fontColor=#fff;fontStyle=1;" value="CONCEPTUAL" vertex="1">
+          <mxGeometry x="1350" y="33" width="80" height="22" as="geometry" />
+        </mxCell>
+        
+        <!-- Platform 标签 -->
+        <mxCell id="b-platform-label" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;fontFamily=Times New Roman;fontSize=13;fontColor=#333;fontStyle=1;" value="RAG + LLM Decision Support Platform" vertex="1">
+          <mxGeometry x="910" y="68" width="300" height="20" as="geometry" />
+        </mxCell>
+        
+        <!-- Desktop Dashboard -->
+        <mxCell id="b-desktop" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#fff;strokeColor=#333;strokeWidth=2;" value="" vertex="1">
+          <mxGeometry x="820" y="95" width="480" height="180" as="geometry" />
+        </mxCell>
+        <mxCell id="b-desktop-t" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;fontFamily=Courier New;fontSize=11;fontColor=#888;" value="Desktop Dashboard" vertex="1">
+          <mxGeometry x="820" y="170" width="480" height="25" as="geometry" />
+        </mxCell>
+        
+        <!-- Manager -->
+        <mxCell id="b-remote-label" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;fontFamily=Times New Roman;fontSize=12;fontColor=#555;fontStyle=2;" value="Remote Decision" vertex="1">
+          <mxGeometry x="980" y="285" width="120" height="18" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="b-manager" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#fff;strokeColor=#333;strokeWidth=1.5;" value="" vertex="1">
+          <mxGeometry x="990" y="305" width="100" height="35" as="geometry" />
+        </mxCell>
+        <mxCell id="b-manager-t" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;fontFamily=Times New Roman;fontSize=12;fontColor=#333;" value="Manager" vertex="1">
+          <mxGeometry x="990" y="305" width="100" height="35" as="geometry" />
+        </mxCell>
+        
+        <!-- Dashboard ↔ Manager -->
+        <mxCell id="b-dash-mgr" parent="1" style="endArrow=classic;startArrow=classic;html=1;strokeWidth=1.5;strokeColor=#333;" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="1040" y="275" as="sourcePoint" />
+            <mxPoint x="1040" y="305" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        
+        <!-- Command -->
+        <mxCell id="b-cmd-line" parent="1" style="endArrow=classic;html=1;strokeWidth=1.5;strokeColor=#333;" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="990" y="322" as="sourcePoint" />
+            <mxPoint x="870" y="322" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="b-cmd-v" parent="1" style="endArrow=classic;html=1;strokeWidth=1.5;strokeColor=#333;" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="870" y="322" as="sourcePoint" />
+            <mxPoint x="870" y="395" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="b-cmd-label" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;fontFamily=Times New Roman;fontSize=11;fontColor=#333;" value="Command" vertex="1">
+          <mxGeometry x="885" y="350" width="70" height="18" as="geometry" />
+        </mxCell>
+        
+        <!-- Feedback -->
+        <mxCell id="b-fb-v" parent="1" style="endArrow=none;html=1;strokeWidth=1.5;strokeColor=#333;" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="1250" y="500" as="sourcePoint" />
+            <mxPoint x="1250" y="322" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="b-fb-line" parent="1" style="endArrow=classic;html=1;strokeWidth=1.5;strokeColor=#333;" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="1250" y="322" as="sourcePoint" />
+            <mxPoint x="1090" y="322" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="b-fb-label" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;fontFamily=Times New Roman;fontSize=11;fontColor=#333;" value="Feedback" vertex="1">
+          <mxGeometry x="1165" y="350" width="70" height="18" as="geometry" />
+        </mxCell>
+        
+        <!-- On-site -->
+        <mxCell id="b-onsite-label" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;fontFamily=Times New Roman;fontSize=13;fontColor=#333;fontStyle=1;" value="On-site Decision Support" vertex="1">
+          <mxGeometry x="930" y="395" width="240" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="b-field-label" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;fontFamily=Times New Roman;fontSize=12;fontColor=#555;fontStyle=2;" value="Field Decision via Mobile" vertex="1">
+          <mxGeometry x="1090" y="415" width="180" height="18" as="geometry" />
+        </mxCell>
+        
+        <!-- Scene -->
+        <mxCell id="b-scene" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#fff;strokeColor=#aaa;strokeWidth=1;dashed=1;" value="" vertex="1">
+          <mxGeometry x="785" y="430" width="180" height="145" as="geometry" />
+        </mxCell>
+        <mxCell id="b-scene-t" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;fontFamily=Courier New;fontSize=10;fontColor=#888;" value="On-site Scene&#xa;(Data Acquisition)" vertex="1">
+          <mxGeometry x="785" y="485" width="180" height="35" as="geometry" />
+        </mxCell>
+        
+        <!-- Data flow -->
+        <mxCell id="b-data-line" parent="1" style="endArrow=classic;html=1;strokeWidth=1.5;strokeColor=#E74C3C;dashed=1;" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="965" y="502" as="sourcePoint" />
+            <mxPoint x="1010" y="502" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="b-data-label" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;fontFamily=Times New Roman;fontSize=10;fontColor=#E74C3C;" value="Data" vertex="1">
+          <mxGeometry x="965" y="515" width="45" height="16" as="geometry" />
+        </mxCell>
+        
+        <!-- Mobile platform -->
+        <mxCell id="b-tablet" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#fff;strokeColor=#333;strokeWidth=1.5;" value="" vertex="1">
+          <mxGeometry x="1010" y="440" width="170" height="120" as="geometry" />
+        </mxCell>
+        <mxCell id="b-tablet-h" parent="1" style="text;html=1;strokeColor=none;fillColor=#eee;align=center;verticalAlign=middle;fontFamily=Times New Roman;fontSize=10;fontColor=#333;" value="(e) Tablet" vertex="1">
+          <mxGeometry x="1010" y="440" width="170" height="16" as="geometry" />
+        </mxCell>
+        <mxCell id="b-tablet-t" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;fontFamily=Courier New;fontSize=10;fontColor=#888;" value="Tablet" vertex="1">
+          <mxGeometry x="1010" y="495" width="170" height="18" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="b-mobile" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#fff;strokeColor=#333;strokeWidth=1.5;" value="" vertex="1">
+          <mxGeometry x="1205" y="435" width="60" height="125" as="geometry" />
+        </mxCell>
+        <mxCell id="b-mobile-h" parent="1" style="text;html=1;strokeColor=none;fillColor=#eee;align=center;verticalAlign=middle;fontFamily=Times New Roman;fontSize=10;fontColor=#333;" value="(f) Mobile" vertex="1">
+          <mxGeometry x="1205" y="435" width="60" height="16" as="geometry" />
+        </mxCell>
+        <mxCell id="b-mobile-t" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;fontFamily=Courier New;fontSize=9;fontColor=#888;" value="Mobile" vertex="1">
+          <mxGeometry x="1205" y="495" width="60" height="16" as="geometry" />
+        </mxCell>
+        
+        <!-- Query line -->
+        <mxCell id="b-query-line" parent="1" style="endArrow=classic;startArrow=classic;html=1;strokeWidth=1.2;strokeColor=#27AE60;dashed=1;" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="1095" y="440" as="sourcePoint" />
+            <mxPoint x="1095" y="275" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="b-query-label" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontFamily=Times New Roman;fontSize=10;fontColor=#27AE60;fontStyle=2;" value="Query/&#xa;Response" vertex="1">
+          <mxGeometry x="1105" y="355" width="55" height="30" as="geometry" />
+        </mxCell>
+        
+        <!-- ========== FRAMEWORK TRANSFER ========== -->
+        <mxCell id="t-box" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#fffde7;strokeColor=#f9a825;strokeWidth=1;dashed=1;" value="" vertex="1">
+          <mxGeometry x="30" y="620" width="1410" height="130" as="geometry" />
+        </mxCell>
+        <mxCell id="t-title" parent="1" style="text;html=1;strokeColor=none;fillColor=#fff8e1;align=center;verticalAlign=middle;fontFamily=Times New Roman;fontSize=14;fontColor=#e65100;fontStyle=1;" value="Framework Transfer: Invariant Core Components" vertex="1">
+          <mxGeometry x="30" y="620" width="1410" height="24" as="geometry" />
+        </mxCell>
+        
+        <!-- 核心组件 -->
+        <mxCell id="t-ep" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff;strokeColor=#f9a825;strokeWidth=1;fontFamily=Times New Roman;fontSize=11;fontColor=#333;align=center;" value="EP ⟨𝓞, 𝓖, 𝓓⟩&lt;br&gt;&lt;font color=&quot;#888&quot; style=&quot;font-size:9px&quot;&gt;Observations, Geometry, Dependencies&lt;/font&gt;" vertex="1">
+          <mxGeometry x="50" y="655" width="280" height="42" as="geometry" />
+        </mxCell>
+        <mxCell id="t-dp" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff;strokeColor=#f9a825;strokeWidth=1;fontFamily=Times New Roman;fontSize=11;fontColor=#333;align=center;" value="DP ⟨𝓘, 𝓔, 𝓢, 𝓐⟩&lt;br&gt;&lt;font color=&quot;#888&quot; style=&quot;font-size:9px&quot;&gt;Identity, Evidence, Semantics, Analysis&lt;/font&gt;" vertex="1">
+          <mxGeometry x="360" y="655" width="280" height="42" as="geometry" />
+        </mxCell>
+        <mxCell id="t-khop" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff;strokeColor=#f9a825;strokeWidth=1;fontFamily=Times New Roman;fontSize=11;fontColor=#333;align=center;" value="k-hop 𝓝ₖ(Aⱼ)&lt;br&gt;&lt;font color=&quot;#888&quot; style=&quot;font-size:9px&quot;&gt;Context-aware retrieval&lt;/font&gt;" vertex="1">
+          <mxGeometry x="670" y="655" width="280" height="42" as="geometry" />
+        </mxCell>
+        <mxCell id="t-rag" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff;strokeColor=#f9a825;strokeWidth=1;fontFamily=Times New Roman;fontSize=11;fontColor=#333;align=center;" value="LLM + RAG Pipeline&lt;br&gt;&lt;font color=&quot;#888&quot; style=&quot;font-size:9px&quot;&gt;Topology-aware reasoning&lt;/font&gt;" vertex="1">
+          <mxGeometry x="980" y="655" width="280" height="42" as="geometry" />
+        </mxCell>
+        
+        <!-- Adaptation -->
+        <mxCell id="t-adapt-label" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontFamily=Times New Roman;fontSize=10;fontColor=#333;fontStyle=1;" value="Adaptation:" vertex="1">
+          <mxGeometry x="50" y="710" width="75" height="16" as="geometry" />
+        </mxCell>
+        <mxCell id="t-adapt-d" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e3f2fd;strokeColor=#2980B9;strokeWidth=1;fontFamily=Times New Roman;fontSize=9;fontColor=#333;" value="Defect: IDP→IAP, BIM" vertex="1">
+          <mxGeometry x="130" y="706" width="160" height="22" as="geometry" />
+        </mxCell>
+        <mxCell id="t-adapt-c" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e8f5e9;strokeColor=#27AE60;strokeWidth=1;fontFamily=Times New Roman;fontSize=9;fontColor=#333;" value="Construction: WDP→WZP, Schedule" vertex="1">
+          <mxGeometry x="310" y="706" width="200" height="22" as="geometry" />
+        </mxCell>
+        <mxCell id="t-note" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontFamily=Times New Roman;fontSize=9;fontColor=#888;fontStyle=2;" value="Schema instantiation, not architectural modification" vertex="1">
+          <mxGeometry x="530" y="710" width="240" height="16" as="geometry" />
+        </mxCell>
+        
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

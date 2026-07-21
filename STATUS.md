@@ -17,4 +17,5 @@
 
 **Style notes:** `literature/springer_style_refs/MONOGRAPH_CHAPTER_STYLE.md`  
 **Lit rule:** `cited_risky=0`.  
-**Citation audit:** `literature/CITATION_AUDIT_2026-07-21.md` (Crossref + claim–cite fitness; `zhao2025icra` DOI fixed).
+**Citation audit:** `literature/CITATION_AUDIT_2026-07-21.md` (Crossref + claim–cite fitness; `zhao2025icra` DOI fixed).  
+**Figures:** sources + BookSlate regen under `figures_src/` (`bash figures_src/regenerate_all.sh`).

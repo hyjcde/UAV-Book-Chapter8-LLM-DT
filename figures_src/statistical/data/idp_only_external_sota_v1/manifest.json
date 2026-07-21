@@ -1,0 +1,36 @@
+{
+  "run_kind": "messy_raw_external_sota_v1",
+  "created_at": "2026-07-17T18:19:21.117051+00:00",
+  "claim": "IAP-RAG outperforms peer RAG improvements (RAPTOR / HyDE+Fusion / Corrective-RAG / GraphRAG-NER) when those baselines only see scattered raw files.",
+  "corpus": "/Users/huangyijun/Projects/DefectGPT/paper/AIC-Rebuttal/manuscript_revised/reproducibility/idp_goodman_baseline/01_idp_text_corpus/idp_only_corpus.jsonl",
+  "cache_dir": "/Users/huangyijun/Projects/DefectGPT/logs/scientific_eval/idp_only_index_cache_v1",
+  "methods": {
+    "I": "RAPTOR",
+    "J": "HyDE+Fusion",
+    "K": "Corrective-RAG"
+  },
+  "graphrag": {
+    "code": "H_ner",
+    "citation": "Edge et al. 2024 (GraphRAG)",
+    "pipeline": "LLM NER → entity graph → Louvain → community summaries",
+    "fairness": "messy text only; no component_passports / asset_topology_map / IDP schema",
+    "not_used": {
+      "Group_H_structured": "paper main-table GraphRAG (needs IAP/BIM)",
+      "H_text": "homemade kNN-community proxy; not a published method"
+    },
+    "ner_max_docs": null
+  },
+  "excluded": {
+    "Chunk": "not an external peer row",
+    "Graph-Neighbour": "ablation cell only",
+    "H_text": "not a published GraphRAG pipeline"
+  },
+  "d1_policy": "reuse_locked_trace",
+  "locked_d1_trace": "/Users/huangyijun/Projects/DefectGPT/logs/scientific_eval/external_full_appc_D_trace_20260716_160315.jsonl",
+  "n_questions": 200,
+  "limit": null,
+  "skip_judge": true,
+  "prompt": "appendix_c",
+  "embedder": "BAAI/bge-m3",
+  "solver": "gemini-3-flash"
+}

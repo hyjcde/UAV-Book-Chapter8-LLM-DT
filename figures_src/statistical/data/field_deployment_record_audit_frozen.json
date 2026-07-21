@@ -1,0 +1,100 @@
+{
+  "meta": {
+    "generated_at_utc": "2026-07-15T13:48:07.379677+00:00",
+    "site": "Goodman Logistics Center, Hong Kong",
+    "interpretation": "Retrospective audit of structured field records. This is not a blinded expert rating of generated answers."
+  },
+  "actual_field_records": {
+    "atomic_observations": 604,
+    "unique_observation_ids": 604,
+    "unique_image_urls": 604,
+    "assets_with_observations": 44,
+    "passport_assets": 44,
+    "modalities": {
+      "IR": 97,
+      "RGB": 507
+    },
+    "defect_types": {
+      "Delamination": 97,
+      "Surface Crack": 507
+    },
+    "severity": {
+      "Critical": 48,
+      "Light": 550,
+      "Severe": 2,
+      "Moderate": 3,
+      "Mild": 1
+    },
+    "records_with_gps": 604,
+    "records_with_spatial_anchor": 604,
+    "records_with_image_url": 604,
+    "dated_ir_records": 97,
+    "capture_date_min": "2022-12-14",
+    "capture_date_max": "2022-12-27",
+    "capture_days": 8,
+    "idp_host_consistency": 604
+  },
+  "field_record_reference_coverage": {
+    "spatial_registration": {
+      "hits": 70,
+      "total": 70,
+      "rate": 1.0
+    },
+    "multi_hop_non_roof_gold_assets_have_field_observations": {
+      "hits": 68,
+      "total": 68,
+      "rate": 1.0
+    },
+    "roof_no_asset_cases": 2
+  },
+  "model_output_against_field_record_reference": {
+    "spatial_retrieval": {
+      "hits": 21,
+      "total": 70,
+      "rate": 0.3
+    },
+    "spatial_answer_explicit_id": {
+      "hits": 28,
+      "total": 70,
+      "rate": 0.4
+    },
+    "multi_hop_question_retrieval_non_roof": {
+      "hits": 68,
+      "total": 68,
+      "rate": 1.0
+    },
+    "multi_hop_id_retrieval": {
+      "hits": 131,
+      "total": 136,
+      "rate": 0.9632352941176471
+    },
+    "multi_hop_answer_explicit_id": {
+      "hits": 97,
+      "total": 136,
+      "rate": 0.7132352941176471
+    },
+    "roof_semantic": {
+      "hits": 2,
+      "total": 2,
+      "rate": 1.0
+    }
+  },
+  "paper_scale_and_judge_are_not_calibrated": {
+    "paper_scale_hits": 138,
+    "paper_scale_total": 140,
+    "paper_scale_rate": 0.9857142857142858,
+    "judge_pass_threshold": "accuracy >= 3",
+    "agreement_hits": 50,
+    "agreement_rate": 0.35714285714285715,
+    "confusion_matrix": {
+      "field_miss_judge_fail": 2,
+      "field_miss_judge_pass": 0,
+      "field_hit_judge_fail": 90,
+      "field_hit_judge_pass": 48
+    },
+    "cohen_kappa": 0.015009380863039493,
+    "spearman_rho": -0.007900624986233071,
+    "judge_spatial_mean": 0.18571428571428572,
+    "judge_multi_hop_mean": 3.2142857142857144
+  }
+}

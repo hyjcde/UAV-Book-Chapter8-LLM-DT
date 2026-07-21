@@ -1,0 +1,10 @@
+{
+  "corpus": "/Users/huangyijun/Projects/DefectGPT/paper/AIC-Rebuttal/manuscript_revised/reproducibility/idp_goodman_baseline/01_idp_text_corpus/idp_only_corpus.jsonl",
+  "n_docs": 604,
+  "allow_asset_id": true,
+  "n_forbid_hits": 0,
+  "forbid_hits_sample": [],
+  "n_docs_mention_passport_guid": 604,
+  "ok": true,
+  "checked_at": "2026-07-17T18:19:21.092189+00:00"
+}
