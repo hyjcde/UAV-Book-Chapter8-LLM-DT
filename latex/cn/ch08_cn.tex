@@ -80,7 +80,7 @@ UAV--BIM 巡检综述很早提出指向决策层的自动化议程~\cite{zhang20
 
 \begin{table}[htbp]
 \centering
-\caption{第8章可核对结果。}
+\caption{第8章可核对教学结果（专著式路线图）。}
 \label{tab:ch8-outcomes}
 \begin{tabular}{llp{5.0cm}}
 \toprule
@@ -541,7 +541,7 @@ RGB & IR $\rightarrow$ 语言动作 \\
 \label{fig:ch8-field-audit}
 \end{figure}
 
-图~\ref{fig:ch8-asset-id}与图~\ref{fig:ch8-field-audit}是测量面板，不是流程卡通。它们说明现场标签与孪生 ID 分叉时语言质量为何崩塌：航次可能影像与 GPS 锚点齐全，却仍在空间题上失败于检索 ID 或答案 ID 检查~\cite{zhang2025}。因此现场身份卫生属于本章，而不只属于 IT 运维。再看经理询问竖向栈渗水的例子：系统返回邻域护照，引用可打开影像的观测 ID，并在证据充足时按上表 schema 起草维修简报，否则拒答。若需复访，行动提议者为第2--3章发出规划提示。散文中不得虚构航线。
+图~\ref{fig:ch8-asset-id}与图~\ref{fig:ch8-field-audit}是测量面板，不是流程卡通。它们说明现场标签与孪生 ID 分叉时语言质量为何崩塌：航次可能影像与 GPS 锚点齐全，却仍在空间题上失败于检索 ID 或答案 ID 检查~\cite{zhang2025}。教学上宜按面板顺序读图。图~\ref{fig:ch8-field-audit}(a) 中，高观测计数与近乎完整的影像/GPS/锚点字段，只证明采集与配准很忙，并不证明答案会点名正确宿主。面板~(b) 再按阶段计分：现场记录审计可以看起来健康，检索 ID 或答案 ID 召回却可能塌陷，尤其是需要拓扑的空间题。面板~(c) 提醒：现场审计与 LLM 评判是不同仪器；二者一致有信息量，但用其一替换另一会掩盖阶段性失效。图~\ref{fig:ch8-asset-id}用对比把同一教训写清楚：空间题与多跳题须在审计、召回与评判各阶段分开跟踪，因为系统可以通过审计清单，却仍在答案字符串里发明邻居。因此现场身份卫生属于本章，而不只属于 IT 运维。再看经理询问竖向栈渗水的例子：系统返回邻域护照，引用可打开影像的观测 ID，并在证据充足时按上表 schema 起草维修简报，否则拒答。若需复访，行动提议者为第2--3章发出规划提示。散文中不得虚构航线。
 
 报告生命周期。 报告管理不止一次性生成。草稿应版本化；人工签核应被记录；已批准事实可以写回第\ref{sec:ch8-llm-foundations}节引入的长期孪生记忆。被拒草稿不应静默污染护照。若机构已使用 CMMS 或 BIM 问题追踪，上表 schema 应映射到既有字段。也不另起一套散文 PDF 宇宙。自然语言查询界面可以帮助非专业人员提问，但权威交付物仍是约束报告加上可打开证据。
 
@@ -552,7 +552,7 @@ RGB & IR $\rightarrow$ 语言动作 \\
 \label{fig:ch8-nlq-ui}
 \end{figure}
 
-图~\ref{fig:ch8-nlq-ui}只有与第\ref{sec:ch8-dt-to-language}--\ref{sec:ch8-multimodal}节合读才有用：结构化孪生记忆、多模态证据装配与有界工具。没有这些契约的流畅聊天面板，仍只是演示。
+图~\ref{fig:ch8-nlq-ui}只有与第\ref{sec:ch8-dt-to-language}--\ref{sec:ch8-multimodal}节合读才有用：结构化孪生记忆、多模态证据装配与有界工具。没有这些契约的流畅聊天面板，仍只是演示。对界面模式做一次短走读，可以把区别钉牢。设巡检员问：三层以上西立面哪些宿主出现潮湿相关症状，且证据可打开。守契约的答案会点名已在检索护照集合中的 Asset-ID，列出可在孪生浏览器打开裁剪的观测 ID，在存在 RGB/IR 冲突时显式披露，并给出``扩展邻域''或``起草 schema 约束简报''一类结构化后续。失败界面在屏幕上仍可能很像：它返回流畅段落、发明板块绰号，并提供不经门禁就写孪生的``标为已修''按钮。因此读图~\ref{fig:ch8-nlq-ui}时，应沿用对供应商的同一套四项测验：稳定 Asset-ID、可打开引用、证据包偏薄时拒答、写入有门~\cite{ji2023,zhang2025,buga2025llmfmsql}。
 
 报告 schema 应尽早与设施利益相关方协商。没人会在 CMMS 里打开的字段不会被维护；律师要求的责任字段可能需要比内部分诊更严的引用或拒答检查。教学折中是核心 schema（身份、诊断、证据链接、信任）加上可选的组织扩展（成本代码、承包商 ID、可达时间窗）。LLM 仅可从检索上下文或人工表单起草扩展字段；不得虚构成本代码~\cite{zheng2023bimassistant,joffe2025buildingcodes}。
 
@@ -579,7 +579,7 @@ schema 约束草稿只是交付的一半；另一半是字段映射：\texttt{as
 
 报告管理的厚度来自生命周期，华丽段落本身并不增加厚度。schema 约束草稿应先通过 ID 子集校验，再进入人工审；人工驳回必须进入过程记忆；批准后的字段映射进 CMMS 时，应尽量免重写，若设施人员每次都要重打工单，说明语言层还没有接到运维契约~\cite{buga2025llmfmsql,chen2023facility,krutli2025fmrags}。现场 Asset-ID 卫生属于报告质量的一部分：标签冲突、别名缺失、承包商编码漂移，都应在报告侧栏可见，不得被散文抹平~\cite{zhang2025,han2025}。引用或拒答在报告场景里特别重要：一份无法打开证据的``正式报告''，比聊天幻觉更容易进入预算与脚手架安排~\cite{ji2023,saka2024gptconstruction}。把 2024--2026 的设施 RAG、结构化 FM 查询与 BIM 检索智能体读成报告契约，更能澄清同一套生命周期义务~\cite{quan2026bimfacrag,buga2025llmfmsql,hellin2025bimmas,koh2026bimllmretr}。
 
-
+对评价看板再做一次教学走读，有助于让决策支持保持诚实。随着校验器变硬，月度虚构 ID 率应下降；随着打包改善，可打开证据率应上升；冲突披露率应上升且不拖垮排程采纳；复访提示采纳率仅在提示绑定观测 ID 时上升；CMMS 免重写率应随 schema 映射稳定而上升~\cite{lee2024ragsafety,luo2025llmdtrobot,rawat2025llmmas,liang2023helm}。若更换托管 LLM 提升了流畅度却恶化了虚构 ID，应拒绝这次替换。若流畅度不变而 TRACE 完整度上升，即使演示视频看起来更``无聊''，也应接受这次 harness 变更~\cite{ma2026tenquestions,pan2026graphdtgpt,lu2026highwaymas}。
 
 概括报告管理：权威交付物是带可打开证据、人工签核与既有 CMMS/问题追踪字段映射的 schema 约束草稿。无法复现的散文 PDF 平行宇宙不被接受~\cite{buga2025llmfmsql,chen2023facility,quan2026bimfacrag}。下一节用实现无关准则，评价这些制品是否真的改变排程。
 
