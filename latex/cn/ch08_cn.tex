@@ -260,6 +260,27 @@ FM 结构化查询 & \cite{buga2025llmfmsql} & schema 先于自由 SQL \\
 \end{tabular}
 \end{table}
 
+表~\ref{tab:ch8-book-pipeline-lit} 把同一批文献再按\emph{本专著}的章节脊柱重读一遍。它刻意不是任何一篇论文的结果重印。各列区分：（1）前几章已经教什么；（2）本课题组已发表的无人机—孪生—感知工作作为\emph{接口}贡献了什么；（3）更广学界贡献了哪些 LLM/RAG/Agent 模式，而第8章必须加以专门化。读者应把它当作阅读地图：后文若引用 GeoBIM 孪生或立面检测器，是在指向第4--7章产物；若引用 IFC 智能体或规范 RAG，是在借用学界的控制模式，而不是宣称那些系统已经会巡检仓库立面。
+
+\begin{table}[htbp]
+\centering
+\caption{沿全书流水线的文献综合图：课题组接口 vs 学界语言/智能体模式。}
+\label{tab:ch8-book-pipeline-lit}
+\begin{tabular}{p{1.6cm}p{3.3cm}p{3.4cm}p{3.3cm}}
+\toprule
+书章阶段 & 课题组/孪生—感知接口 & 学界语言/智能体模式 & 第8章专门化 \\
+\midrule
+飞与覆盖（第2--3章） & 规划权属在本章之外 & 运维机器人经纪；复访提议~\cite{luo2025llmdtrobot} & 智能体只提议复访；禁止静默飞控 \\
+重建与配准（第4章） & GeoBIM 孪生；Det-Recon-Reg~\cite{zhang2025,yang2025detreconreg} & IFC/BIM 自然语言查询~\cite{guo2025bimllmquery,hellin2025bimmas} & 导航 $\neq$ 诊断；需要宿主 ID \\
+感知（第5--6章） & 立面数据；轻量检测；物理量化~\cite{zhao2024facade,zhao2025icra,zhao2026physical} & 缺陷/安全 RAG 对话~\cite{jeon2025hybridrag,lee2024ragsafety} & LLM 继承模态标签；不做第二检测器 \\
+测绘与标识（第7章） & GeoBIM Asset-ID；现场监测孪生~\cite{zhang2025,han2025} & FM 结构化查询；设施 RAG~\cite{buga2025llmfmsql,quan2026bimfacrag} & 闲聊前先做城市尺度 ID 卫生 \\
+决策（本章） & 语言就绪孪生契约；资产中心检索案例（若有） & RAG/智能体/harness 议程~\cite{lewis2020,gao2026ifcagent,pan2026graphdtgpt,ma2026tenquestions} & L1--L3 + 校验器 + 门禁 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+该表也澄清学生容易混淆的作者角色。张纪涵等的 GeoBIM 孪生建模与杨贵东等的 Det-Recon-Reg，是使 Asset-ID 与配准观测成为可能的上游接口~\cite{zhang2025,yang2025detreconreg}。赵本赟等的数据、检测器与量化工作，定义感知被允许写出什么~\cite{zhao2024facade,zhao2025icra,zhao2026physical}。韩明桥等提醒：孪生还可服务立面之外的现场安全监测~\cite{han2025}。学界的 BIM 助手、规范 RAG、IFC 智能体与图孪生多智能体，则提供可迁移的\emph{控制}思想——类型化工具、版本钉扎与批准——本章把它们改写成立面运维的 harness 部件~\cite{guo2025bimllmquery,lee2024ragsafety,gao2026ifcagent,luo2025llmdtrobot,pan2026graphdtgpt}。没有任何一行单独等于``第8章背后的那篇论文''；本章的工作是综合，避免这些行坍缩成聊天演示。
+
 记忆失效把阶梯讲具体。若经理澄清``西侧''指装卸台立面而次日对话忘记，修复是持久化别名或强制 GeoBIM 种子选择。团队不应指望模型自行``记得''。若 RAG 返回过期维护 PDF，修复是版本钉扎与语料冒烟测试~\cite{krutli2025fmrags,joffe2025buildingcodes}。若模型凭通用网络知识发明缝长，修复是禁止数值缺陷主张，除非观测字段提供~\cite{ji2023,zhao2026physical}。若孪生有正确 Asset-ID 但编排器根本没取，那是基础设施故障，不是文笔问题~\cite{lewis2020,peng2024}。LLM 起草后谁可写入孪生、对话澄清保留多久、两份 PDF 冲突时哪一版手册权威，这些都是基础问题，不是事后 IT 政策。对立面运维，建议简单规则：孪生库写入有门；对话窗口易失；RAG 索引带版本；参数记忆永不当作现场数据库~\cite{luo2025llmdtrobot,gao2026ifcagent,rawat2025llmmas}。
 
 选择巡检用的 LLM 技术栈，同样更是 harness 问题而非单纯模型选型问题。团队应评估上文五个 harness 部件，尤其是校验器与工具门禁是否由代码拥有，以及原生工具调用可靠性、护照集合上的长上下文行为、约束解码下的拒答意愿、建筑数据的本地/云约束，以及每个接地答案的成本而非闲聊 token 成本~\cite{saka2024gptconstruction,wang2024surveyagents,liang2023helm}。放在严格引用或拒答 harness 里的较小模型，常常胜过在无校验闲聊环里即兴编造 Asset-ID 的较大模型。即便在完整实验计分之前，手检十个答案已能区分接地作业与聊天演示：列出的 Asset-ID $\subseteq$ 检索集；假说已标记；模态标签保留；缺邻域时拒答~\cite{ji2023,shuster2021,lewis2020}。教学结论因此是三项设计选择：在可维护资产及其邻域上检索；强制引用检索集合中出现的 ID；把不可逆动作放在批准门之后。第\ref{sec:ch8-dt-to-language}--\ref{sec:ch8-multimodal}节接着说明孪生记录与多模态证据如何让 L2 与 L3 落地。

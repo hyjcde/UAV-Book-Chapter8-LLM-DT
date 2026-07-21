@@ -6,7 +6,7 @@
 **CN shell:** same trim/body via shared file; 10pt + slightly tighter `\linespread`; mirrored frontmatter stubs.  
 **Author:** left empty for now.  
 **Stance:** ready-to-use LLM + harness; no site training agenda. Prefer 2024–2026 published cites.  
-**Build:** `bash scripts/build.sh` → EN ≈60 pp, CN ≈54 pp (after §8.6 spine rewrite).  
+**Build:** `bash scripts/build.sh` → EN ≈64 pp, CN ≈57 pp.  
 **Layout notes:**  
 - Use `\begin{dedication}...\end{dedication}` (not `\dedication{...}`).  
 - Letter/A4 canvas without trim correction causes fake huge side margins.
@@ -20,4 +20,5 @@
 **Citation audit:** `literature/CITATION_AUDIT_2026-07-21.md` (Crossref + claim–cite fitness; `zhao2025icra` DOI fixed).  
 **Figures:** architecture = AcademicSlate XML; transfer = paper originals; stats = BookInk module hexes + restored in §8.6. See `figures_src/README.md`. Regen: `bash figures_src/regenerate_all.sh`.  
 **Caption sync:** EN+CN figure captions + read-figure prose aligned (2026-07-21).  
-**DSS rewrite (2026-07-21):** §8.6 continuous spine; EN ≈60 pp, CN ≈54 pp.
+**DSS rewrite (2026-07-21):** §8.6 continuous spine.  
+**Pipeline lit map (2026-07-21):** `tab:ch8-book-pipeline-lit` — book stages × group interfaces × community LLM/agent patterns × Ch.8 specialisation (EN+CN).
