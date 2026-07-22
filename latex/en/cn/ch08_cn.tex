@@ -12,7 +12,7 @@
 
 建筑巡检领域的孪生实践则更接近一条可复述的管线。无人机航次产生影像与位姿；摄影测量与点云处理形成几何；缺陷检测与语义分割给出类型化发现；BIM 或 GIS 配准把这些发现挂到可维护的建筑对象上~\cite{zhang2022,zhang2025,yang2025detreconreg,zhao2024facade,zhao2026physical}。已发表系统在这一链条上的侧重各不相同：有的强调网格与实景模型的可视化浏览，有的强调缺陷数据库与报告生成，有的进一步把立面板块、楼层或设施台账条目作为长期更新的宿主~\cite{zhang2022,chen2023facility,han2025}。它们很少把``聊天''当作核心产物；真正决定能否支撑日常运维的，是几何、检测、身份与出处能否在多次航次之间保持一致，而不是界面是否足够流畅。
 
-大语言模型（LLM）进入这一图景时，角色是语言接口，而不是第二套检测器，也不是现场数据库。现成模型可以解析混合的空间--症状问句、起草面向不同读者的简报，并遵守答案模板。但若单独使用，它们对点名建筑对象与带版本手册仍不可靠：流畅文本可能虚构板块编码、抹平 RGB/红外分歧，或回忆错手册版本~\cite{ji2023,lewis2020}。检索增强生成、结构化输出与工具调用，正是工程上对这类失效的一般回应：把活事实留在权重之外，查询时取回，并对照检索证据校验主张~\cite{lewis2020,shuster2021,yao2023react}。视觉—语言模型（VLM）若使用，角色同样有界：可以帮助叙述已经挂接的影像裁剪，却不应发明宿主编码或改写检测器标签。邻近的 AEC 语言系统已经展示了这些模式的不同片段：BIM 助手改善模型导航~\cite{zheng2023bimassistant}，规范与安全文档 RAG 改善条款查找~\cite{joffe2025buildingcodes,lee2024ragsafety,krutli2025fmrags}，设施管理问答把维护日志与工单语境接入生成~\cite{krutli2025fmrags,buga2025llmfmsql}，IFC 工具智能体与运维机器人则把语言请求接到结构化动作与孪生更新之上~\cite{gao2026ifcagent,luo2025llmdtrobot,hellin2025bimmas}。它们说明 LLM 在土木里已经``能用''，也说明巡检场景还需要更严格的证据纪律。
+大语言模型（large language model, LLM）进入这一图景时，角色是语言接口，而不是第二套检测器，也不是现场数据库。现成模型可以解析混合的空间--症状问句、起草面向不同读者的简报，并遵守答案模板。但若单独使用，它们对点名建筑对象与带版本手册仍不可靠：流畅文本可能虚构板块编码、抹平 RGB/红外分歧，或回忆错手册版本~\cite{ji2023,lewis2020}。检索增强生成（retrieval-augmented generation, RAG）、结构化输出与工具调用，正是工程上对这类失效的一般回应：把活事实留在权重之外，查询时取回，并对照检索证据校验主张~\cite{lewis2020,shuster2021,yao2023react}。视觉—语言模型（vision--language model, VLM）若使用，角色同样有界：可以帮助叙述已经挂接的影像裁剪，却不应发明宿主编码或改写检测器标签。邻近的 AEC 语言系统已经展示了这些模式的不同片段：BIM 助手改善模型导航~\cite{zheng2023bimassistant}，规范与安全文档 RAG 改善条款查找~\cite{joffe2025buildingcodes,lee2024ragsafety,krutli2025fmrags}，设施管理问答把维护日志与工单语境接入生成~\cite{krutli2025fmrags,buga2025llmfmsql}，IFC 工具智能体与运维机器人则把语言请求接到结构化动作与孪生更新之上~\cite{gao2026ifcagent,luo2025llmdtrobot,hellin2025bimmas}。它们说明 LLM 在土木里已经``能用''，也说明巡检场景还需要更严格的证据纪律。
 
 由此可以得到一条可行的巡检决策支持思路。把航次事实放在带版本的孪生库中；让语言系统检索以建筑对象为中心的记录、引用可打开证据、在证据包偏薄时拒答，并只在人工或 geofence 门禁之后提议行动。在这种安排里，孪生是长期记忆，LLM 是规则下的阅读者与起草者。缺陷的类型化发现仍由感知负责；接地解释与可排程草稿仍由语言负责。历史巡检手艺其实早已指向同一方向：纸质清单强制点名位置，照片日志强制出处，维修工单强制行动字段。数字孪生与 LLM 增加的是尺度与可查询性，并不允许抛弃这些纪律~\cite{zhang2022,chen2023facility,ji2023}。
 
@@ -20,7 +20,7 @@
 
 概念路径清楚之后，再看一个具体场景。仓立面巡检结束后，经理询问西立面中层空鼓是否与上方潮湿渍迹相关。网格浏览器可以同时显示两块区域，检测器可以给两块贴标签；只有语言可用的孪生才能装配相邻宿主记录、引用可打开影像的观测条目，并在证据不足时拒答或起草维修简报。这一场景是后文的贯穿例子：孪生存事实，LLM 在引用规则下提议语言，而不是第二几何源。后文示例使用 \texttt{W-3-17}、\texttt{W-4-17} 一类占位编码仅为便于阅读轨迹；实际项目应替换为设施台账或 BIM 宿主中的真实编码。
 
-只有在上述背景清楚之后，本书才需要给出一幅过程图景：数字孪生与大语言模型如何落在同一条巡检工作流里。第2--7章已把飞行变成几何、类型化缺陷与空间挂接对象；图~\ref{fig:ch8-framework} 说明这些产物如何成为语言可用的孪生记忆、LLM 如何在检索与引用规则下阅读该记忆，以及设施团队如何得到可审计答案、报告与有门禁的维护行动。它是巡检决策支持的过程框架，而不是某一篇论文的软件模块清单。图~\ref{fig:ch8-dt-pipeline} 再给出语言层所消费的建模路径：物理采集、孪生建模与 GIS+BIM 集成如何把缺陷发现变成可检索、可打开证据的记录；此处作为语言分析的输入接口，而不是第二次重建教程~\cite{zhang2022,zhang2025,yang2025detreconreg}。Asset-ID、资产护照与引用或拒答等本章专用术语，在第~\ref{sec:ch8-dt-to-language}节接到第~7章设施身份之后一并定义；在此之前，正文尽量使用``可维护宿主''``设施台账编码''``观测记录''等更中性的说法。
+只有在上述背景清楚之后，本书才需要给出一幅\emph{过程}图景：数字孪生与大语言模型如何落在同一条巡检工作流里。第2--7章已把飞行变成几何、类型化缺陷与空间挂接对象；图~\ref{fig:ch8-framework} 用三个连续环节概括这一工作流：\emph{（I）}航次数据与前几章算法产物形成可维护孪生；\emph{（II）}孪生为语言推理提供可检索、可打开的证据；\emph{（III）}语言系统向设施团队返回可审计答案、报告与有门禁的维护行动。宜自左向右读作一条巡检决策链，而不是某一篇论文的软件模块清单。图中各框对应的是\emph{职责}而非具体产品名称：``孪生''侧承接第2--7章的几何、检测与 GeoBIM 挂接；``语言''侧承接本章后续的检索、校验与起草；``人工运维''强调最终写入工单或批准复访仍须人工或地理围栏（geofence）门禁。更细的``无人机航次如何变成语言可读记录''的技术路径，包括影像采集、三维重建、缺陷检测与 BIM 配准，将在第~\ref{sec:ch8-dt-to-language}节结合图~\ref{fig:ch8-dt-pipeline} 展开；Asset-ID、资产护照与引用或拒答等本章专用术语，也在该节接到第~7章设施身份之后一并定义。在此之前，正文尽量使用``可维护宿主''``设施台账编码''``观测记录''等更中性的说法。
 
 \begin{figure}[htbp]
 \centering
@@ -29,13 +29,6 @@
 \caption{无人机建筑巡检中数字孪生与大语言模型的过程框架：航次数据形成可维护孪生；孪生为语言推理提供证据；语言系统向人工运维返回可审计答案、报告与有门禁的维护行动。宜自左向右读作一条巡检工作流，而不是单篇论文的软件栈。}
 \captionsetup{font=small,labelfont=bf,textfont=small}
 \label{fig:ch8-framework}
-\end{figure}
-
-\begin{figure}[htbp]
-\centering
-\includegraphics[width=\linewidth]{dt_modeling_pipeline.pdf}
-\caption{语言层所消费的无人机→孪生建模路径：物理数据采集，涵盖影像、位姿与 BIM 语境；数字孪生建模，涵盖重建、缺陷检测与 BIM 配准，以及把可打开缺陷记录暴露给 GIS+BIM 虚拟集成。此处作为语言分析的输入接口，而不是第二次重建教程。}
-\label{fig:ch8-dt-pipeline}
 \end{figure}
 
 后文先在第~\ref{sec:ch8-llm-foundations}节说明大语言模型在土木工程里已经如何被使用，再在第~\ref{sec:ch8-dt-to-language}节把前几章产物组织成语言可用的孪生记录与装配规则。本章不引入新的检测器；它说明语言层如何消费第2--7章已经建立的孪生基础。
@@ -63,7 +56,7 @@
 层 & 核心技术 & 巡检应用 \\
 \midrule
 L1 语言接口 & 提示、模板、分步解释 & 解析问题；起草；区分观测与假说 \\
-L2 证据接地 & RAG、schema、工具/API & 取护照/手册；约束报告字段；引用或拒答 \\
+L2 证据接地 & RAG、schema、工具/API & 取孪生记录/手册；约束报告字段；引用或拒答 \\
 L3 记忆与流程 & 孪生/RAG 记忆、有界智能体 & 权威现场记忆；工单/复访须门禁 \\
 \bottomrule
 \end{tabularx}
@@ -71,9 +64,9 @@ L3 记忆与流程 & 孪生/RAG 记忆、有界智能体 & 权威现场记忆；
 
 第 L1 层从现成模型在编排器给出细致提示时已经能做的事讲起。模型可以解析``中层空鼓且上层有渍迹''这类空间，症状混合问句，为不同利益相关方起草可读简报，并服从短答案模板：强制引用检索包中已出现的建筑对象，区分观测与假说，检查失败时输出拒答码~\cite{ouyang2022instructgpt,ji2023}。分步提示可以口头化传播假说，但必须在邻域\emph{已经进入}证据包之后；否则模型可能编造听起来很``结构''的故事~\cite{wei2022cot,ji2023}。对立面运维，实用系统提示可以很短：分类意图；只谈检索包中已有的对象与观测；保留第6章模态标签；证据不足时显式拒答并给出原因。少样本示例应演示拒答，而不只演示成功。L1 \emph{不应}被要求用参数回忆记住上一航次台账编码、发明缝长，或在经理催促``直接标成已修''时覆盖孪生事实，那些属于接地与门禁，不属于文笔。
 
-第 L2 层是巡检系统离开聊天演示的地方。检索增强生成在查询时加载带版本手册或观测卡片~\cite{lewis2020,shuster2021}；土木落地已覆盖规范、安全手册、设施管理文档与缺陷对话~\cite{joffe2025buildingcodes,lee2024ragsafety,krutli2025fmrags,jeon2025hybridrag,he2025regulationhybrid}。自适应与自反思变体在检索偏弱时重试~\cite{gao2023hyde,asai2024selfrag,jeong2024adaptive}，但巡检设计选择比``加个 RAG''更尖锐：对资产中心问题，优先实体/护照单元而非任意 PDF 切块~\cite{peng2024}。结构化与约束生成使输出可机检，报告字段、CMMS 映射，以及要求所引 Asset-ID 必须属于证据集的校验~\cite{pan2024b,chen2024bimllmontology,iversen2026,buga2025llmfmsql}。工具与函数调用把推理与世界动作分开：模型可以请求宿主护照、扩展邻域、列出观测、起草报告或提议复访，但必须从孪生索取这些事实，而不是发明它们~\cite{schick2023toolformer,yao2023react,guo2025bimllmquery,liu2025bimcoder,li2025b,li2025c}；孪生写入与调度仍须服务端批准~\cite{luo2025llmdtrobot,gao2026ifcagent}。长上下文不是倾倒整面立面的许可证。打包应优先结构化摘要，Asset-ID、主要症状、近期观测 ID、邻域 ID、短位置短语，并放影像路径而非原始像素，以便人类打开证据；若仍溢出，先丢低置信观测。传播所需的拓扑链接应优先保留~\cite{lewis2020,asai2024selfrag}。
+第 L2 层是巡检系统离开聊天演示的地方。RAG 在查询时加载带版本手册或观测卡片~\cite{lewis2020,shuster2021}；土木落地已覆盖规范、安全手册、设施管理文档与缺陷对话~\cite{joffe2025buildingcodes,lee2024ragsafety,krutli2025fmrags,jeon2025hybridrag,he2025regulationhybrid}。自适应与自反思变体在检索偏弱时重试~\cite{gao2023hyde,asai2024selfrag,jeong2024adaptive}，但巡检设计选择比``加个 RAG''更尖锐：对以建筑对象为中心的问题，优先检索\emph{宿主级孪生记录}，而不是任意 PDF 切块~\cite{peng2024}。结构化与约束生成使输出可机检：报告字段、计算机化维护管理系统（computerised maintenance management system, CMMS）字段映射，以及要求所引对象编码必须属于证据集的校验~\cite{pan2024b,chen2024bimllmontology,iversen2026,buga2025llmfmsql}。工具与函数调用把推理与世界动作分开：模型可以请求读取某一宿主的记录包、扩展邻域、列出观测、起草报告或提议复访，但必须从孪生索取这些事实，而不是发明它们~\cite{schick2023toolformer,yao2023react,guo2025bimllmquery,liu2025bimcoder,li2025b,li2025c}；孪生写入与调度仍须服务端批准~\cite{luo2025llmdtrobot,gao2026ifcagent}。长上下文不是倾倒整面立面的许可证。打包应优先结构化摘要：宿主编码、主要症状、近期观测编号、邻域编号、短位置短语，并附影像路径而非原始像素，以便人类打开证据；若仍溢出，先丢低置信观测，保留传播所需的拓扑链接~\cite{lewis2020,asai2024selfrag}。
 
-第 L3 层让技术栈跨会话可持续，并在可控条件下可行动。在智能体之前，读者需要记忆阶梯，见表~\ref{tab:ch8-memory}。认知侧常把智能体记忆分为工作、情景、语义与程序性存储；巡检阶梯是这一思想的现场专门化，而不是另起一套分类学。参数记忆是权重里已有的通用知识，对语言有用，对``上周某仓立面裂缝增长''几乎无用~\cite{brown2020}。上下文记忆是提示窗口与短对话状态，即工作记忆：能力强，但受长度与会话限制；若明天新开对话，昨天关于``西侧指装卸台立面''的澄清可能消失，除非外部库保存了别名。检索记忆按需加载带版本手册与观测卡片，即须钉扎版本的情景与语义摘要~\cite{lewis2020,shuster2021,krutli2025fmrags}。结构化长期孪生记忆则是 Asset-ID 库本身，BIM/GIS 中的几何、拓扑与时间戳观测~\cite{pan2024b,zhang2025}。对立面运维，孪生才是权威；模型应通过检索与工具读取它。模型不得假装权重记得现场。有界智能体再把规划、记忆与工具组成工单或复访等流程，并置于 geofence 与人工门之下：程序性记忆住在 harness 里，而不是静默改权重~\cite{wang2024surveyagents,li2024surveymultiagent,rawat2025llmmas,pan2026graphdtgpt,zhang2025llmagentschema}，不是无监督飞控或静默篡改孪生的许可证。没有检索的 ReAct 循环只是多几步的参数叙事~\cite{yao2023react}；没有孪生记忆的工具调用可能打错宿主；不受控的记忆流可能把推测积成``事实''~\cite{park2023generativeagents}；因此写入门禁应落在 harness 里~\cite{luo2025llmdtrobot,gao2026ifcagent}。
+第 L3 层让技术栈跨会话可持续，并在可控条件下可行动。立面运维问题往往跨航次、跨手册版本、跨多个可维护宿主；因此需要分清\emph{记忆放在哪里}。图~\ref{fig:ch8-memory-ladder} 与表~\ref{tab:ch8-memory} 给出巡检专用的四层记忆阶梯：从左到右，信息越来越``贴近本栋本立面''，也越来越应当成为语言系统的权威来源。认知研究常把智能体记忆分为工作、情景、语义与程序性存储；这里的阶梯是同一思想在巡检现场的专门化，而不是另起一套分类学。\emph{参数记忆}是权重里已有的通用知识，对语言与常见术语有用，对``上周某仓立面裂缝增长''几乎无用~\cite{brown2020}。\emph{上下文记忆}是提示窗口与短对话状态，即工作记忆：能力强，但受长度与会话限制；若明天新开对话，昨天关于``西侧指装卸台立面''的澄清可能消失，除非外部库保存了别名。\emph{检索记忆（RAG）}按需加载带版本手册与观测卡片，即须钉扎版本的情景与语义摘要~\cite{lewis2020,shuster2021,krutli2025fmrags}。\emph{孪生库}是结构化长期现场记忆：可维护宿主编码、BIM/GIS 几何与拓扑、以及带时间戳的观测；对立面运维，它才是权威，模型应通过检索与工具读取它，而不是假装权重记得现场~\cite{pan2024b,zhang2025}。有界智能体再把规划、记忆与工具组成工单或复访等流程，并置于 geofence 与人工门之下；程序性记忆住在运行时驾驭层（harness，见下文）里，而不是静默改权重~\cite{wang2024surveyagents,li2024surveymultiagent,rawat2025llmmas,pan2026graphdtgpt,zhang2025llmagentschema}。没有检索的 ReAct 循环只是多几步的参数叙事~\cite{yao2023react}；没有孪生记忆的工具调用可能打错宿主；不受控的记忆流可能把推测积成``事实''~\cite{park2023generativeagents}；因此写入门禁应落在 harness 里~\cite{luo2025llmdtrobot,gao2026ifcagent}。
 
 \begin{table}[htbp]
 \centering
@@ -86,7 +79,7 @@ L3 记忆与流程 & 孪生/RAG 记忆、有界智能体 & 权威现场记忆；
 参数记忆 & 模型通用知识 & 语言与常见术语 \\
 上下文记忆 & 提示 + 对话 & 当前问题状态 \\
 检索记忆（RAG） & 手册、观测卡片 & 带版本文本证据 \\
-孪生库 & Asset-ID + 拓扑 + 时间 & 权威现场记忆 \\
+孪生库 & 宿主编码 + 拓扑 + 时间 & 权威现场记忆 \\
 \bottomrule
 \end{tabular}
 \end{table}
@@ -97,7 +90,7 @@ L3 记忆与流程 & 孪生/RAG 记忆、有界智能体 & 权威现场记忆；
   \node[ch8boxalt, minimum width=2.5cm] (p) {参数记忆};
   \node[ch8box, minimum width=2.5cm, right=of p] (c) {上下文记忆};
   \node[ch8boxrag, minimum width=2.5cm, right=of c] (r) {检索记忆\\(RAG)};
-  \node[ch8boxok, minimum width=2.5cm, right=of r] (t) {孪生库\\(Asset-ID)};
+  \node[ch8boxok, minimum width=2.5cm, right=of r] (t) {孪生库};
   \draw[ch8arr] (p) -- (c);
   \draw[ch8arr] (c) -- (r);
   \draw[ch8arr] (r) -- (t);
@@ -116,13 +109,13 @@ L3 记忆与流程 & 孪生/RAG 记忆、有界智能体 & 权威现场记忆；
 M_{t+1}=\mathrm{Update}\!\bigl(\mathrm{Generate}(S_t,M_t),\,M_t\bigr),\qquad
 \pi_{t+1}=\mathrm{Evolve}_{\mathrm{ext}}(\pi_t,M_{t+1}),
 \end{equation}
-其中 $\mathrm{Generate}$ 可产出护照摘要、驳回草稿备注或复访提示；$\mathrm{Update}$ 仅经有门写回或过程日志合并；$\mathrm{Evolve}_{\mathrm{ext}}$ 改变 harness 内的工具策略、版本钉扎或检索包，并禁止在现场文本上静默微调~\cite{lewis2020,luo2025llmdtrobot,gao2026ifcagent}。实践上，会话别名保持短期状态，带模态标签的观测形成可检索卡片，资产护照提供语义摘要，批准后的轨迹保存过程记忆；孪生库、版本钉扎与门禁共同更新运行包，同时把现场事实留在模型权重之外。
+其中 $\mathrm{Generate}$ 可产出宿主记录摘要、驳回草稿备注或复访提示；$\mathrm{Update}$ 仅经有门写回或过程日志合并；$\mathrm{Evolve}_{\mathrm{ext}}$ 改变 harness 内的工具策略、版本钉扎或检索包，并禁止在现场文本上静默微调~\cite{lewis2020,luo2025llmdtrobot,gao2026ifcagent}。实践上，会话别名保持短期状态，带模态标签的观测形成可检索卡片，宿主级记录包提供语义摘要，批准后的轨迹保存过程记忆；孪生库、版本钉扎与门禁共同更新运行包，同时把现场事实留在模型权重之外。
 
-这三层意在组合，而非互斥。再看：「西立面中层空鼓是否与上层渍迹相关，本季度要不要安排吊篮？」L1 解析混合问句并强制模板；L2 工具取种子护照并扩展 BIM 邻域，RAG 装入卡片与钉扎手册条款，结构化生成输出 ID 属于证据集的草稿；L3 保证读的是长期孪生而非昨日聊天，且工单或复访提议须经人工门。跳过 L2，答案沦为参数讲故事；跳过结构校验与门禁，流畅文本会漏进 CMMS。这一组合正是「生成式 AI 决策支持」在立面运维上的可操作读法~\cite{lewis2020,yao2023react,ji2023}。
+这三层意在组合，而非互斥。再看：「西立面中层空鼓是否与上层渍迹相关，本季度要不要安排吊篮？」L1 解析混合问句并强制模板；L2 工具取种子宿主记录并扩展 BIM 邻域，RAG 装入卡片与钉扎手册条款，结构化生成输出对象编码属于证据集的草稿；L3 保证读的是长期孪生而非昨日聊天，且工单或复访提议须经人工门。跳过 L2，答案沦为参数讲故事；跳过结构校验与门禁，流畅文本会漏进 CMMS。这一组合正是「生成式 AI 决策支持」在立面运维上的可操作读法~\cite{lewis2020,yao2023react,ji2023}。
 
-把三层真正黏成可上线系统的，是\emph{模型 harness}，即运行时驾驭层。在软件测试里，harness 指在受控条件下驱动被测组件的脚手架；在当代 LLM 工程里，同一词越来越多地指包裹可替换语言模型的、由代码拥有的控制层：它组装提示、选择检索单元、暴露类型化工具、按契约校验输出、记录轨迹，并决定何时拒答或升级。智能体综述已把规划、记忆与工具视为自主性的要素~\cite{wang2024surveyagents,li2024surveymultiagent}；推理，行动循环与工具学习则说明模型可以请求动作，却不必拥有世界状态~\cite{yao2023react,schick2023toolformer}。HELM 一类整体评价框架进一步提醒读者：场景、指标与标准化运行条件本身就是比较用的 harness。单一准确率数字并不足够~\cite{liang2023helm}。对立面巡检，这一思想可专门化为：Asset-ID 契约、版本钉扎、模态标签与写入门禁应住在 harness 里，这样更换底层 LLM 不会静默改写运维政策。
+把三层真正黏成可上线系统的，是\emph{模型 harness}（运行时驾驭层）。在软件测试里，harness 指在受控条件下驱动被测组件的脚手架；在当代 LLM 工程里，同一词指包裹可替换语言模型的、由代码拥有的控制层：它组装提示、选择检索单元、暴露类型化工具、按契约校验输出、记录轨迹，并决定何时拒答或升级。智能体综述已把规划、记忆与工具视为自主性的要素~\cite{wang2024surveyagents,li2024surveymultiagent}；推理—行动循环与工具学习则说明模型可以请求动作，却不必拥有世界状态~\cite{yao2023react,schick2023toolformer}。HELM 一类整体评价框架进一步提醒读者：场景、指标与标准化运行条件本身就是比较用的 harness，单一准确率数字并不足够~\cite{liang2023helm}。对立面巡检，对象身份契约、版本钉扎、模态标签与写入门禁应住在 harness 里，这样更换底层 LLM 不会静默改写运维政策。
 
-巡检 harness 可拆成五个协同部分，见表~\ref{tab:ch8-harness}。\emph{接入与路由}负责意图分类，并在生成前把自然语言位置解析到 GeoBIM 别名。\emph{证据装配}加载护照、邻域、观测卡片与钉扎手册，即第 L2 层的 RAG 与打包职责~\cite{lewis2020,peng2024,krutli2025fmrags}。\emph{工具面}只暴露少量类型化动作：读取护照、扩展邻域、列出观测、起草报告、提议复访，并拒绝自由 SQL 或飞控指令；面向 IFC、能耗与运维机器人的 AEC 工具智能体同样把推理与世界动作分开并置于批准之下~\cite{gao2026ifcagent,zhang2025llmagentschema,luo2025llmdtrobot,guo2025bimllmquery}。\emph{契约校验器}在起草后检查可机检义务：点名的 Asset-ID 必须出现在检索包中；数值缺陷主张必须指向观测字段；模态冲突必须披露；写入或调度必须经人工门~\cite{ji2023,pan2024b,buga2025llmfmsql}。\emph{轨迹与评价}保存跑过哪些工具、钉扎了哪一版手册、哪条校验通过或失败，使答案可重放、可评分，这是对多指标、多场景评价的巡检读法。聊天流畅度并不是充分指标~\cite{liang2023helm,shuster2021}。自适应检索重试应作为 harness 内的受控循环。临时即兴改提示应被禁止~\cite{asai2024selfrag,jeong2024adaptive}。
+巡检 harness 可拆成五个协同部分，见表~\ref{tab:ch8-harness}。\emph{接入与路由}负责意图分类，并在生成前把自然语言位置解析到 GeoBIM 别名。\emph{证据装配}加载宿主记录、邻域、观测卡片与钉扎手册，即第 L2 层的 RAG 与打包职责~\cite{lewis2020,peng2024,krutli2025fmrags}。\emph{工具面}只暴露少量类型化动作：读取宿主记录、扩展邻域、列出观测、起草报告、提议复访，并拒绝自由 SQL 或飞控指令；面向 IFC、能耗与运维机器人的 AEC 工具智能体同样把推理与世界动作分开并置于批准之下~\cite{gao2026ifcagent,zhang2025llmagentschema,luo2025llmdtrobot,guo2025bimllmquery}。\emph{契约校验器}在起草后检查可机检义务：点名的对象编码必须出现在检索包中；数值缺陷主张必须指向观测字段；模态冲突必须披露；写入或调度必须经人工门~\cite{ji2023,pan2024b,buga2025llmfmsql}。\emph{轨迹与评价}保存跑过哪些工具、钉扎了哪一版手册、哪条校验通过或失败，使答案可重放、可评分；聊天流畅度并不是充分指标~\cite{liang2023helm,shuster2021}。自适应检索重试应作为 harness 内的受控循环，临时即兴改提示应被禁止~\cite{asai2024selfrag,jeong2024adaptive}。
 
 \begin{table}[htbp]
 \centering
@@ -132,8 +125,8 @@ M_{t+1}=\mathrm{Update}\!\bigl(\mathrm{Generate}(S_t,M_t),\,M_t\bigr),\qquad
 \toprule
 部件 & 负责什么 & 巡检例子 \\
 \midrule
-接入/路由 & 意图、Asset-ID 解析 & 西侧跨 $\rightarrow$ GeoBIM 种子 \\
-证据装配 & RAG + 打包 & 护照、邻域、手册 \\
+接入/路由 & 意图、宿主编码解析 & 西侧跨 $\rightarrow$ GeoBIM 种子 \\
+证据装配 & RAG + 打包 & 宿主记录、邻域、手册 \\
 工具面 & 类型化 API + 门禁 & 扩展邻域；禁飞控指令 \\
 契约校验 & 引用或拒答检查 & ID $\subseteq$ 检索包；模态标记 \\
 轨迹/评价 & 可重放日志 + 指标 & 工具 TRACE；类 HELM 场景 \\
@@ -168,23 +161,23 @@ M_{t+1}=\mathrm{Update}\!\bigl(\mathrm{Generate}(S_t,M_t),\,M_t\bigr),\qquad
 \label{fig:ch8-harness-fig}
 \end{figure}
 
-按顺时针读图~\ref{fig:ch8-harness-fig}：接入先解析意图与 Asset-ID 种子；证据装配打包护照、邻域与钉扎手册；工具面只允许类型化的孪生读取与起草动作；可替换 LLM 在该证据包内组织语言；契约校验强制引用或拒答与模态披露；轨迹与评价使本次运行可重放，下一查询仍走同一门禁。虚线 LLM 框是故意的：权重可换，外围契约不宜随换。
+按顺时针读图~\ref{fig:ch8-harness-fig}：接入先解析意图与种子宿主编码；证据装配打包宿主记录、邻域与钉扎手册；工具面只允许类型化的孪生读取与起草动作；可替换 LLM 在该证据包内组织语言；契约校验强制引用或拒答与模态披露；轨迹与评价使本次运行可重放，下一查询仍走同一门禁。虚线 LLM 框是故意的：权重可换，外围契约不宜随换。
 
-由此得到两条采购与教学推论。其一，纯提示原型还不是 harness：``务必引用 Asset-ID''这类指令可被流畅模型忽略，而``ID 子集检查失败则禁止交付''的校验器才是承重结构。其二，模型替换应是 harness 测试。模型替换不应变成项目重写，若校验器、工具 schema 与孪生接口固定，更换托管 LLM 应只改变措辞，而不改变哪些来源合格、写入门是否存在~\cite{liang2023helm,saka2024gptconstruction}。业界关于 harness engineering 的讨论强调把行为从提示迁到版本化契约、清单与轨迹；本章保留这一直觉，但只引用已发表的接地、工具、智能体与评价结果，并把每条契约映射到立面运维产物，而非通用聊天演示。简言之：L1--L3 命名能力；harness 是在每次查询上强制执行这些能力的软件。
+由此得到两条采购与教学推论。其一，纯提示原型还不是 harness：``务必引用对象编码''这类指令可被流畅模型忽略，而``编码子集检查失败则禁止交付''的校验器才是承重结构。其二，模型替换应是 harness 测试，而不是项目重写：若校验器、工具 schema 与孪生接口固定，更换托管 LLM 应只改变措辞，而不改变哪些来源合格、写入门是否存在~\cite{liang2023helm,saka2024gptconstruction}。简言之：L1--L3 命名能力；harness 是在每次查询上强制执行这些能力的软件。
 
-近年面向建筑的 LLM 工作同样把重心从单纯模型选型转向系统设计。数据就绪、信任、互操作与人机监督现已置于参数规模之前~\cite{ma2026tenquestions}：立面运维成败取决于 Asset-ID、带版本手册与批准门是否就绪。已发表的图孪生、BIM 检索、IFC 工具与运维机器人智能体，在邻近场景中展示同一习惯：把类型化结构与门禁放在权重之外，让 LLM 作为 harness 内可替换的组合器~\cite{pan2026graphdtgpt,lu2026highwaymas,gao2026ifcagent,luo2025llmdtrobot,hellin2025bimmas,quan2026bimfacrag}。这些系统都不是开箱即用的仓立面巡检器；可迁移的是控制模式。
+近年面向建筑的 LLM 工作同样把重心从单纯模型选型转向系统设计。数据就绪、信任、互操作与人机监督现已置于参数规模之前~\cite{ma2026tenquestions}：立面运维成败取决于对象身份是否就绪、手册是否带版本、批准门是否存在。已发表的图孪生、BIM 检索、IFC 工具与运维机器人智能体，在邻近场景中展示同一习惯：把类型化结构与门禁放在权重之外，让 LLM 作为 harness 内可替换的组合器~\cite{pan2026graphdtgpt,lu2026highwaymas,gao2026ifcagent,luo2025llmdtrobot,hellin2025bimmas,quan2026bimfacrag}。这些系统都不是开箱即用的仓立面巡检器；可迁移的是控制模式。
 
-幻觉综述解释了缺乏纪律时会发生什么：流畅系统会虚构实体、数字与引用~\cite{ji2023}。在巡检中，高代价失效非常具体，虚构 Asset-ID、缺乏可归因证据的维修建议、抹掉 RGB 与红外观测分歧的摘要。因此接地远不止``写得好的提示''。约束 schema、检索及其自适应变体、工具型推理，行动循环、类型化结构化知识在 NLP 与 AEC 中反复出现~\cite{lewis2020,gao2023hyde,asai2024selfrag,jeong2024adaptive,peng2024,yao2023react,schick2023toolformer,pan2024b}。面向图与层次的检索提醒读者：文档相似不等于建筑邻接~\cite{peng2024,sarthi2024raptor,sun2024tog}。语义嵌入会把``潮湿、渍迹、渗水''聚在一起；建筑空间则按接缝、楼层与排水路径聚集板块。混合检索可以在\emph{已被拓扑约束的候选集}内用嵌入排序症状摘要，却不得用嵌入为传播问题\emph{发明}候选集~\cite{peng2024,jeon2025hybridrag,khattab2020}。当系统规则、检索手册、孪生事实与用户请求冲突时，优先级应明确：安全与写入门禁优先；孪生事实与观测字段其次；钉扎手册版本再次；用户文风偏好最后~\cite{saka2024gptconstruction}。
+幻觉综述解释了缺乏纪律时会发生什么：流畅系统会虚构实体、数字与引用~\cite{ji2023}。在巡检中，高代价失效非常具体：虚构对象编码、缺乏可归因证据的维修建议、抹掉 RGB 与红外观测分歧的摘要。因此接地远不止``写得好的提示''。约束 schema、检索及其自适应变体、工具型推理—行动循环、类型化结构化知识在 NLP 与 AEC 中反复出现~\cite{lewis2020,gao2023hyde,asai2024selfrag,jeong2024adaptive,peng2024,yao2023react,schick2023toolformer,pan2024b}。面向图与层次的检索提醒读者：文档相似不等于建筑邻接~\cite{peng2024,sarthi2024raptor,sun2024tog}。语义嵌入会把``潮湿、渍迹、渗水''聚在一起；建筑空间则按接缝、楼层与排水路径聚集板块。混合检索可以在\emph{已被拓扑约束的候选集}内用嵌入排序症状摘要，却不得用嵌入为传播问题\emph{发明}候选集~\cite{peng2024,jeon2025hybridrag,khattab2020}。当系统规则、检索手册、孪生事实与用户请求冲突时，优先级应明确：安全与写入门禁优先；孪生事实与观测字段其次；钉扎手册版本再次；用户文风偏好最后~\cite{saka2024gptconstruction}。
 
-土木与建筑应用已经在使用这些模式。BIM 助手与自然语言模型查询改善导航；规范、安全、缺陷与设施 RAG 改善版本忠实；schema、类型化工具与批准使语言接口可运维~\cite{zheng2023bimassistant,joffe2025buildingcodes,lee2024ragsafety,jeon2025hybridrag,krutli2025fmrags,gao2026ifcagent,buga2025llmfmsql}。高分辨率立面数据与物理量化仍决定语言可诚实宣称的粒度~\cite{zhao2024facade,zhao2026physical}。对本书而言，第2--7章保有飞行、几何、观测与 GeoBIM 身份；第8章把这些产物组织成证据包~\cite{zhang2025,yang2025detreconreg,han2025}。因此默认应在资产护照与 BIM 邻域上检索，手册按版本钉扎；公开规范题上的成功，不能证明本地立面手册也可靠~\cite{lee2024ragsafety,ma2026tenquestions}。
+土木与建筑应用已经在使用这些模式。BIM 助手与自然语言模型查询改善导航；规范、安全、缺陷与设施 RAG 改善版本忠实；schema、类型化工具与批准使语言接口可运维~\cite{zheng2023bimassistant,joffe2025buildingcodes,lee2024ragsafety,jeon2025hybridrag,krutli2025fmrags,gao2026ifcagent,buga2025llmfmsql}。高分辨率立面数据与物理量化仍决定语言可诚实宣称的粒度~\cite{zhao2024facade,zhao2026physical}。对本书而言，第2--7章保有飞行、几何、观测与 GeoBIM 身份；第8章把这些产物组织成证据包~\cite{zhang2025,yang2025detreconreg,han2025}。因此默认应在宿主记录与 BIM 邻域上检索，手册按版本钉扎；公开规范题上的成功，不能证明本地立面手册也可靠~\cite{lee2024ragsafety,ma2026tenquestions}。
 
-记忆失效把阶梯讲具体。若经理澄清``西侧''指装卸台立面而次日对话忘记，修复是持久化别名或强制 GeoBIM 种子选择。团队不应指望模型自行``记得''。若 RAG 返回过期维护 PDF，修复是版本钉扎与语料冒烟测试~\cite{krutli2025fmrags,joffe2025buildingcodes}。若模型凭通用网络知识发明缝长，修复是禁止数值缺陷主张，除非观测字段提供~\cite{ji2023,zhao2026physical}。若孪生有正确 Asset-ID 但编排器根本没取，那是基础设施故障，不是文笔问题~\cite{lewis2020,peng2024}。LLM 起草后谁可写入孪生、对话澄清保留多久、两份 PDF 冲突时哪一版手册权威，这些都是基础问题，不是事后 IT 政策。对立面运维，建议简单规则：孪生库写入有门；对话窗口易失；RAG 索引带版本；参数记忆永不当作现场数据库~\cite{luo2025llmdtrobot,gao2026ifcagent,rawat2025llmmas}。
+记忆失效把阶梯讲具体。若经理澄清``西侧''指装卸台立面而次日对话忘记，修复是持久化别名或强制 GeoBIM 种子选择。团队不应指望模型自行``记得''。若 RAG 返回过期维护 PDF，修复是版本钉扎与语料冒烟测试~\cite{krutli2025fmrags,joffe2025buildingcodes}。若模型凭通用网络知识发明缝长，修复是禁止数值缺陷主张，除非观测字段提供~\cite{ji2023,zhao2026physical}。若孪生里已有正确宿主编码但编排器根本没取，那是基础设施故障，不是文笔问题~\cite{lewis2020,peng2024}。LLM 起草后谁可写入孪生、对话澄清保留多久、两份 PDF 冲突时哪一版手册权威，这些都是基础问题，不是事后 IT 政策。对立面运维，建议简单规则：孪生库写入有门；对话窗口易失；RAG 索引带版本；参数记忆永不当作现场数据库~\cite{luo2025llmdtrobot,gao2026ifcagent,rawat2025llmmas}。
 
-选择巡检用的 LLM 技术栈，同样更是 harness 问题而非单纯模型选型问题。团队应评估上文五个 harness 部件，尤其是校验器与工具门禁是否由代码拥有，以及原生工具调用可靠性、护照集合上的长上下文行为、约束解码下的拒答意愿、建筑数据的本地/云约束，以及每个接地答案的成本而非闲聊 token 成本~\cite{saka2024gptconstruction,wang2024surveyagents,liang2023helm}。放在严格引用或拒答 harness 里的较小模型，常常胜过在无校验闲聊环里即兴编造 Asset-ID 的较大模型。即便在完整实验计分之前，手检十个答案已能区分接地作业与聊天演示：列出的 Asset-ID $\subseteq$ 检索集；假说已标记；模态标签保留；缺邻域时拒答~\cite{ji2023,shuster2021,lewis2020}。教学结论因此是三项设计选择：在可维护资产及其邻域上检索；强制引用检索集合中出现的 ID；把不可逆动作放在批准门之后。第\ref{sec:ch8-dt-to-language}--\ref{sec:ch8-multimodal}节接着说明孪生记录与多模态证据如何让 L2 与 L3 落地。
+选择巡检用的 LLM 技术栈，同样更是 harness 问题而非单纯模型选型问题。团队应评估上文五个 harness 部件，尤其是校验器与工具门禁是否由代码拥有，以及原生工具调用可靠性、宿主记录集合上的长上下文行为、约束解码下的拒答意愿、建筑数据的本地/云约束，以及每个接地答案的成本而非闲聊 token 成本~\cite{saka2024gptconstruction,wang2024surveyagents,liang2023helm}。放在严格引用或拒答 harness 里的较小模型，常常胜过在无校验闲聊环里即兴编造对象编码的较大模型。即便在完整实验计分之前，手检十个答案已能区分接地作业与聊天演示：列出的对象编码 $\subseteq$ 检索集；假说已标记；模态标签保留；缺邻域时拒答~\cite{ji2023,shuster2021,lewis2020}。教学结论因此是三项设计选择：在可维护宿主及其邻域上检索；强制引用检索集合中出现的编码；把不可逆动作放在批准门之后。第~\ref{sec:ch8-dt-to-language}--\ref{sec:ch8-multimodal}节接着说明孪生记录与多模态证据如何让 L2 与 L3 落地。
 
 
 
-概括基础部分：第 L1--L3 层命名现成模型在控制下能做什么，harness 命名在每次查询上强制这些行为的软件。跳过校验器与工具门禁的读者，无论模型多大，都会重新掉进参数叙事~\cite{ji2023,liang2023helm,ma2026tenquestions}。本章把语言层写成可核对、可交接的决策接口，而不是一段流畅但不可审计的聊天演示。读罢全文，读者应能说明：孪生若缺表~\ref{tab:ch8-twin-contract} 中某项最低前提，答案会在何处失真；一个立面问题该归入 L1--L3 的哪一层，并由表~\ref{tab:ch8-harness} 中哪一段 harness 承托；传播题与历史记录题如何用护照与 BIM 邻域拼成``带引用或拒答''的证据包；第~\ref{sec:ch8-multimodal}节里 VLM 与第~6章检测器各管哪一段；以及 twin 写入或复访提议怎样在人工门禁前留下一条可回放的工具 TRACE~\cite{peng2024,yao2023react,liang2023helm,hellin2025bimmas}。表~\ref{tab:ch8-outcomes} 将上述能力收成核对清单。它们界定的是跨章决策接口：第~2--7章供给几何、检测与孪生物料，本章说明语言侧如何装配与门禁，并不再引入新的检测器。
+概括基础部分：第 L1--L3 层命名现成模型在控制下能做什么，harness 命名在每次查询上强制这些行为的软件。跳过校验器与工具门禁的读者，无论模型多大，都会重新掉进参数叙事~\cite{ji2023,liang2023helm,ma2026tenquestions}。本章把语言层写成可核对、可交接的决策接口，而不是一段流畅但不可审计的聊天演示。读罢全文，读者应能说明：孪生若缺第~\ref{sec:ch8-dt-to-language}节表~\ref{tab:ch8-twin-contract} 中某项最低前提，答案会在何处失真；一个立面问题该归入 L1--L3 的哪一层，并由表~\ref{tab:ch8-harness} 中哪一段 harness 承托；传播题与历史记录题如何用宿主记录与 BIM 邻域拼成``带引用或拒答''的证据包；第~\ref{sec:ch8-multimodal}节里 VLM 与第~6章检测器各管哪一段；以及 twin 写入或复访提议怎样在人工门禁前留下一条可回放的工具 TRACE~\cite{peng2024,yao2023react,liang2023helm,hellin2025bimmas}。表~\ref{tab:ch8-outcomes} 将上述能力收成核对清单。
 
 \begin{table}[htbp]
 \centering
@@ -229,7 +222,16 @@ L1--L3 + harness & 问题所落层级与 harness 部件 & 能用表~\ref{tab:ch8
 
 表~\ref{tab:ch8-twin-contract} 不是 IT 心愿单，而是现场手艺的数字化延续。资深巡检员先拍照再写字，先点名跨位再诊断，拒绝签署无法到现场核对的报告；决策可用孪生只是让这些习惯在跨航次尺度上可被机器检查~\cite{zhang2022,chen2023facility}。地理尺度把同一点说得更尖：校园或住宅区会放大标识冲突与手册版本冲突，城市尺度身份应在 GIS 层保持一致，而不应事后用巧妙散文``修复''~\cite{zhang2025,han2025}。
 
-即便实现各不相同，概念上仍宜分清三层。\emph{观测记录}是带传感出处的一次缺陷目击，涵盖影像、证据、语义与宿主挂接，教学上常打包为集成缺陷画像；\emph{资产护照}聚合某一可维护宿主上的观测与几何/拓扑，作为供检索的集成资产画像；\emph{查询装配}决定生成前哪些护照与邻域进入上下文，沿立面邻接扩展邻域则支持竖向传播阅读。感知写观测，运维按资产思考，语言模型不得发明二者~\cite{pan2024b,zheng2023bimassistant}。
+第2--7章已经分别讲过飞行规划、三维重建、缺陷检测与 GeoBIM 挂接；图~\ref{fig:ch8-dt-pipeline} 把这些章节收成语言层所消费的\emph{一条建模路径}，便于读者看见``语言系统到底在读什么''。宜分三段阅读。\emph{阶段 I（物理数据采集）}：无人机采集影像、位姿（POS/RTK）与光学参数，并与 BIM 数据库、任务信息一并进入上下文；对应图中 (b) 的航迹、影像矩阵与 BIM 外壳。\emph{阶段 II（孪生建模与处理）}：结构自运动/多视立体（SfM/MVS）重建网格，深度学习检测器给出缺陷类别与置信度，配准模块把检测框落到 BIM 表面坐标；对应 (c) 的网格、检测元数据与``局部化缺陷''。\emph{阶段 III（GIS+BIM 虚拟集成）}：平台把缺陷组织成层次化结构，例如项目 $\rightarrow$ 楼层 $\rightarrow$ 构件（如 \texttt{Wall\_N\_204}）$\rightarrow$ 缺陷条目（如 \texttt{Defect\_01}），并在三维界面中打开目标影像；对应 (d) 的结构化缺陷面板与在线可视化。语言层并不重复这些算法，但要求它们的输出在入库后满足表~\ref{tab:ch8-twin-contract}：尤其是\emph{稳定宿主编码}、\emph{可打开影像}与\emph{BIM 邻接}。图中 Phase III 左侧树形结构里的构件与缺陷编号，就是第~7章设施台账身份在平台侧的可见形式；本章将其统一简称为 \emph{Asset-ID}（资产标识符），以区别于临时文件名或检测框标签。
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\linewidth]{dt_modeling_pipeline.pdf}
+\caption{无人机航次到语言可用孪生记录的技术路径（语言层的输入接口，而非第二次重建教程）。阶段 I：物理数据采集（影像、位姿、BIM 语境）；阶段 II：孪生建模（重建、缺陷检测、BIM 配准）；阶段 III：GIS+BIM 集成，把层次化、可打开的缺陷记录暴露给检索与人工复核。}
+\label{fig:ch8-dt-pipeline}
+\end{figure}
+
+即便实现各不相同，概念上仍宜分清三层记录。\emph{观测记录}是带传感出处的一次缺陷目击，涵盖影像、证据、语义与宿主挂接，教学上常打包为集成缺陷画像；\emph{资产护照}（asset passport）聚合某一可维护宿主上的观测与几何/拓扑，作为供检索的集成资产画像；\emph{查询装配}决定生成前哪些护照与邻域进入上下文，沿立面邻接扩展邻域则支持竖向传播阅读。感知写观测，运维按资产思考，语言模型不得发明二者~\cite{pan2024b,zheng2023bimassistant}。
 
 在无人机巡检实践中，有用的观测通常包含宿主 Asset-ID、时间、模态，如 RGB、红外等、检测器签名、位姿或表面坐标，以及影像路径。任何 LLM 介入之前，配准就应把检测挂到 BIM 宿主上~\cite{zhang2025,yang2025detreconreg}。自然语言位置短语帮助模型，例如``西立面、装卸台上方第三跨''，度量坐标留给现场导航。资产护照再附上症状摘要、用于严重度归一化的几何，以及上/下/侧邻接。这些链接使传播式阅读成为可能，例如把中层空鼓与上层潮湿一并考虑，而不把文档相似图误当作结构图或 BIM 邻接图~\cite{peng2024}。
 
