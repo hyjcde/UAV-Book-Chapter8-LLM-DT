@@ -605,11 +605,11 @@ ID 子集 & 资产/缺陷 ID $\subseteq$ 证据包 & 虚构板块编码 \\
 \begin{figure}[htbp]
 \centering
 \includegraphics[width=\linewidth]{analysis_interface_nlq.pdf}
-\caption{自然语言分析界面示例：巡检员提问后得到点名资产、可打开证据与结构化后续建议。界面布局当作交互模式阅读；验收标准仍是稳定 Asset-ID、可打开引用、拒答能力与有门禁的写入。}
+\caption{Sid 查询界面示例：用日常语言提问，得到点名宿主、可打开证据与后续按钮。布局只是前台；Asset-ID、引用、拒答与写入门禁的验收标准不变。}
 \label{fig:ch8-nlq-ui}
 \end{figure}
 
-图~\ref{fig:ch8-nlq-ui}只有与第\ref{sec:ch8-dt-to-language}--\ref{sec:ch8-multimodal}节合读才有用：结构化孪生记忆、多模态证据装配与有界工具。没有这些契约的流畅聊天面板，仍只是演示。对界面模式做一次短走读，可以把区别钉牢。设巡检员问：三层以上西立面哪些宿主出现潮湿相关症状，且证据可打开。守契约的答案会点名已在检索护照集合中的 Asset-ID，列出可在孪生浏览器打开裁剪的观测 ID，在存在 RGB/IR 冲突时显式披露，并给出``扩展邻域''或``起草 schema 约束简报''一类结构化后续。失败界面在屏幕上仍可能很像：它返回流畅段落、发明板块绰号，并提供不经门禁就写孪生的``标为已修''按钮。因此读图~\ref{fig:ch8-nlq-ui}时，应沿用采购评审的同一套四项测验：稳定 Asset-ID、可打开引用、证据包偏薄时拒答、写入有门~\cite{ji2023,zhang2025,buga2025llmfmsql}。
+图~\ref{fig:ch8-nlq-ui}是报告时刻用的一块 Sid 屏幕。它不另起检测器，而是坐在第\ref{sec:ch8-dt-to-language}--\ref{sec:ch8-multimodal}节的孪生记忆与 harness 规则上。好答案只点名证据包里已有的 Asset-ID，能打开被引裁剪，并把写入留在门后。流畅聊天若发明板块绰号、或不经批准就标已修，同样不合格~\cite{ji2023,zhang2025,buga2025llmfmsql}。第\ref{sec:ch8-dss}节再回到 Sid 的平台分层与其他终端界面。
 
 报告 schema 应尽早与设施利益相关方协商。没人会在 CMMS 里打开的字段不会被维护；律师要求的责任字段可能需要比内部分诊更严的引用或拒答检查。教学折中是核心 schema 含身份、诊断、证据链接与信任，加上可选的组织扩展，含成本代码、承包商 ID 与可达时间窗。LLM 仅可从检索上下文或人工表单起草扩展字段；不得虚构成本代码~\cite{zheng2023bimassistant,joffe2025buildingcodes}。
 
@@ -667,14 +667,27 @@ ID 子集 & 资产/缺陷 ID $\subseteq$ 证据包 & 虚构板块编码 \\
 
 因此本章的预测性维护是三项交付，而不是一句口号。其一是\emph{分诊}：带可打开证据的 Asset-ID 排序，服务下一周吊篮。其二是\emph{条件建议}：如``若上层邻居缺少红外，则风险上升''，点名缺失证据并止步于虚构。其三是\emph{外部预后}：若存在非 LLM 时序模型，harness 可把其只读输出与被引观测并排呈现；语言系统不得从单次航次发明未来一年的剥落概率~\cite{gao2026ifcagent,zhang2025llmagentschema,zhao2026physical}。
 
-部署视图用两张互补地图收束。图~\ref{fig:ch8-platform}给出可承载 harness 的软件分层：上层是呈现与自然语言服务，中层经 API 网关进入孪生读取与报告起草应用服务，下层是 Asset-ID、观测与带版本手册的数据存储。图~\ref{fig:ch8-transfer}再给出超越立面缺陷的巡检迁移：同一观测--几何--依赖脊柱可通过更换实体语义与边类型，实例化为建筑运维、改造排序或施工进度监测。schema 复用不是预测技能，平台图也不是第二套检测器~\cite{gao2026ifcagent,zhang2025llmagentschema,zhao2026physical}。
+软件要把上述决策层变成能点、能问的东西。本章把工作前台叫作 Sid——这是屏幕的产品式名字，不是术语缩写。Sid 不是第二套感知栈。它来自第2--7章的孪生产物，再加上本章已讲的 harness 契约：护照、类型化邻域、引用或拒答，以及有门写入。
+
+图~\ref{fig:ch8-platform}说明 Sid 在软件里坐在哪一层。上层：看板、三维浏览、自然语言提问框与报告导出。中层：API 网关，以及读孪生、装证据、起草报告的应用服务（执行 harness）。下层：Asset-ID、观测与带版本手册，放在模型权重之外。用日常话说：Sid 经网关提问，孪生用可核对记录回答，只有批准后的动作才能出门~\cite{gao2026ifcagent,luo2025llmdtrobot}。
 
 \begin{figure}[t]
 \centering
 \includegraphics[width=\linewidth]{platform_architecture.pdf}
-\caption{巡检语言服务的参考平台分层：呈现与查询界面、API 网关、强制执行 harness 的应用服务，以及把 Asset-ID、观测与手册留在模型权重之外的数据存储。宜读作本章契约的部署地图，而不是强制产品蓝图。}
+\caption{Sid 的运行位置：上层是呈现与提问框，中层是经 API 网关的 harness 服务，下层是孪生与手册库。宜读作本章契约的部署示意，不是强制产品蓝图。}
 \label{fig:ch8-platform}
 \end{figure}
+
+图~\ref{fig:ch8-ui-screens}给出手机与更大屏幕上的 Sid。经理可以比较宿主、问某立面危急缺陷的楼层分布，并拿到仍点名 Asset-ID 的表格或简单图。这就是日常决策支持：先排下周吊篮该去哪一跨，看证据是否偏薄，并避免后续按钮不经批准就写孪生。图~\ref{fig:ch8-nlq-ui}是同一思路在报告时刻的样子。手机、平板或桌面都不改变表~\ref{tab:ch8-eval} 的测验：稳定 ID、可打开证据、诚实拒答、写入有门。
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=\linewidth]{multi_platform_field_interfaces.pdf}
+\caption{手机与更大屏幕上的 Sid：日常语言提问、结构化缺陷表与简单分布视图。屏幕说明决策支持怎么用；它们不替代孪生，也不替代 harness。}
+\label{fig:ch8-ui-screens}
+\end{figure}
+
+图~\ref{fig:ch8-transfer}再说明：同一观测--几何--依赖脊柱可通过更换实体标签与边类型，迁到改造排序或施工进度监测。schema 复用不是预测技能，Sid 也不是第二套检测器~\cite{gao2026ifcagent,zhang2025llmagentschema,zhao2026physical}。
 
 \begin{figure}[t]
 \centering
@@ -682,10 +695,6 @@ ID 子集 & 资产/缺陷 ID $\subseteq$ 证据包 & 虚构板块编码 \\
 \caption{巡检迁移图：检测画像 / 实体画像 / $k$ 跳检索脊柱可从立面运维迁到改造排序与施工进度监测，关键是更换实体语义与边类型。harness 模式随脊柱迁移；领域标签不随模型权重迁移。}
 \label{fig:ch8-transfer}
 \end{figure}
-
-无论读者使用手机、平板或桌面界面，同一测验都适用：被点名的 Asset-ID 必须一致，证据必须可打开；虚构板块编码或无链接楼层计数都不符合表~\ref{tab:ch8-eval} 的量规。
-
-邻近的 2024--2026 孪生交互与 BIM 语言系统给出同一控制教训，无需第二次文献巡礼：把结构放在权重之外，用 LLM 编排，结构化路径缺失时拒答，并把治理当作设计变量~\cite{pan2026graphdtgpt,gao2026ifcagent,luo2025llmdtrobot,hellin2025bimmas,krutli2025fmrags,ma2026tenquestions}。只有表~\ref{tab:ch8-eval} 五项仍为绿灯时，用户体验收益才算数。
 
 一条端到端走读足以把准则接到实践。设第2--7章已把为期两天的仓立面航次变成决策可用孪生：第1天完成 RGB 覆盖，第2天对疑似潮湿区补红外；感知写带模态标签观测，配准与 GeoBIM 保持宿主 Asset-ID 与设施台账对齐。第3天经理提出四类会议问题。局部查找只加载 W-3-17 的护照并返回可打开观测；跨航次比较在缺历史观测 ID 时拒答；传播题扩展上/侧邻域、保留 RGB/IR 标签，要么带引用起草路径假说，要么拒绝；立面审计应用第7章空间过滤，输出 schema 约束的吊篮名单。仅当经理要求行动时，有界智能体才起草工单、挂接证据 ID、在模态冲突时设置人工复核标记，并为第2--3章发出复访提示。它不给承包商发邮件，不改 BIM 几何，不清冲突旗标。已批准事实写回孪生记忆；被拒草稿进入过程记忆，并不得在同一会话中重复提交。这一条故事就是负载下的章节脊柱：孪生契约、记忆阶梯、资产中心装配、多模态披露、有门工具、报告生命周期与可运维指标。
 

@@ -605,11 +605,11 @@ Forbidden transitions include writing the twin from a draft, exporting after fai
 \begin{figure}[htbp]
 \centering
 \includegraphics[width=\linewidth]{analysis_interface_nlq.pdf}
-\caption{Example natural-language analysis interface: an inspector query is answered with named assets, openable evidence, and structured follow-ups. Treat the layout as an interaction pattern; the acceptance tests remain stable Asset-IDs, openable citations, abstention, and gated writes.}
+\caption{Example Sid query screen: ask in ordinary language, get named hosts, openable evidence, and next-step buttons. The layout is only a front end; the same Asset-ID, citation, abstention, and write-gate tests still apply.}
 \label{fig:ch8-nlq-ui}
 \end{figure}
 
-Figure~\ref{fig:ch8-nlq-ui} is useful only when read together with Sections~\ref{sec:ch8-dt-to-language}--\ref{sec:ch8-multimodal}: structured twin memory, multimodal evidence assembly, and bounded tools. A fluent chat panel without those contracts is still a demo. A short worked reading of the interface pattern keeps that distinction sharp. Suppose the inspector asks which west-elevation hosts above storey three show moisture-related symptoms with openable evidence. A contract-respecting answer names Asset-IDs that already sit in the retrieved passport set, lists observation IDs whose crops open in the twin viewer, discloses RGB/IR conflict when present, and offers structured follow-ups such as expand neighbours or draft a schema-constrained brief. A failing interface may still look similar on screen: it returns a fluent paragraph, invents a panel nickname, and offers a ``mark repaired'' button that writes the twin without a gate. Readers should therefore score Figure~\ref{fig:ch8-nlq-ui} with the same four tests used in procurement reviews: stable Asset-IDs, openable citations, abstention when the package is thin, and gated writes~\cite{ji2023,zhang2025,buga2025llmfmsql}.
+Figure~\ref{fig:ch8-nlq-ui} is one Sid screen for report-time questions. It does not invent a new detector: it sits on the twin memory and harness rules from Sections~\ref{sec:ch8-dt-to-language}--\ref{sec:ch8-multimodal}. A good answer names Asset-IDs already in the package, opens the cited crops, and keeps writes behind a gate. A fluent chat that invents panel nicknames or marks hosts repaired without approval fails the same tests~\cite{ji2023,zhang2025,buga2025llmfmsql}. Section~\ref{sec:ch8-dss} returns to Sid with the platform stack and other device screens.
 
 Report schemas should be negotiated with facility stakeholders early. Fields that nobody will open in a CMMS will not be maintained. Fields that lawyers require for liability may need stricter cite-or-abstain checks than fields used for internal triage. A teaching compromise is a core schema covering identity, diagnosis, evidence links, and trust, plus optional organisation-specific extensions covering cost codes, contractor IDs, and access windows. The LLM may draft extensions only from retrieved context or human-provided forms; it must not invent cost codes~\cite{zheng2023bimassistant,joffe2025buildingcodes}.
 
@@ -667,14 +667,27 @@ Figure~\ref{fig:ch8-ablation} supplies one compact quantitative check for that r
 
 Predictive maintenance in this chapter is therefore three deliverables, not one slogan. First, \emph{triage}: a ranked Asset-ID list with openable evidence for the next gondola week. Second, \emph{conditional advice}: statements such as ``risk rises if infrared is missing on the upstairs neighbour'' that name the missing evidence and stop short of inventing it. Third, \emph{external prognosis}: when a non-LLM temporal model exists, the harness may present its read-only output beside cited observations; the language system must not invent year-ahead spalling probabilities from a single campaign~\cite{gao2026ifcagent,zhang2025llmagentschema,zhao2026physical}.
 
-Two complementary maps close the deployment view. Figure~\ref{fig:ch8-platform} shows a software layering that can host the harness: presentation and natural-language services above an API gateway, application services for twin reads and report drafts, and data stores for Asset-IDs, observations, and editioned manuals. Figure~\ref{fig:ch8-transfer} then shows inspection migration beyond façade defects: the same observation--geometry--dependency spine can be instantiated for building O\&M, renovation sequencing, or construction-progress monitoring by changing entity semantics and edge types. Schema reuse is not forecasting skill, and a platform diagram is not a second detector~\cite{gao2026ifcagent,zhang2025llmagentschema,zhao2026physical}.
+Software has to make those decision layers usable. In this chapter we call the working front end Sid---a product-style name for the screens, not a technical acronym. Sid is not a second perception stack. It is built from Chapters~2--7 twin products plus the harness contracts already taught: passports, typed neighbours, cite-or-abstain, and gated writes.
+
+Figure~\ref{fig:ch8-platform} shows where Sid sits in software. Top: dashboards, 3D view, natural-language ask box, and report export. Middle: an API gateway and application services that read the twin, assemble evidence, and draft reports under the harness. Bottom: Asset-IDs, observations, and editioned manuals outside model weights. In plain terms, Sid asks through the gateway, the twin answers with checkable records, and only approved actions leave the gate~\cite{gao2026ifcagent,luo2025llmdtrobot}.
 
 \begin{figure}[t]
 \centering
 \includegraphics[width=\linewidth]{platform_architecture.pdf}
-\caption{Reference platform layering for an inspection language service: presentation and query interfaces, API gateway, application services that enforce the harness, and data stores that keep Asset-IDs, observations, and manuals outside model weights. Treat as a deployment map for the contracts in this chapter, not as a mandatory product blueprint.}
+\caption{Where Sid runs: presentation and ask boxes on top, harness services behind an API gateway, and twin or manual stores underneath. A deployment sketch for this chapter's contracts, not a mandatory product blueprint.}
 \label{fig:ch8-platform}
 \end{figure}
+
+Figure~\ref{fig:ch8-ui-screens} shows Sid on phone and larger screens. Managers compare hosts, ask for floor-level critical counts, and get tables or simple charts that still name Asset-IDs. That is decision support in daily use: prioritise which bay needs the next gondola, see whether evidence is thin, and keep follow-up buttons from writing the twin without approval. Figure~\ref{fig:ch8-nlq-ui} was the same idea at report time. Phone, tablet, or desktop does not change the test in Table~\ref{tab:ch8-eval}: stable IDs, openable evidence, honest abstention, gated writes.
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=\linewidth]{multi_platform_field_interfaces.pdf}
+\caption{Sid on phone and larger screens: ordinary-language questions, structured defect tables, and simple distribution views. Screens illustrate how decision support is used; they do not replace the twin or the harness.}
+\label{fig:ch8-ui-screens}
+\end{figure}
+
+Figure~\ref{fig:ch8-transfer} then shows that the same observation--geometry--dependency spine can move to renovation sequencing or construction-progress monitoring by changing entity labels and edge types. Schema reuse is not forecasting skill, and Sid is not a second detector~\cite{gao2026ifcagent,zhang2025llmagentschema,zhao2026physical}.
 
 \begin{figure}[t]
 \centering
@@ -682,10 +695,6 @@ Two complementary maps close the deployment view. Figure~\ref{fig:ch8-platform} 
 \caption{Inspection migration map: a detection-profile / entity-profile / $k$-hop retrieval spine can move from façade O\&M to renovation sequencing and construction-progress monitoring by changing entity semantics and edge types. The harness pattern travels with the spine; domain labels do not.}
 \label{fig:ch8-transfer}
 \end{figure}
-
-Whether a reader uses a phone, tablet, or desktop interface, the same test applies: named Asset-IDs must remain consistent and evidence must remain openable. An interface that invents a panel code or presents an unlinked floor count fails the rubric in Table~\ref{tab:ch8-eval}.
-
-Adjacent 2024--2026 twin-interaction and BIM-language systems supply the same control lesson without a second literature tour: keep structure outside the weights, compose with the LLM, refuse when the structured path is missing, and treat governance as a design variable~\cite{pan2026graphdtgpt,gao2026ifcagent,luo2025llmdtrobot,hellin2025bimmas,krutli2025fmrags,ma2026tenquestions}. User-experience gains count only while the five criteria in Table~\ref{tab:ch8-eval} remain green.
 
 One end-to-end walkthrough is enough to bind those criteria to practice. Consider a two-day warehouse fa\c{c}ade campaign that Chapters~2--7 have already turned into a decision-ready twin. Day~1 yields RGB coverage; Day~2 adds infrared over suspected moisture zones; perception writes modality-tagged observations; registration and GeoBIM keep host Asset-IDs aligned with the facility register. On Day~3 the manager asks four meeting questions. Local lookup loads only the passport for W-3-17 and returns openable observations. Cross-campaign comparison abstains if prior observation IDs are missing. Propagation expands upstairs and lateral neighbours, keeps RGB/IR tags, and either drafts a cited path hypothesis or refuses. Elevation audit applies a Chapter~7 spatial filter and emits a schema-constrained gondola list. Only when the manager requests action does the bounded agent draft tickets, attach evidence IDs, set a human-review flag on modality conflicts, and emit revisit hints for Chapters~2--3. It does not email contractors, rewrite BIM geometry, or clear conflict flags. Approved facts write back to twin memory; rejected drafts enter procedural memory and are not resubmitted in the same session. That single story is the chapter spine under load: twin contract, memory ladder, asset-centric assembly, multimodal disclosure, gated tools, report lifecycle, and operability metrics.
 
