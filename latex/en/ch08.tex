@@ -160,32 +160,31 @@ Trace & run events & replayable log & no \\
 
 \begin{figure}[htbp]
 \centering
-\begin{tikzpicture}[yscale=0.90]
- \def\ch8R{3.35cm}
- \node[font=\scriptsize\itshape, text=ch8mute, align=center] at (0,0)
- {code-owned\\query cycle};
- \node[ch8box, minimum width=2.05cm, minimum height=0.88cm, font=\footnotesize,
+\begin{tikzpicture}[yscale=0.92]
+ \def\ch8R{3.45cm}
+ \node[ch8hub] (hub) at (0,0)
+ {Inspection\\model harness\\[-0.15em]
+ {\normalfont\scriptsize\itshape wraps a replaceable LLM}};
+ \node[ch8box, minimum width=2.1cm, minimum height=0.9cm, font=\footnotesize,
  inner sep=3pt] (in) at (90:\ch8R) {Intake /\\routing};
- \node[ch8boxrag, minimum width=2.05cm, minimum height=0.88cm, font=\footnotesize,
+ \node[ch8boxrag, minimum width=2.1cm, minimum height=0.9cm, font=\footnotesize,
  inner sep=3pt] (ev) at (30:\ch8R) {Evidence\\assembly};
- \node[ch8boxok, minimum width=2.05cm, minimum height=0.88cm, font=\footnotesize,
+ \node[ch8boxok, minimum width=2.1cm, minimum height=0.9cm, font=\footnotesize,
  inner sep=3pt] (tool) at (-30:\ch8R) {Tool\\surface};
- \node[ch8boxllm, minimum width=2.05cm, minimum height=0.88cm, font=\footnotesize,
+ \node[ch8boxllm, minimum width=2.1cm, minimum height=0.9cm, font=\footnotesize,
  inner sep=3pt] (llm) at (-90:\ch8R) {Replaceable\\LLM};
- \node[ch8boxgate, minimum width=2.05cm, minimum height=0.88cm, font=\footnotesize,
+ \node[ch8boxgate, minimum width=2.1cm, minimum height=0.9cm, font=\footnotesize,
  inner sep=3pt] (val) at (-150:\ch8R) {Contract\\validators};
- \node[ch8boxalt, minimum width=2.05cm, minimum height=0.88cm, font=\footnotesize,
+ \node[ch8boxalt, minimum width=2.1cm, minimum height=0.9cm, font=\footnotesize,
  inner sep=3pt] (tr) at (150:\ch8R) {Trace /\\evaluation};
  \foreach \a/\b in {in/ev, ev/tool, tool/llm, llm/val, val/tr, tr/in}
- \draw[ch8arr, shorten >=1pt, shorten <=1pt] (\a) -- (\b);
- \foreach \name/\n/\ang in {in/1/90, ev/2/30, tool/3/-30, llm/4/-90, val/5/-150, tr/6/150}
- \node[ch8step] at ($(\name.north west)+(-0.08,0.08)$) {\n};
+   \draw[ch8arr, shorten >=1.5pt, shorten <=1.5pt] (\a) -- (\b);
 \end{tikzpicture}
-\caption{Inspection model harness as a six-step query cycle. Steps 1--3 and 5--6 are code-owned; step 4 is a replaceable LLM. The cycle repeats for every facility question.}
+\caption{Inspection model harness: six cooperating parts around one code-owned hub. Intake, evidence assembly, tool surface, validators, and trace enforce contracts; only the dashed LLM box is swappable. The cycle repeats for every facility question.}
 \label{fig:ch8-harness-fig}
 \end{figure}
 
-Read Figure~\ref{fig:ch8-harness-fig} clockwise as one query. Intake resolves intent and seed host codes before any drafting. Evidence assembly packs host records, neighbours, and pinned manuals. The tool surface admits only typed twin reads and draft actions. The replaceable LLM composes language inside that package. Contract validators enforce cite-or-abstain and modality disclosure. Trace and evaluation keep the run replayable so the next query can reuse the same gates. The dashed LLM box is intentional: model weights may change; the surrounding contracts should not.
+Read Figure~\ref{fig:ch8-harness-fig} clockwise as one query around the central harness. Intake resolves intent and seed host codes before any drafting. Evidence assembly packs host records, neighbours, and pinned manuals. The tool surface admits only typed twin reads and draft actions. The replaceable LLM composes language inside that package. Contract validators enforce cite-or-abstain and modality disclosure. Trace and evaluation keep the run replayable so the next query can reuse the same gates. The dashed LLM box is intentional: model weights may change; the surrounding contracts should not.
 
 Two consequences follow for procurement and teaching. First, a prompt-only prototype is not yet a harness: instructions such as ``always cite object codes'' can be ignored by a fluent model, whereas a validator that blocks delivery when the code-subset check fails is load-bearing. Second, model substitution should be a harness test, not a project rewrite: if validators, tool schemas, and twin interfaces stay fixed, changing the hosted LLM should change phrasing, not which sources are eligible or whether a write gate exists~\cite{liang2023helm,saka2024gptconstruction}. In short: Layers~L1--L3 name the capabilities; the harness is the software that enforces them on every query.
 
@@ -473,28 +472,36 @@ Returns should include Asset-ID, relation type, direction, provenance, graph ver
 
 \begin{figure}[htbp]
 \centering
-\begin{tikzpicture}[node distance=7mm and 9mm]
- \node[ch8layerband, text width=10.6cm, align=center] (band)
- {L2 evidence grounding $\cdot$ L3 bounded procedures $\cdot$ harness gates};
- \node[ch8boxalt, minimum width=2.35cm, below=8mm of band.west, anchor=west] (q)
- {User\\question};
- \node[ch8boxrag, minimum width=2.55cm, right=of q] (a) {Bounded\\agent};
- \node[ch8boxgate, minimum width=2.55cm, right=of a] (g) {Human /\\geofence gate};
- \node[ch8box, minimum width=2.55cm, below=of a] (tw) {Twin memory\\identity-locked};
- \node[ch8boxok, minimum width=2.55cm, below=of g] (w) {Approved write /\\revisit hint};
- \draw[ch8arr] (q) -- (a);
- \draw[ch8arr] (a) -- (g);
- \draw[ch8arr] (a) -- node[ch8tiny, left] {read} (tw);
- \draw[ch8arr] (tw) -- (a);
- \draw[ch8arr] (g) -- node[ch8tiny, right] {write path} (w);
- \node[ch8defnA, below=7mm of tw.south west, anchor=north west] (d1)
- {\textbf{Identity.} Stable Asset-ID on every host named in answers or tickets.};
- \node[ch8defnB, right=2.5mm of d1] (d2)
- {\textbf{Read path.} Passports, neighbours, and observations may be fetched freely.};
- \node[ch8defnC, right=2.5mm of d2] (d3)
- {\textbf{Write path.} Twin updates and revisits wait behind approval.};
+\begin{tikzpicture}[node distance=8mm and 7mm]
+  \node[ch8layerband, text width=11.2cm, align=center] (band)
+    {Harness control: free twin reads; gated writes};
+  % Main left-to-right decision chain
+  \node[ch8boxalt, minimum width=2.3cm, below=7mm of band.west, anchor=west] (q)
+    {User\\question};
+  \node[ch8boxrag, minimum width=2.45cm, right=of q] (a)
+    {Bounded\\agent};
+  \node[ch8boxgate, minimum width=2.55cm, right=of a] (g)
+    {Human /\\geofence gate};
+  \node[ch8boxok, minimum width=2.55cm, right=of g] (w)
+    {Approved write /\\revisit hint};
+  \draw[ch8arr] (q) -- (a);
+  \draw[ch8arr] (a) -- (g);
+  \draw[ch8arr] (g) -- (w);
+  % Read-only twin under the agent (not under the gate)
+  \node[ch8box, minimum width=2.7cm, below=11mm of a] (tw)
+    {Twin memory\\(identity-locked)};
+  \draw[ch8arr] (a) -- node[ch8tiny, left, xshift=-1pt] {read only} (tw);
+  \draw[ch8arr] (tw) -- (a);
+  \node[ch8tiny, below=1.5mm of tw] {no direct write from agent to twin};
+  % Legend aligned to the three duties
+  \node[ch8defnA, below=8mm of tw.south west, anchor=north west, text width=3.2cm] (d1)
+    {\textbf{Identity.} Stable Asset-ID on every host named in answers or tickets.};
+  \node[ch8defnB, right=2.2mm of d1, text width=3.2cm] (d2)
+    {\textbf{Read path.} Passports, neighbours, and observations may be fetched freely.};
+  \node[ch8defnC, right=2.2mm of d2, text width=3.2cm] (d3)
+    {\textbf{Write path.} Twin updates and revisits leave only through the gate.};
 \end{tikzpicture}
-\caption{Bounded agency with explicit identity and gate layers. The agent may read twin memory freely; irreversible actions leave only through a harness gate, not through prompt wording alone.}
+\caption{Bounded agency as a two-zone flow: retrieve under identity-locked twin reads, then act only after a human or geofence gate. Irreversible writes never jump from the agent to twin memory by prompt wording alone.}
 \label{fig:ch8-agent-gate}
 \end{figure}
 

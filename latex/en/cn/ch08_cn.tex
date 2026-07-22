@@ -160,32 +160,31 @@ M_{t+1}=\mathrm{Update}\!\bigl(\mathrm{Generate}(S_t,M_t),\,M_t\bigr),\qquad
 
 \begin{figure}[htbp]
 \centering
-\begin{tikzpicture}[yscale=0.90]
- \def\ch8R{3.35cm}
- \node[font=\scriptsize\itshape, text=ch8mute, align=center] at (0,0)
- {代码拥有的\\查询环};
- \node[ch8box, minimum width=2.0cm, minimum height=0.88cm, font=\footnotesize,
+\begin{tikzpicture}[yscale=0.92]
+ \def\ch8R{3.45cm}
+ \node[ch8hub] (hub) at (0,0)
+ {巡检模型\\harness\\[-0.15em]
+ {\normalfont\scriptsize\itshape 代码契约包裹可替换 LLM}};
+ \node[ch8box, minimum width=2.05cm, minimum height=0.9cm, font=\footnotesize,
  inner sep=3pt] (in) at (90:\ch8R) {接入/\\路由};
- \node[ch8boxrag, minimum width=2.0cm, minimum height=0.88cm, font=\footnotesize,
+ \node[ch8boxrag, minimum width=2.05cm, minimum height=0.9cm, font=\footnotesize,
  inner sep=3pt] (ev) at (30:\ch8R) {证据\\装配};
- \node[ch8boxok, minimum width=2.0cm, minimum height=0.88cm, font=\footnotesize,
+ \node[ch8boxok, minimum width=2.05cm, minimum height=0.9cm, font=\footnotesize,
  inner sep=3pt] (tool) at (-30:\ch8R) {工具面};
- \node[ch8boxllm, minimum width=2.0cm, minimum height=0.88cm, font=\footnotesize,
+ \node[ch8boxllm, minimum width=2.05cm, minimum height=0.9cm, font=\footnotesize,
  inner sep=3pt] (llm) at (-90:\ch8R) {可替换\\LLM};
- \node[ch8boxgate, minimum width=2.0cm, minimum height=0.88cm, font=\footnotesize,
+ \node[ch8boxgate, minimum width=2.05cm, minimum height=0.9cm, font=\footnotesize,
  inner sep=3pt] (val) at (-150:\ch8R) {契约\\校验};
- \node[ch8boxalt, minimum width=2.0cm, minimum height=0.88cm, font=\footnotesize,
+ \node[ch8boxalt, minimum width=2.05cm, minimum height=0.9cm, font=\footnotesize,
  inner sep=3pt] (tr) at (150:\ch8R) {轨迹/\\评价};
  \foreach \a/\b in {in/ev, ev/tool, tool/llm, llm/val, val/tr, tr/in}
- \draw[ch8arr, shorten >=1pt, shorten <=1pt] (\a) -- (\b);
- \foreach \name/\n in {in/1, ev/2, tool/3, llm/4, val/5, tr/6}
- \node[ch8step] at ($(\name.north west)+(-0.08,0.08)$) {\n};
+   \draw[ch8arr, shorten >=1.5pt, shorten <=1.5pt] (\a) -- (\b);
 \end{tikzpicture}
-\caption{巡检模型 harness 的六步查询环。步骤 1--3 与 5--6 由代码拥有；步骤 4 为可替换 LLM。每个设施问题都走完这一环。}
+\caption{巡检模型 harness：六个协作部件环绕同一代码拥有的中心枢纽。接入、证据装配、工具面、校验与轨迹强制契约；仅虚线 LLM 框可替换。每个设施问题都走完这一环。}
 \label{fig:ch8-harness-fig}
 \end{figure}
 
-按顺时针读图~\ref{fig:ch8-harness-fig}：接入先解析意图与种子宿主编码；证据装配打包宿主记录、邻域与钉扎手册；工具面只允许类型化的孪生读取与起草动作；可替换 LLM 在该证据包内组织语言；契约校验强制引用或拒答与模态披露；轨迹与评价使本次运行可重放，下一查询仍走同一门禁。虚线 LLM 框是故意的：权重可换，外围契约不宜随换。
+按顺时针绕中心 harness 读图~\ref{fig:ch8-harness-fig}：接入先解析意图与种子宿主编码；证据装配打包宿主记录、邻域与钉扎手册；工具面只允许类型化的孪生读取与起草动作；可替换 LLM 在该证据包内组织语言；契约校验强制引用或拒答与模态披露；轨迹与评价使本次运行可重放，下一查询仍走同一门禁。虚线 LLM 框是故意的：权重可换，外围契约不宜随换。
 
 由此得到两条采购与教学推论。其一，纯提示原型还不是 harness：``务必引用对象编码''这类指令可被流畅模型忽略，而``编码子集检查失败则禁止交付''的校验器才是承重结构。其二，模型替换应是 harness 测试，而不是项目重写：若校验器、工具 schema 与孪生接口固定，更换托管 LLM 应只改变措辞，而不改变哪些来源合格、写入门是否存在~\cite{liang2023helm,saka2024gptconstruction}。简言之：L1--L3 命名能力；harness 是在每次查询上强制执行这些能力的软件。
 
@@ -480,28 +479,33 @@ P(a)=\bigl\langle a,\,G(a),\,N_{\tau}(a),\,O(a),\,D(a),\,d(a)\bigr\rangle,
 
 \begin{figure}[htbp]
 \centering
-\begin{tikzpicture}[node distance=7mm and 8mm]
- \node[ch8layerband, text width=10.4cm, align=center] (band)
- {L2 证据接地 $\cdot$ L3 有界流程 $\cdot$ harness 门禁};
- \node[ch8boxalt, minimum width=2.25cm, below=8mm of band.west, anchor=west] (q)
- {用户\\问题};
- \node[ch8boxrag, minimum width=2.4cm, right=of q] (a) {有界\\智能体};
- \node[ch8boxgate, minimum width=2.4cm, right=of a] (g) {人工/\\geofence 门};
- \node[ch8box, minimum width=2.4cm, below=of a] (tw) {孪生记忆\\身份锁定};
- \node[ch8boxok, minimum width=2.4cm, below=of g] (w) {批准写入/\\复访提示};
- \draw[ch8arr] (q) -- (a);
- \draw[ch8arr] (a) -- (g);
- \draw[ch8arr] (a) -- node[ch8tiny, left] {读} (tw);
- \draw[ch8arr] (tw) -- (a);
- \draw[ch8arr] (g) -- node[ch8tiny, right] {写路径} (w);
- \node[ch8defnA, below=7mm of tw.south west, anchor=north west] (d1)
- {\textbf{身份。}答案或工单中点名的宿主必须带稳定 Asset-ID。};
- \node[ch8defnB, right=2.2mm of d1] (d2)
- {\textbf{读路径。}护照、邻域与观测可自由取回。};
- \node[ch8defnC, right=2.2mm of d2] (d3)
- {\textbf{写路径。}孪生更新与复访须经批准门。};
+\begin{tikzpicture}[node distance=8mm and 7mm]
+  \node[ch8layerband, text width=11.0cm, align=center] (band)
+    {Harness 控制：孪生只读自由；写入必须过门};
+  \node[ch8boxalt, minimum width=2.2cm, below=7mm of band.west, anchor=west] (q)
+    {用户\\问题};
+  \node[ch8boxrag, minimum width=2.35cm, right=of q] (a)
+    {有界\\智能体};
+  \node[ch8boxgate, minimum width=2.45cm, right=of a] (g)
+    {人工/\\geofence 门};
+  \node[ch8boxok, minimum width=2.45cm, right=of g] (w)
+    {批准写入/\\复访提示};
+  \draw[ch8arr] (q) -- (a);
+  \draw[ch8arr] (a) -- (g);
+  \draw[ch8arr] (g) -- (w);
+  \node[ch8box, minimum width=2.6cm, below=11mm of a] (tw)
+    {孪生记忆\\（身份锁定）};
+  \draw[ch8arr] (a) -- node[ch8tiny, left, xshift=-1pt] {只读} (tw);
+  \draw[ch8arr] (tw) -- (a);
+  \node[ch8tiny, below=1.5mm of tw] {智能体不得直写孪生};
+  \node[ch8defnA, below=8mm of tw.south west, anchor=north west, text width=3.1cm] (d1)
+    {\textbf{身份。}答案或工单中点名的宿主必须带稳定 Asset-ID。};
+  \node[ch8defnB, right=2.0mm of d1, text width=3.1cm] (d2)
+    {\textbf{读路径。}护照、邻域与观测可自由取回。};
+  \node[ch8defnC, right=2.0mm of d2, text width=3.1cm] (d3)
+    {\textbf{写路径。}孪生更新与复访只能经门禁离开。};
 \end{tikzpicture}
-\caption{带显式身份与门禁层的有界智能体。智能体可自由读孪生记忆；不可逆动作只能经 harness 门离开，不能仅靠提示词约束。}
+\caption{有界智能体的两区流程：在身份锁定的孪生上检索，再经人工或 geofence 门后才可行动。不可逆写入不得仅靠提示词从智能体跳进孪生记忆。}
 \label{fig:ch8-agent-gate}
 \end{figure}
 
