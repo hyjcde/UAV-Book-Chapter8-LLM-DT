@@ -185,7 +185,7 @@ def polish_framework_overview(text: str) -> str:
         'value="&lt;b&gt;Semantic fusion engine&lt;/b&gt;"',
     )
     # Book labels: title case, no Subsystem A/B/C/D, dark sublines, larger type.
-    sub = '&lt;br&gt;&lt;span style=&quot;font-size: 14px; color: rgb(47, 74, 106);&quot;&gt;{body}&lt;/span&gt;'
+    sub = '&lt;br&gt;&lt;span style=&quot;font-size: 14px; color: rgb(90, 90, 90);&quot;&gt;{body}&lt;/span&gt;'
     subw = '&lt;br&gt;&lt;span style=&quot;font-size: 14px; color: rgb(255, 255, 255);&quot;&gt;{body}&lt;/span&gt;'
     rich_values = {
         "D5NGcvgCAcNfVg2UiYoK-238": f"&lt;b&gt;Immersive 3D visualization&lt;/b&gt;{sub.format(body='Web-based rendering engine&lt;br&gt;Real-time interaction')}",
@@ -199,7 +199,7 @@ def polish_framework_overview(text: str) -> str:
         "D5NGcvgCAcNfVg2UiYoK-251": f"&lt;b&gt;Semantic segmentation&lt;/b&gt;{sub.format(body='Pixel-level masking&lt;br&gt;Material classification')}",
         "D5NGcvgCAcNfVg2UiYoK-253": "&lt;b&gt;Semantic fusion engine&lt;/b&gt;",
         "D5NGcvgCAcNfVg2UiYoK-254": f"&lt;b&gt;IDP&lt;/b&gt;{subw.format(body='Integrated defect profile')}",
-        "D5NGcvgCAcNfVg2UiYoK-255": "&lt;span style=&quot;font-size: 14px; color: rgb(47, 74, 106);&quot;&gt;Mapping 2D masks&lt;br&gt;to 3D coordinates&lt;/span&gt;",
+        "D5NGcvgCAcNfVg2UiYoK-255": "&lt;span style=&quot;font-size: 14px; color: rgb(90, 90, 90);&quot;&gt;Mapping 2D masks&lt;br&gt;to 3D coordinates&lt;/span&gt;",
         "D5NGcvgCAcNfVg2UiYoK-259": "&lt;b&gt;Context engine&lt;/b&gt;",
         "D5NGcvgCAcNfVg2UiYoK-260": f"&lt;b&gt;Large language model (LLM)&lt;/b&gt;{sub.format(body='Contextual understanding&lt;br&gt;Logical inference')}",
         "D5NGcvgCAcNfVg2UiYoK-261": f"&lt;b&gt;RAG orchestrator&lt;/b&gt;{sub.format(body='Retrieval augmented generation&lt;br&gt;Prompt engineering')}",
