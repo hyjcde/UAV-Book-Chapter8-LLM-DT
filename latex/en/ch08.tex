@@ -163,7 +163,7 @@ The inspection harness has five cooperating parts; see Table~\ref{tab:ch8-harnes
 \toprule
 Harness part & Owns & Inspection example \\
 \midrule
-Intake / routing & intent, Asset-ID resolve & ``west bay'' $\rightarrow$ GeoBIM seed \\
+Intake / routing & intent, Asset-ID resolve & west bay $\rightarrow$ GeoBIM seed \\
 Evidence assembly & RAG + packing & passports, neighbours, manuals \\
 Tool surface & typed APIs + gates & expand neighbours; no flight cmds \\
 Contract validators & cite-or-abstain checks & ID $\subseteq$ package; modality flags \\
@@ -174,21 +174,26 @@ Trace / evaluation & replayable logs + metrics & tool TRACE; HELM-style scenario
 
 \begin{figure}[htbp]
 \centering
-\begin{tikzpicture}[node distance=7mm and 10mm]
-  \node[ch8box, minimum width=2.4cm] (in) {Intake /\\routing};
-  \node[ch8boxrag, minimum width=2.4cm, right=of in] (ev) {Evidence\\assembly};
-  \node[ch8boxok, minimum width=2.4cm, right=of ev] (tool) {Tool\\surface};
-  \node[ch8boxgate, minimum width=2.4cm, below=of ev] (val) {Contract\\validators};
-  \node[ch8boxalt, minimum width=2.4cm, left=of val] (tr) {Trace /\\evaluation};
-  \node[ch8boxllm, minimum width=2.4cm, right=of tool] (llm) {Replaceable\\LLM};
-  \draw[ch8arr] (in) -- (ev);
-  \draw[ch8arr] (ev) -- (tool);
-  \draw[ch8arr] (tool) -- (llm);
-  \draw[ch8arr] (llm) -- (val);
-  \draw[ch8arr] (val) -- (tr);
-  \draw[ch8arr] (tr) -- (in);
+\begin{tikzpicture}[yscale=0.90]
+  \def\ch8R{3.35cm}
+  \node[font=\scriptsize\itshape, text=ch8mute, align=center] at (0,0)
+    {query\\cycle};
+  \node[ch8box, minimum width=2.05cm, minimum height=0.88cm, font=\footnotesize,
+        inner sep=3pt] (in) at (90:\ch8R) {Intake /\\routing};
+  \node[ch8boxrag, minimum width=2.05cm, minimum height=0.88cm, font=\footnotesize,
+        inner sep=3pt] (ev) at (30:\ch8R) {Evidence\\assembly};
+  \node[ch8boxok, minimum width=2.05cm, minimum height=0.88cm, font=\footnotesize,
+        inner sep=3pt] (tool) at (-30:\ch8R) {Tool\\surface};
+  \node[ch8boxllm, minimum width=2.05cm, minimum height=0.88cm, font=\footnotesize,
+        inner sep=3pt] (llm) at (-90:\ch8R) {Replaceable\\LLM};
+  \node[ch8boxgate, minimum width=2.05cm, minimum height=0.88cm, font=\footnotesize,
+        inner sep=3pt] (val) at (-150:\ch8R) {Contract\\validators};
+  \node[ch8boxalt, minimum width=2.05cm, minimum height=0.88cm, font=\footnotesize,
+        inner sep=3pt] (tr) at (150:\ch8R) {Trace /\\evaluation};
+  \foreach \a/\b in {in/ev, ev/tool, tool/llm, llm/val, val/tr, tr/in}
+    \draw[ch8arr, shorten >=1pt, shorten <=1pt] (\a) -- (\b);
 \end{tikzpicture}
-\caption{Inspection model harness around a replaceable LLM: code owns intake, evidence packing, typed tools, validators, and traces.}
+\caption{Inspection model harness as a six-part query cycle around a replaceable LLM: code owns intake, evidence packing, typed tools, validators, and traces.}
 \label{fig:ch8-harness-fig}
 \end{figure}
 

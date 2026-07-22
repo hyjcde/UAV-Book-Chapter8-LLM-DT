@@ -166,7 +166,7 @@ M_{t+1}=\mathrm{Update}\!\bigl(\mathrm{Generate}(S_t,M_t),\,M_t\bigr),\qquad
 \toprule
 部件 & 负责什么 & 巡检例子 \\
 \midrule
-接入/路由 & 意图、Asset-ID 解析 & ``西侧跨''$\rightarrow$ GeoBIM 种子 \\
+接入/路由 & 意图、Asset-ID 解析 & 西侧跨 $\rightarrow$ GeoBIM 种子 \\
 证据装配 & RAG + 打包 & 护照、邻域、手册 \\
 工具面 & 类型化 API + 门禁 & 扩展邻域；禁飞控指令 \\
 契约校验 & 引用或拒答检查 & ID $\subseteq$ 检索包；模态标记 \\
@@ -177,21 +177,26 @@ M_{t+1}=\mathrm{Update}\!\bigl(\mathrm{Generate}(S_t,M_t),\,M_t\bigr),\qquad
 
 \begin{figure}[htbp]
 \centering
-\begin{tikzpicture}[node distance=7mm and 9mm]
-  \node[ch8box, minimum width=2.3cm] (in) {接入/\\路由};
-  \node[ch8boxrag, minimum width=2.3cm, right=of in] (ev) {证据\\装配};
-  \node[ch8boxok, minimum width=2.3cm, right=of ev] (tool) {工具面};
-  \node[ch8boxgate, minimum width=2.3cm, below=of ev] (val) {契约\\校验};
-  \node[ch8boxalt, minimum width=2.3cm, left=of val] (tr) {轨迹/\\评价};
-  \node[ch8boxllm, minimum width=2.3cm, right=of tool] (llm) {可替换\\LLM};
-  \draw[ch8arr] (in) -- (ev);
-  \draw[ch8arr] (ev) -- (tool);
-  \draw[ch8arr] (tool) -- (llm);
-  \draw[ch8arr] (llm) -- (val);
-  \draw[ch8arr] (val) -- (tr);
-  \draw[ch8arr] (tr) -- (in);
+\begin{tikzpicture}[yscale=0.90]
+  \def\ch8R{3.35cm}
+  \node[font=\scriptsize\itshape, text=ch8mute, align=center] at (0,0)
+    {查询\\环};
+  \node[ch8box, minimum width=2.0cm, minimum height=0.88cm, font=\footnotesize,
+        inner sep=3pt] (in) at (90:\ch8R) {接入/\\路由};
+  \node[ch8boxrag, minimum width=2.0cm, minimum height=0.88cm, font=\footnotesize,
+        inner sep=3pt] (ev) at (30:\ch8R) {证据\\装配};
+  \node[ch8boxok, minimum width=2.0cm, minimum height=0.88cm, font=\footnotesize,
+        inner sep=3pt] (tool) at (-30:\ch8R) {工具面};
+  \node[ch8boxllm, minimum width=2.0cm, minimum height=0.88cm, font=\footnotesize,
+        inner sep=3pt] (llm) at (-90:\ch8R) {可替换\\LLM};
+  \node[ch8boxgate, minimum width=2.0cm, minimum height=0.88cm, font=\footnotesize,
+        inner sep=3pt] (val) at (-150:\ch8R) {契约\\校验};
+  \node[ch8boxalt, minimum width=2.0cm, minimum height=0.88cm, font=\footnotesize,
+        inner sep=3pt] (tr) at (150:\ch8R) {轨迹/\\评价};
+  \foreach \a/\b in {in/ev, ev/tool, tool/llm, llm/val, val/tr, tr/in}
+    \draw[ch8arr, shorten >=1pt, shorten <=1pt] (\a) -- (\b);
 \end{tikzpicture}
-\caption{环绕可替换 LLM 的巡检模型 harness：代码拥有接入、证据打包、类型化工具、校验器与轨迹。}
+\caption{巡检模型 harness 的六部件查询环：可替换 LLM 在环上，代码拥有接入、证据打包、类型化工具、校验器与轨迹。}
 \label{fig:ch8-harness-fig}
 \end{figure}
 
