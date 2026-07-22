@@ -30,6 +30,11 @@
   \par\ProgramCodeHead{#1}\ignorespaces}{%
   \par\noindent\textcolor{programcode}{\rule{\columnwidth}{1pt}}%
   \vskip2pt\par\addvspace{\baselineskip}}
+\newenvironment{plainlisting}{%
+  \par\footnotesize\raggedright
+  \setlength{\parindent}{0pt}%
+  \setlength{\parskip}{0.15em}%
+  \ignorespaces}{\par\normalsize}
 
 % 与英文共享 Springer 本地开本/栏宽设置
 \input{../../shared/springer_local_trim}

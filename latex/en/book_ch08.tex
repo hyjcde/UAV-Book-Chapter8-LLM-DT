@@ -32,6 +32,13 @@
 \captionsetup{font=small,labelfont=bf}
 \setlist{itemsep=2pt,parsep=0pt,topsep=4pt}
 
+% Plain (non-monospace) body for Springer programcode boxes.
+\newenvironment{plainlisting}{%
+  \par\footnotesize\raggedright
+  \setlength{\parindent}{0pt}%
+  \setlength{\parskip}{0.15em}%
+  \ignorespaces}{\par\normalsize}
+
 % Match published Springer trim (~160 x 241 mm); keep SNmono 117 x 191 mm body.
 \input{../shared/springer_local_trim}
 
