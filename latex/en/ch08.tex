@@ -457,6 +457,7 @@ Stage twin write & pending update & mandatory approval \\
 \end{table}
 
 A typed call for neighbour expansion is
+\begin{programcode}{Typed tool call: \texttt{expand\_neighbours}}
 \begin{verbatim}
 {"tool":"expand_neighbours",
  "arguments":{"asset_ids":["W-3-17"],
@@ -464,6 +465,7 @@ A typed call for neighbour expansion is
    "max_hops":1,"as_of":"2026-07-22",
    "twin_snapshot_id":"warehouse-v12"}}
 \end{verbatim}
+\end{programcode}
 Returns should include Asset-ID, relation type, direction, provenance, graph version, and confidence. Human gates are necessary but not a complete security model. Threats include prompt injection in maintenance PDFs, stale manuals, retrieval poisoning, cross-project leakage, unauthorised tool calls, duplicate tickets, concurrent write conflicts, and users asking to bypass approval~\cite{ji2023,saka2024gptconstruction,lee2024ragsafety}.
 
 \begin{figure}[htbp]
@@ -588,7 +590,7 @@ Write staging & twin updates pending only & draft button mutates twin \\
 Figure~\ref{fig:ch8-ablation} reports a deterministic packaging experiment used to justify passport-centred assembly for reports. Setup: a frozen twin snapshot; $N=200$ queries per packaging cell; no LLM as judge; primary metrics \texttt{retr\_exact\_hit} and answer/cited ID containment. Source summaries live under \texttt{figures\_src/statistical/data/}. Hop depth therefore belongs to evidence-assembly policy, not free prompt choice~\cite{lewis2020,jeon2025hybridrag,lee2024ragsafety}. Report drafts inherit that policy under V1--V4.
 
 Report lifecycle is a state machine:
-\texttt{DRAFT}$\rightarrow$\texttt{VALIDATED}$\rightarrow$\texttt{UNDER\_REVIEW}$\rightarrow$\texttt{APPROVED}/\texttt{REJECTED}$\rightarrow$\texttt{EXPORTED}$$\rightarrow$\texttt{WRITE\_STAGED}$\rightarrow$\texttt{WRITE\_COMMITTED}.
+\texttt{DRAFT}$\rightarrow$\texttt{VALIDATED}$\rightarrow$\texttt{UNDER\_REVIEW}$\rightarrow$\texttt{APPROVED}/\texttt{REJECTED}$\rightarrow$\texttt{EXPORTED}$\rightarrow$\texttt{WRITE\_STAGED}$\rightarrow$\texttt{WRITE\_COMMITTED}.
 Forbidden transitions: DRAFT writing the twin; export after failed validation; automatic re-propose of REJECTED drafts; promoting \texttt{possible} to \texttt{confirmed} without approval; approving when an evidence URI is broken. The LLM may fill fields only in DRAFT; Table~\ref{tab:ch8-report-accept} owns VALIDATE; humans own REVIEW; only APPROVED paths may \texttt{stage\_twin\_write}~\cite{yao2023react,gao2026ifcagent,luo2025llmdtrobot}. A replayable TRACE must record twin snapshot, graph version, manual edition, embedding model, LLM name/version, system-prompt version, tool-schema version, retrieval parameters, validator version, generation parameters, operator, reviewer, and timestamp~\cite{liang2023helm}.
 
 \begin{figure}[htbp]
@@ -685,23 +687,35 @@ Triage language sits between diagnosis and schedule. An \emph{illustrative, non-
 \label{eq:ch8-score}
 s = w_{\ell}\,\tilde{\ell} + w_{c}\,c + w_{a}\,a + w_{m}\,m,
 \end{equation}
-where $\tilde{\ell}$ is geometry-normalised defect size, $c$ detector confidence, $a$ access urgency, and $m$ a modality-conflict term. The weights $w_{\cdot}$ are facility placeholders set by managers or MCDA; they must not be used for field scheduling without calibration, sensitivity analysis, and professional approval. Detector confidence is not structural risk; modality conflict may raise revisit priority rather than simply lower~$s$. The language system exposes cited terms behind each score and lets humans reorder; see Table~\ref{tab:ch8-triage}. Surface cracks require geometry-normalised lengths without uncited structural stories, moisture cues require multimodal disclosure, and prior repair patches require cross-campaign IDs before a system may claim deterioration~\cite{zhao2024facade,zhao2026physical,jeon2025hybridrag}. A minimal constrained draft remains the machine-readable carrier of that triage:
+where $\tilde{\ell}$ is geometry-normalised defect size, $c$ detector confidence, $a$ access urgency, and $m$ a modality-conflict term. The weights $w_{\cdot}$ are facility placeholders set by managers or MCDA; they must not be used for field scheduling without calibration, sensitivity analysis, and professional approval. Detector confidence is not structural risk; modality conflict may raise revisit priority rather than simply lower~$s$. The language system exposes cited terms behind each score and lets humans reorder; see Table~\ref{tab:ch8-triage}. Surface cracks require geometry-normalised lengths without uncited structural stories, moisture cues require multimodal disclosure, and prior repair patches require cross-campaign IDs before a system may claim deterioration~\cite{zhao2024facade,zhao2026physical,jeon2025hybridrag}. A minimal claim-level draft remains the machine-readable carrier of that triage:
 
+\begin{programcode}{Illustrative claim-level triage draft (machine-readable)}
 \begin{verbatim}
 {
+  "schema_version": "ch8-claim-1",
+  "twin_snapshot_id": "warehouse-v12",
   "asset_ids": ["W-3-17", "W-4-17"],
-  "defect_ids": ["obs-2403-118", "obs-2403-204"],
-  "diagnosis": {
-    "type": "possible_moisture_path",
-    "severity": "medium",
-    "hypothesis": "upstairs staining with mid-storey hollow"
-  },
-  "propagation": ["W-4-17", "W-3-17"],
-  "action": {"repair": "local_probe", "priority": 2},
-  "trust": {"confidence": 0.62, "human_review": true,
+  "claims": [
+    {"claim_type": "observation",
+     "evidence_ids": ["obs-2403-118"],
+     "text": "RGB staining on W-3-17"},
+    {"claim_type": "hypothesis",
+     "evidence_ids": ["obs-2403-118", "obs-2403-204"],
+     "relation_path": ["W-4-17", "W-3-17"],
+     "requires_human_review": true,
+     "text": "possible moisture path"}
+  ],
+  "actions": [
+    {"action_type": "local_probe",
+     "status": "proposed",
+     "approval_required": true}
+  ],
+  "trust": {"workflow_status": "DRAFT",
+            "human_check": true,
             "notes": "RGB/IR disagreement on W-3-17"}
 }
 \end{verbatim}
+\end{programcode}
 
 Every identity in such a draft must be subset-checked against retrieval; the human paragraph is rendered from the fields, not scraped afterward~\cite{zheng2023bimassistant,joffe2025buildingcodes}.
 

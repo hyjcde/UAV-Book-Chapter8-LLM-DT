@@ -18,6 +18,19 @@
 \captionsetup{font=small,labelfont=bf}
 \setlist{itemsep=2pt,parsep=0pt,topsep=4pt}
 
+% Lightweight Springer-style programcode box (EN shell uses SNmono native).
+\definecolor{programcode}{gray}{0.65}
+\newcommand{\ProgramCodeHead}[1]{%
+  {\vskip12pt\noindent\fboxsep=0pt
+   \colorbox{programcode}{\vbox{\vskip3pt
+     \hbox to \textwidth{\hskip3pt
+       \vbox{\raggedright\noindent\textbf{#1\vphantom{Qy}}}\hfill}%
+     \vspace*{3pt}}}\par\vskip2pt\noindent\kern0pt}}
+\newenvironment{programcode}[1]{%
+  \par\ProgramCodeHead{#1}\ignorespaces}{%
+  \par\noindent\textcolor{programcode}{\rule{\columnwidth}{1pt}}%
+  \vskip2pt\par\addvspace{\baselineskip}}
+
 % 与英文共享 Springer 本地开本/栏宽设置
 \input{../../shared/springer_local_trim}
 % 中文行距略收，避免相对英文显得过疏（仍保持可读）。

@@ -463,6 +463,7 @@ P(a)=\bigl\langle a,\,G(a),\,N_{\tau}(a),\,O(a),\,D(a),\,d(a)\bigr\rangle,
 
 表~\ref{tab:ch8-tools} 中的``扩展邻域''宜写成可机读的 typed call，而不是散文里的``顺便看看楼上''。下列 \texttt{expand\_neighbours} 请求与返回字段是教学示例；实现名称可以不同，但字段语义应固定：
 
+\begin{programcode}{类型化工具调用：\texttt{expand\_neighbours}}
 \begin{verbatim}
 {
   "tool": "expand_neighbours",
@@ -473,9 +474,11 @@ P(a)=\bigl\langle a,\,G(a),\,N_{\tau}(a),\,O(a),\,D(a),\,d(a)\bigr\rangle,
   }
 }
 \end{verbatim}
+\end{programcode}
 
 Harness 返回的只读字段应至少包括 \texttt{seed\_asset\_ids}、\texttt{k}、\texttt{edge\_types}、\texttt{neighbours}（每项含 \texttt{asset\_id}、\texttt{edge\_type}、\texttt{hop}）、\texttt{package\_asset\_ids}、\texttt{twin\_snapshot\_id} 与 \texttt{trace\_id}。示例：
 
+\begin{programcode}{工具返回字段示例（只读）}
 \begin{verbatim}
 {
   "seed_asset_ids": ["W-3-17"],
@@ -490,6 +493,7 @@ Harness 返回的只读字段应至少包括 \texttt{seed\_asset\_ids}、\texttt
   "trace_id": "tr-0842"
 }
 \end{verbatim}
+\end{programcode}
 
 有界工具面仍须面对真实安全威胁，而不仅是``加一个人工门''。提示注入可能把观测备注或手册 PDF 里的隐藏指令塞进上下文；过期手册若未钉扎版本，会把已废止条款当作现行要求；检索投毒可能在向量索引中插入伪造护照；跨项目数据泄漏可能在多租户部署里把 A 站 Asset-ID 泄露给 B 站查询；未授权工具调用可能绕过 allow-list 直接写孪生；重复工单可能在会话重试中把同一复访提示开两次；并发写入可能造成孪生版本冲突；用户口头要求``先标已修''则可能试图绕过审批链。Harness 应以代码拥有 allow-list、版本钉扎、租户隔离、幂等工单键、乐观锁与强制 REVIEW 状态来回应这些威胁；人工门是最后一道闸，不是完整安全模型~\cite{lee2024ragsafety,liang2023helm,gao2026ifcagent}.
 
@@ -708,23 +712,35 @@ ID 子集 & 资产/缺陷 ID $\subseteq$ 证据包 & 虚构板块编码 \\
 \label{eq:ch8-score}
 s = w_{\ell}\,\tilde{\ell} + w_{c}\,c + w_{a}\,a + w_{m}\,m,
 \end{equation}
-其中 $\tilde{\ell}$ 为几何归一化缺陷尺度，$c$ 为检测置信度，$a$ 为可达紧迫性，$m$ 为模态冲突项。权重 $w_{\cdot}$ 为经理或 MCDA 设定的设施占位值；未经校准、敏感性分析与专业批准，不得用于现场排程。检测置信度不等于结构风险；模态冲突可能提高复访优先级，而非简单降低~$s$。语言系统应暴露每个分数背后的引用项，并让人类重排；见表~\ref{tab:ch8-triage}。表面裂缝需要几何归一化长度，不得写无引用的结构故事；潮湿线索需要多模态披露；历史修补斑块在允许``是否更严重''之前需要跨航次 ID~\cite{zhao2024facade,zhao2026physical,jeon2025hybridrag}。最小约束草稿仍是承载该分诊的机器可读载体：
+其中 $\tilde{\ell}$ 为几何归一化缺陷尺度，$c$ 为检测置信度，$a$ 为可达紧迫性，$m$ 为模态冲突项。权重 $w_{\cdot}$ 为经理或 MCDA 设定的设施占位值；未经校准、敏感性分析与专业批准，不得用于现场排程。检测置信度不等于结构风险；模态冲突可能提高复访优先级，而非简单降低~$s$。语言系统应暴露每个分数背后的引用项，并让人类重排；见表~\ref{tab:ch8-triage}。表面裂缝需要几何归一化长度，不得写无引用的结构故事；潮湿线索需要多模态披露；历史修补斑块在允许``是否更严重''之前需要跨航次 ID~\cite{zhao2024facade,zhao2026physical,jeon2025hybridrag}。最小声明级草稿仍是承载该分诊的机器可读载体：
 
+\begin{programcode}{示意：声明级分诊草稿（机器可读）}
 \begin{verbatim}
 {
+  "schema_version": "ch8-claim-1",
+  "twin_snapshot_id": "warehouse-v12",
   "asset_ids": ["W-3-17", "W-4-17"],
-  "defect_ids": ["obs-2403-118", "obs-2403-204"],
-  "diagnosis": {
-    "type": "possible_moisture_path",
-    "severity": "medium",
-    "hypothesis": "upstairs staining with mid-storey hollow"
-  },
-  "propagation": ["W-4-17", "W-3-17"],
-  "action": {"repair": "local_probe", "priority": 2},
-  "trust": {"confidence": 0.62, "human_review": true,
+  "claims": [
+    {"claim_type": "observation",
+     "evidence_ids": ["obs-2403-118"],
+     "text": "RGB staining on W-3-17"},
+    {"claim_type": "hypothesis",
+     "evidence_ids": ["obs-2403-118", "obs-2403-204"],
+     "relation_path": ["W-4-17", "W-3-17"],
+     "requires_human_review": true,
+     "text": "possible moisture path"}
+  ],
+  "actions": [
+    {"action_type": "local_probe",
+     "status": "proposed",
+     "approval_required": true}
+  ],
+  "trust": {"workflow_status": "DRAFT",
+            "human_check": true,
             "notes": "RGB/IR disagreement on W-3-17"}
 }
 \end{verbatim}
+\end{programcode}
 
 草稿中每个身份都必须相对检索集做子集校验；给人看的段落由字段渲染而来，不得事后再刮 ID~\cite{zheng2023bimassistant,joffe2025buildingcodes}。
 
