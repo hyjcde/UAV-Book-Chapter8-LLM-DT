@@ -184,43 +184,69 @@ def polish_framework_overview(text: str) -> str:
         'value="&lt;b&gt;SEMANTIC&lt;br&gt;FUSION&lt;br&gt;ENGINE&lt;/b&gt;"',
         'value="&lt;b&gt;Semantic fusion engine&lt;/b&gt;"',
     )
-    # Book figure: drop grey/italic sublines; keep title-only boxes readable.
-    text = re.sub(
-        r'&lt;br&gt;&lt;span style=&quot;color: rgb\(102, 102, 102\);&quot;&gt;.*?&lt;/span&gt;',
-        '',
-        text,
-        flags=re.DOTALL,
-    )
-    text = re.sub(r'&lt;br&gt;&lt;i&gt;.*?&lt;/i&gt;', '', text)
-    text = text.replace(
-        ' value="&lt;span style=&quot;color: rgb(85, 85, 85);&quot;&gt;Mapping 2D Masks&lt;br&gt;to 3D Coordinates&lt;/span&gt;"',
-        ' value=""',
-    )
-    text = text.replace(
-        'value="&lt;b&gt;IDP&lt;/b&gt;&lt;br&gt;&lt;span&gt;(Integrated&lt;br&gt;Defect&lt;br&gt;Profile)&lt;/span&gt;"',
-        'value="&lt;b&gt;IDP&lt;/b&gt;"',
-    )
+    # Book labels: title case, no Subsystem A/B/C/D, dark sublines, larger type.
+    sub = '&lt;br&gt;&lt;span style=&quot;font-size: 14px; color: rgb(47, 74, 106);&quot;&gt;{body}&lt;/span&gt;'
+    subw = '&lt;br&gt;&lt;span style=&quot;font-size: 14px; color: rgb(255, 255, 255);&quot;&gt;{body}&lt;/span&gt;'
+    rich_values = {
+        "D5NGcvgCAcNfVg2UiYoK-238": f"&lt;b&gt;Immersive 3D visualization&lt;/b&gt;{sub.format(body='Web-based rendering engine&lt;br&gt;Real-time interaction')}",
+        "D5NGcvgCAcNfVg2UiYoK-239": f"&lt;b&gt;Analytical dashboard&lt;/b&gt;{sub.format(body='Decision support views&lt;br&gt;Statistical charts')}",
+        "D5NGcvgCAcNfVg2UiYoK-240": f"&lt;b&gt;Cognitive copilot&lt;/b&gt;{sub.format(body='Natural language interface&lt;br&gt;Grounded Q&amp;amp;A')}",
+        "D5NGcvgCAcNfVg2UiYoK-245": "&lt;b&gt;Geometric reconstruction&lt;/b&gt;",
+        "D5NGcvgCAcNfVg2UiYoK-246": f"&lt;b&gt;Photogrammetry pipeline&lt;/b&gt;{sub.format(body='Sparse/dense point clouds&lt;br&gt;Mesh reconstruction')}",
+        "D5NGcvgCAcNfVg2UiYoK-247": f"&lt;b&gt;Model alignment&lt;/b&gt;{sub.format(body='Design model parsing&lt;br&gt;Geometric deviation check')}",
+        "D5NGcvgCAcNfVg2UiYoK-249": "&lt;b&gt;Visual perception&lt;/b&gt;",
+        "D5NGcvgCAcNfVg2UiYoK-250": f"&lt;b&gt;Automated defect recognition&lt;/b&gt;{sub.format(body='Deep learning detection&lt;br&gt;Feature extraction')}",
+        "D5NGcvgCAcNfVg2UiYoK-251": f"&lt;b&gt;Semantic segmentation&lt;/b&gt;{sub.format(body='Pixel-level masking&lt;br&gt;Material classification')}",
+        "D5NGcvgCAcNfVg2UiYoK-253": "&lt;b&gt;Semantic fusion engine&lt;/b&gt;",
+        "D5NGcvgCAcNfVg2UiYoK-254": f"&lt;b&gt;IDP&lt;/b&gt;{subw.format(body='Integrated defect profile')}",
+        "D5NGcvgCAcNfVg2UiYoK-255": "&lt;span style=&quot;font-size: 14px; color: rgb(47, 74, 106);&quot;&gt;Mapping 2D masks&lt;br&gt;to 3D coordinates&lt;/span&gt;",
+        "D5NGcvgCAcNfVg2UiYoK-259": "&lt;b&gt;Context engine&lt;/b&gt;",
+        "D5NGcvgCAcNfVg2UiYoK-260": f"&lt;b&gt;Large language model (LLM)&lt;/b&gt;{sub.format(body='Contextual understanding&lt;br&gt;Logical inference')}",
+        "D5NGcvgCAcNfVg2UiYoK-261": f"&lt;b&gt;RAG orchestrator&lt;/b&gt;{sub.format(body='Retrieval augmented generation&lt;br&gt;Prompt engineering')}",
+        "D5NGcvgCAcNfVg2UiYoK-263": "&lt;b&gt;Knowledge management&lt;/b&gt;",
+        "D5NGcvgCAcNfVg2UiYoK-264": f"&lt;b&gt;Knowledge graph&lt;/b&gt;{sub.format(body='Topological relationships&lt;br&gt;Domain schema')}",
+        "D5NGcvgCAcNfVg2UiYoK-265": f"&lt;b&gt;Vector database&lt;/b&gt;{sub.format(body='High-dim embeddings&lt;br&gt;Similarity search')}",
+        "D5NGcvgCAcNfVg2UiYoK-271": f"&lt;b&gt;Multi-spectral imagery&lt;/b&gt;{sub.format(body='RGB and infrared')}",
+        "D5NGcvgCAcNfVg2UiYoK-272": f"&lt;b&gt;Telemetry&lt;/b&gt;{sub.format(body='GPS / IMU pose')}",
+        "D5NGcvgCAcNfVg2UiYoK-276": f"&lt;b&gt;Design models&lt;/b&gt;{sub.format(body='BIM / CAD context')}",
+        "D5NGcvgCAcNfVg2UiYoK-277": f"&lt;b&gt;Metadata&lt;/b&gt;{sub.format(body='Inspection logs')}",
+        "D5NGcvgCAcNfVg2UiYoK-281": f"&lt;b&gt;Raw storage&lt;/b&gt;{sub.format(body='Distributed file system')}",
+        "D5NGcvgCAcNfVg2UiYoK-282": f"&lt;b&gt;Edge computing&lt;/b&gt;{sub.format(body='Filtering and staging')}",
+    }
+    for cid, val in rich_values.items():
+        text = re.sub(
+            rf'(id="{cid}"[^>]*value=")([^"]*)(" vertex="1")',
+            rf"\1{val}\3",
+            text,
+            count=1,
+        )
     module_ids = (
-        'D5NGcvgCAcNfVg2UiYoK-237',
-        'D5NGcvgCAcNfVg2UiYoK-243',
-        'D5NGcvgCAcNfVg2UiYoK-257',
-        'D5NGcvgCAcNfVg2UiYoK-267',
+        "D5NGcvgCAcNfVg2UiYoK-237",
+        "D5NGcvgCAcNfVg2UiYoK-243",
+        "D5NGcvgCAcNfVg2UiYoK-257",
+        "D5NGcvgCAcNfVg2UiYoK-267",
     )
-    title_ids = (
-        'D5NGcvgCAcNfVg2UiYoK-245',
-        'D5NGcvgCAcNfVg2UiYoK-249',
-        'D5NGcvgCAcNfVg2UiYoK-259',
-        'D5NGcvgCAcNfVg2UiYoK-263',
-        'D5NGcvgCAcNfVg2UiYoK-253',
-        'D5NGcvgCAcNfVg2UiYoK-270',
-        'D5NGcvgCAcNfVg2UiYoK-275',
-        'D5NGcvgCAcNfVg2UiYoK-280',
-        'D5NGcvgCAcNfVg2UiYoK-254',
+    section_ids = (
+        "D5NGcvgCAcNfVg2UiYoK-245",
+        "D5NGcvgCAcNfVg2UiYoK-249",
+        "D5NGcvgCAcNfVg2UiYoK-259",
+        "D5NGcvgCAcNfVg2UiYoK-263",
+        "D5NGcvgCAcNfVg2UiYoK-253",
     )
+    group_ids = (
+        "D5NGcvgCAcNfVg2UiYoK-270",
+        "D5NGcvgCAcNfVg2UiYoK-275",
+        "D5NGcvgCAcNfVg2UiYoK-280",
+    )
+    card_ids = tuple(rich_values.keys())
     for cid in module_ids:
-        text = re.sub(rf'(id="{cid}"[^>]*fontSize=)\d+', r'\g<1>19', text, count=1)
-    for cid in title_ids:
-        text = re.sub(rf'(id="{cid}"[^>]*fontSize=)\d+', r'\g<1>17', text, count=1)
+        text = re.sub(rf'(id="{cid}"[^>]*fontSize=)\d+', r"\g<1>22", text, count=1)
+    for cid in section_ids:
+        text = re.sub(rf'(id="{cid}"[^>]*fontSize=)\d+', r"\g<1>20", text, count=1)
+    for cid in group_ids:
+        text = re.sub(rf'(id="{cid}"[^>]*fontSize=)\d+', r"\g<1>19", text, count=1)
+    for cid in card_ids:
+        text = re.sub(rf'(id="{cid}"[^>]*fontSize=)\d+', r"\g<1>18", text, count=1)
     return text
 
 
