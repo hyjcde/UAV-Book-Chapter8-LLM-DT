@@ -8,17 +8,46 @@
 
 Cities maintain large stocks of ageing buildings under rising safety and cost pressure. Manual fa\c{c}ade inspection remains labour-intensive and hazardous, so unmanned aerial vehicles (UAVs), sensing, and artificial intelligence have entered structural health monitoring (SHM) and building operations and maintenance (O\&M). Chapters~2--7 of this monograph already follow that pipeline in sequence: task and motion planning, three-dimensional reconstruction, datasets and defect models, and geographic information that hosts typed findings on maintainable assets. What those chapters deliver is a surveyed, registered, and spatially organised building. What they do not yet finish is ordinary-language decision support. Day-to-day O\&M is rarely complete when a detection box appears on a mesh. Managers still ask which panels share a moisture path, what changed since the last campaign, which assets should enter next week's gondola schedule, and how to draft a repair brief that an engineer can audit. This chapter is therefore continuous with the upstream stack, yet distinct in job: it consumes those products and develops the language and decision layer above them.
 
-Digital twins are a useful name for the information systems that try to answer such questions, but the term is broader than a photorealistic viewer. In construction and civil infrastructure, twin research emphasises lifecycle information flows, stakeholder coordination, and the gap between visualisation and actionable semantics~\cite{boje2020,opoku2021,lu2020}. Heritage and building documentation likewise stress diagnosis-linked semantics and monitoring provenance beyond geometry alone~\cite{bruno2018,tsilimantou2020}. Facility-oriented discussions add a further point: O\&M value appears when twins connect to work processes, not when they only decorate a meeting slide~\cite{chen2023facility,lu2020}. Together, these literatures show that a twin is first a way to organise and deliver information, not a single software brand.
+For this chapter, a building-inspection \emph{digital twin} is an editioned, queryable, and controllably writable representation of facility state that binds geometry, typed observations, maintainable hosts, topology, and provenance so that language and scheduling systems can retrieve openable evidence rather than invent it~\cite{boje2020,opoku2021,lu2020,chen2023facility}. It is not synonymous with a photorealistic mesh viewer, a static BIM file store, or a one-way digital shadow that only mirrors the last flight. Construction and heritage literatures already stress lifecycle information, diagnosis-linked semantics, and work-process coupling beyond visualisation~\cite{bruno2018,tsilimantou2020,lu2020}. Table~\ref{tab:ch8-twin-maturity} states the maturity ladder used here; the chapter target is a \emph{decision-ready} twin, with a \emph{closed-loop} twin allowed only when approved maintenance outcomes write back under gates.
 
-Building-inspection practice is closer to a repeatable pipeline. UAV campaigns produce imagery and pose; photogrammetry and point clouds supply geometry; defect detection and semantic segmentation supply typed findings; BIM or GIS registration attaches those findings to maintainable building objects~\cite{zhang2022,zhang2025,yang2025detreconreg,zhao2024facade,zhao2026physical}. Published systems emphasise different links in that chain: some foreground mesh or reality-model browsing, others foreground defect databases and report generation, and others further treat fa\c{c}ade panels, storeys, or facility-register entries as long-lived hosts~\cite{zhang2022,chen2023facility,han2025}. Few of them treat chat as the core product. What determines whether daily O\&M is supported is whether geometry, detection, identity, and provenance stay coherent across campaigns, not whether the interface is fluent.
+\begin{table}[htbp]
+\centering
+\caption{Twin maturity levels and whether they support Chapter~8 language and decision capabilities.}
+\label{tab:ch8-twin-maturity}
+\begin{tabular}{llp{4.6cm}}
+\toprule
+Level & Typical content & Supports Ch.~8? \\
+\midrule
+Geometric model & mesh, point cloud, BIM shell & No \\
+Semantic inspection model & defect types, host binding, time, modality & Partial \\
+Digital shadow & one-way update of inspection results into the model & Partial \\
+Decision-ready twin & stable identity, editions, topology, history, tool interfaces & Yes \\
+Closed-loop twin & approved repair outcomes feedback into the twin & Yes, gated only \\
+\bottomrule
+\end{tabular}
+\end{table}
 
-Large language models (LLMs) enter this picture as language interfaces, not as replacements for detectors or as site databases. Ready models can parse mixed spatial-symptom questions, draft stakeholder briefs, and follow answer templates. Alone, they remain unreliable for named building objects and editioned manuals: fluent text can invent panel codes, average away RGB/infrared disagreement, or recall the wrong handbook edition~\cite{ji2023,lewis2020}. Retrieval-augmented generation (RAG), structured outputs, and tool calling are therefore general engineering responses to that failure mode: keep living facts outside the weights, fetch them at query time, and validate claims against retrieved evidence~\cite{lewis2020,shuster2021,yao2023react}. Vision--language models (VLMs), when used, play a similarly bounded role: they may help narrate an already attached image crop; they should not invent host codes or rewrite detector labels. Neighbouring AEC language systems already show different fragments of these patterns: BIM assistants improve model navigation~\cite{zheng2023bimassistant}; code and safety document RAG improve clause lookup~\cite{joffe2025buildingcodes,lee2024ragsafety,krutli2025fmrags}; facility-management Q\&A connects maintenance logs and ticket context to generation~\cite{krutli2025fmrags,buga2025llmfmsql}; and IFC tool agents and O\&M robots connect language requests to structured actions and twin updates~\cite{gao2026ifcagent,luo2025llmdtrobot,hellin2025bimmas}. They show that LLMs already ``work'' in civil engineering, and that inspection still needs stricter evidence discipline.
+Building-inspection practice supplies that twin through a repeatable pipeline: UAV campaigns produce imagery and pose; reconstruction supplies geometry; detectors supply typed findings; BIM or GIS registration attaches findings to maintainable hosts~\cite{zhang2022,zhang2025,yang2025detreconreg,zhao2024facade,zhao2026physical}. Table~\ref{tab:ch8-upstream} records what Chapters~4--7 must hand over before language reasoning is honest. Large language models (LLMs) then act as language interfaces, not as detectors or site databases: retrieval-augmented generation (RAG), structured outputs, and tool calling keep living facts outside the weights~\cite{lewis2020,shuster2021,yao2023react,ji2023}. Vision--language models (VLMs), when used, may narrate an already attached crop; they must not invent host codes or rewrite detector labels. Neighbouring AEC systems already show fragments of these patterns---BIM assistants, code RAG, FM Q\&A, IFC agents---and also show that inspection needs stricter evidence discipline~\cite{zheng2023bimassistant,joffe2025buildingcodes,krutli2025fmrags,gao2026ifcagent,luo2025llmdtrobot}.
 
-A feasible approach for inspection decision support follows from those general ingredients. Keep campaign facts in an editioned twin store. Let the language system retrieve host-centred records, cite openable evidence, abstain when the package is thin, and propose actions only behind human or geofence gates. In that arrangement the twin is the long-term memory; the LLM is a reader and drafter under rules. Perception remains responsible for typed defect findings; language remains responsible for grounded explanation and schedulable drafts. Historic inspection craft already points the same way: paper checklists force named locations, photo logs force provenance, and repair tickets force action fields. Digital twins and LLMs add scale and queryability; they do not licence teams to abandon those disciplines~\cite{zhang2022,chen2023facility,ji2023}.
+\begin{table}[htbp]
+\centering
+\caption{Upstream products consumed by the Chapter~8 twin memory.}
+\label{tab:ch8-upstream}
+\begin{tabular}{llp{4.8cm}}
+\toprule
+Source & Product & Twin memory fields \\
+\midrule
+Ch.~4 & geometry / BIM hosts & host codes, geometry digests, adjacency seeds \\
+Ch.~5--6 & typed detections & defect labels, confidence, modality, evidence URIs \\
+Ch.~7 & GeoBIM identity & facility register codes, spatial filters, city-scale hosts \\
+Campaign meta & pose, time, weather flags & timestamps, edition pins \\
+\bottomrule
+\end{tabular}
+\end{table}
 
-Readers will meet several twin maturity levels in practice. A \emph{geometric twin} stores meshes, point clouds, or BIM shells. A \emph{semantic twin} attaches typed entities and stable host codes. A \emph{decision-ready twin} additionally exposes observation cards, topology for propagation, and interfaces that retrieval and tools can call. Bolting a chat model onto the first level usually produces fluent inventions. The workable target for this chapter is the third level, with the second as a minimum premise. Organisational reality reinforces that target: UAV contractors, consultants, facility teams, and asset managers rarely share one owner, so identifiers, provenance, and neighbour relations must survive file hand-offs without calling the person who built the mesh~\cite{boje2020,opoku2021,chen2023facility}.
+Four governance questions decide whether the store is a twin rather than a structured photo archive. \emph{Update cadence:} how often UAV campaigns refresh the twin (per flight week, per season, or on demand). \emph{Authority:} when BIM, GIS, and computerised maintenance management system (CMMS) codes disagree, which source wins for host identity and work orders. \emph{Snapshots:} each language evaluation and report must pin a twin snapshot identifier. \emph{Write-back:} only approved repair or status changes may update long-term records; rejected LLM drafts must not enter the official store~\cite{zhang2022,chen2023facility,zhang2025}.
 
-Consider a concrete scene once those ideas are in place. After a warehouse fa\c{c}ade campaign, a manager asks whether mid-storey delamination on the west elevation is linked to moisture staining above. A mesh viewer can show both regions; a detector can label both patches. Only a language-ready twin can assemble neighbouring host records, cite observation IDs whose images open, and either draft a repair brief or abstain when evidence is thin. That scene is the running example for later sections: the twin stores facts; the LLM proposes language under citation rules, not a second source of geometry. Later worked examples use short placeholder host codes such as \texttt{W-3-17} and \texttt{W-4-17} only to keep traces readable; live programmes should substitute their own facility register or BIM host codes.
+The running example is a warehouse fa\c{c}ade campaign in which a manager asks whether mid-storey delamination on the west elevation is linked to moisture staining above. A mesh viewer can show both regions; only a decision-ready twin can assemble neighbouring host records, cite openable observation IDs, and draft or abstain. Later placeholders such as \texttt{W-3-17} and \texttt{W-4-17} are teaching codes; live programmes substitute facility register codes.
 
 Only after that conceptual path is clear does this book need a \emph{process} picture of how a digital twin and a large language model sit inside one inspection workflow. Figure~\ref{fig:ch8-framework} is best read by duty, with arrows showing how data move. \emph{Module~I (bottom)} is physical acquisition: UAV imagery, pose, BIM/GIS context, and campaign metadata enter the pipeline. \emph{Module~II (left)} is twin construction: a geometry branch builds point clouds, meshes, and BIM alignment; a perception branch adds defect detection, segmentation, and modality or confidence tags. Those branches do not feed the language model directly. They first enter the central \emph{twin memory}: observation records, host attachment, topology links, and openable evidence. \emph{Module~III (right)} is language reasoning: it retrieves twin memory and editioned manuals under citation checks, then drafts answers; it neither rebuilds geometry nor rewrites detector labels. \emph{Module~IV (top)} is human O\&M delivery: a 3D viewer and dashboard consume twin visualisation, while grounded natural-language answers and gated tickets or revisits consume language-layer outputs. Read bottom-to-top and left-to-right as one decision chain, not as a software stack from a single paper. The finer technical path from UAV campaign to language-ready records is developed with Figure~\ref{fig:ch8-dt-pipeline} in Section~\ref{sec:ch8-dt-to-language}. Chapter-specific terms such as Asset-ID, asset passport, and cite-or-abstain are defined there as well, after Chapter~7 facility identity is connected.
 
@@ -37,13 +66,7 @@ The next section explains how LLMs have already been used in civil engineering. 
 \section{Foundations of LLMs for Civil Engineering Applications}
 \label{sec:ch8-llm-foundations}
 
-Contemporary LLMs rest on the Transformer architecture~\cite{vaswani2017attention}. Self-attention models long-range dependencies in text, which matters when an inspection question mixes symptoms, locations, and code clauses in one utterance. Ready-to-use models already follow natural-language instructions and can draft fluent building prose~\cite{brown2020,ouyang2022instructgpt}. Chain-of-thought prompting can elicit intermediate steps that help multi-hop questions~\cite{wei2022cot}, but it does not guarantee that a named fa\c{c}ade panel actually exists in the twin. Reviews of GPT-style tools in construction make the same caution for AEC practice: capability is real, governance and factual grounding are not automatic~\cite{saka2024gptconstruction}.
-
-If the discussion stopped at architecture and prompting, readers would still struggle to see how LLMs are actually used in civil engineering. Recent published work already sketches a clearer application spectrum. \emph{Model navigation and query}: BIM assistants and natural-language model queries help users locate components, generate explanations, or issue SQL/IFC queries~\cite{zheng2023bimassistant,guo2025bimllmquery,liu2025bimcoder,li2025b}. \emph{Document and code retrieval}: RAG has been applied to building codes, safety manuals, facility-management documents, and hybrid regulatory corpora, with emphasis on edition fidelity and traceable sources~\cite{joffe2025buildingcodes,lee2024ragsafety,krutli2025fmrags,jeon2025hybridrag,he2025regulationhybrid}. \emph{Structured action and twin interaction}: IFC tool agents, graph-twin GPT systems, and O\&M robots connect language requests to typed tools, approval gates, and twin updates~\cite{gao2026ifcagent,pan2026graphdtgpt,luo2025llmdtrobot,hellin2025bimmas,quan2026bimfacrag}. \emph{Facility Q\&A and ticket context}: FM-oriented RAG and SQL agents attempt to connect maintenance logs, asset registers, and ticket fields to answers~\cite{krutli2025fmrags,buga2025llmfmsql,chen2023facility}. These systems are not equivalent, but they jointly show that civil-engineering value comes mainly from wiring the right data, tools, and workflows, not from swapping in a larger base model alone~\cite{saka2024gptconstruction,ma2026tenquestions}.
-
-Beyond architecture and prompting, civil deployments should also separate three LLM behaviours that product descriptions often conflate. Instruction-following models can answer under templates supplied by an orchestrator, so short replies can separate observation from hypothesis~\cite{ouyang2022instructgpt,brown2020}. Tool-calling models can request typed functions without writing world state into weights, which keeps twin reads and neighbour expansion outside the model~\cite{schick2023toolformer,yao2023react}. Long-context models can hold packed evidence digests, but they still need validators: a longer window does not invent object codes that were never retrieved~\cite{lewis2020,ji2023,liang2023helm}. Construction GPT reviews and building-application agendas therefore treat governance, data readiness, and human oversight as design variables alongside model choice~\cite{saka2024gptconstruction,ma2026tenquestions}. For fa\c{c}ade inspection those variables become edition pins, modality tags, cite-or-abstain checks, and write gates. Contemporary foundation-model interfaces also differ in shape: chat-tuned APIs emphasise instruction following; tool-calling APIs expose typed function schemas; retrieval-augmented deployments keep site facts outside the weights. Inspection systems should choose and compose those interfaces by contract~\cite{ouyang2022instructgpt,schick2023toolformer,lewis2020,saka2024gptconstruction}.
-
-This chapter therefore takes a deliberate stance. We treat LLMs as \emph{deployable language components}: systems that are prompted, constrained, and wired to twin stores and tools. We do not develop a site-specific training or fine-tuning agenda. Campaign facts change every flight; the honest path for living buildings is to keep those facts outside the model weights, in editioned manuals and structured twin records, and to let the model read them at query time~\cite{lewis2020,krutli2025fmrags}. It also helps to separate three behaviours that are often conflated. \emph{Linguistic competence} is the ability to parse and produce fluent text about buildings. \emph{Parametric recall} is whatever generic knowledge the weights already contain, useful for vocabulary, unreliable for site-specific register codes. \emph{Grounded reasoning} is the ability to answer using evidence that the system retrieved or was given in the current session. Fa\c{c}ade O\&M lives or dies on the third behaviour. An LLM that can write elegant moisture narratives without citing twin observations is not an inspection assistant; it is a drafting toy.
+Ready LLMs can follow instructions, emit structured fields, and hold long evidence digests~\cite{brown2020,ouyang2022instructgpt,vaswani2017attention}. For inspection they help parse mixed spatial-symptom questions and draft briefs. Alone they remain unreliable: fluent text can invent host codes, erase RGB/IR disagreement, or recall the wrong manual edition---hallucination and parametric memory are not a site database~\cite{ji2023,lewis2020,saka2024gptconstruction}. Civil applications already wire models to BIM queries, editioned code RAG, FM tickets, and gated twin tools; value comes from data, tools, and workflows more than from base-model size alone~\cite{zheng2023bimassistant,joffe2025buildingcodes,krutli2025fmrags,gao2026ifcagent,luo2025llmdtrobot,ma2026tenquestions}. This chapter therefore treats LLMs as \emph{deployable language components}: prompted, constrained, and attached to twin stores---not fine-tuned as field databases. \emph{Grounded reasoning} on retrieved evidence is the behaviour that matters; linguistic fluency without citations is only drafting~\cite{lewis2020,krutli2025fmrags}.
 
 This section introduces generative language technology for civil engineering and attaches it to inspection analysis. It organises ready-to-use techniques into three layers that compose into one decision stack; see Table~\ref{tab:ch8-tech-families}. Perception remains Chapter~6's job; here language technologies consume typed, modality-tagged observations. Layer~L1 is the \emph{language interface}: how an off-the-shelf model is steered with prompts and answer templates. Layer~L2 is \emph{evidence grounding}: how retrieval, structured outputs, and tools keep answers attached to twin records. Layer~L3 is \emph{memory and bounded procedures}: how long-term twin memory and gated agents support multi-step O\&M work without unsupervised action. The rest of this section develops the three layers as continuous narrative and then shows how published AEC systems specialise, or fail to specialise, to fa\c{c}ade inspection.
 
@@ -115,21 +138,22 @@ These three layers are meant to compose, not to compete. Consider again: ``Is mi
 
 What holds the three layers together in a real system is a \emph{model harness}, the runtime control layer. In software testing, a harness is scaffolding that exercises a component under controlled conditions. In contemporary LLM engineering the same word has come to mean the code-owned control layer around a replaceable language model: it builds prompts, chooses retrieval units, exposes typed tools, validates outputs against contracts, records traces, and decides when to abstain or escalate. Agent surveys already describe planning, memory, and tools as the ingredients of autonomy~\cite{wang2024surveyagents,li2024surveymultiagent}; tool-using reason-act loops and self-supervised tool learning show how models request actions without owning the world state~\cite{yao2023react,schick2023toolformer}. Holistic evaluation frameworks such as HELM further remind readers that what is measured---scenarios, metrics, and standardised run conditions---is itself a harness for comparison, not a single accuracy number~\cite{liang2023helm}. For fa\c{c}ade inspection, object-identity contracts, edition pins, modality tags, and write gates should live in the harness so that swapping the underlying LLM does not silently rewrite O\&M policy.
 
-The inspection harness has five cooperating parts; see Table~\ref{tab:ch8-harness}. The \emph{intake and routing} part classifies intent and resolves natural-language locations against GeoBIM aliases before any generation. The \emph{evidence assembly} part loads host records, neighbours, observation cards, and pinned manuals, the RAG and packing duties of Layer~L2~\cite{lewis2020,peng2024,krutli2025fmrags}. The \emph{tool surface} part exposes only a few typed actions---read a host record, expand neighbours, list observations, draft a report, propose a revisit---and refuses free-form SQL or flight commands; AEC tool agents for IFC, energy analysis, and FM robots illustrate the same separation between reasoning and world actions under approval~\cite{gao2026ifcagent,zhang2025llmagentschema,luo2025llmdtrobot,guo2025bimllmquery}. The \emph{contract validators} part checks machine-checkable obligations after drafting: every named object code must appear in the retrieved package; numeric defect claims must point to observation fields; modality conflicts must remain disclosed; write or dispatch requests must hit a human gate~\cite{ji2023,pan2024b,buga2025llmfmsql}. The \emph{trace and evaluation} part stores which tools ran, which edition was pinned, and which validator passed or failed, so answers can be replayed and graded; chat fluency alone is insufficient~\cite{liang2023helm,shuster2021}. Adaptive retrieval retries belong inside the harness as controlled loops, not as ad-hoc prompt improvisation~\cite{asai2024selfrag,jeong2024adaptive}.
+The inspection harness has six cooperating parts; see Table~\ref{tab:ch8-harness}. \emph{Intake} classifies intent; \emph{asset resolution} maps place phrases to Asset-IDs preferably by deterministic GeoBIM lookup. \emph{Evidence assembly} loads passports, typed neighbours, observations, and pinned manuals without free generation~\cite{lewis2020,peng2024}. The \emph{tool surface} admits typed twin reads and draft actions only---no free SQL or flight commands~\cite{gao2026ifcagent,luo2025llmdtrobot}. \emph{Validators} own V1--V4 checks in code; \emph{trace} records tools, editions, and pass/fail so runs are replayable~\cite{ji2023,liang2023helm}. Adaptive retrieval retries stay inside the harness as controlled loops~\cite{asai2024selfrag,jeong2024adaptive}.
 
 \begin{table}[htbp]
 \centering
-\caption{Inspection model harness: code-owned parts around a replaceable LLM.}
+\caption{Inspection model harness: inputs, outputs, and whether free LLM generation is allowed.}
 \label{tab:ch8-harness}
-\begin{tabular}{llp{4.8cm}}
+\begin{tabular}{lllp{2.6cm}}
 \toprule
-Harness part & Owns & Inspection example \\
+Part & Input & Output & LLM free-gen? \\
 \midrule
-Intake / routing & intent, host-code resolve & west bay $\rightarrow$ GeoBIM seed \\
-Evidence assembly & RAG + packing & host records, neighbours, manuals \\
-Tool surface & typed APIs + gates & expand neighbours; no flight cmds \\
-Contract validators & cite-or-abstain checks & ID $\subseteq$ package; modality flags \\
-Trace / evaluation & replayable logs + metrics & tool TRACE; HELM-style scenarios \\
+Intake / routing & user question & intent, location candidates & yes, constrained \\
+Asset resolution & place phrase & Asset-ID set & preferably deterministic \\
+Evidence assembly & IDs + intent & evidence package $\mathcal{C}(q)$ & no \\
+Tool surface & typed args & twin query results & LLM proposes calls only \\
+Validators (V1--V4) & draft + $\mathcal{C}(q)$ & pass / fail / qualify & no (code-owned) \\
+Trace & run events & replayable log & no \\
 \bottomrule
 \end{tabular}
 \end{table}
@@ -165,15 +189,9 @@ Read Figure~\ref{fig:ch8-harness-fig} clockwise as one query. Intake resolves in
 
 Two consequences follow for procurement and teaching. First, a prompt-only prototype is not yet a harness: instructions such as ``always cite object codes'' can be ignored by a fluent model, whereas a validator that blocks delivery when the code-subset check fails is load-bearing. Second, model substitution should be a harness test, not a project rewrite: if validators, tool schemas, and twin interfaces stay fixed, changing the hosted LLM should change phrasing, not which sources are eligible or whether a write gate exists~\cite{liang2023helm,saka2024gptconstruction}. In short: Layers~L1--L3 name the capabilities; the harness is the software that enforces them on every query.
 
-Recent building-oriented LLM work makes the same shift from model selection alone to system design. Data readiness, trust, interoperability, and human oversight now sit ahead of parameter counts~\cite{ma2026tenquestions}: fa\c{c}ade O\&M succeeds when object identity is ready, manuals are editioned, and approval gates exist. Published graph-twin, BIM-retrieval, IFC-tool, and FM-robot agents illustrate the same habit in adjacent settings: keep typed structure and gates outside the weights, and treat the LLM as a replaceable composer inside a harness~\cite{pan2026graphdtgpt,lu2026highwaymas,gao2026ifcagent,luo2025llmdtrobot,hellin2025bimmas,quan2026bimfacrag}. None of those systems is a warehouse fa\c{c}ade inspector out of the box; the transferable lesson is the control pattern.
+Building LLM work likewise puts data readiness and gates ahead of parameter counts~\cite{ma2026tenquestions,pan2026graphdtgpt,gao2026ifcagent,luo2025llmdtrobot}. Costly inspection failures are concrete: invented codes, advice without evidence, and RGB/IR disagreement averaged away~\cite{ji2023}. Embeddings may rank digests inside a topology-constrained set; they must not invent neighbours for moisture paths~\cite{peng2024,jeon2025hybridrag}. Precedence when sources conflict: safety and write gates; twin fields; pinned manuals; user style last~\cite{saka2024gptconstruction}. Simple memory rule: twin store write-gated; dialogue ephemeral; RAG editioned; parametric memory never a site database~\cite{luo2025llmdtrobot,rawat2025llmmas}.
 
-Hallucination surveys explain what goes wrong when the discipline is missing: fluent systems invent entities, numbers, and citations~\cite{ji2023}. In inspection the costly failures are concrete: invented object codes, repair advice without attributable evidence, and summaries that erase disagreement between RGB and infrared observations. Grounding therefore means more than a clever prompt. Constrained schemas, retrieval and its adaptive variants, tool-using reason-act loops, and typed structured knowledge recur across NLP and AEC~\cite{lewis2020,gao2023hyde,asai2024selfrag,jeong2024adaptive,peng2024,yao2023react,schick2023toolformer,pan2024b}. Graph-oriented and hierarchical retrieval further remind readers that document similarity is not building adjacency~\cite{peng2024,sarthi2024raptor,sun2024tog}. Semantic embeddings cluster phrases such as ``damp'', ``stain'', and ``seepage''; building spaces cluster panels that share joints, storeys, and drainage paths. A hybrid retriever may use embeddings to rank symptom digests inside an already topology-constrained candidate set; it must not use embeddings to invent the candidate set for propagation questions~\cite{peng2024,jeon2025hybridrag,khattab2020}. When system rules, retrieved manuals, twin facts, and user requests conflict, precedence should be explicit: safety and write gates first; twin facts and observation fields second; pinned manual editions third; user style preferences last~\cite{saka2024gptconstruction}.
-
-Civil and building applications already exercise these patterns. BIM assistants and NL model queries improve navigation; code, safety, defect, and facility RAG improve edition fidelity; schemas, typed tools, and approval make language interfaces operational~\cite{zheng2023bimassistant,joffe2025buildingcodes,lee2024ragsafety,jeon2025hybridrag,krutli2025fmrags,gao2026ifcagent,buga2025llmfmsql}. High-resolution fa\c{c}ade datasets and physical quantification still set the granularity of claims that language may responsibly make~\cite{zhao2024facade,zhao2026physical}. For this monograph, Chapters~2--7 retain flight, geometry, observations, and GeoBIM identity; Chapter~8 turns those products into evidence packages~\cite{zhang2025,yang2025detreconreg,han2025}. Readers should therefore retrieve over host records and BIM neighbours, pin manuals by edition, and treat success on public code questions as insufficient proof for a private fa\c{c}ade handbook~\cite{lee2024ragsafety,ma2026tenquestions}.
-
-Memory failures make the ladder concrete. If a manager clarifies that ``west'' means the loading-dock face and tomorrow's chat forgets it, the repair is to persist the alias or require GeoBIM seed selection before generation, not to hope the model ``remembers.'' If RAG returns an outdated maintenance PDF, the repair is edition pins and corpus smoke tests~\cite{krutli2025fmrags,joffe2025buildingcodes}. If the model invents a crack length from generic web knowledge, the repair is to ban numeric defect claims unless an observation field supplies them~\cite{ji2023,zhao2026physical}. If the twin holds the correct host code but the orchestrator never fetched it, that is an infrastructure failure, not a wording problem~\cite{lewis2020,peng2024}. Who may write to twin memory after an LLM draft, how long dialogue clarifications persist, and which manual edition wins when two PDFs disagree are therefore foundations questions, not afterthought IT policy. For fa\c{c}ade O\&M we recommend a simple rule: the twin store is write-gated; the dialogue window is ephemeral; RAG indexes are editioned; parametric memory is never treated as a site database~\cite{luo2025llmdtrobot,gao2026ifcagent,rawat2025llmmas}.
-
-Selecting an LLM stack for inspection is likewise a harness problem more than a model-selection problem. Teams should assess the five harness parts above, especially whether validators and tool gates are code-owned, plus native tool-calling reliability, long-context behaviour on host-record sets, willingness to abstain under constrained decoding, on-prem versus cloud constraints for building data, and cost per grounded answer ahead of cost per chat token~\cite{saka2024gptconstruction,wang2024surveyagents,liang2023helm}. A smaller model inside a strict cite-or-abstain harness often beats a larger model that improvises object codes in an unvalidated chat loop. Even before laboratory scoring, ten hand-checked answers already separate grounded homework from chat demos: listed object codes $\subseteq$ retrieved set; hypotheses tagged; modality tags preserved; abstention when neighbours are missing~\cite{ji2023,shuster2021,lewis2020}. The teaching takeaway is therefore three design choices: retrieve over maintainable hosts and neighbours; force citation of codes that appear in the retrieved set; and place irreversible actions behind approval gates. Sections~\ref{sec:ch8-dt-to-language}--\ref{sec:ch8-multimodal} next show how twin records and multimodal evidence make Layers~L2 and~L3 operational.
+Selecting an inspection stack is primarily a harness problem: validators and tool gates must be code-owned; tool schemas and twin interfaces must stay fixed when a hosted LLM is swapped~\cite{saka2024gptconstruction,liang2023helm}. Hand-checks that matter before leaderboards: object codes $\subseteq$ retrieved set; hypotheses tagged; modality tags preserved; abstention when neighbours are missing~\cite{ji2023,shuster2021,lewis2020}. Sections~\ref{sec:ch8-dt-to-language}--\ref{sec:ch8-multimodal} next make Layers~L2 and~L3 operational.
 
 
 
@@ -231,38 +249,59 @@ Chapters~2--7 already cover flight planning, reconstruction, defect detection, a
 \label{fig:ch8-dt-pipeline}
 \end{figure}
 
-We keep three record layers conceptually separate even when implementations differ. An \emph{observation record} is one defect sighting with sensor provenance covering imagery, evidence, semantics, and host attachment; teaching content often packages that sighting as an integrated defect profile. An \emph{asset passport} aggregates observations and geometry or topology for a maintainable host as an integrated asset profile for retrieval. \emph{Query assembly} decides which passports and neighbours enter the context before generation; neighbour expansion along fa\c{c}ade adjacency supports vertical propagation reading. Perception writes observations; facility managers think in assets; language models must not invent either~\cite{pan2024b,zheng2023bimassistant}.
-
-In UAV inspection practice, useful observation records store host Asset-ID, time, modality such as RGB, infrared, and related channels, detector signature, pose or surface coordinates, and paths to imagery. Registration should attach detections to BIM hosts before any LLM is involved~\cite{zhang2025,yang2025detreconreg}. Natural-language location phrases help models, for example ``west elevation, third bay above the loading dock'', while metric coordinates remain for field navigation. Asset passports then add symptom summaries, geometry for severity normalisation, and neighbour links above, below, and lateral. Those links enable propagation-style reading, for example, mid-storey delamination considered with upstairs moisture, without confusing a document-similarity graph with a structural or BIM adjacency graph~\cite{peng2024}.
+Four persistent entities, plus one assembly view, organise the twin for language use. An \emph{Asset} is a long-lived maintainable building object---fa\c{c}ade panel, wall bay, window unit, structural component, or drainage element---identified by a canonical Asset-ID. An \emph{Observation} is one timed, modality-specific sighting with fields at least
+\begin{quote}
+\small\texttt{observation\_id}, \texttt{asset\_id}, \texttt{campaign\_timestamp}, \texttt{modality},
+\texttt{detector\_version}, \texttt{defect\_label}, \texttt{confidence},
+\texttt{surface\_coordinate}, \texttt{evidence\_uri}, \texttt{registration\_confidence}.
+\end{quote}
+A \emph{Defect instance} is the engineering entity that may persist across one or more observations; one observation is never assumed to be a long-lived defect. Suggested states are \texttt{candidate}, \texttt{confirmed}, \texttt{under\_review}, \texttt{repair\_planned}, \texttt{repaired}, \texttt{closed}, \texttt{recurrent}. Matching new observations to old instances, splitting or merging after remeshing, and encoding recurrence after repair are twin hygiene problems before they are language problems~\cite{zhang2025,yang2025detreconreg}. A \emph{Repair event} records approved maintenance outcomes. An \emph{asset passport} is an editioned \emph{materialised retrieval unit}, not a second truth store: Assets, Observations, Defect instances, and Repair events persist; the passport aggregates identity, geometry digest~$G(a)$, typed neighbours, active observations~$O(a)$, defect instances~$D(a)$, symptom digest~$d(a)$, freshness, and provenance for query loading. The \emph{evidence package}~$\mathcal{C}(q)$ is a query-time read-only context assembled from passports and pinned manuals~\cite{pan2024b,zheng2023bimassistant}.
 
 \begin{figure}[htbp]
 \centering
 \includegraphics[width=\linewidth]{idp_construction_pipeline.pdf}
-\caption{Construction of language-ready inspection records from campaign imagery and detector outputs: typed observations with modality and evidence pointers are attached to maintainable hosts, then aggregated into asset-centred passports that retrieval can load. Implementation names differ across systems; the teaching pattern remains observation $\rightarrow$ host attachment $\rightarrow$ passport.}
+\caption{Construction of language-ready inspection records: typed observations attach to assets, may join defect instances, then aggregate into editioned passports that retrieval loads. Pattern: observation $\rightarrow$ host attachment $\rightarrow$ defect lifecycle $\rightarrow$ passport.}
 \label{fig:ch8-obs-passport}
 \end{figure}
 
-Figure~\ref{fig:ch8-obs-passport} separates what perception writes as one sighting with provenance from what facility language needs as a host-level passport with neighbours and recent observations. The LLM must consume the second form; it must not invent either form from generic web text.
-Geometry and BIM hosts from Chapter~4 provide attachment points, Chapters~5--6 provide labelled observations and confidence, and Chapter~7 provides city-scale Asset-IDs. This chapter consumes those products to make retrieval, memory, reports, and actions traceable.
+Topology is a typed, directed graph $G=(V,E,\tau)$ with vertices~$V$ as assets, edges~$E$ as relations, and $\tau(e)$ the relation type. Minimal types include \texttt{above}, \texttt{below}, \texttt{adjacent\_to}, \texttt{shares\_joint\_with}, \texttt{drains\_to}, \texttt{same\_facade\_system}, \texttt{structurally\_connected\_to}, and \texttt{accessed\_with}. Propagation must not treat all edges alike: a moisture intent may admit
+$R_{\mathrm{moisture}}=\{\texttt{above},\texttt{drains\_to},\texttt{shares\_joint\_with}\}$,
+while gondola scheduling may use
+$R_{\mathrm{access}}=\{\texttt{same\_facade\_system},\texttt{accessed\_with}\}$~\cite{peng2024}.
+Cross-version identity needs an explicit mapping table (Table~\ref{tab:ch8-id-map}) so historical queries survive IFC re-export, host split/merge, and GIS--BIM--CMMS disagreement~\cite{zhang2025,han2025}.
 
-A minimal observation schema for language use includes observation ID, host Asset-ID, campaign or capture time, modality tag, defect type and confidence from Chapter~6, optional severity features derived from geometry, image or crop URI, and a short human-readable location phrase. Optional fields include weather flags, inspector notes, and links to prior observations on the same host. What must not be left as free text alone is the host Asset-ID. A temporary image filename or folder label created at capture time records how a file was stored; it is not a facility register code. If the only link from image to host is such a filename convention, retrieval will eventually invent neighbours. Enterprise RAG often chunks PDFs, but inspection questions are usually about maintainable hosts and their neighbourhoods. Passports therefore package, for each Asset-ID, a compact symptom digest, recent observation IDs, geometry summaries used for severity normalisation, and explicit neighbour lists. Severity normalisation matters because a 20\,cm crack on a small panel is not the same operational object as a 20\,cm crack on a large wall bay; the language layer inherits that normalisation from twin geometry~\cite{zhao2026physical}. Neighbour lists should come from BIM or GeoBIM adjacency, not from embedding similarity among report sentences.
+\begin{table}[htbp]
+\centering
+\caption{Asset-ID cross-version mapping fields for historical queries.}
+\label{tab:ch8-id-map}
+\begin{tabular}{ll}
+\toprule
+Field & Role \\
+\midrule
+\texttt{canonical\_asset\_id} & stable twin key \\
+\texttt{source\_system} / \texttt{source\_object\_id} & BIM, GIS, or CMMS origin \\
+\texttt{model\_version}, \texttt{valid\_from}, \texttt{valid\_to} & edition window \\
+\texttt{predecessor\_id} / \texttt{successor\_id} & split, merge, remodel \\
+\texttt{mapping\_method}, \texttt{mapping\_confidence}, \texttt{approved\_by} & audit \\
+\bottomrule
+\end{tabular}
+\end{table}
 
-Query assembly is where inspection differs from generic enterprise RAG. Write the already-built records once, then let intent choose the package. An asset passport for host~$a$ packages identity, geometry summary~$G(a)$, one-hop BIM neighbours~$N_1(a)$, observation set~$O(a)$, and a compact symptom digest~$d(a)$:
+Query assembly writes records once, then lets intent choose the package. A passport for host~$a$ is
 \begin{equation}
 \label{eq:ch8-passport}
-P(a)=\bigl\langle a,\,G(a),\,N_1(a),\,O(a),\,d(a)\bigr\rangle.
+P(a)=\bigl\langle a,\,G(a),\,N_{\tau}(a),\,O(a),\,D(a),\,d(a)\bigr\rangle,
 \end{equation}
-Given seed Asset-IDs~$A_q$ resolved from question~$q$ and hop depth~$k(\iota)$ set by intent~$\iota$: zero for local lookup, one for propagation, the BIM neighbourhood is
+where $N_{\tau}(a)$ are typed neighbours. Given seeds~$A_q$, hop depth~$k(\iota)$, and allowed edge types~$R(\iota)$,
 \begin{equation}
 \label{eq:ch8-khop}
-\mathcal{N}_{k}(A_q)=\bigl\{v:\exists\,a\in A_q,\;\mathrm{dist}_{\mathrm{BIM}}(a,v)\le k\bigr\},
+\mathcal{N}_{k,R}(A_q)=\bigl\{v:\exists\,a\in A_q,\;\mathrm{dist}_{R}(a,v)\le k\bigr\},
 \end{equation}
-and the evidence package packed for generation is
 \begin{equation}
 \label{eq:ch8-package}
-\mathcal{C}(q)=\mathrm{Pack}\!\Bigl(\bigl\{P(v):v\in\mathcal{N}_{k(\iota)}(A_q)\bigr\},\,R_{\mathrm{man}}(q),\,e\Bigr),
+\mathcal{C}(q)=\mathrm{Pack}\!\Bigl(\bigl\{P(v):v\in\mathcal{N}_{k(\iota),R(\iota)}(A_q)\bigr\},\,R_{\mathrm{man}}(q),\,e\Bigr),
 \end{equation}
-where $R_{\mathrm{man}}(q)$ is the optional edition-pinned manual slice and $e$ the edition pin itself~\cite{lewis2020,peng2024,joffe2025buildingcodes}. A local lookup such as ``what defects were logged on asset~$A$ last month?'' uses $k=0$. A propagation question uses neighbours along fa\c{c}ade topology, not merely the top-$k$ text chunks that share vocabulary with the query. A floor- or elevation-level audit replaces hop expansion by a Chapter~7 spatial filter on passports. Intent therefore changes \emph{which} twin records enter~$\mathcal{C}(q)$, not only the prompt wording~\cite{lewis2020,peng2024}. Editioned manuals and safety clauses may join~$R_{\mathrm{man}}$ when the question mixes site evidence with code language~\cite{joffe2025buildingcodes,lee2024ragsafety,krutli2025fmrags}.
+with $R_{\mathrm{man}}(q)$ an optional edition-pinned manual slice and $e$ the edition pin~\cite{lewis2020,peng2024,joffe2025buildingcodes}. Local lookup uses $k=0$; moisture propagation uses $R_{\mathrm{moisture}}$; elevation audits use Chapter~7 spatial filters. Embedding similarity may rank digests inside an already topology-constrained set; it must not invent the candidate set~\cite{peng2024,jeon2025hybridrag}.
 
 \begin{table}[htbp]
 \centering
@@ -290,13 +329,13 @@ Implementation teams often ask how large a passport should be. Too small, and pr
 
 Indexing choices should follow the same heuristic. Vector indexes over passport digests support fuzzy symptom search such as ``hollow sounding panels with staining above''. Graph or relational indexes over Asset-IDs support exact neighbour expansion. Keyword indexes over observation IDs support audit lookups. Hybrid retrieval is attractive precisely because inspection questions mix fuzzy language with exact identifiers~\cite{jeon2025hybridrag,krutli2025fmrags}. What should not be hybridised away is the authority of topology: embedding similarity must not silently replace BIM adjacency when the question is about propagation.
 
-Abstention deserves equal teaching time. Engineers already know how to say ``insufficient evidence'' on site; language systems must learn the same habit. Let $\hat{y}$ be a draft answer and $\mathrm{IDs}(\cdot)$ the Asset-IDs and observation IDs named in a string or package. The machine-checkable cite-or-abstain gate is
+Cite-or-abstain remains the teaching shorthand for the minimum contract, but it is not a full truth guarantee. Validation has four layers. \emph{V1 Identity:} every Asset-ID, Observation-ID, and Defect-ID in the draft must appear in~$\mathcal{C}(q)$:
 \begin{equation}
 \label{eq:ch8-cite}
 \mathrm{IDs}(\hat{y})\subseteq\mathrm{IDs}\bigl(\mathcal{C}(q)\bigr)
 \quad\text{else return }\texttt{ABSTAIN}.
 \end{equation}
-Severity claims must further point to members of~$O(\cdot)$ inside~$\mathcal{C}(q)$, and any propagation path must be a walk inside the expanded BIM neighbourhood of Eq.~\eqref{eq:ch8-khop}. If checks fail, the system returns a structured refusal plus the missing evidence type, such as no upstairs neighbour, conflicting modalities, or stale campaign. That behaviour is more valuable than a fluent paragraph that cannot be opened in the twin UI~\cite{ji2023,shuster2021}.
+\emph{V2 Field:} numeric and structured fields (crack length, confidence, capture date, relation path) must bind to allowed twin fields, not parametric invention. \emph{V3 Claim--evidence:} each diagnostic statement declares \texttt{claim\_type} (observation vs hypothesis), \texttt{evidence\_ids}, optional \texttt{relation\_path}, and \texttt{limitations}. \emph{V4 Action:} repair or revisit proposals state approval need, manual edition (if any), and whether the act is irreversible. The accurate rule is therefore \emph{validate, cite, qualify, or abstain}~\cite{ji2023,shuster2021,peng2024}.
 
 A second worked micro-example clarifies elevation audits. The manager asks: ``Summarise west-elevation issues above level three that need gondola access.'' Assembly should apply a Chapter~7 spatial filter, load the resulting passport set, keep modality tags, and rank by severity features inherited from geometry. It should not narrate the whole building, and it should not drop Asset-IDs in favour of storey prose alone. The output is a decision artefact for scheduling, not a travelogue.
 
@@ -316,7 +355,7 @@ Algorithm~\ref{alg:ch8-assembly} summarises assembly as a numbered procedure. It
 \State $\mathit{seeds} \gets \textsc{ResolveAssets}(q)$ \Comment{else \texttt{ABSTAIN:asset\_unresolved}}
 \State $\mathit{packs} \gets \{\textsc{Passport}(s): s\in\mathit{seeds}\}$
 \If{$\mathit{intent}=\texttt{propagation}$}
-  \State $\mathit{packs} \gets \mathit{packs}\cup\textsc{Expand}(\mathit{seeds},k{=}1)$
+  \State $\mathit{packs} \gets \mathit{packs}\cup\textsc{Expand}(\mathit{seeds},k{=}1,R{=}R_{\mathrm{moisture}})$
 \EndIf
 \If{$\mathit{intent}=\texttt{elevation\_audit}$}
   \State $\mathit{packs} \gets \textsc{SpatialFilter}(\mathit{packs},q)$
@@ -324,8 +363,8 @@ Algorithm~\ref{alg:ch8-assembly} summarises assembly as a numbered procedure. It
 \State $\mathit{obs} \gets \textsc{ListObservations}(\mathit{packs})$
 \State $\mathit{manuals} \gets \textsc{RetrieveManuals}(q)$ if $\textsc{NeedsCode}(q)$, else $\emptyset$
 \State $\mathcal{C}(q) \gets \{\mathit{intent},\mathit{packs},\mathit{obs},\mathit{manuals},\mathit{edition\_pin}\}$
-\State $\hat{y} \gets \textsc{Generate}(\mathcal{C}(q))$ \Comment{cite-or-abstain}
-\State $\textsc{ValidateIDs}(\hat{y},\mathcal{C}(q))$ \Comment{else \texttt{ABSTAIN:id\_not\_in\_package}}
+\State $\hat{y} \gets \textsc{Generate}(\mathcal{C}(q))$
+\State $\textsc{ValidateV1toV4}(\hat{y},\mathcal{C}(q))$ \Comment{else qualify or \texttt{ABSTAIN}}
 \State \Return $\hat{y}$
 \end{algorithmic}
 \end{algorithm}
@@ -366,9 +405,25 @@ In summary of twin-to-language assembly, intent decides which passports and neig
 \section{Multi-Modal Fusion}
 \label{sec:ch8-multimodal}
 
-Fa\c{c}ade programmes are multimodal by construction: campaigns routinely produce RGB imagery, infrared channels, and textual metadata. In this chapter, \emph{multi-modal fusion} means disciplined assembly of those modality-tagged observation records, already written by Chapter~6 perception and attached by Chapters~4 and~7, inside grounded LLM retrieval and generation. Defect finding remains a Chapter~6 perception responsibility; language remains responsible for retrieval, explanation, abstention, and action proposals under citation rules.
+In this chapter, multi-modal fusion refers primarily to \emph{decision-level} and \emph{language-level} orchestration of already registered modality-specific observations, rather than pixel-level or feature-level sensor fusion. Table~\ref{tab:ch8-fusion-levels} states the boundary. Fa\c{c}ade campaigns routinely produce RGB, infrared, and textual metadata; Chapter~6 writes typed observations and Chapters~4 and~7 attach them. Language retrieves, explains, abstains, and proposes actions under V1--V4~\cite{zhao2024facade,zhao2026physical}.
 
-Vision--language models (VLMs) belong in this phase of the monograph's decision-support story, but they do not replace the defect detectors of Chapters~5--6. A VLM may help an inspector narrate an openable crop already attached to an Asset-ID, align a free-text remark with a retrieved passport, or draft a caption that still cites the observation URI. It must not invent host codes, silently relabel detector classes, or treat a chat screenshot as a new twin fact. The operational split taught here is therefore simple: Chapter~6 writes typed observations; a VLM, when used, is an optional reader of those crops under the same cite-or-abstain gate as the LLM; the twin remains the authoritative store~\cite{zhao2024facade,zhao2026physical,ji2023}. That split fuses visual defect data with generative AI without collapsing perception and language into one unsupervised model.
+\begin{table}[htbp]
+\centering
+\caption{Fusion levels and Chapter~8 scope.}
+\label{tab:ch8-fusion-levels}
+\begin{tabular}{llp{4.8cm}}
+\toprule
+Level & Handled here? & Note \\
+\midrule
+Sensor-level & No & acquisition systems \\
+Feature-level & No & mainly Chapter~6 \\
+Decision-level & Yes & keep labels and conflicts \\
+Language-level & Yes & grounded explanation and advice \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Vision--language models (VLMs) produce \emph{non-authoritative derived interpretation} by default. A VLM may describe an attached crop, draft a caption, help match inspector notes, or propose review questions. Without approval it must not change detector labels, invent Asset-IDs, rewrite host attachment, promote a hypothesis to \texttt{confirmed}, update repair status, or override human inspection. Detector--VLM conflict enters \texttt{MODALITY\_OR\_MODEL\_CONFLICT}$\rightarrow$\texttt{HUMAN\_REVIEW}, not LLM arbitration~\cite{ji2023,zhao2026physical}.
 
 \begin{figure}[htbp]
 \centering
@@ -379,13 +434,9 @@ Vision--language models (VLMs) belong in this phase of the monograph's decision-
 
 Figure~\ref{fig:ch8-rag} is the retrieval spine behind multi-modal answers: RGB and infrared observations remain separate cards inside a passport; topology expansion decides which neighbouring hosts enter the package; cite-or-abstain then binds every named Asset-ID to that package.
 
-Fusing modalities without erasing conflict. Textbook query types for fa\c{c}ade O\&M include local lookup, asset-health summary, propagation or root-cause reading, and floor- or elevation-level audit. A minimal assembly is the passport of asset~$A$, its neighbours, and optional editioned manuals. Every Asset-ID or defect ID named in the answer must appear in that retrieved set; otherwise the system abstains or escalates. When RGB and infrared observations disagree, disclosure beats silent averaging: RGB-only evidence should not become a subsurface claim; infrared-only evidence should keep uncertainty flags. High-resolution fa\c{c}ade sensing and physical quantification work show why those flags matter: language that over-claims geometry inherits perception error~\cite{zhao2024facade,zhao2026physical}. A practical fusion rule for teaching is therefore record-level, not pixel-level: keep modality tags on observations; let the LLM narrate agreement or conflict; never collapse conflict into a single confident defect type without a human check flag.
+Before comparing RGB and infrared cards, assembly must check spatial alignment, capture time, environment, calibration, host-attachment confidence, and detector confidence. Observations such as RGB on a dry morning and IR two evenings later after rain are not temporally comparable; the system should say so rather than emit a bare ``modalities disagree''~\cite{zhao2024facade,zhao2026physical}. When cards are comparable and still conflict, disclosure beats silent averaging; never collapse conflict into one confident defect type without a human-check flag.
 
-The implementation principle is straightforward: a presentation layer may look like chat, but evidence assembly, persistence, and twin writes must pass typed services and harness gates.
-
-Agents enter when inspection work requires multi-step procedures. Typical procedures include opening a ticket, proposing a UAV revisit polygon for Chapters~2--3, requesting a robot photo, or staging a twin update after approval~\cite{yao2023react,schick2023toolformer,wang2024surveyagents,luo2025llmdtrobot}. Memory is part of agency, not an afterthought. Short-term dialogue state tracks the current question; retrieval memory refreshes manuals and observation cards; twin memory supplies Asset-IDs and topology; procedural memory records which tools and approvals already ran~\cite{rawat2025llmmas,gao2026ifcagent,luo2025llmdtrobot}. Surveys of LLM agents and multi-agent systems emphasise the same ingredients of planning, memory, and tools while warning that autonomy without constraints is unsafe~\cite{wang2024surveyagents,li2024surveymultiagent}. The 2024--2026 AEC literature makes that warning concrete. Graph-DT multi-agent systems ground answers in twin graphs~\cite{pan2026graphdtgpt}; human-DT MAS prototypes coordinate leader, reasoning, and member agents so infrastructure experts can complete tasks with lower cognitive load than steep GUIs~\cite{lu2026highwaymas}; multi-agent virtual modelling connects design-to-operation twins inside BIM~\cite{lee2025multiagentvbm}; IFC tool agents, FM robot brokers, and schema-guided energy agents illustrate typed tools under approval~\cite{gao2026ifcagent,luo2025llmdtrobot,zhang2025llmagentschema}; router-style expert selection in foundation design shows specialised roles can help when humans keep safety oversight~\cite{youwai2026foundationmas}. Tool-augmented reasoning is therefore an expected ingredient of inspection language systems, not an optional plugin~\cite{yao2023react,schick2023toolformer}.
-
-For fa\c{c}ade inspection we recommend \emph{bounded agency} realised inside the model harness of Section~\ref{sec:ch8-llm-foundations}. Multi-step retrieval and tool calls are welcome. Final claims stay citation-locked to the retrieved evidence set. Dispatch and twin writes stay behind geofence and human gates. A small typed tool surface with a handful of read and draft actions beats free-form SQL or unrestricted code execution. That stance specialises general agent literature to the inspection setting: the twin already encodes the world state that an agent must not rewrite casually; Chapters~2--3 already own flight planning; the language agent proposes, it does not commandeer the aircraft. Recent twin-interaction MAS studies reinforce the same division of labour: agents orchestrate functions and reduce interface friction, but they do not replace domain approval or chapter ownership~\cite{lu2026highwaymas,pan2026graphdtgpt,ma2026tenquestions}. The harness, not the chat transcript, is what makes those bounds enforceable on every run~\cite{yao2023react,wang2024surveyagents,liang2023helm}.
+Bounded agents propose multi-step procedures---tickets, revisit hints for Chapters~2--3, staged twin writes---inside the harness of Section~\ref{sec:ch8-llm-foundations}. Final claims stay citation-locked; dispatch and writes stay behind geofence and human gates; the language agent proposes and does not commandeer aircraft~\cite{yao2023react,luo2025llmdtrobot,gao2026ifcagent,wang2024surveyagents}.
 
 \begin{table}[htbp]
 \centering
@@ -404,6 +455,16 @@ Stage twin write & pending update & mandatory approval \\
 \bottomrule
 \end{tabular}
 \end{table}
+
+A typed call for neighbour expansion is
+\begin{verbatim}
+{"tool":"expand_neighbours",
+ "arguments":{"asset_ids":["W-3-17"],
+   "edge_types":["above","shares_joint_with"],
+   "max_hops":1,"as_of":"2026-07-22",
+   "twin_snapshot_id":"warehouse-v12"}}
+\end{verbatim}
+Returns should include Asset-ID, relation type, direction, provenance, graph version, and confidence. Human gates are necessary but not a complete security model. Threats include prompt injection in maintenance PDFs, stale manuals, retrieval poisoning, cross-project leakage, unauthorised tool calls, duplicate tickets, concurrent write conflicts, and users asking to bypass approval~\cite{ji2023,saka2024gptconstruction,lee2024ragsafety}.
 
 \begin{figure}[htbp]
 \centering
@@ -479,26 +540,26 @@ In summary of multimodal fusion and bounded agency, modality tags travel with ob
 \section{Inspection Report Generation and Management}
 \label{sec:ch8-reports}
 
-Inspection answers become useful when they land in artefacts facility-management systems already understand. Free-form paragraphs are hard to audit. A practical report schema groups identity fields for asset and defect IDs, diagnosis, propagation notes, recommended actions, and trust flags. Identity fields must be subsets of the retrieved evidence set, the report-level analogue of constrained decoding used in BIM and code assistants~\cite{zheng2023bimassistant,joffe2025buildingcodes}. Diagnosis fields should point back to observation IDs whose images open in the twin UI. Action fields should be readable by schedulers without requiring another LLM to re-parse prose.
+Inspection answers become useful when they land as claim-level artefacts. A report carries \texttt{schema\_version}, \texttt{report\_id}, \texttt{twin\_snapshot\_id}, pinned \texttt{manual\_edition\_ids}, and a list of claims that separate observation facts, hypotheses, and proposed actions (Table~\ref{tab:ch8-schema}). Identity fields must be subsets of~$\mathcal{C}(q)$; each claim binds \texttt{evidence\_ids} and, when relevant, \texttt{relation\_path} and \texttt{requires\_human\_review}~\cite{zheng2023bimassistant,joffe2025buildingcodes,ji2023}.
 
 \begin{table}[htbp]
 \centering
-\caption{Example constrained fields for an inspection report draft.}
+\caption{Claim-level constrained fields for an inspection report draft.}
 \label{tab:ch8-schema}
-\begin{tabular}{llp{6.0cm}}
+\begin{tabular}{llp{5.4cm}}
 \toprule
-Group & Keys & Rule of thumb for inspection \\
+Group & Keys & Rule \\
 \midrule
-Identity & asset\_ids, defect\_ids & $\subseteq$ retrieved twin evidence \\
-Diagnosis & type, severity, hypothesis & supported by observations \\
-Propagation & neighbour path & from topology expansion \\
-Action & repair, priority & decision support, not autopilot \\
-Trust & confidence, human\_check & escalate on modality conflict \\
+Header & report\_id, twin\_snapshot\_id, manual editions & pin versions \\
+Identity & asset\_ids, defect\_ids & $\subseteq$ package (V1) \\
+Claims & claim\_type, text, evidence\_ids, relation\_path & observation vs hypothesis (V3) \\
+Actions & action\_type, status, approval\_required & proposed until approved (V4) \\
+Trust & workflow\_status, human\_check & escalate on conflict \\
 \bottomrule
 \end{tabular}
 \end{table}
 
-A worked draft makes Table~\ref{tab:ch8-schema} concrete. Suppose the retrieved package for a moisture-path question already contains passports for \texttt{W-3-17} and \texttt{W-4-17}, observation IDs \texttt{obs-2403-118} for an RGB stain and \texttt{obs-2403-204} for an infrared anomaly, and a one-hop neighbour list that includes the upstairs host. A schema-respecting draft may then name exactly those Asset-IDs, attach both observation IDs under diagnosis evidence, set propagation to the upstairs path, recommend a local probe with priority tied to access, and raise a human-review flag because RGB and infrared disagree. A failing draft can look equally fluent while inventing \texttt{W-3-18}, claiming ``confirmed seepage'', or writing severity without an observation field. The acceptance test is mechanical: every identity in the draft must be a subset of the retrieved package, every evidence URI must open to the correct crop, and conflict flags must survive into the trust block~\cite{ji2023,zheng2023bimassistant,joffe2025buildingcodes}. Table~\ref{tab:ch8-report-accept} turns that test into a pre-handover checklist.
+For the warehouse moisture path, a valid draft names \texttt{W-3-17}/\texttt{W-4-17}, cites \texttt{obs-2403-118} (RGB) and \texttt{obs-2403-204} (IR) under separate claims, marks the moisture link as \texttt{hypothesis} with \texttt{requires\_human\_review=true}, and proposes \texttt{local\_probe} with \texttt{approval\_required=true}. Inventing \texttt{W-3-18} or writing ``confirmed seepage'' fails V1/V3. Table~\ref{tab:ch8-report-accept} is the pre-handover checklist.
 
 \begin{table}[htbp]
 \centering
@@ -520,13 +581,15 @@ Write staging & twin updates pending only & draft button mutates twin \\
 \begin{figure}[htbp]
 \centering
 \includegraphics[width=\linewidth]{deterministic_ablation_exact_hit.pdf}
-\caption{Illustration of the grounding outcome readers should require from retrieval packaging: on a frozen twin with $N=200$ per cell and no LLM judge, asset passports with one-hop expansion preserve more answer and cited IDs in the retrieved evidence than chunk-only packaging. The comparison teaches a design expectation for grounded reports, not a contest among systems.}
+\caption{Deterministic retrieval-packaging result on a frozen twin ($N=200$ questions per cell; no LLM judge): asset passports with controlled one-hop expansion retain more answer and cited IDs in the retrieved evidence than chunk-only packaging. Metrics are exact-hit rates over Asset-IDs; the figure evaluates assembly policy, not a contest among hosted chat models.}
 \label{fig:ch8-ablation}
 \end{figure}
 
-Figure~\ref{fig:ch8-ablation} illustrates the kind of grounding outcome a reader should demand. Passport-centred packaging with one-hop expansion keeps answer IDs and cited IDs closer to the retrieved evidence than chunk-only packaging, so hop depth belongs to the evidence-assembly policy rather than a free prompt choice~\cite{lewis2020,jeon2025hybridrag,lee2024ragsafety}. Report drafts inherit that policy: every named Asset-ID must occur in the returned package, and every evidence URI must open~\cite{ji2023,peng2024}. For a question about water ingress on a vertical stack, the system should return neighbour passports and openable observation IDs, then draft a repair brief or abstain when evidence is thin. If a revisit is needed, an action proposer emits a planning hint for Chapters~2--3; it does not invent a flight path in prose.
+Figure~\ref{fig:ch8-ablation} reports a deterministic packaging experiment used to justify passport-centred assembly for reports. Setup: a frozen twin snapshot; $N=200$ queries per packaging cell; no LLM as judge; primary metrics \texttt{retr\_exact\_hit} and answer/cited ID containment. Source summaries live under \texttt{figures\_src/statistical/data/}. Hop depth therefore belongs to evidence-assembly policy, not free prompt choice~\cite{lewis2020,jeon2025hybridrag,lee2024ragsafety}. Report drafts inherit that policy under V1--V4.
 
-Report management means more than one-shot generation. Drafts should be versioned; human sign-off should be recorded; approved facts may be written back into twin memory, the same long-term store introduced in Section~\ref{sec:ch8-llm-foundations}. Rejected drafts should not silently pollute passports. Where organisations already use CMMS or BIM issue trackers, the schema above may map to those fields as an optional export. Parallel unreproducible prose PDFs are avoided. Natural-language query interfaces can help non-specialists ask questions, but the authoritative artefact remains the constrained report plus openable evidence. A practical state machine keeps that discipline enforceable: DRAFT $\rightarrow$ VALIDATE $\rightarrow$ REVIEW $\rightarrow$ APPROVED/REJECTED $\rightarrow$ optional EXPORT $\rightarrow$ optional TWIN\_WRITE. The LLM may fill fields only inside DRAFT; Table~\ref{tab:ch8-report-accept} owns VALIDATE; humans own REVIEW; EXPORT is only for sites that already run a work system; only an approved path may call \texttt{stage\_twin\_write}. ReAct-style tool loops and schema-guided AEC agents already show that multi-step tool use is valuable when each step remains typed and gated~\cite{yao2023react,gao2026ifcagent,luo2025llmdtrobot}. Fluency must not skip VALIDATE because a meeting is starting in ten minutes~\cite{li2024surveymultiagent,rawat2025llmmas,hellin2025bimmas}. Software roles may split for clarity into retriever, drafter, optional mapper, and action proposer without creating multiple Asset-ID truths: all roles read one twin memory and one approval policy~\cite{gao2026ifcagent,luo2025llmdtrobot,quan2026bimfacrag,buga2025llmfmsql,li2024surveymultiagent,wang2024surveyagents}.
+Report lifecycle is a state machine:
+\texttt{DRAFT}$\rightarrow$\texttt{VALIDATED}$\rightarrow$\texttt{UNDER\_REVIEW}$\rightarrow$\texttt{APPROVED}/\texttt{REJECTED}$\rightarrow$\texttt{EXPORTED}$$\rightarrow$\texttt{WRITE\_STAGED}$\rightarrow$\texttt{WRITE\_COMMITTED}.
+Forbidden transitions: DRAFT writing the twin; export after failed validation; automatic re-propose of REJECTED drafts; promoting \texttt{possible} to \texttt{confirmed} without approval; approving when an evidence URI is broken. The LLM may fill fields only in DRAFT; Table~\ref{tab:ch8-report-accept} owns VALIDATE; humans own REVIEW; only APPROVED paths may \texttt{stage\_twin\_write}~\cite{yao2023react,gao2026ifcagent,luo2025llmdtrobot}. A replayable TRACE must record twin snapshot, graph version, manual edition, embedding model, LLM name/version, system-prompt version, tool-schema version, retrieval parameters, validator version, generation parameters, operator, reviewer, and timestamp~\cite{liang2023helm}.
 
 \begin{figure}[htbp]
 \centering
@@ -550,7 +613,7 @@ After each major flight week, freeze a twin snapshot, re-run Table~\ref{tab:ch8-
 \section{Decision Support and Predictive Maintenance}
 \label{sec:ch8-dss}
 
-Decision support closes the chapter by asking what a grounded language system is for. The operational answer is generative under control: automatically support comprehensive reports, natural-language queries over historical maintenance records, and predictive maintenance recommendations that accelerate scheduling while remaining under professional review. In teaching terms, that means named assets, openable evidence, ranked triage for the next gondola week, and honest abstention when prognosis evidence is thin. Evaluation criteria must therefore travel across implementations. For inspection language systems, ask whether cited IDs appear in the evidence set~\cite{ji2023,shuster2021}; whether propagation and historical-record questions improve when prior observations and neighbours are included; whether code and manual RAG beats parametric recall on editioned corpora~\cite{lee2024ragsafety,joffe2025buildingcodes,krutli2025fmrags}; whether outputs can drive operational schedules; and whether agent tool traces respect approval and geofence constraints~\cite{luo2025llmdtrobot,rawat2025llmmas}. Table~\ref{tab:ch8-eval} states those five criteria as a shared rubric for any implementation.
+Decision support in this section has three layers that must not be conflated. \emph{Maintenance prioritisation} ranks current defects by severity, access, and evidence completeness for the next gondola week. \emph{Conditional decision support} states what follows if evidence is missing---for example, abstain on moisture propagation when upstairs IR is absent and recommend a revisit. \emph{Predictive maintenance} requires an external time or deterioration model (multi-campaign series, survival or state-transition estimates, remaining-life); the LLM may explain those model outputs under citation, but must not invent future failure probabilities from a single campaign~\cite{chen2023facility,zhao2026physical}. Evaluation criteria still travel across implementations: cited IDs in the evidence set; neighbours and history when needed; editioned manuals over parametric recall; schedule-usable outputs; gated tool TRACE~\cite{ji2023,lee2024ragsafety,luo2025llmdtrobot}. Table~\ref{tab:ch8-eval} states the shared rubric; Table~\ref{tab:ch8-cap-maturity} separates proposed, implemented, evaluated, and future capabilities so proposal language is not mistaken for field proof.
 
 \begin{table}[htbp]
 \centering
@@ -565,6 +628,24 @@ Topology & Do neighbours help multi-hop? & PDF-chunk-only RAG \\
 Corpus fidelity & Better than parametric recall? & wrong manual edition \\
 Operability & Can FM schedule from output? & irreparable paragraphs \\
 Agent safety & Gates on write/dispatch? & silent twin mutation \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{table}[htbp]
+\centering
+\caption{Capability maturity for Chapter~8 proposal claims (honest status).}
+\label{tab:ch8-cap-maturity}
+\begin{tabular}{llp{4.2cm}}
+\toprule
+Capability & Status in this chapter & Evidence needed \\
+\midrule
+Asset-based retrieval & proposed + packaging eval & Fig.~\ref{fig:ch8-ablation} \\
+Historical query & proposed (ID map required) & cross-campaign case \\
+Multimodal explanation & proposed + rules & conflict walkthrough \\
+Report generation & proposed schema & claim schema + human review \\
+Revisit proposal & concept / TRACE pattern & gated tool log \\
+Predictive maintenance & external-model interface / future & time-series validation \\
 \bottomrule
 \end{tabular}
 \end{table}
@@ -599,7 +680,12 @@ One end-to-end walkthrough is enough to bind those criteria to practice. Conside
 
 Deployment should follow the same spine. Begin by freezing Asset-IDs and neighbour edges, admitting only valid observation cards, and limiting use to local and health questions until topology is checked. Then enable one-hop expansion with a pinned manual edition, dry-run the five-tool surface with writes blocked, and introduce frozen-snapshot scoring and CMMS mapping before any hosted-LLM substitution~\cite{zhang2025,zhao2026physical,peng2024,lee2024ragsafety,gao2026ifcagent,liang2023helm,ma2026tenquestions,buga2025llmfmsql}. Graph-twin and multi-agent studies may inform role splits inside that programme, but they do not remove the need for identity hygiene~\cite{pan2026graphdtgpt,rawat2025llmmas,lu2026highwaymas}.
 
-Triage language sits between diagnosis and schedule. An illustrative scheduler may score assets by $s = 0.4\,\tilde{\ell} + 0.3\,c + 0.2\,a + 0.1\,m$, where $\tilde{\ell}$ is geometry-normalised defect size, $c$ detector confidence, $a$ access urgency, and $m$ a modality-conflict penalty. Coefficients belong to the facility, not to the LLM; the language system exposes the cited terms behind each score and lets humans reorder; see Table~\ref{tab:ch8-triage}. Surface cracks require geometry-normalised lengths without uncited structural stories, moisture cues require multimodal disclosure, and prior repair patches require cross-campaign IDs before a system may claim deterioration~\cite{zhao2024facade,zhao2026physical,jeon2025hybridrag}. A minimal constrained draft remains the machine-readable carrier of that triage:
+Triage language sits between diagnosis and schedule. An \emph{illustrative, non-operational} score is
+\begin{equation}
+\label{eq:ch8-score}
+s = w_{\ell}\,\tilde{\ell} + w_{c}\,c + w_{a}\,a + w_{m}\,m,
+\end{equation}
+where $\tilde{\ell}$ is geometry-normalised defect size, $c$ detector confidence, $a$ access urgency, and $m$ a modality-conflict term. The weights $w_{\cdot}$ are facility placeholders set by managers or MCDA; they must not be used for field scheduling without calibration, sensitivity analysis, and professional approval. Detector confidence is not structural risk; modality conflict may raise revisit priority rather than simply lower~$s$. The language system exposes cited terms behind each score and lets humans reorder; see Table~\ref{tab:ch8-triage}. Surface cracks require geometry-normalised lengths without uncited structural stories, moisture cues require multimodal disclosure, and prior repair patches require cross-campaign IDs before a system may claim deterioration~\cite{zhao2024facade,zhao2026physical,jeon2025hybridrag}. A minimal constrained draft remains the machine-readable carrier of that triage:
 
 \begin{verbatim}
 {
@@ -635,8 +721,22 @@ $m$ & RGB/IR conflict flags & disclose disagreement \\
 \end{tabular}
 \end{table}
 
-Common failure modes collapse into the same contracts. Invented Asset-IDs appear when validators are missing; false moisture paths appear when embedding neighbourhood replaces BIM adjacency; confirmed seepage appears when infrared-only cards lose uncertainty flags; silent twin mutation appears when report drafting and twin write share one unguarded button; edition averaging appears when manuals are unpinned~\cite{ji2023,peng2024,lee2024ragsafety,luo2025llmdtrobot}. Adding more agent personas does not repair those failures. Shared twin memory, typed tools, and gates do~\cite{wang2024surveyagents,rawat2025llmmas,gao2026ifcagent}. Procurement and classroom assessment should therefore demand the same artefacts: Asset-ID dictionary, neighbour-edge provenance, observation schema, edition pins, intent--assembly policy, gated tool surface, CMMS field map, gold questions with abstentions, and paired TRACE files. Figures~\ref{fig:ch8-memory-ladder}--\ref{fig:ch8-agent-gate} and Tables~\ref{tab:ch8-harness} and~\ref{tab:ch8-triage} are load-bearing teaching objects for that demand~\cite{yao2023react,hellin2025bimmas,buga2025llmfmsql}.
+\paragraph{Illustrative end-to-end case (warehouse façade).}
+\label{par:ch8-e2e}
+The following walkthrough is teaching-only: Asset-IDs and counts are placeholders, not a field census. Query family covers local diagnosis, history, moisture propagation, audit, report draft, revisit proposal, abstention, and a rejected write-back.
+
+\begin{enumerate}
+\item \emph{Local:} ``What is on W-4-17?'' $\rightarrow$ passport $\mathcal{P}(a)$ with RGB/IR observations; V1--V3 pass; TRACE pins twin snapshot and detector versions.
+\item \emph{History:} ``Was W-4-17 repaired last year?'' $\rightarrow$ Asset-ID map resolves predecessor code; if no approved Repair Event, answer \texttt{UNKNOWN} rather than invent a CMMS row.
+\item \emph{Propagation:} ``Could moisture reach W-3-17?'' $\rightarrow$ expand on $R_{\mathrm{moisture}}$; upstairs IR missing $\rightarrow$ V3 fails for a confirmed-path claim; output \texttt{HUMAN\_REVIEW} + revisit hint.
+\item \emph{Audit:} ``Show evidence for claim C2.'' $\rightarrow$ claim schema returns observation IDs and openable crops; no new LLM narrative.
+\item \emph{Report:} DRAFT $\rightarrow$ VALIDATED $\rightarrow$ APPROVED; export allowed only after human sign-off.
+\item \emph{Revisit / abstain:} agent proposes \texttt{propose\_revisit} under geofence; TRACE records tool args and operator.
+\item \emph{Rejected write:} operator rejects a draft Repair Event $\rightarrow$ state stays APPROVED for the report; twin write remains forbidden (no WRITE\_COMMITTED).
+\end{enumerate}
+
+Common failure modes collapse into the same contracts. Invented Asset-IDs appear when validators are missing; false moisture paths appear when embedding neighbourhood replaces BIM adjacency; confirmed seepage appears when infrared-only cards lose uncertainty flags; silent twin mutation appears when report drafting and twin write share one unguarded button; edition averaging appears when manuals are unpinned~\cite{ji2023,peng2024,lee2024ragsafety,luo2025llmdtrobot}. Adding more agent personas does not repair those failures. Shared twin memory, typed tools, and gates do~\cite{wang2024surveyagents,rawat2025llmmas,gao2026ifcagent}. Procurement and classroom assessment should therefore demand the same artefacts: Asset-ID dictionary, neighbour-edge provenance, observation schema, edition pins, intent--assembly policy, gated tool surface, CMMS field map, gold questions with abstentions, and paired TRACE files. Figures~\ref{fig:ch8-memory-ladder}--\ref{fig:ch8-agent-gate} and Tables~\ref{tab:ch8-harness}, \ref{tab:ch8-cap-maturity}, and~\ref{tab:ch8-triage} are load-bearing teaching objects for that demand~\cite{yao2023react,hellin2025bimmas,buga2025llmfmsql}.
 
 Looking toward Chapter~9, the open problems are mostly socio-technical: incomplete topology on older buildings, contractor identifier collisions, scarce agent benchmarks for safe inspection tool use, and governance when a grounded-looking answer is wrong~\cite{saka2024gptconstruction,ma2026tenquestions}. Larger models alone will not close those gaps. The constructive response taught here remains continuous with Sections~\ref{sec:ch8-dt}--\ref{sec:ch8-reports}: make the twin decision-ready, retrieve over assets, fuse modalities without erasing conflict, bound the agent, and evaluate what facility teams can schedule.
 
-In summary, Chapter~8 is the monograph's fourth phase: next-generation decision support. It consumes Chapters~4--7, teaches ready-to-use LLM techniques and a model harness with an inspection-centred memory ladder, positions VLMs as optional crop readers under the same citation gates, grounds answers through asset-centric retrieval and bounded agents, and delivers historical-record queries, auditable reports, and predictive maintenance triage that facility teams can schedule. Drawing on published 2024--2026 AEC practice while specialising it to fa\c{c}ade O\&M, the measure of success is not rhetorical fluency, but named assets, cited evidence, and actions that remain under professional control.
+In summary, Chapter~8 is the monograph's decision-support phase. It consumes Chapters~4--7, teaches a model harness with an inspection-centred memory ladder, treats VLMs as optional crop readers under citation gates, and delivers claim-level reports with triage and conditional advice under professional control. Predictive maintenance remains an external-model interface unless multi-campaign evidence exists. The measure of success is not rhetorical fluency, but named assets, cited evidence, and actions that remain gated.

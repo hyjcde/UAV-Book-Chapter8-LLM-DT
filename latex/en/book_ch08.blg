@@ -5,61 +5,56 @@ A level-1 auxiliary file: dedication.aux
 A level-1 auxiliary file: preface.aux
 A level-1 auxiliary file: acknow.aux
 A level-1 auxiliary file: acronym.aux
-A level-1 auxiliary file: part01_acquisition.aux
 A level-1 auxiliary file: ch01_introduction.aux
 A level-1 auxiliary file: ch02_task_planning.aux
 A level-1 auxiliary file: ch03_motion_planning.aux
-A level-1 auxiliary file: part02_representation.aux
 A level-1 auxiliary file: ch04_3d_reconstruction.aux
-A level-1 auxiliary file: ch07_gis.aux
-A level-1 auxiliary file: part03_defect_ai.aux
 A level-1 auxiliary file: ch05_datasets.aux
 A level-1 auxiliary file: ch06_ai_models.aux
-A level-1 auxiliary file: part04_decision_support.aux
+A level-1 auxiliary file: ch07_gis.aux
 A level-1 auxiliary file: ch08.aux
 A level-1 auxiliary file: ch09_conclusion.aux
 A level-1 auxiliary file: glossary.aux
-The style file: spbasic.bst
+The style file: unsrtnat.bst
 Database file #1: references.bib
-Reallocated wiz_functions (elt_size=4) to 6000 items from 3000.
-You've used 68 entries,
-            3269 wiz_defined-function locations,
-            1096 strings with 23656 characters,
-and the built_in function-call counts, 98179 in all, are:
-= -- 8604
-> -- 3879
-< -- 21
-+ -- 1331
-- -- 1251
-* -- 9183
-:= -- 13331
-add.period$ -- 68
-call.type$ -- 68
-change.case$ -- 788
-chr.to.int$ -- 66
-cite$ -- 68
-duplicate$ -- 8305
-empty$ -- 8518
-format.name$ -- 1471
-if$ -- 20582
-int.to.chr$ -- 3
-int.to.str$ -- 1
-missing$ -- 941
-newline$ -- 214
-num.names$ -- 272
-pop$ -- 2136
+You've used 56 entries,
+            2481 wiz_defined-function locations,
+            910 strings with 19887 characters,
+and the built_in function-call counts, 27726 in all, are:
+= -- 1982
+> -- 2262
+< -- 18
++ -- 811
+- -- 698
+* -- 2585
+:= -- 4760
+add.period$ -- 222
+call.type$ -- 56
+change.case$ -- 112
+chr.to.int$ -- 55
+cite$ -- 56
+duplicate$ -- 1165
+empty$ -- 2099
+format.name$ -- 768
+if$ -- 5661
+int.to.chr$ -- 2
+int.to.str$ -- 57
+missing$ -- 56
+newline$ -- 341
+num.names$ -- 168
+pop$ -- 409
 preamble$ -- 1
-purify$ -- 684
+purify$ -- 56
 quote$ -- 0
-skip$ -- 1467
+skip$ -- 678
 stack$ -- 0
-substring$ -- 10606
-swap$ -- 2130
-text.length$ -- 13
+substring$ -- 1033
+swap$ -- 199
+text.length$ -- 11
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 612
+type$ -- 392
 warning$ -- 0
-while$ -- 748
+while$ -- 174
 width$ -- 0
-write$ -- 817
+write$ -- 839

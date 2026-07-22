@@ -14,7 +14,7 @@
 
 | Section | Status | Notes |
 |---------|--------|-------|
-| 8.1–8.6 | draft+ | body in `latex/en/ch08.tex` + `latex/cn/ch08_cn.tex` |
+| 8.1–8.6 | draft+ | body in `latex/en/ch08.tex` + `latex/en/cn/ch08_cn.tex` |
 
 **Style notes:** `literature/springer_style_refs/MONOGRAPH_CHAPTER_STYLE.md`  
 **Lit rule:** `cited_risky=0`.  
@@ -31,3 +31,4 @@
 **Front matter (2026-07-21):** title-first page (no author/date); proposal title+subtitle; dedication-style epigraph; preface without place/date signature; continuous §8.5 prose (fewer topic-label openers).  
 **Reader-first float cut (2026-07-22):** EN/CN thinned to ~10 figs + ~12 tabs + 1 algorithm; removed paper-audit / lit-map stack; ablation kept as grounding-outcome teaching panel only.  
 **Sync polish (2026-07-22):** keywords; shortened §8.2/§8.6 lit dumps; predictive maintenance as triage/conditional/external-prognosis; CN duplicate agent para removed; topic-label openers smoothed.
+**Major revision (2026-07-22):** fixed TOC 8.1–8.6; §8.1 DT definition + maturity/`upstream` tables + governance; §8.2 harness I/O six-row table + lit compress; §8.3 Asset/Obs/Defect/Passport + typed graph + V1–V4 + ID map; §8.4 fusion scope/levels + VLM rules + JSON API + security; §8.5 claim-level schema + state machine + TRACE versions; **Fig 8.8 Scheme A** — keep `deterministic_ablation_exact_hit.pdf` + $N=200$, methods paragraph → `figures_src/statistical/data/`; §8.6 triage/conditional/predictive split + symbolic `eq:ch8-score` + `tab:ch8-cap-maturity` + `par:ch8-e2e` warehouse walkthrough (EN+CN).

@@ -14,7 +14,7 @@ except ImportError:
 ROOT = Path(__file__).resolve().parents[1]
 MAP = ROOT / "latex" / "SECTION_MAP.yaml"
 EN = ROOT / "latex" / "en" / "ch08.tex"
-CN = ROOT / "latex" / "cn" / "ch08_cn.tex"
+CN = ROOT / "latex" / "en" / "cn" / "ch08_cn.tex"
 
 
 def load_ids() -> list[str]:

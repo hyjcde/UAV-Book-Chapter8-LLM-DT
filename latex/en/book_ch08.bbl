@@ -1,4 +1,4 @@
-\begin{thebibliography}{61}
+\begin{thebibliography}{56}
 \providecommand{\natexlab}[1]{#1}
 \providecommand{\url}[1]{\texttt{#1}}
 \expandafter\ifx\csname urlstyle\endcsname\relax
@@ -27,6 +27,13 @@ Qiuchen Lu, Xiang Xie, James Heaton, Ajith~Kumar Parlikad, and Jennifer
 \newblock \emph{Automation in Construction}, 118:\penalty0 103277, 2020.
 \newblock \doi{10.1016/j.autcon.2020.103277}.
 
+\bibitem[Chen et~al.(2023)Chen, Lu, Fu, and Dong]{chen2023facility}
+Junjie Chen, Weisheng Lu, Yonglin Fu, and Zhiming Dong.
+\newblock Automated facility inspection using robotics and {BIM}: A
+  knowledge-driven approach.
+\newblock \emph{Advanced Engineering Informatics}, 55:\penalty0 101838, 2023.
+\newblock \doi{10.1016/j.aei.2022.101838}.
+
 \bibitem[Bruno et~al.(2018)Bruno, De~Fino, and Fatiguso]{bruno2018}
 Silvana Bruno, Mariella De~Fino, and Fabio Fatiguso.
 \newblock Historic building information modelling: performance assessment for
@@ -42,48 +49,6 @@ Elisavet Tsilimantou, Ekaterini~T. Delegou, Ioannis~A. Nikitakos, Charalabos
   monitoring of historic buildings.
 \newblock \emph{Applied Sciences}, 10\penalty0 (3):\penalty0 1078, 2020.
 \newblock \doi{10.3390/app10031078}.
-
-\bibitem[Chen et~al.(2023)Chen, Lu, Fu, and Dong]{chen2023facility}
-Junjie Chen, Weisheng Lu, Yonglin Fu, and Zhiming Dong.
-\newblock Automated facility inspection using robotics and {BIM}: A
-  knowledge-driven approach.
-\newblock \emph{Advanced Engineering Informatics}, 55:\penalty0 101838, 2023.
-\newblock \doi{10.1016/j.aei.2022.101838}.
-
-\bibitem[Ji et~al.(2023)Ji, Lee, Frieske, Yu, Su, Xu, Ishii, Bang, Madotto, and
-  Fung]{ji2023}
-Ziwei Ji, Nayeon Lee, Rita Frieske, Tiezheng Yu, Dan Su, Yan Xu, Etsuko Ishii,
-  Ye~Jin Bang, Andrea Madotto, and Pascale Fung.
-\newblock Survey of hallucination in natural language generation.
-\newblock \emph{ACM Computing Surveys}, 55\penalty0 (12):\penalty0 1--38, 2023.
-\newblock \doi{10.1145/3571730}.
-
-\bibitem[Lewis et~al.(2020)Lewis, Perez, Piktus, Petroni, Karpukhin, Goyal,
-  K{\"u}ttler, Lewis, Yih, Rockt{\"a}schel, et~al.]{lewis2020}
-Patrick Lewis, Ethan Perez, Aleksandra Piktus, Fabio Petroni, Vladimir
-  Karpukhin, Naman Goyal, Heinrich K{\"u}ttler, Mike Lewis, Wen-tau Yih, Tim
-  Rockt{\"a}schel, et~al.
-\newblock Retrieval-augmented generation for knowledge-intensive {NLP} tasks.
-\newblock In \emph{Advances in Neural Information Processing Systems},
-  volume~33, pages 9459--9474, 2020.
-\newblock URL
-  \url{https://proceedings.neurips.cc/paper/2020/hash/6b493230205f780e1bc26945df7481e5-Abstract.html}.
-
-\bibitem[Shuster et~al.(2021)Shuster, Poff, Chen, Kiela, and
-  Weston]{shuster2021}
-Kurt Shuster, Spencer Poff, Moya Chen, Douwe Kiela, and Jason Weston.
-\newblock Retrieval augmentation reduces hallucination in conversation.
-\newblock In \emph{Findings of the Association for Computational Linguistics:
-  EMNLP 2021}, pages 3784--3803, 2021.
-\newblock \doi{10.18653/v1/2021.findings-emnlp.320}.
-
-\bibitem[Yao et~al.(2023)Yao, Zhao, Yu, Du, Shafran, Narasimhan, and
-  Cao]{yao2023react}
-Shunyu Yao, Jeffrey Zhao, Dian Yu, Nan Du, Izhak Shafran, Karthik Narasimhan,
-  and Yuan Cao.
-\newblock {ReAct}: Synergizing reasoning and acting in language models.
-\newblock In \emph{International Conference on Learning Representations
-  ({ICLR})}, 2023.
 
 \bibitem[Zhang et~al.(2022)Zhang, Zou, and Dimyadi]{zhang2022}
 C.~Zhang, Y.~Zou, and J.~Dimyadi.
@@ -113,12 +78,56 @@ Guidong Yang, Benyun Zhao, Jihan Zhang, Junjie Wen, Qingxiang Li, Lei Lei,
   74:\penalty0 1--16, 2025.
 \newblock \doi{10.1109/TIM.2025.3571118}.
 
-\bibitem[Han et~al.(2025)Han, Zhang, Huang, Xu, Chen, and Chen]{han2025}
-Mingqiao Han, Jihan Zhang, Yijun Huang, Jiwen Xu, Xi~Chen, and Ben~M. Chen.
-\newblock Enhancing worker monitoring and management on large-scale
-  construction sites with {UAVs} and digital twin modeling.
-\newblock \emph{Automation in Construction}, 174:\penalty0 106108, 2025.
-\newblock \doi{10.1016/j.autcon.2025.106108}.
+\bibitem[Zhao et~al.(2024)Zhao, Zhou, Yang, Wen, Zhang, Dou, Li, Chen, and
+  Chen]{zhao2024facade}
+Benyun Zhao, Xunkuai Zhou, Guidong Yang, Junjie Wen, Jihan Zhang, Jiahao Dou,
+  Guangcheng Li, Xi~Chen, and Ben~M. Chen.
+\newblock High-resolution infrastructure defect detection dataset sourced by
+  unmanned systems and validated with deep learning.
+\newblock \emph{Automation in Construction}, 163:\penalty0 105405, 2024.
+\newblock \doi{10.1016/j.autcon.2024.105405}.
+
+\bibitem[Zhao et~al.(2026)Zhao, Zhang, Huang, Chen, and Chen]{zhao2026physical}
+Benyun Zhao, Jihan Zhang, Yijun Huang, Xi~Chen, and Ben~M. Chen.
+\newblock From instance segmentation to physical quantification:
+  High-resolution {UAV}-based dataset for fa{\c{c}}ade defect assessment.
+\newblock \emph{Automation in Construction}, 188:\penalty0 106980, 2026.
+\newblock \doi{10.1016/j.autcon.2026.106980}.
+
+\bibitem[Lewis et~al.(2020)Lewis, Perez, Piktus, Petroni, Karpukhin, Goyal,
+  K{\"u}ttler, Lewis, Yih, Rockt{\"a}schel, et~al.]{lewis2020}
+Patrick Lewis, Ethan Perez, Aleksandra Piktus, Fabio Petroni, Vladimir
+  Karpukhin, Naman Goyal, Heinrich K{\"u}ttler, Mike Lewis, Wen-tau Yih, Tim
+  Rockt{\"a}schel, et~al.
+\newblock Retrieval-augmented generation for knowledge-intensive {NLP} tasks.
+\newblock In \emph{Advances in Neural Information Processing Systems},
+  volume~33, pages 9459--9474, 2020.
+\newblock URL
+  \url{https://proceedings.neurips.cc/paper/2020/hash/6b493230205f780e1bc26945df7481e5-Abstract.html}.
+
+\bibitem[Shuster et~al.(2021)Shuster, Poff, Chen, Kiela, and
+  Weston]{shuster2021}
+Kurt Shuster, Spencer Poff, Moya Chen, Douwe Kiela, and Jason Weston.
+\newblock Retrieval augmentation reduces hallucination in conversation.
+\newblock In \emph{Findings of the Association for Computational Linguistics:
+  EMNLP 2021}, pages 3784--3803, 2021.
+\newblock \doi{10.18653/v1/2021.findings-emnlp.320}.
+
+\bibitem[Yao et~al.(2023)Yao, Zhao, Yu, Du, Shafran, Narasimhan, and
+  Cao]{yao2023react}
+Shunyu Yao, Jeffrey Zhao, Dian Yu, Nan Du, Izhak Shafran, Karthik Narasimhan,
+  and Yuan Cao.
+\newblock {ReAct}: Synergizing reasoning and acting in language models.
+\newblock In \emph{International Conference on Learning Representations
+  ({ICLR})}, 2023.
+
+\bibitem[Ji et~al.(2023)Ji, Lee, Frieske, Yu, Su, Xu, Ishii, Bang, Madotto, and
+  Fung]{ji2023}
+Ziwei Ji, Nayeon Lee, Rita Frieske, Tiezheng Yu, Dan Su, Yan Xu, Etsuko Ishii,
+  Ye~Jin Bang, Andrea Madotto, and Pascale Fung.
+\newblock Survey of hallucination in natural language generation.
+\newblock \emph{ACM Computing Surveys}, 55\penalty0 (12):\penalty0 1--38, 2023.
+\newblock \doi{10.1145/3571730}.
 
 \bibitem[Zheng and Fischer(2023)]{zheng2023bimassistant}
 Junwen Zheng and Martin Fischer.
@@ -127,23 +136,29 @@ Junwen Zheng and Martin Fischer.
 \newblock \emph{Automation in Construction}, 155:\penalty0 105067, 2023.
 \newblock \doi{10.1016/j.autcon.2023.105067}.
 
-\bibitem[Lee et~al.(2024)Lee, Ahn, Kim, and Kim]{lee2024ragsafety}
-Jungwon Lee, Seungjun Ahn, Daeho Kim, and Dongkyun Kim.
-\newblock Performance comparison of retrieval-augmented generation and
-  fine-tuned large language models for construction safety management knowledge
-  retrieval.
-\newblock \emph{Automation in Construction}, 168:\penalty0 105846, 2024.
-\newblock \doi{10.1016/j.autcon.2024.105846}.
+\bibitem[Joffe et~al.(2025)Joffe, Felobes, Elgouhari, Talebi~Kalaleh, Mei, and
+  Chui]{joffe2025buildingcodes}
+Isaac Joffe, George Felobes, Youssef Elgouhari, Mohammad Talebi~Kalaleh, Qipei
+  Mei, and Ying~Hei Chui.
+\newblock The framework and implementation of using large language models to
+  answer questions about building codes and standards.
+\newblock \emph{Journal of Computing in Civil Engineering}, 39\penalty0 (4),
+  2025.
+\newblock \doi{10.1061/JCCEE5.CPENG-6037}.
 
-\bibitem[Peng et~al.(2026)Peng, Zhu, Liu, Bo, Shi, Hong, Zhang, and
-  Tang]{peng2024}
-Boci Peng, Yun Zhu, Yongchao Liu, Xiaohe Bo, Haizhou Shi, Chuntao Hong, Yan
-  Zhang, and Siliang Tang.
-\newblock Graph retrieval-augmented generation: A survey.
-\newblock \emph{ACM Transactions on Information Systems}, 44\penalty0
-  (2):\penalty0 1--52, 2026.
-\newblock \doi{10.1145/3777378}.
-\newblock Advance online 2025; journal issue year 2026.
+\bibitem[Kr{\"u}tli and Hanne(2025)]{krutli2025fmrags}
+David Kr{\"u}tli and Thomas Hanne.
+\newblock Augmenting {LLMs} to securely retrieve information for construction
+  and facility management.
+\newblock \emph{Information}, 16\penalty0 (2):\penalty0 76, 2025.
+\newblock \doi{10.3390/info16020076}.
+
+\bibitem[Gao et~al.(2026)Gao, Hu, Chai, Weng, and Li]{gao2026ifcagent}
+Yan Gao, Fuji Hu, Chengzhang Chai, Yiwei Weng, and Haijiang Li.
+\newblock Multi-agent framework for schema-guided reasoning and tool-augmented
+  interaction with {IFC} models.
+\newblock \emph{Automation in Construction}, 2026.
+\newblock \doi{10.1016/j.autcon.2026.106888}.
 
 \bibitem[Luo et~al.(2025)Luo, Prieto, P{\"a}rn, Garc{\'i}a~de Soto, and
   Brilakis]{luo2025llmdtrobot}
@@ -154,67 +169,6 @@ Peihang Luo, Samuel~A. Prieto, Erika P{\"a}rn, Borja Garc{\'i}a~de Soto, and
 \newblock In \emph{Proceedings of the Creative Construction Conference
   ({CCC})}, 2025.
 \newblock \doi{10.22260/ccc2025/0061}.
-
-\bibitem[Gao et~al.(2026)Gao, Hu, Chai, Weng, and Li]{gao2026ifcagent}
-Yan Gao, Fuji Hu, Chengzhang Chai, Yiwei Weng, and Haijiang Li.
-\newblock Multi-agent framework for schema-guided reasoning and tool-augmented
-  interaction with {IFC} models.
-\newblock \emph{Automation in Construction}, 2026.
-\newblock \doi{10.1016/j.autcon.2026.106888}.
-
-\bibitem[Kr{\"u}tli and Hanne(2025)]{krutli2025fmrags}
-David Kr{\"u}tli and Thomas Hanne.
-\newblock Augmenting {LLMs} to securely retrieve information for construction
-  and facility management.
-\newblock \emph{Information}, 16\penalty0 (2):\penalty0 76, 2025.
-\newblock \doi{10.3390/info16020076}.
-
-\bibitem[Ma et~al.(2026)Ma, Labib, Amor, Chong, Fan, Forth, Fu, Fuchs,
-  et~al.]{ma2026tenquestions}
-Nan Ma, Rania Labib, Robert Amor, Adrian Chong, Cheng Fan, Kasimir Forth,
-  Xiaoqin Fu, Stefan Fuchs, et~al.
-\newblock Ten questions concerning large language models ({LLMs}) for building
-  applications.
-\newblock \emph{Building and Environment}, 291:\penalty0 114260, 2026.
-\newblock \doi{10.1016/j.buildenv.2026.114260}.
-
-\bibitem[Liang et~al.(2023)Liang, Bommasani, Lee, Tsipras, Soylu, Yasunaga,
-  Zhang, Narayanan, Wu, Kumar, Newman, Yuan, Yan, Zhang, Cosgrove, Manning,
-  R{\'e}, Acosta-Navas, Hudson, Zelikman, Durmus, Ladhak, Rong, Ren, Yao, Wang,
-  Santhanam, Orr, Zheng, Yuksekgonul, Suzgun, Kim, Guha, Chatterji, Khattab,
-  Henderson, Huang, Chi, Xie, Santurkar, Ganguli, Hashimoto, Icard, Zhang,
-  Chaudhary, Wang, Li, Mai, Zhang, and Koreeda]{liang2023helm}
-Percy Liang, Rishi Bommasani, Tony Lee, Dimitris Tsipras, Dilara Soylu,
-  Michihiro Yasunaga, Yian Zhang, Deepak Narayanan, Yuhuai Wu, Ananya Kumar,
-  Benjamin Newman, Binhang Yuan, Bobby Yan, Ce~Zhang, Christian Cosgrove,
-  Christopher~D. Manning, Christopher R{\'e}, Diana Acosta-Navas, Drew~A.
-  Hudson, Eric Zelikman, Esin Durmus, Faisal Ladhak, Frieda Rong, Hongyu Ren,
-  Huaxiu Yao, Jue Wang, Keshav Santhanam, Laurel Orr, Lucia Zheng, Mert
-  Yuksekgonul, Mirac Suzgun, Nathan Kim, Neel Guha, Niladri~S. Chatterji, Omar
-  Khattab, Peter Henderson, Qian Huang, Ryan~Andrew Chi, Sang~Michael Xie,
-  Shibani Santurkar, Surya Ganguli, Tatsunori Hashimoto, Thomas Icard, Tianyi
-  Zhang, Vishrav Chaudhary, William Wang, Xuechen Li, Yifan Mai, Yuhui Zhang,
-  and Yuta Koreeda.
-\newblock Holistic evaluation of language models.
-\newblock \emph{Transactions on Machine Learning Research}, 2023.
-\newblock URL \url{https://openreview.net/forum?id=iO4LZibEqW}.
-\newblock Featured Certification.
-
-\bibitem[Hellin et~al.(2025)Hellin, Nousias, and Borrmann]{hellin2025bimmas}
-Sylvain Hellin, Stavros Nousias, and Andr{\'e} Borrmann.
-\newblock Natural language information retrieval from {BIM} models: An
-  {LLM}-based multi-agent system approach.
-\newblock In \emph{Proceedings of the 2025 European Conference on Computing in
-  Construction}, volume~6, 2025.
-\newblock \doi{10.35490/ec3.2025.265}.
-
-\bibitem[Vaswani et~al.(2017)Vaswani, Shazeer, Parmar, Uszkoreit, Jones, Gomez,
-  Kaiser, and Polosukhin]{vaswani2017attention}
-Ashish Vaswani, Noam Shazeer, Niki Parmar, Jakob Uszkoreit, Llion Jones,
-  Aidan~N. Gomez, {\L}ukasz Kaiser, and Illia Polosukhin.
-\newblock Attention is all you need.
-\newblock In \emph{Advances in Neural Information Processing Systems},
-  volume~30, 2017.
 
 \bibitem[Brown et~al.(2020)Brown, Mann, Ryder, Subbiah, Kaplan, Dhariwal,
   Neelakantan, Shyam, Sastry, Askell, et~al.]{brown2020}
@@ -235,14 +189,13 @@ Long Ouyang, Jeffrey Wu, Xu~Jiang, Diogo Almeida, Carroll Wainwright, Pamela
 \newblock \emph{Advances in Neural Information Processing Systems},
   35:\penalty0 27730--27744, 2022.
 
-\bibitem[Wei et~al.(2022)Wei, Wang, Schuurmans, Bosma, Ichter, Xia, Chi, Le,
-  and Zhou]{wei2022cot}
-Jason Wei, Xuezhi Wang, Dale Schuurmans, Maarten Bosma, Brian Ichter, Fei Xia,
-  Ed~Chi, Quoc~V. Le, and Denny Zhou.
-\newblock Chain-of-thought prompting elicits reasoning in large language
-  models.
+\bibitem[Vaswani et~al.(2017)Vaswani, Shazeer, Parmar, Uszkoreit, Jones, Gomez,
+  Kaiser, and Polosukhin]{vaswani2017attention}
+Ashish Vaswani, Noam Shazeer, Niki Parmar, Jakob Uszkoreit, Llion Jones,
+  Aidan~N. Gomez, {\L}ukasz Kaiser, and Illia Polosukhin.
+\newblock Attention is all you need.
 \newblock In \emph{Advances in Neural Information Processing Systems},
-  volume~35, pages 24824--24837, 2022.
+  volume~30, 2017.
 
 \bibitem[Saka et~al.(2024)Saka, Taiwo, Saka, Salami, Ajayi, Akande, and
   Kazemi]{saka2024gptconstruction}
@@ -254,22 +207,31 @@ Abdullahi~B. Saka, Ridwan Taiwo, Nurudeen Saka, Babatunde~Abiodun Salami,
   2024.
 \newblock \doi{10.1016/j.dibe.2023.100300}.
 
-\bibitem[Schick et~al.(2023)Schick, Dwivedi-Yu, Dess{\`i}, Raileanu, Lomeli,
-  Hambro, Zettlemoyer, Cancedda, and Scialom]{schick2023toolformer}
-Timo Schick, Jane Dwivedi-Yu, Roberto Dess{\`i}, Roberta Raileanu, Maria
-  Lomeli, Eric Hambro, Luke Zettlemoyer, Nicola Cancedda, and Thomas Scialom.
-\newblock Toolformer: Language models can teach themselves to use tools.
-\newblock \emph{Advances in Neural Information Processing Systems}, 36, 2023.
+\bibitem[Ma et~al.(2026)Ma, Labib, Amor, Chong, Fan, Forth, Fu, Fuchs,
+  et~al.]{ma2026tenquestions}
+Nan Ma, Rania Labib, Robert Amor, Adrian Chong, Cheng Fan, Kasimir Forth,
+  Xiaoqin Fu, Stefan Fuchs, et~al.
+\newblock Ten questions concerning large language models ({LLMs}) for building
+  applications.
+\newblock \emph{Building and Environment}, 291:\penalty0 114260, 2026.
+\newblock \doi{10.1016/j.buildenv.2026.114260}.
 
-\bibitem[Joffe et~al.(2025)Joffe, Felobes, Elgouhari, Talebi~Kalaleh, Mei, and
-  Chui]{joffe2025buildingcodes}
-Isaac Joffe, George Felobes, Youssef Elgouhari, Mohammad Talebi~Kalaleh, Qipei
-  Mei, and Ying~Hei Chui.
-\newblock The framework and implementation of using large language models to
-  answer questions about building codes and standards.
-\newblock \emph{Journal of Computing in Civil Engineering}, 39\penalty0 (4),
-  2025.
-\newblock \doi{10.1061/JCCEE5.CPENG-6037}.
+\bibitem[Wei et~al.(2022)Wei, Wang, Schuurmans, Bosma, Ichter, Xia, Chi, Le,
+  and Zhou]{wei2022cot}
+Jason Wei, Xuezhi Wang, Dale Schuurmans, Maarten Bosma, Brian Ichter, Fei Xia,
+  Ed~Chi, Quoc~V. Le, and Denny Zhou.
+\newblock Chain-of-thought prompting elicits reasoning in large language
+  models.
+\newblock In \emph{Advances in Neural Information Processing Systems},
+  volume~35, pages 24824--24837, 2022.
+
+\bibitem[Lee et~al.(2024)Lee, Ahn, Kim, and Kim]{lee2024ragsafety}
+Jungwon Lee, Seungjun Ahn, Daeho Kim, and Dongkyun Kim.
+\newblock Performance comparison of retrieval-augmented generation and
+  fine-tuned large language models for construction safety management knowledge
+  retrieval.
+\newblock \emph{Automation in Construction}, 168:\penalty0 105846, 2024.
+\newblock \doi{10.1016/j.autcon.2024.105846}.
 
 \bibitem[Jeon and Lee(2025)]{jeon2025hybridrag}
 Kahyun Jeon and Ghang Lee.
@@ -312,6 +274,16 @@ Soyeong Jeong, Jinheon Baek, Sukmin Cho, Sung~Ju Hwang, and Jong~C. Park.
   7036--7050, 2024.
 \newblock \doi{10.18653/v1/2024.naacl-long.389}.
 
+\bibitem[Peng et~al.(2026)Peng, Zhu, Liu, Bo, Shi, Hong, Zhang, and
+  Tang]{peng2024}
+Boci Peng, Yun Zhu, Yongchao Liu, Xiaohe Bo, Haizhou Shi, Chuntao Hong, Yan
+  Zhang, and Siliang Tang.
+\newblock Graph retrieval-augmented generation: A survey.
+\newblock \emph{ACM Transactions on Information Systems}, 44\penalty0
+  (2):\penalty0 1--52, 2026.
+\newblock \doi{10.1145/3777378}.
+\newblock Advance online 2025; journal issue year 2026.
+
 \bibitem[Pan et~al.(2024)Pan, Luo, Wang, Chen, Wang, and Wu]{pan2024b}
 Shirui Pan, Linhao Luo, Yufei Wang, Chen Chen, Jiapu Wang, and Xindong Wu.
 \newblock Unifying large language models and knowledge graphs: A roadmap.
@@ -339,6 +311,13 @@ Kyrylo Buga, Ratko Tesic, Elif Koyuncu, and Thomas Hanne.
   construction and facility management.
 \newblock \emph{Electronics}, 14\penalty0 (20):\penalty0 4106, 2025.
 \newblock \doi{10.3390/electronics14204106}.
+
+\bibitem[Schick et~al.(2023)Schick, Dwivedi-Yu, Dess{\`i}, Raileanu, Lomeli,
+  Hambro, Zettlemoyer, Cancedda, and Scialom]{schick2023toolformer}
+Timo Schick, Jane Dwivedi-Yu, Roberto Dess{\`i}, Roberta Raileanu, Maria
+  Lomeli, Eric Hambro, Luke Zettlemoyer, Nicola Cancedda, and Thomas Scialom.
+\newblock Toolformer: Language models can teach themselves to use tools.
+\newblock \emph{Advances in Neural Information Processing Systems}, 36, 2023.
 
 \bibitem[Guo et~al.(2025)Guo, Xue, Ma, and Cheng]{guo2025bimllmquery}
 Peizhuo Guo, Huiyuan Xue, Jun Ma, and Jack C.~P. Cheng.
@@ -419,64 +398,42 @@ Joon~Sung Park, Joseph~C. O'Brien, Carrie~J. Cai, Meredith~Ringel Morris, Percy
   Interface Software and Technology}, 2023.
 \newblock \doi{10.1145/3586183.3606763}.
 
-\bibitem[Lu et~al.(2026)Lu, Luo, Sheil, and Brilakis]{lu2026highwaymas}
-Linjun Lu, Peihang Luo, Brian Sheil, and Ioannis Brilakis.
-\newblock {LLM}-driven multi-agent framework for enhancing human--digital twin
-  interaction in built infrastructure management.
-\newblock \emph{Automation in Construction}, 187:\penalty0 106896, 2026.
-\newblock \doi{10.1016/j.autcon.2026.106896}.
+\bibitem[Liang et~al.(2023)Liang, Bommasani, Lee, Tsipras, Soylu, Yasunaga,
+  Zhang, Narayanan, Wu, Kumar, Newman, Yuan, Yan, Zhang, Cosgrove, Manning,
+  R{\'e}, Acosta-Navas, Hudson, Zelikman, Durmus, Ladhak, Rong, Ren, Yao, Wang,
+  Santhanam, Orr, Zheng, Yuksekgonul, Suzgun, Kim, Guha, Chatterji, Khattab,
+  Henderson, Huang, Chi, Xie, Santurkar, Ganguli, Hashimoto, Icard, Zhang,
+  Chaudhary, Wang, Li, Mai, Zhang, and Koreeda]{liang2023helm}
+Percy Liang, Rishi Bommasani, Tony Lee, Dimitris Tsipras, Dilara Soylu,
+  Michihiro Yasunaga, Yian Zhang, Deepak Narayanan, Yuhuai Wu, Ananya Kumar,
+  Benjamin Newman, Binhang Yuan, Bobby Yan, Ce~Zhang, Christian Cosgrove,
+  Christopher~D. Manning, Christopher R{\'e}, Diana Acosta-Navas, Drew~A.
+  Hudson, Eric Zelikman, Esin Durmus, Faisal Ladhak, Frieda Rong, Hongyu Ren,
+  Huaxiu Yao, Jue Wang, Keshav Santhanam, Laurel Orr, Lucia Zheng, Mert
+  Yuksekgonul, Mirac Suzgun, Nathan Kim, Neel Guha, Niladri~S. Chatterji, Omar
+  Khattab, Peter Henderson, Qian Huang, Ryan~Andrew Chi, Sang~Michael Xie,
+  Shibani Santurkar, Surya Ganguli, Tatsunori Hashimoto, Thomas Icard, Tianyi
+  Zhang, Vishrav Chaudhary, William Wang, Xuechen Li, Yifan Mai, Yuhui Zhang,
+  and Yuta Koreeda.
+\newblock Holistic evaluation of language models.
+\newblock \emph{Transactions on Machine Learning Research}, 2023.
+\newblock URL \url{https://openreview.net/forum?id=iO4LZibEqW}.
+\newblock Featured Certification.
 
-\bibitem[Quan et~al.(2026)Quan, Kensek, Raghavachary, and
-  Wang]{quan2026bimfacrag}
-Xuewen Quan, Karen~M. Kensek, Sathyanaraya Raghavachary, and Haonan Wang.
-\newblock Toward {AI} in {AECO}: Integrating {BIM} facility data with an
-  {LLM}-{RAG} framework.
-\newblock \emph{E3S Web of Conferences}, 716:\penalty0 02046, 2026.
-\newblock \doi{10.1051/e3sconf/202671602046}.
+\bibitem[Hellin et~al.(2025)Hellin, Nousias, and Borrmann]{hellin2025bimmas}
+Sylvain Hellin, Stavros Nousias, and Andr{\'e} Borrmann.
+\newblock Natural language information retrieval from {BIM} models: An
+  {LLM}-based multi-agent system approach.
+\newblock In \emph{Proceedings of the 2025 European Conference on Computing in
+  Construction}, volume~6, 2025.
+\newblock \doi{10.35490/ec3.2025.265}.
 
-\bibitem[Sarthi et~al.(2024)Sarthi, Abdullah, Tuli, Khanna, Goldie, and
-  Manning]{sarthi2024raptor}
-Parth Sarthi, Salman Abdullah, Aditi Tuli, Shubh Khanna, Anna Goldie, and
-  Christopher~D. Manning.
-\newblock {RAPTOR}: Recursive abstractive processing for tree-organized
-  retrieval.
-\newblock In \emph{The Twelfth International Conference on Learning
-  Representations ({ICLR})}, 2024.
-\newblock URL \url{https://openreview.net/forum?id=GN921JHCRw}.
-
-\bibitem[Sun et~al.(2024)Sun, Xu, Tang, Wang, Lin, Gong, Ni, Shum, and
-  Guo]{sun2024tog}
-Jiashuo Sun, Chengjin Xu, Lumingyuan Tang, Sai Wang, Chen Lin, Yeyun Gong,
-  Lionel~M. Ni, Heung-Yeung Shum, and Jian Guo.
-\newblock Think-on-graph: Deep and responsible reasoning of large language
-  model on knowledge graph.
-\newblock In \emph{The Twelfth International Conference on Learning
-  Representations ({ICLR})}, 2024.
-\newblock URL \url{https://openreview.net/forum?id=nnVO1PvbTv}.
-
-\bibitem[Khattab and Zaharia(2020)]{khattab2020}
-Omar Khattab and Matei Zaharia.
-\newblock {ColBERT}: Efficient and effective passage search via contextualized
-  late interaction over {BERT}.
-\newblock In \emph{Proceedings of the 43rd International ACM SIGIR Conference
-  on Research and Development in Information Retrieval}, pages 39--48, 2020.
-\newblock \doi{10.1145/3397271.3401075}.
-
-\bibitem[Zhao et~al.(2024)Zhao, Zhou, Yang, Wen, Zhang, Dou, Li, Chen, and
-  Chen]{zhao2024facade}
-Benyun Zhao, Xunkuai Zhou, Guidong Yang, Junjie Wen, Jihan Zhang, Jiahao Dou,
-  Guangcheng Li, Xi~Chen, and Ben~M. Chen.
-\newblock High-resolution infrastructure defect detection dataset sourced by
-  unmanned systems and validated with deep learning.
-\newblock \emph{Automation in Construction}, 163:\penalty0 105405, 2024.
-\newblock \doi{10.1016/j.autcon.2024.105405}.
-
-\bibitem[Zhao et~al.(2026)Zhao, Zhang, Huang, Chen, and Chen]{zhao2026physical}
-Benyun Zhao, Jihan Zhang, Yijun Huang, Xi~Chen, and Ben~M. Chen.
-\newblock From instance segmentation to physical quantification:
-  High-resolution {UAV}-based dataset for fa{\c{c}}ade defect assessment.
-\newblock \emph{Automation in Construction}, 188:\penalty0 106980, 2026.
-\newblock \doi{10.1016/j.autcon.2026.106980}.
+\bibitem[Han et~al.(2025)Han, Zhang, Huang, Xu, Chen, and Chen]{han2025}
+Mingqiao Han, Jihan Zhang, Yijun Huang, Jiwen Xu, Xi~Chen, and Ben~M. Chen.
+\newblock Enhancing worker monitoring and management on large-scale
+  construction sites with {UAVs} and digital twin modeling.
+\newblock \emph{Automation in Construction}, 174:\penalty0 106108, 2025.
+\newblock \doi{10.1016/j.autcon.2025.106108}.
 
 \bibitem[Yang and Zhang(2024)]{yang2024promptcode}
 Fan Yang and Jiansong Zhang.
@@ -493,6 +450,14 @@ Muhammad Arslan, Lamine Mahdjoubi, and Saba Munawar.
 \newblock \emph{Energy and Buildings}, 324:\penalty0 114827, 2024.
 \newblock \doi{10.1016/j.enbuild.2024.114827}.
 
+\bibitem[Quan et~al.(2026)Quan, Kensek, Raghavachary, and
+  Wang]{quan2026bimfacrag}
+Xuewen Quan, Karen~M. Kensek, Sathyanaraya Raghavachary, and Haonan Wang.
+\newblock Toward {AI} in {AECO}: Integrating {BIM} facility data with an
+  {LLM}-{RAG} framework.
+\newblock \emph{E3S Web of Conferences}, 716:\penalty0 02046, 2026.
+\newblock \doi{10.1051/e3sconf/202671602046}.
+
 \bibitem[Koh et~al.(2026)Koh, Xue, Ma, and Cheng]{koh2026bimllmretr}
 Pei~Troh Koh, Huiyuan Xue, Jun Ma, and Jack Chin~Pang Cheng.
 \newblock Cost-effective and minimal-intervention {BIM} information retrieval
@@ -500,20 +465,11 @@ Pei~Troh Koh, Huiyuan Xue, Jun Ma, and Jack Chin~Pang Cheng.
 \newblock \emph{Automation in Construction}, 181:\penalty0 106585, 2026.
 \newblock \doi{10.1016/j.autcon.2025.106585}.
 
-\bibitem[Lee et~al.(2025)Lee, Li, and Yoon]{lee2025multiagentvbm}
-Jeyoon Lee, Jiteng Li, and Sungmin Yoon.
-\newblock From design to operation: Multi-agent {AI} for virtual in-situ
-  modeling of digital twins in {BIM}.
-\newblock \emph{Automation in Construction}, 179:\penalty0 106477, 2025.
-\newblock \doi{10.1016/j.autcon.2025.106477}.
-
-\bibitem[Youwai et~al.(2026)Youwai, Phim, Murcia, and
-  Onas]{youwai2026foundationmas}
-Sompote Youwai, David Phim, Vianne~Gayl Murcia, and Rianne~Clair Onas.
-\newblock Large language model-based multi-agent systems for automated
-  foundation design: router-driven task classification and expert selection
-  framework.
-\newblock \emph{AI in Civil Engineering}, 5:\penalty0 5, 2026.
-\newblock \doi{10.1007/s43503-026-00088-8}.
+\bibitem[Lu et~al.(2026)Lu, Luo, Sheil, and Brilakis]{lu2026highwaymas}
+Linjun Lu, Peihang Luo, Brian Sheil, and Ioannis Brilakis.
+\newblock {LLM}-driven multi-agent framework for enhancing human--digital twin
+  interaction in built infrastructure management.
+\newblock \emph{Automation in Construction}, 187:\penalty0 106896, 2026.
+\newblock \doi{10.1016/j.autcon.2026.106896}.
 
 \end{thebibliography}
