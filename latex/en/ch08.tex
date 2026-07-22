@@ -583,11 +583,11 @@ Write staging & twin updates pending only & draft button mutates twin \\
 \begin{figure}[htbp]
 \centering
 \includegraphics[width=\linewidth]{deterministic_ablation_exact_hit.pdf}
-\caption{Deterministic retrieval-packaging result on a frozen twin ($N=200$ questions per cell; no LLM judge): asset passports with controlled one-hop expansion retain more answer and cited IDs in the retrieved evidence than chunk-only packaging. Metrics are exact-hit rates over Asset-IDs; the figure evaluates assembly policy, not a contest among hosted chat models.}
+\caption{Worked quantitative illustration of retrieval packaging for inspection language systems. On one frozen twin and a fixed question set ($N=200$ per packaging setting; deterministic Asset-ID exact-hit metrics; no LLM as judge), passport-centred packs with controlled one-hop expansion keep more answer and cited IDs inside the retrieved evidence than chunk-only packs. Read the figure as a general design lesson about assembly policy, not as a site census or a leaderboard among hosted chat models.}
 \label{fig:ch8-ablation}
 \end{figure}
 
-Figure~\ref{fig:ch8-ablation} reports a deterministic packaging experiment used to justify passport-centred assembly for reports. Setup: a frozen twin snapshot; $N=200$ queries per packaging cell; no LLM as judge; primary metrics \texttt{retr\_exact\_hit} and answer/cited ID containment. Source summaries live under \texttt{figures\_src/statistical/data/}. Hop depth therefore belongs to evidence-assembly policy, not free prompt choice~\cite{lewis2020,jeon2025hybridrag,lee2024ragsafety}. Report drafts inherit that policy under V1--V4.
+Figure~\ref{fig:ch8-ablation} is kept in the monograph because Springer-style chapters may use a compact statistical panel when the panel teaches a \emph{portable design choice}, not when it merely reprints a paper ablation. The intended reading is broader than any one warehouse campaign: for asset-centred O\&M questions, packaging policy (chunk text versus host cards versus versioned asset passports, with or without typed one-hop neighbours) changes whether cited IDs remain inside the evidence set that validators can check. Protocol, stated so the numbers are not ornamental: freeze a twin snapshot; hold the question set fixed; score packaging cells with deterministic ID containment (\texttt{retr\_exact\_hit}, answer-ID exact, cited-ID-in-retrieved); do not use an LLM as judge; keep source summaries under \texttt{figures\_src/statistical/data/}. Absolute rates are twin- and question-set-specific and must not be copied as universal field KPIs; the transferable claim is that hop depth and passport structure belong to evidence-assembly policy under V1--V4, not to free prompt wording~\cite{lewis2020,jeon2025hybridrag,lee2024ragsafety}. Report drafts in this section inherit that policy.
 
 Report lifecycle is a state machine:
 \texttt{DRAFT}$\rightarrow$\texttt{VALIDATED}$\rightarrow$\texttt{UNDER\_REVIEW}$\rightarrow$\texttt{APPROVED}/\texttt{REJECTED}$\rightarrow$\texttt{EXPORTED}$\rightarrow$\texttt{WRITE\_STAGED}$\rightarrow$\texttt{WRITE\_COMMITTED}.
@@ -642,7 +642,7 @@ Agent safety & Gates on write/dispatch? & silent twin mutation \\
 \toprule
 Capability & Status in this chapter & Evidence needed \\
 \midrule
-Asset-based retrieval & proposed + packaging eval & Fig.~\ref{fig:ch8-ablation} \\
+Asset-based retrieval & proposed + packaging illustration & Fig.~\ref{fig:ch8-ablation} \\
 Historical query & proposed (ID map required) & cross-campaign case \\
 Multimodal explanation & proposed + rules & conflict walkthrough \\
 Report generation & proposed schema & claim schema + human review \\
@@ -654,7 +654,7 @@ Predictive maintenance & external-model interface / future & time-series validat
 
 The rubric should be scored at the level of actions, not only at the level of sentences. A grounded paragraph that never changes a maintenance schedule has limited O\&M value; a terse ranked list of Asset-IDs with openable evidence may already plan a gondola week. Monthly boards can therefore track invented-ID rate, openable-evidence rate, modality-conflict disclosure rate, revisit-hint adoption, and, when a work-system export exists, export no-rewrite rate~\cite{lee2024ragsafety,luo2025llmdtrobot,rawat2025llmmas,liang2023helm}. If a hosted-LLM swap improves fluency but worsens invented IDs, reject the swap. If fluency is unchanged but TRACE completeness improves, accept the harness change. Model-size leaderboards remain secondary to those operability curves.
 
-Figure~\ref{fig:ch8-ablation} gives one compact illustration of the rubric: retrieval packaging and controlled one-hop expansion can improve grounding. Assess that outcome by intent and by the safety of the final action, including whether cite-or-abstain validators catch unsupported IDs~\cite{ji2023,peng2024,lee2024ragsafety}.
+Figure~\ref{fig:ch8-ablation} supplies one compact quantitative check for that rubric: under a frozen twin, packaging policy and controlled one-hop expansion can raise ID containment before any fluency ranking. Readers should still judge systems by intent coverage and by the safety of the final action, including whether cite-or-abstain validators catch unsupported IDs~\cite{ji2023,peng2024,lee2024ragsafety}.
 
 Predictive maintenance in this chapter is therefore three deliverables, not one slogan. First, \emph{triage}: a ranked Asset-ID list with openable evidence for the next gondola week. Second, \emph{conditional advice}: statements such as ``risk rises if infrared is missing on the upstairs neighbour'' that name the missing evidence and stop short of inventing it. Third, \emph{external prognosis}: when a non-LLM temporal model exists, the harness may present its read-only output beside cited observations; the language system must not invent year-ahead spalling probabilities from a single campaign~\cite{gao2026ifcagent,zhang2025llmagentschema,zhao2026physical}.
 

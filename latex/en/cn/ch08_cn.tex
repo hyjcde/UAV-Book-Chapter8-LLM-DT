@@ -608,11 +608,11 @@ ID 子集 & 资产/缺陷 ID $\subseteq$ 证据包 & 虚构板块编码 \\
 \begin{figure}[htbp]
 \centering
 \includegraphics[width=\linewidth]{deterministic_ablation_exact_hit.pdf}
-\caption{冻结孪生上的确定性检索封装结果（每格 $N=200$ 题；无 LLM 评判）：带受控一跳扩展的资产护照比仅切块封装更能使答案与被引 ID 留在检索证据中。指标为 Asset-ID 上的精确命中率；该图评价装配策略，而非托管聊天模型之间的竞赛。}
+\caption{巡检语言系统检索封装的定量示意。在同一冻结孪生与固定题集上（每种封装设定 $N=200$；确定性 Asset-ID 精确命中指标；不以 LLM 为评判），带受控一跳扩展的护照中心证据包比仅切块封装更能把答案 ID 与被引 ID 留在检索证据内。宜读作关于装配策略的通用设计课，而不是某一现场普查，也不是托管聊天模型排行榜。}
 \label{fig:ch8-ablation}
 \end{figure}
 
-图~\ref{fig:ch8-ablation}报告一项为报告装配辩护的确定性封装实验。设定：冻结孪生快照；每封装格 $N=200$ 查询；不以 LLM 为评判；主指标 \texttt{retr\_exact\_hit} 与答案/被引 ID 包含率。源摘要位于 \texttt{figures\_src/statistical/data/}。跳数因此属于证据装配策略，而非自由提示选择~\cite{lewis2020,jeon2025hybridrag,lee2024ragsafety}。报告草稿在 V1--V4 下继承该策略。
+图~\ref{fig:ch8-ablation}保留在专著中，是因为书中统计图应服务于\emph{可迁移的设计选择}，而不是复述单篇论文的消融表。更广的读法是：对以资产为中心的运维问题，封装策略（切块文本 / 宿主卡片 / 带版本资产护照，以及是否加入有类型的一跳邻域）会改变被引 ID 是否仍落在校验器可检查的证据集内。协议写清，避免把数字当成装饰：冻结孪生快照；固定题集；用确定性 ID 包含率（\texttt{retr\_exact\_hit}、答案 ID 精确命中、被引 ID$\in$检索集）给封装设定打分；不以 LLM 为评判；源摘要见 \texttt{figures\_src/statistical/data/}。绝对命中率依赖该孪生与题集，不得抄成通用现场 KPI；可迁移的主张是：跳数与护照结构属于 V1--V4 下的证据装配策略，而非自由提示措辞~\cite{lewis2020,jeon2025hybridrag,lee2024ragsafety}。本节报告草稿继承该策略。
 
 报告生命周期为状态机：
 \texttt{DRAFT}$\rightarrow$\texttt{VALIDATED}$\rightarrow$\texttt{UNDER\_REVIEW}$\rightarrow$\texttt{APPROVED}/\texttt{REJECTED}$\rightarrow$\texttt{EXPORTED}$\rightarrow$\texttt{WRITE\_STAGED}$\rightarrow$\texttt{WRITE\_COMMITTED}。
@@ -667,7 +667,7 @@ ID 子集 & 资产/缺陷 ID $\subseteq$ 证据包 & 虚构板块编码 \\
 \toprule
 能力 & 本章状态 & 所需证据 \\
 \midrule
-基于资产的检索 & 提议 + 封装评价 & 图~\ref{fig:ch8-ablation} \\
+基于资产的检索 & 提议 + 封装示意 & 图~\ref{fig:ch8-ablation} \\
 历史查询 & 提议（需 ID 映射） & 跨航次案例 \\
 多模态解释 & 提议 + 规则 & 冲突走读 \\
 报告生成 & 提议 schema & 声明 schema + 人工审阅 \\
@@ -679,7 +679,7 @@ ID 子集 & 资产/缺陷 ID $\subseteq$ 证据包 & 虚构板块编码 \\
 
 量规应按行动层计分，而不能只按句子层计分。一段从不改变维修排程的接地段落，运维价值有限；一份带可打开证据的 Asset-ID 简短排序，可能已足够安排一周吊篮。月度看板因此可跟踪虚构 ID 率、可打开证据率、模态冲突披露率、复访提示采纳率，以及在存在工作系统导出时的免重写导出率~\cite{lee2024ragsafety,luo2025llmdtrobot,rawat2025llmmas,liang2023helm}。若更换托管 LLM 提升了流畅度却恶化了虚构 ID，应拒绝替换；若流畅度不变而 TRACE 完整度上升，应接受 harness 变更。模型参数量排行榜次于这些可运维曲线。
 
-图~\ref{fig:ch8-ablation}提供一项紧凑的教学示意：护照封装与受控一跳扩展可改善接地。应按意图与最终行动的安全性评价该结果，包括引用或拒答校验器能否拦截无证据的 ID~\cite{ji2023,peng2024,lee2024ragsafety}。
+图~\ref{fig:ch8-ablation}为该量规提供一项紧凑的定量核对：在冻结孪生下，封装策略与受控一跳扩展可在任何流畅度排名之前提高 ID 包含率。读者仍应按意图覆盖与最终行动安全性评价系统，包括引用或拒答校验器能否拦截无证据的 ID~\cite{ji2023,peng2024,lee2024ragsafety}。
 
 因此本章的预测性维护是三项交付，而不是一句口号。其一是\emph{分诊}：带可打开证据的 Asset-ID 排序，服务下一周吊篮。其二是\emph{条件建议}：如``若上层邻居缺少红外，则风险上升''，点名缺失证据并止步于虚构。其三是\emph{外部预后}：若存在非 LLM 时序模型，harness 可把其只读输出与被引观测并排呈现；语言系统不得从单次航次发明未来一年的剥落概率~\cite{gao2026ifcagent,zhang2025llmagentschema,zhao2026physical}。
 

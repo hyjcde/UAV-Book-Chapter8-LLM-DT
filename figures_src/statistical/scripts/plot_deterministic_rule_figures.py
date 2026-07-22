@@ -43,13 +43,13 @@ TICK_FS = 12
 ANNOT_FS = 11
 LEGEND_FS = 11
 
-# Tick text is descriptive only (cell codes E/C'/F/D0/D1 stay in the LaTeX caption).
+# Book-facing labels (CSV row keys stay paper-stable; no cell codes on axes).
 ABLATION_ORDER = [
-    ("E chunk", "Chunk", "cell E"),
-    ("C' atomic k=0", "Atomic $k=0$", "cell C$'$"),
-    ("F atomic k=1", "Atomic $k=1$", "cell F"),
-    ("D0 IAP k=0", "IAP $k=0$", r"cell $D_0$"),
-    ("D1 IAP k=1", "IAP $k=1$", r"cell $D_1$"),
+    ("E chunk", "Chunk-only", "PDF chunks"),
+    ("C' atomic k=0", "Host cards\n$k=0$", "host cards, no hop"),
+    ("F atomic k=1", "Host cards\n$k=1$", "host cards + 1 hop"),
+    ("D0 IAP k=0", "Passport\n$k=0$", "asset passport"),
+    ("D1 IAP k=1", "Passport\n$k=1$", "passport + 1 hop"),
 ]
 
 # MH Exact Hit intentionally omitted from figure panels.
@@ -175,20 +175,17 @@ def plot_ablation(csv_path: Path, out_stem: Path) -> None:
 
     ax.axvspan(4 - 0.48, 4 + 0.48, color=theme_colors(None)["Ours"], alpha=0.08, zorder=0)
     ax.set_xticks(x)
-    ax.set_xticklabels(
-        [f"{name}\n({code})" for _, name, code in ABLATION_ORDER],
-        fontsize=TICK_FS,
-    )
+    ax.set_xticklabels([name for _, name, _ in ABLATION_ORDER], fontsize=TICK_FS)
     for tick, color in zip(ax.get_xticklabels(), tick_colors):
         tick.set_color(color)
     ax.get_xticklabels()[-1].set_fontweight("bold")
 
-    ax.set_ylabel("Exact Hit / grounding rate", fontweight="bold", fontsize=LABEL_FS)
+    ax.set_ylabel("Exact-hit / grounding rate", fontweight="bold", fontsize=LABEL_FS)
     ax.set_ylim(0, 1.12)
     ax.legend(loc="upper left", ncol=1, fontsize=LEGEND_FS, frameon=True, edgecolor="#cccccc")
     setup_academic_ax(ax, title=None)
     ax.set_xlabel(
-        r"Controlled ablation cells ($N=200$ / cell; no LLM judge)",
+        r"Retrieval packaging policy ($N=200$ / setting; no LLM judge)",
         fontweight="bold", fontsize=LABEL_FS,
     )
     fig.tight_layout()
