@@ -163,6 +163,27 @@ def polish_framework_overview(text: str) -> str:
             text,
             count=1,
         )
+    # Module band titles: title case, not ALL CAPS (book readability).
+    text = text.replace(
+        'value="&lt;b&gt;MODULE IV: HUMAN-MACHINE INTERACTION &amp;amp; SERVICE&lt;/b&gt;"',
+        'value="&lt;b&gt;Module IV: Human–machine interaction and service&lt;/b&gt;"',
+    )
+    text = text.replace(
+        'value="&lt;b&gt;MODULE II: TWIN CONSTRUCTION&lt;/b&gt;"',
+        'value="&lt;b&gt;Module II: Twin construction&lt;/b&gt;"',
+    )
+    text = text.replace(
+        'value="&lt;b&gt;MODULE III: COGNITIVE REASONING&lt;/b&gt;"',
+        'value="&lt;b&gt;Module III: Cognitive reasoning&lt;/b&gt;"',
+    )
+    text = text.replace(
+        'value="&lt;b&gt;MODULE I: PHYSICAL ASSET &amp;amp; DATA ACQUISITION&lt;/b&gt;"',
+        'value="&lt;b&gt;Module I: Physical asset and data acquisition&lt;/b&gt;"',
+    )
+    text = text.replace(
+        'value="&lt;b&gt;SEMANTIC&lt;br&gt;FUSION&lt;br&gt;ENGINE&lt;/b&gt;"',
+        'value="&lt;b&gt;Semantic fusion engine&lt;/b&gt;"',
+    )
     return text
 
 
