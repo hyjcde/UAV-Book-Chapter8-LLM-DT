@@ -184,6 +184,43 @@ def polish_framework_overview(text: str) -> str:
         'value="&lt;b&gt;SEMANTIC&lt;br&gt;FUSION&lt;br&gt;ENGINE&lt;/b&gt;"',
         'value="&lt;b&gt;Semantic fusion engine&lt;/b&gt;"',
     )
+    # Book figure: drop grey/italic sublines; keep title-only boxes readable.
+    text = re.sub(
+        r'&lt;br&gt;&lt;span style=&quot;color: rgb\(102, 102, 102\);&quot;&gt;.*?&lt;/span&gt;',
+        '',
+        text,
+        flags=re.DOTALL,
+    )
+    text = re.sub(r'&lt;br&gt;&lt;i&gt;.*?&lt;/i&gt;', '', text)
+    text = text.replace(
+        ' value="&lt;span style=&quot;color: rgb(85, 85, 85);&quot;&gt;Mapping 2D Masks&lt;br&gt;to 3D Coordinates&lt;/span&gt;"',
+        ' value=""',
+    )
+    text = text.replace(
+        'value="&lt;b&gt;IDP&lt;/b&gt;&lt;br&gt;&lt;span&gt;(Integrated&lt;br&gt;Defect&lt;br&gt;Profile)&lt;/span&gt;"',
+        'value="&lt;b&gt;IDP&lt;/b&gt;"',
+    )
+    module_ids = (
+        'D5NGcvgCAcNfVg2UiYoK-237',
+        'D5NGcvgCAcNfVg2UiYoK-243',
+        'D5NGcvgCAcNfVg2UiYoK-257',
+        'D5NGcvgCAcNfVg2UiYoK-267',
+    )
+    title_ids = (
+        'D5NGcvgCAcNfVg2UiYoK-245',
+        'D5NGcvgCAcNfVg2UiYoK-249',
+        'D5NGcvgCAcNfVg2UiYoK-259',
+        'D5NGcvgCAcNfVg2UiYoK-263',
+        'D5NGcvgCAcNfVg2UiYoK-253',
+        'D5NGcvgCAcNfVg2UiYoK-270',
+        'D5NGcvgCAcNfVg2UiYoK-275',
+        'D5NGcvgCAcNfVg2UiYoK-280',
+        'D5NGcvgCAcNfVg2UiYoK-254',
+    )
+    for cid in module_ids:
+        text = re.sub(rf'(id="{cid}"[^>]*fontSize=)\d+', r'\g<1>19', text, count=1)
+    for cid in title_ids:
+        text = re.sub(rf'(id="{cid}"[^>]*fontSize=)\d+', r'\g<1>17', text, count=1)
     return text
 
 
