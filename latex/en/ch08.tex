@@ -177,7 +177,7 @@ Trace / evaluation & replayable logs + metrics & tool TRACE; HELM-style scenario
 \begin{tikzpicture}[yscale=0.90]
   \def\ch8R{3.35cm}
   \node[font=\scriptsize\itshape, text=ch8mute, align=center] at (0,0)
-    {query\\cycle};
+    {code-owned\\query cycle};
   \node[ch8box, minimum width=2.05cm, minimum height=0.88cm, font=\footnotesize,
         inner sep=3pt] (in) at (90:\ch8R) {Intake /\\routing};
   \node[ch8boxrag, minimum width=2.05cm, minimum height=0.88cm, font=\footnotesize,
@@ -192,12 +192,14 @@ Trace / evaluation & replayable logs + metrics & tool TRACE; HELM-style scenario
         inner sep=3pt] (tr) at (150:\ch8R) {Trace /\\evaluation};
   \foreach \a/\b in {in/ev, ev/tool, tool/llm, llm/val, val/tr, tr/in}
     \draw[ch8arr, shorten >=1pt, shorten <=1pt] (\a) -- (\b);
+  \foreach \name/\n/\ang in {in/1/90, ev/2/30, tool/3/-30, llm/4/-90, val/5/-150, tr/6/150}
+    \node[ch8step] at ($(\name.north west)+(-0.08,0.08)$) {\n};
 \end{tikzpicture}
-\caption{Inspection model harness as a six-part query cycle around a replaceable LLM: code owns intake, evidence packing, typed tools, validators, and traces.}
+\caption{Inspection model harness as a six-step query cycle. Steps 1--3 and 5--6 are code-owned; step 4 is a replaceable LLM. The cycle repeats for every facility question.}
 \label{fig:ch8-harness-fig}
 \end{figure}
 
-
+Read Figure~\ref{fig:ch8-harness-fig} clockwise as one query. Intake resolves intent and Asset-ID seeds before any drafting. Evidence assembly packs passports, neighbours, and pinned manuals. The tool surface admits only typed twin reads and draft actions. The replaceable LLM composes language inside that package. Contract validators enforce cite-or-abstain and modality disclosure. Trace and evaluation keep the run replayable so the next query can reuse the same gates. The dashed LLM box is intentional: model weights may change; the surrounding contracts should not.
 
 Two consequences follow for procurement and teaching. First, a prompt-only prototype is not yet a harness: instructions such as ``always cite Asset-IDs'' can be ignored by a fluent model, whereas a validator that blocks delivery when the ID subset check fails is load-bearing. Second, model substitution should be a harness test, not a project rewrite, if validators, tool schemas, and twin interfaces stay fixed, changing the hosted LLM should change phrasing, not which sources are eligible or whether a write gate exists~\cite{liang2023helm,saka2024gptconstruction}. Emerging enterprise discussions of harness engineering emphasise relocating behaviour from prompts into versioned contracts, manifests, and traces; this chapter keeps that intuition while citing only peer-published grounding, tool, agent, and evaluation results. In short: Layers~L1--L3 name the capabilities; the harness is the software that enforces them on every query.
 
@@ -394,23 +396,30 @@ Stage twin write & pending update & mandatory approval \\
 
 \begin{figure}[htbp]
 \centering
-\begin{tikzpicture}[node distance=8mm and 12mm]
-  \node[ch8boxalt, minimum width=2.8cm] (q) {User question};
-  \node[ch8boxrag, minimum width=2.8cm, right=of q] (a) {Bounded agent};
-  \node[ch8boxgate, minimum width=2.8cm, right=of a] (g) {Human /\\geofence gate};
-  \node[ch8box, minimum width=2.8cm, below=of a] (tw) {Twin memory\\read};
-  \node[ch8boxok, minimum width=2.8cm, below=of g] (w) {Approved write /\\revisit hint};
+\begin{tikzpicture}[node distance=7mm and 9mm]
+  \node[ch8layerband, text width=10.6cm, align=center] (band)
+    {L2 evidence grounding $\cdot$ L3 bounded procedures $\cdot$ harness gates};
+  \node[ch8boxalt, minimum width=2.35cm, below=8mm of band.west, anchor=west] (q)
+    {User\\question};
+  \node[ch8boxrag, minimum width=2.55cm, right=of q] (a) {Bounded\\agent};
+  \node[ch8boxgate, minimum width=2.55cm, right=of a] (g) {Human /\\geofence gate};
+  \node[ch8box, minimum width=2.55cm, below=of a] (tw) {Twin memory\\identity-locked};
+  \node[ch8boxok, minimum width=2.55cm, below=of g] (w) {Approved write /\\revisit hint};
   \draw[ch8arr] (q) -- (a);
   \draw[ch8arr] (a) -- (g);
-  \draw[ch8arr] (a) -- (tw);
+  \draw[ch8arr] (a) -- node[ch8tiny, left] {read} (tw);
   \draw[ch8arr] (tw) -- (a);
-  \draw[ch8arr] (g) -- (w);
+  \draw[ch8arr] (g) -- node[ch8tiny, right] {write path} (w);
+  \node[ch8defnA, below=7mm of tw.south west, anchor=north west] (d1)
+    {\textbf{Identity.} Stable Asset-ID on every host named in answers or tickets.};
+  \node[ch8defnB, right=2.5mm of d1] (d2)
+    {\textbf{Read path.} Passports, neighbours, and observations may be fetched freely.};
+  \node[ch8defnC, right=2.5mm of d2] (d3)
+    {\textbf{Write path.} Twin updates and revisits wait behind approval.};
 \end{tikzpicture}
-\caption{Bounded agency: tools may read the twin freely; writes and revisits wait behind gates that the harness, not the prompt, enforces.}
+\caption{Bounded agency with explicit identity and gate layers. The agent may read twin memory freely; irreversible actions leave only through a harness gate, not through prompt wording alone.}
 \label{fig:ch8-agent-gate}
 \end{figure}
-
-
 
 Worked micro-example. The manager asks for a revisit where infrared suggests moisture but RGB is inconclusive. A bounded agent may list the modality-tagged observations, notice the conflict, draft a report that marks human review, and emit a coarse revisit hint. It must not invent a flight trajectory in prose, and it must not write a new defect type into the twin without approval. That is multimodal fusion in the sense of this book: modality-aware records, grounded language, and tools that respect upstream chapter ownership.
 
@@ -553,12 +562,21 @@ The rubric should be scored at the level of actions, not only at the level of se
 
 Figure~\ref{fig:ch8-ablation} gives one compact illustration of the rubric: retrieval packaging and controlled one-hop expansion can improve grounding. Assess that outcome by intent and by the safety of the final action, including whether cite-or-abstain validators catch unsupported IDs~\cite{ji2023,peng2024,lee2024ragsafety}.
 
-Predictive maintenance in this chapter is therefore three deliverables, not one slogan. First, \emph{triage}: a ranked Asset-ID list with openable evidence for the next gondola week. Second, \emph{conditional advice}: statements such as ``risk rises if infrared is missing on the upstairs neighbour'' that name the missing evidence and stop short of inventing it. Third, \emph{external prognosis}: when a non-LLM temporal model exists, the harness may present its read-only output beside cited observations; the language system must not invent year-ahead spalling probabilities from a single campaign~\cite{gao2026ifcagent,zhang2025llmagentschema,zhao2026physical}. Figure~\ref{fig:ch8-transfer} keeps the same honesty for transfer: an observation--geometry--dependency spine can be reused across O\&M, renovation, or progress monitoring by changing entity semantics, but schema reuse is not forecasting skill.
+Predictive maintenance in this chapter is therefore three deliverables, not one slogan. First, \emph{triage}: a ranked Asset-ID list with openable evidence for the next gondola week. Second, \emph{conditional advice}: statements such as ``risk rises if infrared is missing on the upstairs neighbour'' that name the missing evidence and stop short of inventing it. Third, \emph{external prognosis}: when a non-LLM temporal model exists, the harness may present its read-only output beside cited observations; the language system must not invent year-ahead spalling probabilities from a single campaign~\cite{gao2026ifcagent,zhang2025llmagentschema,zhao2026physical}.
+
+Two complementary maps close the deployment view. Figure~\ref{fig:ch8-platform} shows a software layering that can host the harness: presentation and natural-language services above an API gateway, application services for twin reads and report drafts, and data stores for Asset-IDs, observations, and editioned manuals. Figure~\ref{fig:ch8-transfer} then shows inspection migration beyond façade defects: the same observation--geometry--dependency spine can be instantiated for building O\&M, renovation sequencing, or construction-progress monitoring by changing entity semantics and edge types. Schema reuse is not forecasting skill, and a platform diagram is not a second detector~\cite{gao2026ifcagent,zhang2025llmagentschema,zhao2026physical}.
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=\linewidth]{platform_architecture.pdf}
+\caption{Reference platform layering for an inspection language service: presentation and query interfaces, API gateway, application services that enforce the harness, and data stores that keep Asset-IDs, observations, and manuals outside model weights. Treat as a deployment map for the contracts in this chapter, not as a mandatory product blueprint.}
+\label{fig:ch8-platform}
+\end{figure}
 
 \begin{figure}[t]
 \centering
 \includegraphics[width=\linewidth]{framework_generalizability_concept.png}
-\caption{Conceptual transferability of a detection-profile / entity-profile / $k$-hop retrieval spine: the same observation--geometry--dependency structure can be instantiated for building O\&M, renovation sequencing, and construction-progress monitoring by changing entity semantics and edge types. Schema reuse is not a guarantee of forecasting skill.}
+\caption{Inspection migration map: a detection-profile / entity-profile / $k$-hop retrieval spine can move from façade O\&M to renovation sequencing and construction-progress monitoring by changing entity semantics and edge types. The harness pattern travels with the spine; domain labels do not.}
 \label{fig:ch8-transfer}
 \end{figure}
 

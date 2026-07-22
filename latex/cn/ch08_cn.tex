@@ -180,7 +180,7 @@ M_{t+1}=\mathrm{Update}\!\bigl(\mathrm{Generate}(S_t,M_t),\,M_t\bigr),\qquad
 \begin{tikzpicture}[yscale=0.90]
   \def\ch8R{3.35cm}
   \node[font=\scriptsize\itshape, text=ch8mute, align=center] at (0,0)
-    {查询\\环};
+    {代码拥有的\\查询环};
   \node[ch8box, minimum width=2.0cm, minimum height=0.88cm, font=\footnotesize,
         inner sep=3pt] (in) at (90:\ch8R) {接入/\\路由};
   \node[ch8boxrag, minimum width=2.0cm, minimum height=0.88cm, font=\footnotesize,
@@ -195,12 +195,14 @@ M_{t+1}=\mathrm{Update}\!\bigl(\mathrm{Generate}(S_t,M_t),\,M_t\bigr),\qquad
         inner sep=3pt] (tr) at (150:\ch8R) {轨迹/\\评价};
   \foreach \a/\b in {in/ev, ev/tool, tool/llm, llm/val, val/tr, tr/in}
     \draw[ch8arr, shorten >=1pt, shorten <=1pt] (\a) -- (\b);
+  \foreach \name/\n in {in/1, ev/2, tool/3, llm/4, val/5, tr/6}
+    \node[ch8step] at ($(\name.north west)+(-0.08,0.08)$) {\n};
 \end{tikzpicture}
-\caption{巡检模型 harness 的六部件查询环：可替换 LLM 在环上，代码拥有接入、证据打包、类型化工具、校验器与轨迹。}
+\caption{巡检模型 harness 的六步查询环。步骤 1--3 与 5--6 由代码拥有；步骤 4 为可替换 LLM。每个设施问题都走完这一环。}
 \label{fig:ch8-harness-fig}
 \end{figure}
 
-
+按顺时针读图~\ref{fig:ch8-harness-fig}：接入先解析意图与 Asset-ID 种子；证据装配打包护照、邻域与钉扎手册；工具面只允许类型化的孪生读取与起草动作；可替换 LLM 在该证据包内组织语言；契约校验强制引用或拒答与模态披露；轨迹与评价使本次运行可重放，下一查询仍走同一门禁。虚线 LLM 框是故意的：权重可换，外围契约不宜随换。
 
 由此得到两条采购与教学推论。其一，纯提示原型还不是 harness：``务必引用 Asset-ID''这类指令可被流畅模型忽略，而``ID 子集检查失败则禁止交付''的校验器才是承重结构。其二，模型替换应是 harness 测试。模型替换不应变成项目重写，若校验器、工具 schema 与孪生接口固定，更换托管 LLM 应只改变措辞，而不改变哪些来源合格、写入门是否存在~\cite{liang2023helm,saka2024gptconstruction}。业界关于 harness engineering 的讨论强调把行为从提示迁到版本化契约、清单与轨迹；本章保留这一直觉，但只引用已发表的接地、工具、智能体与评价结果，并把每条契约映射到立面运维产物，而非通用聊天演示。简言之：L1--L3 命名能力；harness 是在每次查询上强制执行这些能力的软件。
 
@@ -397,23 +399,30 @@ P(a)=\bigl\langle a,\,G(a),\,N_1(a),\,O(a),\,d(a)\bigr\rangle.
 
 \begin{figure}[htbp]
 \centering
-\begin{tikzpicture}[node distance=8mm and 11mm]
-  \node[ch8boxalt, minimum width=2.6cm] (q) {用户问题};
-  \node[ch8boxrag, minimum width=2.6cm, right=of q] (a) {有界智能体};
-  \node[ch8boxgate, minimum width=2.6cm, right=of a] (g) {人工/\\geofence 门};
-  \node[ch8box, minimum width=2.6cm, below=of a] (tw) {孪生记忆\\只读};
-  \node[ch8boxok, minimum width=2.6cm, below=of g] (w) {批准写入/\\复访提示};
+\begin{tikzpicture}[node distance=7mm and 8mm]
+  \node[ch8layerband, text width=10.4cm, align=center] (band)
+    {L2 证据接地 $\cdot$ L3 有界流程 $\cdot$ harness 门禁};
+  \node[ch8boxalt, minimum width=2.25cm, below=8mm of band.west, anchor=west] (q)
+    {用户\\问题};
+  \node[ch8boxrag, minimum width=2.4cm, right=of q] (a) {有界\\智能体};
+  \node[ch8boxgate, minimum width=2.4cm, right=of a] (g) {人工/\\geofence 门};
+  \node[ch8box, minimum width=2.4cm, below=of a] (tw) {孪生记忆\\身份锁定};
+  \node[ch8boxok, minimum width=2.4cm, below=of g] (w) {批准写入/\\复访提示};
   \draw[ch8arr] (q) -- (a);
   \draw[ch8arr] (a) -- (g);
-  \draw[ch8arr] (a) -- (tw);
+  \draw[ch8arr] (a) -- node[ch8tiny, left] {读} (tw);
   \draw[ch8arr] (tw) -- (a);
-  \draw[ch8arr] (g) -- (w);
+  \draw[ch8arr] (g) -- node[ch8tiny, right] {写路径} (w);
+  \node[ch8defnA, below=7mm of tw.south west, anchor=north west] (d1)
+    {\textbf{身份。}答案或工单中点名的宿主必须带稳定 Asset-ID。};
+  \node[ch8defnB, right=2.2mm of d1] (d2)
+    {\textbf{读路径。}护照、邻域与观测可自由取回。};
+  \node[ch8defnC, right=2.2mm of d2] (d3)
+    {\textbf{写路径。}孪生更新与复访须经批准门。};
 \end{tikzpicture}
-\caption{有界智能体：工具可读孪生；写入与复访须经 harness 而非提示词强制执行的门禁。}
+\caption{带显式身份与门禁层的有界智能体。智能体可自由读孪生记忆；不可逆动作只能经 harness 门离开，不能仅靠提示词约束。}
 \label{fig:ch8-agent-gate}
 \end{figure}
-
-
 
 微型示例。经理要求在红外提示潮湿但 RGB 尚不结论处复访。有界智能体可列出带模态标签的观测，识别冲突，起草标记需人工复核的报告，并发出粗粒度复访提示。它不得在散文里虚构航迹，也不得在未批准时把新缺陷类型写入孪生。这就是本书意义上的多模态融合：模态可知的记录、接地的语言，以及尊重上游章节权属的工具。
 
@@ -571,12 +580,21 @@ ID 子集 & 资产/缺陷 ID $\subseteq$ 证据包 & 虚构板块编码 \\
 
 图~\ref{fig:ch8-ablation}提供一项紧凑的教学示意：护照封装与受控一跳扩展可改善接地。应按意图与最终行动的安全性评价该结果，包括引用或拒答校验器能否拦截无证据的 ID~\cite{ji2023,peng2024,lee2024ragsafety}。
 
-因此本章的预测性维护是三项交付，而不是一句口号。其一是\emph{分诊}：带可打开证据的 Asset-ID 排序，服务下一周吊篮。其二是\emph{条件建议}：如``若上层邻居缺少红外，则风险上升''，点名缺失证据并止步于虚构。其三是\emph{外部预后}：若存在非 LLM 时序模型，harness 可把其只读输出与被引观测并排呈现；语言系统不得从单次航次发明未来一年的剥落概率~\cite{gao2026ifcagent,zhang2025llmagentschema,zhao2026physical}。图~\ref{fig:ch8-transfer}对可迁移性保持同一诚实：观测--几何--依赖脊柱可通过更换实体语义复用于运维、改造或进度监测，但 schema 复用并不等于预测技能。
+因此本章的预测性维护是三项交付，而不是一句口号。其一是\emph{分诊}：带可打开证据的 Asset-ID 排序，服务下一周吊篮。其二是\emph{条件建议}：如``若上层邻居缺少红外，则风险上升''，点名缺失证据并止步于虚构。其三是\emph{外部预后}：若存在非 LLM 时序模型，harness 可把其只读输出与被引观测并排呈现；语言系统不得从单次航次发明未来一年的剥落概率~\cite{gao2026ifcagent,zhang2025llmagentschema,zhao2026physical}。
+
+部署视图用两张互补地图收束。图~\ref{fig:ch8-platform}给出可承载 harness 的软件分层：上层是呈现与自然语言服务，中层经 API 网关进入孪生读取与报告起草应用服务，下层是 Asset-ID、观测与带版本手册的数据存储。图~\ref{fig:ch8-transfer}再给出超越立面缺陷的巡检迁移：同一观测--几何--依赖脊柱可通过更换实体语义与边类型，实例化为建筑运维、改造排序或施工进度监测。schema 复用不是预测技能，平台图也不是第二套检测器~\cite{gao2026ifcagent,zhang2025llmagentschema,zhao2026physical}。
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=\linewidth]{platform_architecture.pdf}
+\caption{巡检语言服务的参考平台分层：呈现与查询界面、API 网关、强制执行 harness 的应用服务，以及把 Asset-ID、观测与手册留在模型权重之外的数据存储。宜读作本章契约的部署地图，而不是强制产品蓝图。}
+\label{fig:ch8-platform}
+\end{figure}
 
 \begin{figure}[t]
 \centering
 \includegraphics[width=\linewidth]{framework_generalizability_concept.png}
-\caption{检测画像 / 实体画像 / $k$ 跳检索脊柱的概念可迁移性：同一套观测--几何--依赖结构，可通过更换实体语义与边类型，实例化为建筑运维、改造排序与施工进度监测。schema 复用不是预测能力的保证。}
+\caption{巡检迁移图：检测画像 / 实体画像 / $k$ 跳检索脊柱可从立面运维迁到改造排序与施工进度监测，关键是更换实体语义与边类型。harness 模式随脊柱迁移；领域标签不随模型权重迁移。}
 \label{fig:ch8-transfer}
 \end{figure}
 
