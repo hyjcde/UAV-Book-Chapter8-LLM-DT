@@ -55,20 +55,21 @@
 
 表~\ref{tab:ch8-twin-contract} 不是 IT 心愿单，而是现场手艺的数字化延续。资深巡检员先拍照再写字，先点名跨位再诊断，拒绝签署无法到现场核对的报告；决策可用孪生只是让这些习惯在跨航次尺度上可被机器检查~\cite{zhang2022,chen2023facility}。地理尺度把同一点说得更尖：校园或住宅区会放大标识冲突与手册版本冲突，城市尺度身份应在 GIS 层保持一致，而不应事后用巧妙散文``修复''~\cite{zhang2025,han2025}。邻近语言系统也已经给出有用片段与清晰边界：BIM 助手改善导航，文档 RAG 改善条款查找，多智能体演示可以看起来很自主；但导航不等于拓扑感知缺陷诊断，嵌入邻域不等于渗水路径所需的 BIM 邻接，没有引用检查与写入门禁的流畅工单也不是可审计运维制品~\cite{zheng2023bimassistant,lee2024ragsafety,peng2024,luo2025llmdtrobot,gao2026ifcagent}。后文因此展开一种可行的专门化：即用 LLM 分层，外加把 Asset-ID 契约、版本钉扎与批准门禁放在可替换模型权重之外的模型 harness。现场微调不在本章议程；航次事实属于带版本孪生记忆与检索索引~\cite{lewis2020,krutli2025fmrags,ma2026tenquestions}。
 
-读完本章后，读者或实现者应能：列出表~\ref{tab:ch8-twin-contract} 的最低孪生承诺，并为每项缺失解释一种失效；把一个立面问题映射到第 L1--L3 层与表~\ref{tab:ch8-harness} 中的某一 harness 部件；用护照与 BIM 邻域为传播题或历史记录题装配引用或拒答包；说明第\ref{sec:ch8-multimodal}节中 VLM 与检测器的分工；展示一条在写入或复访请求上停在人工门禁的工具 TRACE~\cite{peng2024,yao2023react,liang2023helm,hellin2025bimmas}。这些结果定义的是决策层契约：前几章可以满足它，后几章可以加硬它。本章并不引入新的检测器。
+本章把语言层写成可核对、可交接的决策接口，而不是一段流畅但不可审计的聊天演示。读罢全文，读者应能说明：孪生若缺表~\ref{tab:ch8-twin-contract} 中某项最低前提，答案会在何处失真；一个立面问题该归入 L1--L3 的哪一层，并由表~\ref{tab:ch8-harness} 中哪一段 harness 承托；传播题与历史记录题如何用护照与 BIM 邻域拼成``带引用或拒答''的证据包；第~\ref{sec:ch8-multimodal}节里 VLM 与第~6章检测器各管哪一段；以及 twin 写入或复访提议怎样在人工门禁前留下一条可回放的工具 TRACE~\cite{peng2024,yao2023react,liang2023helm,hellin2025bimmas}。表~\ref{tab:ch8-outcomes} 将上述能力收成核对清单。它们界定的是跨章决策接口：第~2--7章供给几何、检测与孪生物料，本章说明语言侧如何装配与门禁，并不再引入新的检测器。
 
 \begin{table}[htbp]
 \centering
-\caption{第8章可核对教学结果。}
+\caption{第8章可核对能力清单。}
 \label{tab:ch8-outcomes}
 \begin{tabular}{llp{5.0cm}}
 \toprule
-结果 & 读者应能 \ldots & 掌握证据 \\
+核对项 & 应掌握的内容 & 合格判据 \\
 \midrule
-孪生契约 & 点名五项承诺 & 每项一种失效 \\
-L1--L3 + harness & 把问题映射到层/部件 & 会用表~\ref{tab:ch8-harness} 语言 \\
-装配 & 构造传播题证据包 & ID$\subseteq$包或拒答 \\
-有界行动 & 出示有门 TRACE & 无静默写孪生 \\
+孪生契约 & 表~\ref{tab:ch8-twin-contract} 五项前提 & 每项对应一种缺失失效 \\
+L1--L3 + harness & 问题所落层级与 harness 部件 & 能用表~\ref{tab:ch8-harness} 的语言表述 \\
+证据装配 & 传播题或历史记录题的证据包 & ID$\subseteq$包，或明确拒答 \\
+多模态分工 & VLM 与检测器的边界 & 检测器写观测，VLM 只读裁剪 \\
+有界行动 & 带门禁的工具 TRACE & 无静默写孪生 \\
 \bottomrule
 \end{tabular}
 \end{table}

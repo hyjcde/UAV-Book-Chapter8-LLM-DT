@@ -55,20 +55,21 @@ Modality tags & RGB / IR / \ldots & silent evidence fusion \\
 
 Table~\ref{tab:ch8-twin-contract} is not an IT wishlist; it is the digital continuation of field craft. Seasoned inspectors photograph before writing, name bays before diagnosing, and refuse to sign reports that cannot be walked on site. A decision-ready twin makes those habits machine-checkable across campaigns~\cite{zhang2022,chen2023facility}. Geographic scale sharpens the same point: a campus or housing estate multiplies identifier collisions and manual-edition conflicts, so city-scale identity must stay coherent in the GIS layer rather than being ``fixed'' later by clever prose~\cite{zhang2025,han2025}. Neighbouring language systems already show useful fragments and clear limits. BIM assistants improve navigation; document RAG improves clause lookup; multi-agent demos can look autonomous. Navigation is not topology-aware defect diagnosis, embedding neighbourhood is not BIM adjacency for moisture-path questions, and fluent tickets without citation checks or write gates are not auditable O\&M artefacts~\cite{zheng2023bimassistant,lee2024ragsafety,peng2024,luo2025llmdtrobot,gao2026ifcagent}. The rest of the chapter therefore develops one workable specialisation: ready-to-use LLM layers plus a model harness that keeps Asset-ID contracts, edition pins, and approval gates outside replaceable model weights. Site-specific fine-tuning is outside the agenda; campaign facts belong in editioned twin memory and retrieval indexes~\cite{lewis2020,krutli2025fmrags,ma2026tenquestions}.
 
-After reading this chapter, a student or implementer should be able to list the minimum twin commitments in Table~\ref{tab:ch8-twin-contract} and explain one failure mode for each missing commitment; map a fa\c{c}ade question to Layers~L1--L3 and to one harness part in Table~\ref{tab:ch8-harness}; assemble a cite-or-abstain package for a propagation or historical-record question using passports and BIM neighbours; state the VLM-versus-detector split in Section~\ref{sec:ch8-multimodal}; and show a tool TRACE in which a write or revisit request stops at a human gate~\cite{peng2024,yao2023react,liang2023helm,hellin2025bimmas}. Those outcomes define a decision-layer contract that earlier chapters can satisfy and later chapters can harden. They do not introduce a new detector.
+This chapter treats the language layer as a checkable, handover-ready decision interface rather than a fluent but un-auditable chat demo. After reading it through, a reader should be able to explain where an answer fails when the twin lacks one minimum prerequisite in Table~\ref{tab:ch8-twin-contract}; which L1--L3 layer a fa\c{c}ade question belongs to and which harness part in Table~\ref{tab:ch8-harness} carries it; how passports and BIM neighbours assemble a cite-or-abstain package for propagation or historical-record questions; where Section~\ref{sec:ch8-multimodal} draws the line between a VLM and the Chapter~6 detector; and how a twin write or revisit proposal leaves a replayable tool TRACE at a human gate~\cite{peng2024,yao2023react,liang2023helm,hellin2025bimmas}. Table~\ref{tab:ch8-outcomes} collects those capabilities into a short audit list. Together they define the cross-chapter decision interface: Chapters~2--7 supply geometry, detection, and twin artefacts; this chapter states how the language side assembles and gates them. It does not introduce a new detector.
 
 \begin{table}[htbp]
 \centering
-\caption{Checkable teaching outcomes for Chapter~8.}
+\caption{Checkable capability list for Chapter~8.}
 \label{tab:ch8-outcomes}
 \begin{tabular}{llp{5.0cm}}
 \toprule
-Outcome & Reader can \ldots & Evidence of mastery \\
+Check & What to master & Pass criterion \\
 \midrule
-Twin contract & name five commitments & one failure mode each \\
-L1--L3 + harness & map a question to a layer/part & Table~\ref{tab:ch8-harness} language \\
-Assembly & build a propagation package & IDs $\subseteq$ package or abstain \\
-Bounded action & show a gated TRACE & no silent twin write \\
+Twin contract & five prerequisites in Table~\ref{tab:ch8-twin-contract} & one failure mode per missing item \\
+L1--L3 + harness & layer and harness part for a question & Table~\ref{tab:ch8-harness} vocabulary \\
+Assembly & package for propagation or history & IDs $\subseteq$ package, or abstain \\
+Modality split & VLM versus detector boundary & detector writes observations; VLM reads crops \\
+Bounded action & gated tool TRACE & no silent twin write \\
 \bottomrule
 \end{tabular}
 \end{table}
