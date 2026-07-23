@@ -12,11 +12,11 @@ For this chapter, a building-inspection \emph{digital twin} is an editioned, que
 
 \begin{table}[htbp]
 \centering
-\caption{Twin maturity levels and whether they support Chapter~8 language and decision capabilities.}
+\caption{Twin maturity levels and whether they support language and decision capabilities in this chapter.}
 \label{tab:ch8-twin-maturity}
 \begin{tabular}{llp{4.6cm}}
 \toprule
-Level & Typical content & Supports Ch.~8? \\
+Level & Typical content & Supports language DSS? \\
 \midrule
 Geometric model & mesh, point cloud, BIM shell & No \\
 Semantic inspection model & defect types, host binding, time, modality & Partial \\
@@ -27,7 +27,7 @@ Closed-loop twin & approved repair outcomes feedback into the twin & Yes, gated 
 \end{tabular}
 \end{table}
 
-Building-inspection practice supplies that twin through a repeatable pipeline: UAV campaigns produce imagery and pose; reconstruction supplies geometry; detectors supply typed findings; BIM or GIS registration attaches findings to maintainable hosts~\cite{zhang2022,zhang2025,yang2025detreconreg,zhao2024facade,zhao2026physical}. In book terms, the earlier chapters already hand over what Chapter~8 needs to remember. Chapter~4 supplies geometry and BIM hosts---host codes, geometry digests, and adjacency seeds. Chapters~5--6 supply typed detections with defect labels, confidence, modality tags, and openable evidence URIs. Chapter~7 supplies GeoBIM identity: facility register codes, spatial filters, and city-scale hosts. Campaign metadata (pose, time, weather flags) pin timestamps and twin editions. Only when those products sit in twin memory is language reasoning honest. Large language models (LLMs) then act as language interfaces, not as detectors or site databases: retrieval-augmented generation (RAG), structured outputs, and tool calling keep living facts outside the weights~\cite{lewis2020,shuster2021,yao2023react,ji2023}. Vision--language models (VLMs), when used, may narrate an already attached crop; they must not invent host codes or rewrite detector labels. Neighbouring AEC systems already show fragments of these patterns---BIM assistants, code RAG, FM Q\&A, IFC agents---and also show that inspection needs stricter evidence discipline~\cite{zheng2023bimassistant,joffe2025buildingcodes,krutli2025fmrags,gao2026ifcagent,luo2025llmdtrobot}.
+Building-inspection practice supplies that twin through a repeatable pipeline: UAV campaigns produce imagery and pose; reconstruction supplies geometry; detectors supply typed findings; BIM or GIS registration attaches findings to maintainable hosts~\cite{zhang2022,zhang2025,yang2025detreconreg,zhao2024facade,zhao2026physical}. In book terms, the earlier chapters already hand over what this chapter needs to remember. Chapter~4 supplies geometry and BIM hosts---host codes, geometry digests, and adjacency seeds. Chapters~5--6 supply typed detections with defect labels, confidence, modality tags, and openable evidence URIs. Chapter~7 supplies GeoBIM identity: facility register codes, spatial filters, and city-scale hosts. Campaign metadata (pose, time, weather flags) pin timestamps and twin editions. Only when those products sit in twin memory is language reasoning honest. Large language models (LLMs) then act as language interfaces, not as detectors or site databases: retrieval-augmented generation (RAG), structured outputs, and tool calling keep living facts outside the weights~\cite{lewis2020,shuster2021,yao2023react,ji2023}. Vision--language models (VLMs), when used, may narrate an already attached crop; they must not invent host codes or rewrite detector labels. Neighbouring AEC systems already show fragments of these patterns---BIM assistants, code RAG, FM Q\&A, IFC agents---and also show that inspection needs stricter evidence discipline~\cite{zheng2023bimassistant,joffe2025buildingcodes,krutli2025fmrags,gao2026ifcagent,luo2025llmdtrobot}.
 
 Four governance questions decide whether the store is a twin rather than a structured photo archive. \emph{Update cadence:} how often UAV campaigns refresh the twin (per flight week, per season, or on demand). \emph{Authority:} when BIM, GIS, and computerised maintenance management system (CMMS) codes disagree, which source wins for host identity and work orders. \emph{Snapshots:} each language evaluation and report must pin a twin snapshot identifier. \emph{Write-back:} only approved repair or status changes may update long-term records; rejected LLM drafts must not enter the official store~\cite{zhang2022,chen2023facility,zhang2025}.
 
@@ -167,7 +167,7 @@ In summary of the foundations, Layers~L1--L3 name what a ready model can do unde
 
 \begin{table}[htbp]
 \centering
-\caption{Checkable capability list for Chapter~8.}
+\caption{Checkable capability list for this chapter.}
 \label{tab:ch8-outcomes}
 \begin{tabular}{llp{5.0cm}}
 \toprule
@@ -362,7 +362,7 @@ In this chapter, multi-modal fusion refers primarily to \emph{decision-level} an
 
 \begin{table}[htbp]
 \centering
-\caption{Fusion levels and Chapter~8 scope.}
+\caption{Fusion levels and scope in this chapter.}
 \label{tab:ch8-fusion-levels}
 \begin{tabular}{llp{4.8cm}}
 \toprule
@@ -580,7 +580,7 @@ Agent safety & Gates on write/dispatch? & silent twin mutation \\
 
 \begin{table}[htbp]
 \centering
-\caption{Capability maturity for Chapter~8 proposal claims (honest status).}
+\caption{Capability maturity for proposal claims in this chapter (honest status).}
 \label{tab:ch8-cap-maturity}
 \begin{tabular}{llp{4.2cm}}
 \toprule
@@ -676,4 +676,4 @@ Common failure modes collapse into the same contracts. Invented Asset-IDs appear
 
 Looking toward Chapter~9, the open problems are mostly socio-technical: incomplete topology on older buildings, contractor identifier collisions, scarce agent benchmarks for safe inspection tool use, and governance when a grounded-looking answer is wrong~\cite{saka2024gptconstruction,ma2026tenquestions}. Larger models alone will not close those gaps. The constructive response taught here remains continuous with Sections~\ref{sec:ch8-dt}--\ref{sec:ch8-reports}: make the twin decision-ready, retrieve over assets, fuse modalities without erasing conflict, bound the agent, and evaluate what facility teams can schedule.
 
-In summary, Chapter~8 is the monograph's decision-support phase. It consumes Chapters~4--7, teaches a model harness with an inspection-centred memory ladder, treats VLMs as optional crop readers under citation gates, and delivers claim-level reports with triage and conditional advice under professional control. Predictive maintenance remains an external-model interface unless multi-campaign evidence exists. The measure of success is not rhetorical fluency, but named assets, cited evidence, and actions that remain gated.
+In summary, this chapter is the monograph's decision-support phase. It consumes Chapters~4--7, teaches a model harness with an inspection-centred memory ladder, treats VLMs as optional crop readers under citation gates, and delivers claim-level reports with triage and conditional advice under professional control. Predictive maintenance remains an external-model interface unless multi-campaign evidence exists. The measure of success is not rhetorical fluency, but named assets, cited evidence, and actions that remain gated.

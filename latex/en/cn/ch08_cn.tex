@@ -12,11 +12,11 @@
 
 \begin{table}[htbp]
 \centering
-\caption{孪生成熟度层级及其对第8章语言与决策能力的支撑。}
+\caption{孪生成熟度层级及其对本章语言与决策能力的支撑。}
 \label{tab:ch8-twin-maturity}
 \begin{tabular}{llp{4.6cm}}
 \toprule
-层级 & 典型内容 & 是否支撑第8章 \\
+层级 & 典型内容 & 是否支撑语言决策 \\
 \midrule
 几何模型 & 网格、点云、BIM 外壳 & 否 \\
 语义巡检模型 & 缺陷类型、宿主绑定、时间、模态 & 部分 \\
@@ -27,7 +27,7 @@
 \end{tabular}
 \end{table}
 
-建筑巡检实践经可复述管线供给该孪生：无人机航次产生影像与位姿；重建供给几何；检测器供给类型化发现；BIM 或 GIS 配准把发现挂到可维护宿主~\cite{zhang2022,zhang2025,yang2025detreconreg,zhao2024facade,zhao2026physical}。用本书的话说，前几章已经把第8章要记住的东西交过来了。第4章交出几何与 BIM 宿主——宿主编码、几何摘要与邻接种子。第5--6章交出类型化检测：缺陷标签、置信度、模态标签与可打开证据 URI。第7章交出 GeoBIM 身份：设施台账编码、空间过滤与城市尺度宿主。航次元数据（位姿、时间、天气标记）钉住时间戳与孪生版本。只有这些产物进了孪生记忆，语言推理才算诚实。大语言模型（large language model, LLM）随后充当语言接口，而不是检测器或现场数据库：检索增强生成（retrieval-augmented generation, RAG）、结构化输出与工具调用把活事实留在权重之外~\cite{lewis2020,shuster2021,yao2023react,ji2023}。视觉—语言模型（vision--language model, VLM）若使用，可叙述已挂接裁剪，却不得发明宿主编码或改写检测标签。邻近 AEC 系统已展示 BIM 助手、规范 RAG、设施问答与 IFC 智能体等片段，也说明巡检仍需更严的证据纪律~\cite{zheng2023bimassistant,joffe2025buildingcodes,krutli2025fmrags,gao2026ifcagent,luo2025llmdtrobot}。
+建筑巡检实践经可复述管线供给该孪生：无人机航次产生影像与位姿；重建供给几何；检测器供给类型化发现；BIM 或 GIS 配准把发现挂到可维护宿主~\cite{zhang2022,zhang2025,yang2025detreconreg,zhao2024facade,zhao2026physical}。用本书的话说，前几章已经把本章要记住的东西交过来了。第4章交出几何与 BIM 宿主——宿主编码、几何摘要与邻接种子。第5--6章交出类型化检测：缺陷标签、置信度、模态标签与可打开证据 URI。第7章交出 GeoBIM 身份：设施台账编码、空间过滤与城市尺度宿主。航次元数据（位姿、时间、天气标记）钉住时间戳与孪生版本。只有这些产物进了孪生记忆，语言推理才算诚实。大语言模型（large language model, LLM）随后充当语言接口，而不是检测器或现场数据库：检索增强生成（retrieval-augmented generation, RAG）、结构化输出与工具调用把活事实留在权重之外~\cite{lewis2020,shuster2021,yao2023react,ji2023}。视觉—语言模型（vision--language model, VLM）若使用，可叙述已挂接裁剪，却不得发明宿主编码或改写检测标签。邻近 AEC 系统已展示 BIM 助手、规范 RAG、设施问答与 IFC 智能体等片段，也说明巡检仍需更严的证据纪律~\cite{zheng2023bimassistant,joffe2025buildingcodes,krutli2025fmrags,gao2026ifcagent,luo2025llmdtrobot}。
 
 四项治理问题决定该库是孪生还是结构化照片档案。\emph{更新节奏}：无人机航次多久刷新孪生（按飞行周、按季或按需）。\emph{权威源}：BIM、GIS 与计算机化维护管理系统（CMMS）编码冲突时，宿主身份与工单以谁为准。\emph{快照}：每次语言评价与报告须钉扎孪生快照标识。\emph{写回}：仅批准后的维修或状态变更可更新长期记录；被拒的 LLM 草稿不得进入正式库~\cite{zhang2022,chen2023facility,zhang2025}。
 
@@ -167,7 +167,7 @@ M_{t+1}=\mathrm{Update}\!\bigl(\mathrm{Generate}(S_t,M_t),\,M_t\bigr),\qquad
 
 \begin{table}[htbp]
 \centering
-\caption{第8章可核对能力清单。}
+\caption{本章可核对能力清单。}
 \label{tab:ch8-outcomes}
 \begin{tabular}{llp{5.0cm}}
 \toprule
@@ -363,7 +363,7 @@ P(a)=\bigl\langle a,\,G(a),\,N_{\tau}(a),\,O(a),\,D(a),\,d(a)\bigr\rangle,
 
 \begin{table}[htbp]
 \centering
-\caption{融合层级与第8章范围。}
+\caption{融合层级与本章范围。}
 \label{tab:ch8-fusion-levels}
 \begin{tabular}{llp{4.8cm}}
 \toprule
@@ -583,7 +583,7 @@ ID 子集 & 资产/缺陷 ID $\subseteq$ 证据包 & 虚构板块编码 \\
 
 \begin{table}[htbp]
 \centering
-\caption{第8章提案主张的能力成熟度（诚实状态）。}
+\caption{本章提案主张的能力成熟度（诚实状态）。}
 \label{tab:ch8-cap-maturity}
 \begin{tabular}{llp{4.2cm}}
 \toprule
@@ -679,4 +679,4 @@ s = w_{\ell}\,\tilde{\ell} + w_{c}\,c + w_{a}\,a + w_{m}\,m,
 
 望向第9章，开放问题大多是社会技术性的：老旧建筑上拓扑不完整、承包商标识冲突、安全巡检工具轨迹的智能体基准稀缺，以及``看起来已接地的答案出错时谁负责''的治理问题~\cite{saka2024gptconstruction,ma2026tenquestions}。更大模型本身并不能填平这些缺口。本章给出的建设性回应与第\ref{sec:ch8-dt}--\ref{sec:ch8-reports}节保持连续：让孪生决策可用，在资产上检索，融合模态而不抹掉冲突，约束智能体，并评价设施团队真正排得上程的东西。
 
-概括全章：第8章是全书的决策支持阶段。它消费第4--7章，讲授带巡检记忆阶梯的模型 harness，把 VLM 定位为引用门禁下的可选裁剪阅读器，并在专业控制下交付声明级报告、分诊与条件建议。预测性维护在多航次证据存在前，仍属外部模型接口。成功的尺度不是修辞流畅，而是点名资产、引用证据，以及仍处于门禁之下的行动。
+概括全章：本章是全书的决策支持阶段。它消费第4--7章，讲授带巡检记忆阶梯的模型 harness，把 VLM 定位为引用门禁下的可选裁剪阅读器，并在专业控制下交付声明级报告、分诊与条件建议。预测性维护在多航次证据存在前，仍属外部模型接口。成功的尺度不是修辞流畅，而是点名资产、引用证据，以及仍处于门禁之下的行动。
