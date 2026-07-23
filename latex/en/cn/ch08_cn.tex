@@ -429,36 +429,13 @@ P(a)=\bigl\langle a,\,G(a),\,N_{\tau}(a),\,O(a),\,D(a),\,d(a)\bigr\rangle,
 
 有界工具面仍须面对真实安全威胁，而不仅是``加一个人工门''。提示注入可能把观测备注或手册 PDF 里的隐藏指令塞进上下文；过期手册若未钉扎版本，会把已废止条款当作现行要求；检索投毒可能在向量索引中插入伪造护照；跨项目数据泄漏可能在多租户部署里把 A 站 Asset-ID 泄露给 B 站查询；未授权工具调用可能绕过 allow-list 直接写孪生；重复工单可能在会话重试中把同一复访提示开两次；并发写入可能造成孪生版本冲突；用户口头要求``先标已修''则可能试图绕过审批链。Harness 应以代码拥有 allow-list、版本钉扎、租户隔离、幂等工单键、乐观锁与强制复核状态来回应这些威胁；人工门是最后一道闸，不是完整安全模型~\cite{lee2024ragsafety,liang2023helm,gao2026ifcagent}.
 
+图~\ref{fig:ch8-sid-console}把同一条规则落到软件界面上，而不是再画一张流程图。Sid 坐在 GeoBIM 孪生旁边：经理用日常语言提问，得到点名宿主与可打开证据，并把不可逆写入或外派留在批准之后。截图里聊天面板可能带产品标签；本章把该前台叫作 Sid。
+
 \begin{figure}[htbp]
 \centering
-\begin{tikzpicture}[node distance=8mm and 7mm]
-  \node[ch8layerband, text width=11.0cm, align=center] (band)
-    {Harness 控制：孪生只读自由；写入必须过门};
-  \node[ch8boxalt, minimum width=2.2cm, below=7mm of band.west, anchor=west] (q)
-    {用户\\问题};
-  \node[ch8boxrag, minimum width=2.35cm, right=of q] (a)
-    {有界\\智能体};
-  \node[ch8boxgate, minimum width=2.45cm, right=of a] (g)
-    {人工/\\geofence 门};
-  \node[ch8boxok, minimum width=2.45cm, right=of g] (w)
-    {批准写入/\\复访提示};
-  \draw[ch8arr] (q) -- (a);
-  \draw[ch8arr] (a) -- (g);
-  \draw[ch8arr] (g) -- (w);
-  \node[ch8box, minimum width=2.6cm, below=11mm of a] (tw)
-    {孪生记忆\\（身份锁定）};
-  \draw[ch8arr] (a) -- node[ch8tiny, left, xshift=-1pt] {只读} (tw);
-  \draw[ch8arr] (tw) -- (a);
-  \node[ch8tiny, below=1.5mm of tw] {智能体不得直写孪生};
-  \node[ch8defnA, below=8mm of tw.south west, anchor=north west, text width=3.1cm] (d1)
-    {\textbf{身份。}答案或工单中点名的宿主必须带稳定 Asset-ID。};
-  \node[ch8defnB, right=2.0mm of d1, text width=3.1cm] (d2)
-    {\textbf{读路径。}护照、邻域与观测可自由取回。};
-  \node[ch8defnC, right=2.0mm of d2, text width=3.1cm] (d3)
-    {\textbf{写路径。}孪生更新与复访只能经门禁离开。};
-\end{tikzpicture}
-\caption{有界智能体的两区流程：在身份锁定的孪生上检索，再经人工或 geofence 门后才可行动。不可逆写入不得仅靠提示词从智能体跳进孪生记忆。}
-\label{fig:ch8-agent-gate}
+\includegraphics[width=\linewidth]{platform_demo.pdf}
+\caption{控制台上的 Sid：左侧是 GeoBIM 孪生视图与缺陷统计，右侧是自然语言提问框，返回点名宿主与可打开证据。在稳定 Asset-ID 下孪生可读可相对自由；孪生写入与现场外派仍须人工批准，不得仅靠提示词放行。}
+\label{fig:ch8-sid-console}
 \end{figure}
 
 微型示例。经理要求在红外提示潮湿但 RGB 尚不结论处复访。有界智能体可列出带模态标签的观测，识别冲突，起草标记需人工复核的报告，并发出粗粒度复访提示。它不得在散文里虚构航迹，也不得在未批准时把新缺陷类型写入孪生。这就是本书意义上的多模态融合：模态可知的记录、接地的语言，以及尊重上游章节权属的工具。
@@ -689,7 +666,7 @@ s = w_{\ell}\,\tilde{\ell} + w_{c}\,c + w_{a}\,a + w_{m}\,m,
 \item \emph{被拒写回：} 操作员驳回维修事件草稿；报告状态可保持已批准，但孪生写入仍禁止（无写入已提交）。
 \end{enumerate}
 
-常见失效最终都落回同一套契约。缺校验器会出现虚构 Asset-ID；用嵌入邻域替代 BIM 邻接会出现假渗水路径；红外卡片丢掉不确定标记会出现``已确认渗水''；报告起草与孪生写入共用一个无门禁按钮会出现静默写孪生；手册未钉扎会出现版本折中~\cite{ji2023,peng2024,lee2024ragsafety,luo2025llmdtrobot}。共享孪生记忆、类型化工具与门禁提供了相应的控制。采购与课堂验收可索要 Asset-ID 词典、邻接边出处、观测 schema、版本钉扎、意图--装配策略、有门工具面、CMMS 字段映射、含拒答的金标题，以及成对 TRACE 文件。图~\ref{fig:ch8-memory-ladder}--\ref{fig:ch8-agent-gate} 与表~\ref{tab:ch8-harness}、\ref{tab:ch8-cap-maturity} 是支撑该要求的承重教学对象~\cite{yao2023react,hellin2025bimmas,buga2025llmfmsql}。
+常见失效最终都落回同一套契约。缺校验器会出现虚构 Asset-ID；用嵌入邻域替代 BIM 邻接会出现假渗水路径；红外卡片丢掉不确定标记会出现``已确认渗水''；报告起草与孪生写入共用一个无门禁按钮会出现静默写孪生；手册未钉扎会出现版本折中~\cite{ji2023,peng2024,lee2024ragsafety,luo2025llmdtrobot}。共享孪生记忆、类型化工具与门禁提供了相应的控制。采购与课堂验收可索要 Asset-ID 词典、邻接边出处、观测 schema、版本钉扎、意图--装配策略、有门工具面、CMMS 字段映射、含拒答的金标题，以及成对 TRACE 文件。图~\ref{fig:ch8-memory-ladder}、\ref{fig:ch8-harness-fig}、\ref{fig:ch8-sid-console} 与表~\ref{tab:ch8-harness}、\ref{tab:ch8-cap-maturity} 是支撑该要求的承重教学对象~\cite{yao2023react,hellin2025bimmas,buga2025llmfmsql}。
 
 望向第9章，开放问题大多是社会技术性的：老旧建筑上拓扑不完整、承包商标识冲突、安全巡检工具轨迹的智能体基准稀缺，以及``看起来已接地的答案出错时谁负责''的治理问题~\cite{saka2024gptconstruction,ma2026tenquestions}。更大模型本身并不能填平这些缺口。本章给出的建设性回应与第\ref{sec:ch8-dt}--\ref{sec:ch8-reports}节保持连续：让孪生决策可用，在资产上检索，融合模态而不抹掉冲突，约束智能体，并评价设施团队真正排得上程的东西。
 

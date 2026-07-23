@@ -422,39 +422,13 @@ twin snapshot id: warehouse-v12
 \end{programcode}
 Returns should include Asset-ID, relation type, direction, provenance, graph version, and confidence. Human gates are necessary but not a complete security model. Threats include prompt injection in maintenance PDFs, stale manuals, retrieval poisoning, cross-project leakage, unauthorised tool calls, duplicate tickets, concurrent write conflicts, and users asking to bypass approval~\cite{ji2023,saka2024gptconstruction,lee2024ragsafety}.
 
+Figure~\ref{fig:ch8-sid-console} shows the same rule on a working screen rather than as a flowchart. Sid sits beside the GeoBIM twin: managers ask in ordinary language, get named hosts with openable evidence, and keep irreversible writes or dispatch behind approval. The chat panel may show a product label on the screenshot; in this chapter that front end is Sid.
+
 \begin{figure}[htbp]
 \centering
-\begin{tikzpicture}[node distance=8mm and 7mm]
-  \node[ch8layerband, text width=11.2cm, align=center] (band)
-    {Harness control: free twin reads; gated writes};
-  % Main left-to-right decision chain
-  \node[ch8boxalt, minimum width=2.3cm, below=7mm of band.west, anchor=west] (q)
-    {User\\question};
-  \node[ch8boxrag, minimum width=2.45cm, right=of q] (a)
-    {Bounded\\agent};
-  \node[ch8boxgate, minimum width=2.55cm, right=of a] (g)
-    {Human /\\geofence gate};
-  \node[ch8boxok, minimum width=2.55cm, right=of g] (w)
-    {Approved write /\\revisit hint};
-  \draw[ch8arr] (q) -- (a);
-  \draw[ch8arr] (a) -- (g);
-  \draw[ch8arr] (g) -- (w);
-  % Read-only twin under the agent (not under the gate)
-  \node[ch8box, minimum width=2.7cm, below=11mm of a] (tw)
-    {Twin memory\\(identity-locked)};
-  \draw[ch8arr] (a) -- node[ch8tiny, left, xshift=-1pt] {read only} (tw);
-  \draw[ch8arr] (tw) -- (a);
-  \node[ch8tiny, below=1.5mm of tw] {no direct write from agent to twin};
-  % Legend aligned to the three duties
-  \node[ch8defnA, below=8mm of tw.south west, anchor=north west, text width=3.2cm] (d1)
-    {\textbf{Identity.} Stable Asset-ID on every host named in answers or tickets.};
-  \node[ch8defnB, right=2.2mm of d1, text width=3.2cm] (d2)
-    {\textbf{Read path.} Passports, neighbours, and observations may be fetched freely.};
-  \node[ch8defnC, right=2.2mm of d2, text width=3.2cm] (d3)
-    {\textbf{Write path.} Twin updates and revisits leave only through the gate.};
-\end{tikzpicture}
-\caption{Bounded agency as a two-zone flow: retrieve under identity-locked twin reads, then act only after a human or geofence gate. Irreversible writes never jump from the agent to twin memory by prompt wording alone.}
-\label{fig:ch8-agent-gate}
+\includegraphics[width=\linewidth]{platform_demo.pdf}
+\caption{Sid at the console: GeoBIM twin view and defect statistics on the left, with a natural-language ask panel that returns named hosts and openable evidence. Twin reads may be free under stable Asset-IDs; twin writes and field dispatch stay behind human approval, not prompt wording alone.}
+\label{fig:ch8-sid-console}
 \end{figure}
 
 Worked micro-example. The manager asks for a revisit where infrared suggests moisture but RGB is inconclusive. A bounded agent may list the modality-tagged observations, notice the conflict, draft a report that marks human review, and emit a coarse revisit hint. It must not invent a flight trajectory in prose, and it must not write a new defect type into the twin without approval. That is multimodal fusion in the sense of this book: modality-aware records, grounded language, and tools that respect upstream chapter ownership.
@@ -689,7 +663,7 @@ The following walkthrough is teaching-only: Asset-IDs and counts are placeholder
 \item \emph{Rejected write:} the operator rejects a draft Repair Event; the report may stay approved, but twin write remains forbidden (no write committed).
 \end{enumerate}
 
-Common failure modes collapse into the same contracts. Invented Asset-IDs appear when validators are missing; false moisture paths appear when embedding neighbourhood replaces BIM adjacency; confirmed seepage appears when infrared-only cards lose uncertainty flags; silent twin mutation appears when report drafting and twin write share one unguarded button; edition averaging appears when manuals are unpinned~\cite{ji2023,peng2024,lee2024ragsafety,luo2025llmdtrobot}. Adding more agent personas does not repair those failures. Shared twin memory, typed tools, and gates do~\cite{wang2024surveyagents,rawat2025llmmas,gao2026ifcagent}. Procurement and classroom assessment should therefore demand the same artefacts: Asset-ID dictionary, neighbour-edge provenance, observation schema, edition pins, intent--assembly policy, gated tool surface, CMMS field map, gold questions with abstentions, and paired TRACE files. Figures~\ref{fig:ch8-memory-ladder}--\ref{fig:ch8-agent-gate} and Tables~\ref{tab:ch8-harness} and~\ref{tab:ch8-cap-maturity} are load-bearing teaching objects for that demand~\cite{yao2023react,hellin2025bimmas,buga2025llmfmsql}.
+Common failure modes collapse into the same contracts. Invented Asset-IDs appear when validators are missing; false moisture paths appear when embedding neighbourhood replaces BIM adjacency; confirmed seepage appears when infrared-only cards lose uncertainty flags; silent twin mutation appears when report drafting and twin write share one unguarded button; edition averaging appears when manuals are unpinned~\cite{ji2023,peng2024,lee2024ragsafety,luo2025llmdtrobot}. Adding more agent personas does not repair those failures. Shared twin memory, typed tools, and gates do~\cite{wang2024surveyagents,rawat2025llmmas,gao2026ifcagent}. Procurement and classroom assessment should therefore demand the same artefacts: Asset-ID dictionary, neighbour-edge provenance, observation schema, edition pins, intent--assembly policy, gated tool surface, CMMS field map, gold questions with abstentions, and paired TRACE files. Figures~\ref{fig:ch8-memory-ladder}, \ref{fig:ch8-harness-fig}, and~\ref{fig:ch8-sid-console} and Tables~\ref{tab:ch8-harness} and~\ref{tab:ch8-cap-maturity} are load-bearing teaching objects for that demand~\cite{yao2023react,hellin2025bimmas,buga2025llmfmsql}.
 
 Looking toward Chapter~9, the open problems are mostly socio-technical: incomplete topology on older buildings, contractor identifier collisions, scarce agent benchmarks for safe inspection tool use, and governance when a grounded-looking answer is wrong~\cite{saka2024gptconstruction,ma2026tenquestions}. Larger models alone will not close those gaps. The constructive response taught here remains continuous with Sections~\ref{sec:ch8-dt}--\ref{sec:ch8-reports}: make the twin decision-ready, retrieve over assets, fuse modalities without erasing conflict, bound the agent, and evaluate what facility teams can schedule.
 

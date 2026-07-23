@@ -35,3 +35,4 @@
 **Fig 8.8 book framing (2026-07-22):** axis labels → packaging policy (Chunk-only / Host cards / Passport ± $k$); caption+prose as portable design lesson (not paper cell codes / not site KPI / not chat-model leaderboard); EN+CN.
 **Sid + platform UI (2026-07-22):** §8.5 NLQ + §8.6 everyday prose — working front end named **Sid** (not SID); what it does / from Ch.2–7 twin + harness / how screens support triage DSS; `fig:ch8-platform` + `fig:ch8-ui-screens` + transfer fig (EN+CN).
 **Thin-table cut (2026-07-23):** dropped list-like tables into prose — upstream Ch.4–7 handoff (`tab:ch8-upstream`), L1–L3 overview (`tab:ch8-tech-families`), ID-map fields (`tab:ch8-id-map`), triage terms (`tab:ch8-triage`); kept maturity/harness/eval-style tables.
+**Fig swap (2026-07-23):** removed TikZ `fig:ch8-agent-gate` (bounded two-zone flow); replaced with Sid console screenshot `platform_demo.pdf` as `fig:ch8-sid-console` (EN+CN).
