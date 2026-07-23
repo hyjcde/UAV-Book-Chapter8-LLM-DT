@@ -6,347 +6,332 @@ from pptx.dml.color import RGBColor
 from pptx.enum.text import PP_ALIGN, MSO_ANCHOR
 from pptx.enum.shapes import MSO_SHAPE
 
-def create_academic_pipeline_pptx(output_path="Chapter01_Overall_Pipeline.pptx"):
+def create_tree_pipeline_pptx(output_path="Chapter01_Overall_Pipeline.pptx"):
     prs = Presentation()
-    # 16:9 Widescreen Dimensions
     prs.slide_width = Inches(13.333)
     prs.slide_height = Inches(7.5)
     blank_layout = prs.slide_layouts[6]
 
-    # Pure Academic Palette: Black & White
     COLOR_BLACK = RGBColor(0, 0, 0)
     COLOR_WHITE = RGBColor(255, 255, 255)
     COLOR_MUTED = RGBColor(90, 90, 90)
+    COLOR_LINE = RGBColor(40, 40, 40)
 
-    FONT_TITLE = "Times New Roman"
-    FONT_BODY = "Times New Roman"
+    FONT_NAME = "Times New Roman"
 
-    # =========================================================================
-    # SLIDE 1: 中文版 (Chinese Version - 1 Page)
-    # =========================================================================
-    slide1 = prs.slides.add_slide(blank_layout)
-
-    # Title Box
-    title_box1 = slide1.shapes.add_textbox(Inches(0.8), Inches(0.45), Inches(11.733), Inches(0.85))
-    tf1 = title_box1.text_frame
-    tf1.word_wrap = True
-    tf1.margin_left = tf1.margin_top = tf1.margin_right = tf1.margin_bottom = 0
-
-    p1 = tf1.paragraphs[0]
-    p1.text = "专著总体框架与章节结构图"
-    p1.font.name = FONT_TITLE
-    p1.font.size = Pt(22)
-    p1.font.bold = True
-    p1.font.color.rgb = COLOR_BLACK
-
-    p1_sub = tf1.add_paragraph()
-    p1_sub.text = "AI-Driven UAV Building Inspection: An End-to-End Framework from Autonomous Flight to Digital Twins"
-    p1_sub.font.name = FONT_TITLE
-    p1_sub.font.size = Pt(12)
-    p1_sub.font.color.rgb = COLOR_MUTED
-
+    # Full proposal structure with exact sub-sections
     phases_cn = [
         {
-            "phase_title": "阶段一：自主采集与规划",
-            "chapters": [
+            "phase": "阶段一：智能数据采集",
+            "en_phase": "Phase I: Intelligent Data Acquisition",
+            "chaps": [
                 {
-                    "ch_num": "第 2 章：任务规划",
-                    "ch_desc": "• 立面巡检覆盖路径规划\n• ROI 区域定义与多机协同"
+                    "title": "第 2 章：无人机任务规划",
+                    "lead": "（Xinyi Wang）",
+                    "subs": ["2.2 多机协同与任务分配", "2.4 立面巡检覆盖路径规划", "2.5 能耗感知优化控制"]
                 },
                 {
-                    "ch_num": "第 3 章：运动规划",
-                    "ch_desc": "• 实时避障与轨迹优化\n• 风场扰动适应与自主控制"
+                    "title": "第 3 章：环境运动规划",
+                    "lead": "（Chuanxiang Gao）",
+                    "subs": ["3.2 实时建图与定位", "3.3 复杂环境避障轨迹生成", "3.4 风场扰动下自主控制"]
                 }
             ]
         },
         {
-            "phase_title": "阶段二：重建与数据表达",
-            "chapters": [
+            "phase": "阶段二：三维表达与数据基准",
+            "en_phase": "Phase II: Digital Representation & Data",
+            "chaps": [
                 {
-                    "ch_num": "第 4 章：三维重建",
-                    "ch_desc": "• 倾斜摄影测量与点云建模\n• Mesh 构网与 BIM 坐标对齐"
+                    "title": "第 4 章：三维重建与映射",
+                    "lead": "（Guidong Yang）",
+                    "subs": ["4.2 SfM 稀疏与密集重建", "4.4 神经渲染与 Mesh 构网", "4.5 点云配准与 BIM 对齐"]
                 },
                 {
-                    "ch_num": "第 5 章：巡检数据集",
-                    "ch_desc": "• RGB / 热成像多模态采集\n• 缺陷标注规范与基准集"
+                    "title": "第 5 章：数据集与基准",
+                    "lead": "（Benyun Zhao）",
+                    "subs": ["5.2 多模态图像预处理与标注", "5.3 建筑立面缺陷 Detection", "5.4 缺陷 Instance Segmentation"]
                 }
             ]
         },
         {
-            "phase_title": "阶段三：AI 缺陷感知",
-            "chapters": [
+            "phase": "阶段三：AI 缺陷感知分析",
+            "en_phase": "Phase III: AI Defect Perception",
+            "chaps": [
                 {
-                    "ch_num": "第 6 章：AI 缺陷检测模型",
-                    "ch_desc": "• 深度学习目标检测\n• 构件实例分割与定量量化\n• 缺陷严重程度评估"
+                    "title": "第 6 章：巡检 AI 检测模型",
+                    "lead": "（Benyun Zhao）",
+                    "subs": ["6.1 机载算力与低时延约束", "6.3 缺陷检测深度学习架构", "6.4 实例分割与定量评估", "6.6 边缘部署与机载实测校验"]
                 }
             ]
         },
         {
-            "phase_title": "阶段四：数字孪生与决策",
-            "chapters": [
+            "phase": "阶段四：数字孪生与大模型",
+            "en_phase": "Phase IV: Digital Twin & LLM",
+            "chaps": [
                 {
-                    "ch_num": "第 7 章：GIS 与 GeoBIM 集成",
-                    "ch_desc": "• 空间数据库与 GeoBIM 映射\n• 缺陷与资产护照 (Passport) 挂载"
+                    "title": "第 7 章：GIS 与 GeoBIM 集成",
+                    "lead": "（Jihan Zhang）",
+                    "subs": ["7.2 UAV 数据映射 GeoBIM", "7.3 结构退化时空分析", "7.5 城市级资产护照挂载"]
                 },
                 {
-                    "ch_num": "第 8 章：数字孪生与大模型",
-                    "ch_desc": "• LLM / VLM 检索增强推理 (RAG)\n• 历史维保查询与预测性维护"
+                    "title": "第 8 章：数字孪生与大模型",
+                    "lead": "（Yijun Huang）",
+                    "subs": ["8.2 LLM / VLM 领域推理底座", "8.3 孪生记忆与 RAG 检索", "8.5/8.6 报告生成与预测维护"]
                 },
                 {
-                    "ch_num": "第 9 章：总结与展望",
-                    "ch_desc": "• 现场部署经验审计\n• 开放挑战与下一代系统展望"
+                    "title": "第 9 章：总结与展望",
+                    "lead": "（Ben M. Chen et al.）",
+                    "subs": ["9.1 端到端系统闭环总结", "9.2 法规、安全与隐私约束", "9.3 自主集群与下一代 AI"]
                 }
             ]
         }
     ]
-
-    start_x = Inches(0.8)
-    start_y = Inches(1.5)
-    col_w = Inches(2.65)
-    gap_x = Inches(0.38)
-    total_h = Inches(5.1)
-
-    for i, phase in enumerate(phases_cn):
-        col_x = start_x + i * (col_w + gap_x)
-
-        # Header Box (Phase Title)
-        header = slide1.shapes.add_shape(MSO_SHAPE.RECTANGLE, col_x, start_y, col_w, Inches(0.5))
-        header.fill.solid()
-        header.fill.fore_color.rgb = COLOR_WHITE
-        header.line.color.rgb = COLOR_BLACK
-        header.line.width = Pt(1.25)
-
-        tf_h = header.text_frame
-        tf_h.vertical_anchor = MSO_ANCHOR.MIDDLE
-        p_h = tf_h.paragraphs[0]
-        p_h.text = phase["phase_title"]
-        p_h.font.name = FONT_BODY
-        p_h.font.size = Pt(11)
-        p_h.font.bold = True
-        p_h.font.color.rgb = COLOR_BLACK
-        p_h.alignment = PP_ALIGN.CENTER
-
-        # Stack Chapter Boxes
-        num_ch = len(phase["chapters"])
-        top_y = start_y + Inches(0.6)
-        avail_h = total_h - Inches(0.6)
-        ch_h = (avail_h - Inches(0.12) * (num_ch - 1)) / num_ch
-
-        curr_y = top_y
-        for ch in phase["chapters"]:
-            card = slide1.shapes.add_shape(MSO_SHAPE.RECTANGLE, col_x, curr_y, col_w, ch_h)
-            card.fill.solid()
-            card.fill.fore_color.rgb = COLOR_WHITE
-            card.line.color.rgb = COLOR_BLACK
-            card.line.width = Pt(1.0)
-
-            tf_c = card.text_frame
-            tf_c.word_wrap = True
-            tf_c.margin_left = Inches(0.12)
-            tf_c.margin_right = Inches(0.12)
-            tf_c.margin_top = Inches(0.12)
-            tf_c.vertical_anchor = MSO_ANCHOR.TOP
-
-            p_c1 = tf_c.paragraphs[0]
-            p_c1.text = ch["ch_num"]
-            p_c1.font.name = FONT_BODY
-            p_c1.font.size = Pt(10.5)
-            p_c1.font.bold = True
-            p_c1.font.color.rgb = COLOR_BLACK
-            p_c1.space_after = Pt(4)
-
-            p_c2 = tf_c.add_paragraph()
-            p_c2.text = ch["ch_desc"]
-            p_c2.font.name = FONT_BODY
-            p_c2.font.size = Pt(9.5)
-            p_c2.font.color.rgb = COLOR_BLACK
-
-            curr_y += ch_h + Inches(0.12)
-
-        # Connecting Arrow
-        if i < len(phases_cn) - 1:
-            arrow_x = col_x + col_w + Inches(0.08)
-            arrow_y = start_y + total_h / 2 - Inches(0.12)
-            arrow = slide1.shapes.add_shape(MSO_SHAPE.RIGHT_ARROW, arrow_x, arrow_y, Inches(0.22), Inches(0.24))
-            arrow.fill.solid()
-            arrow.fill.fore_color.rgb = COLOR_BLACK
-            arrow.line.fill.background()
-
-    # Caption
-    footer1 = slide1.shapes.add_textbox(Inches(0.8), Inches(6.8), Inches(11.733), Inches(0.4))
-    p_ft1 = footer1.text_frame.paragraphs[0]
-    p_ft1.text = "图 1.1：专著四阶段端到端技术路线与章节映射关系（从物理采集、三维重建到大模型决策支持）"
-    p_ft1.font.name = FONT_BODY
-    p_ft1.font.size = Pt(10)
-    p_ft1.font.bold = True
-    p_ft1.font.color.rgb = COLOR_BLACK
-
-
-    # =========================================================================
-    # SLIDE 2: 英文版 (English Version - 1 Page)
-    # =========================================================================
-    slide2 = prs.slides.add_slide(blank_layout)
-
-    # Title Box
-    title_box2 = slide2.shapes.add_textbox(Inches(0.8), Inches(0.45), Inches(11.733), Inches(0.85))
-    tf2 = title_box2.text_frame
-    tf2.word_wrap = True
-    tf2.margin_left = tf2.margin_top = tf2.margin_right = tf2.margin_bottom = 0
-
-    p2 = tf2.paragraphs[0]
-    p2.text = "Overall Framework and Chapter Map"
-    p2.font.name = FONT_TITLE
-    p2.font.size = Pt(22)
-    p2.font.bold = True
-    p2.font.color.rgb = COLOR_BLACK
-
-    p2_sub = tf2.add_paragraph()
-    p2_sub.text = "AI-Driven UAV Building Inspection: An End-to-End Framework from Autonomous Flight to Digital Twins"
-    p2_sub.font.name = FONT_TITLE
-    p2_sub.font.size = Pt(12)
-    p2_sub.font.color.rgb = COLOR_MUTED
 
     phases_en = [
         {
-            "phase_title": "Phase I: Flight & Acquisition",
-            "chapters": [
+            "phase": "Phase I: Data Acquisition",
+            "chaps": [
                 {
-                    "ch_num": "Chapter 2: Task Planning",
-                    "ch_desc": "• Façade inspection path planning\n• ROI definition & multi-UAV routing"
+                    "title": "Chapter 2: Task Planning",
+                    "lead": "(Xinyi Wang)",
+                    "subs": ["2.2 Multi-UAV Task Allocation", "2.4 Façade Coverage Path Planning", "2.5 Energy-Aware Optimization"]
                 },
                 {
-                    "ch_num": "Chapter 3: Motion Planning",
-                    "ch_desc": "• Obstacle avoidance & trajectory opt.\n• Wind disturbance adaptation"
+                    "title": "Chapter 3: Motion Planning",
+                    "lead": "(Chuanxiang Gao)",
+                    "subs": ["3.2 Real-time Mapping & Localiz.", "3.3 Obstacle Trajectory Generation", "3.4 Wind Disturbance Control"]
                 }
             ]
         },
         {
-            "phase_title": "Phase II: Reconstruction & Data",
-            "chapters": [
+            "phase": "Phase II: 3D Recon. & Datasets",
+            "chaps": [
                 {
-                    "ch_num": "Chapter 4: 3D Reconstruction",
-                    "ch_desc": "• Photogrammetry & point clouds\n• Mesh modeling & BIM alignment"
+                    "title": "Chapter 4: 3D Reconstruction",
+                    "lead": "(Guidong Yang)",
+                    "subs": ["4.2 SfM Sparse & Dense Recon.", "4.4 Neural Rendering & Mesh", "4.5 Point Cloud & BIM Alignment"]
                 },
                 {
-                    "ch_num": "Chapter 5: Inspection Datasets",
-                    "ch_desc": "• Multimodal RGB / Thermal capture\n• Defect annotation & benchmarks"
+                    "title": "Chapter 5: Inspection Datasets",
+                    "lead": "(Benyun Zhao)",
+                    "subs": ["5.2 Multimodal Preproc. & Annot.", "5.3 Façade Defect Detection", "5.4 Instance Segmentation"]
                 }
             ]
         },
         {
-            "phase_title": "Phase III: AI Defect Perception",
-            "chapters": [
+            "phase": "Phase III: AI Defect Perception",
+            "chaps": [
                 {
-                    "ch_num": "Chapter 6: AI Defect Models",
-                    "ch_desc": "• Deep learning defect detection\n• Instance segmentation & quantification\n• Severity rating"
+                    "title": "Chapter 6: AI Defect Models",
+                    "lead": "(Benyun Zhao)",
+                    "subs": ["6.1 On-board Compute & Latency", "6.3 Defect Detection Architectures", "6.4 Instance Seg. & Metrics", "6.6 Edge Deployment Validation"]
                 }
             ]
         },
         {
-            "phase_title": "Phase IV: Digital Twin & LLM",
-            "chapters": [
+            "phase": "Phase IV: Digital Twin & LLM",
+            "chaps": [
                 {
-                    "ch_num": "Chapter 7: GIS & GeoBIM",
-                    "ch_desc": "• Spatial database & GeoBIM mapping\n• Defect & Asset Passport attachment"
+                    "title": "Chapter 7: GIS & GeoBIM",
+                    "lead": "(Jihan Zhang)",
+                    "subs": ["7.2 Mapping UAV/3D to GeoBIM", "7.3 Spatiotemporal Degradation", "7.5 City Asset Passport Mgmt"]
                 },
                 {
-                    "ch_num": "Chapter 8: Digital Twin & LLM",
-                    "ch_desc": "• LLM / VLM RAG reasoning\n• Maintenance query & decision support"
+                    "title": "Chapter 8: Digital Twin & LLM",
+                    "lead": "(Yijun Huang)",
+                    "subs": ["8.2 LLM / VLM Domain Reasoning", "8.3 Twin Memory & RAG Retrieval", "8.5/8.6 Report & Maintenance DSS"]
                 },
                 {
-                    "ch_num": "Chapter 9: Conclusion & Future",
-                    "ch_desc": "• Field deployment audit\n• Open challenges & future outlook"
+                    "title": "Chapter 9: Conclusion & Outlook",
+                    "lead": "(Ben M. Chen et al.)",
+                    "subs": ["9.1 End-to-End System Summary", "9.2 Regulatory & Safety Bounds", "9.3 Autonomous Swarms & AI"]
                 }
             ]
         }
     ]
 
-    for i, phase in enumerate(phases_en):
-        col_x = start_x + i * (col_w + gap_x)
+    def build_tree_slide(prs, title_text, subtitle_text, caption_text, phases_data, is_chinese=True):
+        slide = prs.slides.add_slide(blank_layout)
 
-        # Header Box
-        header = slide2.shapes.add_shape(MSO_SHAPE.RECTANGLE, col_x, start_y, col_w, Inches(0.5))
-        header.fill.solid()
-        header.fill.fore_color.rgb = COLOR_WHITE
-        header.line.color.rgb = COLOR_BLACK
-        header.line.width = Pt(1.25)
+        # Slide Title Header
+        title_box = slide.shapes.add_textbox(Inches(0.6), Inches(0.4), Inches(12.133), Inches(0.85))
+        tf = title_box.text_frame
+        tf.word_wrap = True
+        tf.margin_left = tf.margin_top = tf.margin_right = tf.margin_bottom = 0
 
-        tf_h = header.text_frame
-        tf_h.vertical_anchor = MSO_ANCHOR.MIDDLE
-        p_h = tf_h.paragraphs[0]
-        p_h.text = phase["phase_title"]
-        p_h.font.name = FONT_BODY
-        p_h.font.size = Pt(11)
-        p_h.font.bold = True
-        p_h.font.color.rgb = COLOR_BLACK
-        p_h.alignment = PP_ALIGN.CENTER
+        p = tf.paragraphs[0]
+        p.text = title_text
+        p.font.name = FONT_NAME
+        p.font.size = Pt(20)
+        p.font.bold = True
+        p.font.color.rgb = COLOR_BLACK
 
-        # Stack Chapter Boxes
-        num_ch = len(phase["chapters"])
-        top_y = start_y + Inches(0.6)
-        avail_h = total_h - Inches(0.6)
-        ch_h = (avail_h - Inches(0.12) * (num_ch - 1)) / num_ch
+        p_sub = tf.add_paragraph()
+        p_sub.text = subtitle_text
+        p_sub.font.name = FONT_NAME
+        p_sub.font.size = Pt(11)
+        p_sub.font.color.rgb = COLOR_MUTED
 
-        curr_y = top_y
-        for ch in phase["chapters"]:
-            card = slide2.shapes.add_shape(MSO_SHAPE.RECTANGLE, col_x, curr_y, col_w, ch_h)
-            card.fill.solid()
-            card.fill.fore_color.rgb = COLOR_WHITE
-            card.line.color.rgb = COLOR_BLACK
-            card.line.width = Pt(1.0)
+        # Grid Layout Metrics
+        start_x = Inches(0.6)
+        start_y = Inches(1.35)
+        col_w = Inches(2.8)
+        gap_x = Inches(0.24)
 
-            tf_c = card.text_frame
-            tf_c.word_wrap = True
-            tf_c.margin_left = Inches(0.12)
-            tf_c.margin_right = Inches(0.12)
-            tf_c.margin_top = Inches(0.12)
-            tf_c.vertical_anchor = MSO_ANCHOR.TOP
+        for i, phase_info in enumerate(phases_data):
+            col_x = start_x + i * (col_w + gap_x)
 
-            p_c1 = tf_c.paragraphs[0]
-            p_c1.text = ch["ch_num"]
-            p_c1.font.name = FONT_BODY
-            p_c1.font.size = Pt(10.5)
-            p_c1.font.bold = True
-            p_c1.font.color.rgb = COLOR_BLACK
-            p_c1.space_after = Pt(4)
+            # Phase Header Box (Compact Rounded Rectangle)
+            phase_box = slide.shapes.add_shape(MSO_SHAPE.ROUNDED_RECTANGLE, col_x, start_y, col_w, Inches(0.38))
+            phase_box.fill.solid()
+            phase_box.fill.fore_color.rgb = COLOR_WHITE
+            phase_box.line.color.rgb = COLOR_BLACK
+            phase_box.line.width = Pt(1.25)
 
-            p_c2 = tf_c.add_paragraph()
-            p_c2.text = ch["ch_desc"]
-            p_c2.font.name = FONT_BODY
-            p_c2.font.size = Pt(9.5)
-            p_c2.font.color.rgb = COLOR_BLACK
+            tf_p = phase_box.text_frame
+            tf_p.vertical_anchor = MSO_ANCHOR.MIDDLE
+            tf_p.margin_left = tf_p.margin_right = Inches(0.05)
+            p_ph = tf_p.paragraphs[0]
+            p_ph.text = phase_info["phase"]
+            p_ph.font.name = FONT_NAME
+            p_ph.font.size = Pt(10)
+            p_ph.font.bold = True
+            p_ph.font.color.rgb = COLOR_BLACK
+            p_ph.alignment = PP_ALIGN.CENTER
 
-            curr_y += ch_h + Inches(0.12)
+            # Vertical Stem Line down from Phase Header
+            stem_top_x = col_x + col_w / 2
+            stem_top_y = start_y + Inches(0.38)
 
-        # Connecting Arrow
-        if i < len(phases_en) - 1:
-            arrow_x = col_x + col_w + Inches(0.08)
-            arrow_y = start_y + total_h / 2 - Inches(0.12)
-            arrow = slide2.shapes.add_shape(MSO_SHAPE.RIGHT_ARROW, arrow_x, arrow_y, Inches(0.22), Inches(0.24))
-            arrow.fill.solid()
-            arrow.fill.fore_color.rgb = COLOR_BLACK
-            arrow.line.fill.background()
+            chaps = phase_info["chaps"]
+            num_ch = len(chaps)
 
-    # Caption
-    footer2 = slide2.shapes.add_textbox(Inches(0.8), Inches(6.8), Inches(11.733), Inches(0.4))
-    p_ft2 = footer2.text_frame.paragraphs[0]
-    p_ft2.text = "Figure 1.1: End-to-end four-phase methodology and chapter mapping of the monograph."
-    p_ft2.font.name = FONT_BODY
-    p_ft2.font.size = Pt(10)
-    p_ft2.font.bold = True
-    p_ft2.font.color.rgb = COLOR_BLACK
+            # Y Positions for Chapters in this Column
+            if num_ch == 1:
+                ch_y_positions = [start_y + Inches(0.75)]
+            elif num_ch == 2:
+                ch_y_positions = [start_y + Inches(0.75), start_y + Inches(3.5)]
+            else: # 3 chapters
+                ch_y_positions = [start_y + Inches(0.75), start_y + Inches(2.65), start_y + Inches(4.55)]
 
-    # Save PPTX
+            # Draw Vertical Connector Line for Column Stem
+            max_ch_y = ch_y_positions[-1]
+            stem_line = slide.shapes.add_shape(MSO_SHAPE.RECTANGLE, stem_top_x - Inches(0.005), stem_top_y, Inches(0.01), max_ch_y - stem_top_y)
+            stem_line.fill.solid()
+            stem_line.fill.fore_color.rgb = COLOR_LINE
+            stem_line.line.fill.background()
+
+            # Render Chapters and Sub-points Tree
+            for ch_idx, ch in enumerate(chaps):
+                curr_ch_y = ch_y_positions[ch_idx]
+
+                # Chapter Box (Compact Small Rounded Rectangle)
+                ch_w = Inches(2.55)
+                ch_x = col_x + (col_w - ch_w) / 2
+                ch_box = slide.shapes.add_shape(MSO_SHAPE.ROUNDED_RECTANGLE, ch_x, curr_ch_y, ch_w, Inches(0.36))
+                ch_box.fill.solid()
+                ch_box.fill.fore_color.rgb = COLOR_WHITE
+                ch_box.line.color.rgb = COLOR_BLACK
+                ch_box.line.width = Pt(1.0)
+
+                tf_c = ch_box.text_frame
+                tf_c.vertical_anchor = MSO_ANCHOR.MIDDLE
+                tf_c.margin_left = tf_c.margin_right = Inches(0.08)
+                p_c = tf_c.paragraphs[0]
+                p_c.text = f"{ch['title']} {ch['lead']}"
+                p_c.font.name = FONT_NAME
+                p_c.font.size = Pt(9.2)
+                p_c.font.bold = True
+                p_c.font.color.rgb = COLOR_BLACK
+
+                # Sub-points Tree Branching
+                sub_start_y = curr_ch_y + Inches(0.42)
+                sub_indent_x = ch_x + Inches(0.18)
+                sub_line_x = ch_x + Inches(0.08)
+
+                num_subs = len(ch["subs"])
+                sub_item_h = Inches(0.24)
+                
+                # Draw Tree Branch Vertical Stem for Sub-points
+                if num_subs > 0:
+                    tree_stem_h = (num_subs - 1) * (sub_item_h + Inches(0.04)) + Inches(0.12)
+                    tree_stem = slide.shapes.add_shape(MSO_SHAPE.RECTANGLE, sub_line_x, sub_start_y - Inches(0.06), Inches(0.008), tree_stem_h)
+                    tree_stem.fill.solid()
+                    tree_stem.fill.fore_color.rgb = COLOR_LINE
+                    tree_stem.line.fill.background()
+
+                for s_idx, sub_text in enumerate(ch["subs"]):
+                    s_y = sub_start_y + s_idx * (sub_item_h + Inches(0.04))
+
+                    # Horizontal Branch Connector Line
+                    h_branch = slide.shapes.add_shape(MSO_SHAPE.RECTANGLE, sub_line_x, s_y + Inches(0.1), Inches(0.08), Inches(0.008))
+                    h_branch.fill.solid()
+                    h_branch.fill.fore_color.rgb = COLOR_LINE
+                    h_branch.line.fill.background()
+
+                    # Sub-point Node (Small Pill / Rounded Card)
+                    sub_box = slide.shapes.add_shape(MSO_SHAPE.ROUNDED_RECTANGLE, sub_indent_x, s_y, Inches(2.28), sub_item_h)
+                    sub_box.fill.solid()
+                    sub_box.fill.fore_color.rgb = COLOR_WHITE
+                    sub_box.line.color.rgb = COLOR_LINE
+                    sub_box.line.width = Pt(0.5)
+
+                    tf_s = sub_box.text_frame
+                    tf_s.vertical_anchor = MSO_ANCHOR.MIDDLE
+                    tf_s.margin_left = tf_s.margin_right = Inches(0.06)
+                    p_s = tf_s.paragraphs[0]
+                    p_s.text = sub_text
+                    p_s.font.name = FONT_NAME
+                    p_s.font.size = Pt(8.2)
+                    p_s.font.color.rgb = COLOR_BLACK
+
+            # Thin Horizontal Inter-Phase Arrow
+            if i < len(phases_data) - 1:
+                arrow_x = col_x + col_w + Inches(0.02)
+                arrow_y = start_y + Inches(0.08)
+                arrow = slide.shapes.add_shape(MSO_SHAPE.RIGHT_ARROW, arrow_x, arrow_y, Inches(0.20), Inches(0.22))
+                arrow.fill.solid()
+                arrow.fill.fore_color.rgb = COLOR_BLACK
+                arrow.line.fill.background()
+
+        # Caption Footer
+        footer = slide.shapes.add_textbox(Inches(0.6), Inches(6.82), Inches(12.133), Inches(0.4))
+        p_ft = footer.text_frame.paragraphs[0]
+        p_ft.text = caption_text
+        p_ft.font.name = FONT_NAME
+        p_ft.font.size = Pt(9.5)
+        p_ft.font.bold = True
+        p_ft.font.color.rgb = COLOR_BLACK
+
+    # Slide 1: Chinese
+    build_tree_slide(
+        prs,
+        title_text="专著总体大纲与四阶段技术路线树状映射图",
+        subtitle_text="AI-Driven UAV Building Inspection: An End-to-End Framework from Autonomous Flight to Digital Twins",
+        caption_text="图 1.1：专著四阶段端到端技术路线树状映射图（全书 9 章从物理采集、三维重建、AI 感知到数字孪生大模型决策）",
+        phases_data=phases_cn,
+        is_chinese=True
+    )
+
+    # Slide 2: English
+    build_tree_slide(
+        prs,
+        title_text="Monograph Overall Structure and Four-Phase Chapter Tree Roadmap",
+        subtitle_text="AI-Driven UAV Building Inspection: An End-to-End Framework from Autonomous Flight to Digital Twins",
+        caption_text="Figure 1.1: Four-phase end-to-end methodology and detailed chapter tree roadmap of the monograph (Chapters 1–9).",
+        phases_data=phases_en,
+        is_chinese=False
+    )
+
     dirname = os.path.dirname(output_path)
     if dirname:
         os.makedirs(dirname, exist_ok=True)
     prs.save(output_path)
-    print(f"Successfully generated academic presentation at: {output_path}")
+    print(f"Successfully generated tree pipeline presentation at: {output_path}")
 
-    # Copy to figures_src
     figures_src_path = "figures_src/overall_pipeline_ch01.pptx"
     prs.save(figures_src_path)
-    print(f"Successfully saved copy at: {figures_src_path}")
+    print(f"Saved copy to: {figures_src_path}")
 
 if __name__ == "__main__":
-    create_academic_pipeline_pptx("Chapter01_Overall_Pipeline.pptx")
+    create_tree_pipeline_pptx("Chapter01_Overall_Pipeline.pptx")
