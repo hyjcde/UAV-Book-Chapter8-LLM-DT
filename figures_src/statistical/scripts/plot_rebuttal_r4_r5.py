@@ -124,9 +124,14 @@ def plot_r5(out_pdf: Path, out_png: Path) -> None:
     raw = pd.concat(frames, ignore_index=True)
 
     order = ["D", "E", "F", "H", "I", "J"]
+    # Book chapter labels (packaging / retrieval policy), not paper cell codes.
     full = {
-        "D": "IAP-RAG (Ours)", "E": "Naive Chunk-RAG", "F": "Graph-Neighbour",
-        "H": "GraphRAG", "I": "RAPTOR", "J": "HyDE+Fusion",
+        "D": "Passport pack",
+        "E": "Chunk-only",
+        "F": "Graph-neighbour",
+        "H": "Graph community",
+        "I": "Hierarchical",
+        "J": "Query transform",
     }
     types = ["spatial_awareness", "multi_hop_topological", "analytical_aggregation"]
     type_labs = ["Spatial", "Multi-hop", "Analytical"]
