@@ -1,0 +1,16 @@
+---
+description: Always commit and always push after meaningful changes
+alwaysApply: true
+---
+
+# Always Commit + Always Push
+
+After finishing a meaningful change set (code, figures, docs, PPT, scripts):
+
+1. **Always commit** — every change must leave a git record (message focuses on why).
+2. **Always push** — push to the tracked remote immediately after a successful commit.
+3. Do **not** wait for the user to say “push”. Only skip push if there is no remote / push fails (then report the error).
+4. Do **not** use destructive git operations (`push --force`, hard reset) unless the user explicitly asks.
+5. Follow normal commit hygiene: stage only relevant files; never commit secrets (`.env`, credentials).
+
+This overrides any default “do not push unless asked” guidance for this user’s workflows.
