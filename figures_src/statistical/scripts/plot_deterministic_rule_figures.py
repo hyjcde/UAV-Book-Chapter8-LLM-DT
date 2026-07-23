@@ -60,11 +60,11 @@ ABLATION_METRICS = [
 ]
 
 EXTERNAL_ORDER = [
-    ("I", "RAPTOR"),
-    ("J", "HyDE+Fusion"),
-    ("K", "Corrective-RAG"),
-    ("H_ner", "GraphRAG"),
-    ("D", "IAP-RAG"),
+    ("I", "Hierarchical"),
+    ("J", "Query transform"),
+    ("K", "Corrective pack"),
+    ("H_ner", "Graph community"),
+    ("D", "Passport pack"),
 ]
 
 EXTERNAL_METRICS = [
@@ -76,11 +76,11 @@ EXTERNAL_METRICS = [
 METRIC_COLORS = metric_colors()  # RetrExact / AnsExact / CitedInRet module hexes
 
 FOREST_BASELINES = [
-    ("E", "Naive Chunk-RAG"),
-    ("F", "Graph-Neighbour"),
-    ("H", "GraphRAG-style"),
-    ("I", "RAPTOR"),
-    ("J", "HyDE+Fusion"),
+    ("E", "Chunk-only"),
+    ("F", "Graph-neighbour"),
+    ("H", "Graph community"),
+    ("I", "Hierarchical"),
+    ("J", "Query transform"),
 ]
 FOREST_CATS = [
     ("ALL", "Overall ($n=200$)"),
@@ -245,7 +245,7 @@ def plot_external(idp_dir: Path, out_stem: Path) -> None:
     ax.legend(loc="upper left", ncol=1, fontsize=LEGEND_FS, frameon=True, edgecolor="#cccccc")
     setup_academic_ax(ax, title=None)
     ax.set_xlabel(
-        "Peers: atomic IDP text + host Asset-IDs (no IAP / no VDPP); $N=200$",
+        "Peer packs: host Asset-IDs with atomic observation text; $N=200$",
         fontweight="bold", fontsize=LABEL_FS - 1,
     )
     fig.tight_layout()
@@ -326,7 +326,7 @@ def plot_forest(stats_csv: Path, out_stem: Path) -> None:
     ax.set_xlim(-2.4, 7.2)
     ax.set_ylim(max(y_positions) + 0.8, min(y_positions) - 0.8)
     ax.set_xlabel(
-        r"Score difference  (IAP-RAG $-$ baseline); bootstrap 95% CI",
+        r"Score difference  (Passport pack $-$ baseline); bootstrap 95% CI",
         fontweight="bold", fontsize=LABEL_FS,
     )
     setup_academic_ax(ax, title=None)

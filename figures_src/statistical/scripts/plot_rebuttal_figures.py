@@ -36,25 +36,25 @@ STATS_CSV = PROJECT_ROOT / "data" / "statistical_analysis_final.csv"
 
 COLORS = external_group_colors(None)
 GROUP_NAMES = {
-    "D": "IAP-RAG (Ours)",
-    "E": "Naive Chunk-RAG",
-    "F": "Graph-Neighbour",
-    "H": "GraphRAG",
-    "I": "RAPTOR",
-    "J": "HyDE+Fusion",
+    "D": "Passport pack",
+    "E": "Chunk-only",
+    "F": "Graph-neighbour",
+    "H": "Graph community",
+    "I": "Hierarchical",
+    "J": "Query transform",
 }
 SHORT = {
-    "D": "IAP-RAG",
-    "E": "Chunk-RAG",
-    "F": "Graph-Neighbour",
-    "H": "GraphRAG",
-    "I": "RAPTOR",
-    "J": "HyDE+Fusion",
+    "D": "Passport",
+    "E": "Chunk-only",
+    "F": "Graph-neighbour",
+    "H": "Graph community",
+    "I": "Hierarchical",
+    "J": "Query transform",
 }
 PARADIGM = {
-    "D": "Entity-centric IAP",
+    "D": "Passport-centred",
     "E": "Flat dense",
-    "F": "Graph (no IAP)",
+    "F": "Graph neighbour",
     "H": "Graph community",
     "I": "Hierarchical",
     "J": "Query transform",
@@ -114,7 +114,7 @@ def plot_r1(df: pd.DataFrame, out_pdf: Path, out_png: Path) -> None:
             ha="center", fontsize=13, fontweight="bold", color=COLORS[g],
         )
     ax.set_xticks(x)
-    ax.set_xticklabels([f"{PARADIGM[g]}\n({g})" for g in SPECTRUM_ORDER], fontsize=12)
+    ax.set_xticklabels([PARADIGM[g] for g in SPECTRUM_ORDER], fontsize=12)
     ax.set_ylabel("Overall diagnostic judge score (0–10)", fontweight="bold", fontsize=15)
     ax.set_ylim(0, max(means) + max(errs) + 1.4)
     setup_academic_ax(ax, "RAG paradigm spectrum: mean score by paradigm (±1 SEM)")
@@ -199,7 +199,7 @@ def plot_r2(df: pd.DataFrame, stats: pd.DataFrame, out_pdf: Path, out_png: Path)
         setup_academic_ax(axb, title)
         if j == 2:
             axb.set_xlabel(
-                r"$\Delta$ = IAP-RAG $-$ baseline (bootstrap 95% CI)",
+                r"$\Delta$ = Passport pack $-$ baseline (bootstrap 95% CI)",
                 fontweight="bold", fontsize=14,
             )
 
